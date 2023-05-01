@@ -1,4 +1,9 @@
-# Projet
+# ECE-WORLD
+### Assignment :
+Making of an amusement park with GUI by using Allegro 4.4.
+<br /><br />
+Kinan LAKHDAR<br /> 
+Reda HASSANI<br /> 
+Kylian PINTO<br /> <br /> 
 
-Vous pouvez éditer le fichier README.md (en langage **Markdown**) pour modifier cette partie.
-Vous pouvez générer des schémas en utilisant [Mermaid](https://github.com/mermaid-js/mermaid).
+*May 2023 - ING1 S2*
