@@ -1,0 +1,24 @@
+{
+    "name": "Allegro 4.4",
+    "image": "virtualx11",
+    "runArgs": [
+        "-v",
+        "/Users/kinanlakhdar/Allegro/:/usr/projects",
+        "-e",
+        "DISPLAY=host.docker.internal:0",
+        "-e",
+        "LD_LIBRARY_PATH=/usr/src/allegro-4.4.2/build/lib/"
+    ],
+    "forwardPorts": [],
+	"postCreateCommand": "echo 'Bienvenue dans votre environnement de développement Allegro 4.4 !'",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools-extension-pack",
+				"GitHub.copilot",
+				"oderwat.indent-rainbow",
+				"christian-kohler.path-intellisense"
+			]
+		}
+	}
+}

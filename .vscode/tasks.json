@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-o",
+                "main",
+                "*.c",
+                "-L/usr/local/lib",
+                "-lalleg",
+                "-lm"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build and Run",
+            "dependsOn": [
+                "Build"
+            ],
+            "type": "shell",
+            "command": "./main",
+            "problemMatcher": []
+        }
+    ]
+}
