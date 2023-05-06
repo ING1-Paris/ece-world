@@ -3,7 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+int est_sur_rondin(int x_grenouille, int y_grenouille, int x_rondin, int y_rondin, int largeur_rondin, int hauteur_rondin) {
+    int sur_rondin = 0;
+    if (y_grenouille == y_rondin) {
+        if (x_grenouille >= x_rondin && x_grenouille <= x_rondin + largeur_rondin) {
+            sur_rondin = 1;
+        }
+    }
+    return sur_rondin;
+}
 void shuffleBitmaps(BITMAP **bitmaps, int count) {
     int i, j;
     BITMAP *temp;
