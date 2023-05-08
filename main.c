@@ -34,6 +34,13 @@ BITMAP *bitmap3[3];
 int main(void) {
     printf("bonjour !\n");
     printf("salut comment");
+    allegro_init();
+    install_keyboard();
+    install_mouse();
+    set_color_depth(32);
+    set_gfx_mode(GFX_AUTODETECT_WINDOWED, 640, 480, 0, 0);
+    //rest(1000);
+    set_gfx_mode(GFX_AUTODETECT_WINDOWED, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
     //bitmap[0] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
     //bitmap[1] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
     //bitmap[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
