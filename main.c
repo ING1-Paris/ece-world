@@ -12,7 +12,7 @@ int est_sur_rondin(int x_grenouille, int y_grenouille, int x_rondin, int y_rondi
         }
     }
     return sur_rondin;
-}
+} 
 void shuffleBitmaps(BITMAP **bitmaps, int count) {
     int i, j;
     BITMAP *temp;
@@ -56,5 +56,15 @@ int main(void) {
 
     //BITMAP* manivelle = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image manivelle.bmp", NULL);
     //BITMAP* manivelleretour = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\manivelle retour.bmp", NULL);
+    /*int frog_speed = 8;
+    if (key[KEY_LEFT] && frog_x > 0) {
+                frog_x -= frog_speed;}
+    if (key[KEY_RIGHT] && frog_x < SCREEN_W - 32) {
+                frog_x += frog_speed;}
+    if (key[KEY_UP] && frog_y > 0) {
+                frog_y -= frog_speed;}
+    if (key[KEY_DOWN] && frog_y < SCREEN_H - 32) {
+                frog_y += frog_speed;}*/ //deplacement grenouille
+
     return 0;
 }END_OF_MAIN();
