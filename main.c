@@ -12,7 +12,7 @@ int est_sur_rondin(int x_grenouille, int y_grenouille, int x_rondin, int y_rondi
         }
     }
     return sur_rondin;
-} 
+}  
 void shuffleBitmaps(BITMAP **bitmaps, int count) {
     int i, j;
     BITMAP *temp;
