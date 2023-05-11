@@ -13,6 +13,13 @@ int est_sur_rondin(int x_grenouille, int y_grenouille, int x_rondin, int y_rondi
     }
     return sur_rondin;
 }  
+void initrondin(int log_x[8],int log_y[8],int log_speed[8]){
+    for (int i = 0; i < 4; i++) {
+        log_x[i] = SCREEN_W;
+        log_x[i+4]= SCREEN_W/2;
+        log_speed[i] = (rand() % 4) + 1;
+        log_speed[i+4] =log_speed[i] ;
+}}
 void shuffleBitmaps(BITMAP **bitmaps, int count) {
     int i, j;
     BITMAP *temp;
