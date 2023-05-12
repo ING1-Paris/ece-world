@@ -7,16 +7,20 @@
             "command": "gcc",
             "args": [
                 "-o",
-                "main",
-                "*.c",
+                "main.o",
+                //"*.c",
+                //"**/*.c",
+                "${file}",
                 "-L/usr/local/lib",
                 "-lalleg",
-                "-lm"
+                "-lm",
+                "-Wall",
+                "-Wextra",
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
         },
         {
             "label": "Build and Run",
@@ -24,8 +28,16 @@
                 "Build"
             ],
             "type": "shell",
-            "command": "./main",
-            "problemMatcher": []
+            "command": "./main.o",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
         }
     ]
 }
