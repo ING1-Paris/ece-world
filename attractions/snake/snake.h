@@ -1,24 +1,25 @@
 /*
-!TODO: supprimer les variables globales sinon ça va mal aller 
-!      (toutes les foutres dans une structure qu'on se trimballe partout)
-TODO: Une séparation du snake.c en plusieurs sous fichiers .c
-TODO: Spawn le snake a une position aléatoire
-TODO: rendre le jeu jolie mdr
-TODO: ajouter des effets sonores et une musique de fond
+
+TODO: Mettre des Bitmap sur le jeu
+TODO: Chnanger les fonts du jeu
+TODO: Ajouter des effets sonores (fruit, fruit *5, mort) et une musique de fond
 TODO: ajouter un décompte avec de "dépauser" le jeu
 TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu sinon c'est violent
-
-TODO: dormir un peu
 */
 
 #ifndef SNAKE_H
 #define SNAKE_H
 
+#include <allegro.h>
+#include <stdbool.h>
+
 /* CONSTANTES */
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 #define BLOCK_SIZE 25
-#define FPS 10
+#define INITIAL_FPS 10
+#define MAX_FPS 20
+#define SCORE_PER_FPS 5
 #define MIN_DISTANCE_FROM_BORDER BLOCK_SIZE
 #define SNAKE_INITIAL_LENGTH 4
 
@@ -31,23 +32,40 @@ TODO: dormir un peu
 
 /* STRUCTURES */
 typedef struct Block {
-    int x, y;
+    int x;
+    int y;
     struct Block *next;
 } Block;
 
+typedef struct GameState {
+    BITMAP *buffer;
+    Block *snake_head;
+
+    int fruit_x;
+    int fruit_y;
+
+    int fps;
+    int score;
+    int direction;
+    int start_time;
+    double snake_speed;
+
+    bool paused;
+    bool game_over;
+    bool game_exited;
+} GameState;
+
 /* FONCTIONS */
-void add_block(int x, int y);
-void init_game();
-void increment_score();
-int get_high_score();
-void draw_game();
-void save_score();
-void reset_game();
-void game_over_screen();
-void draw_fruit(int x, int y, int color);
-void move_snake();
-void handle_input();
-void check_collisions();
-void free_memory();
+void add_block(GameState *game, int x, int y);
+void init_game(GameState *game);
+void draw_game(GameState *game);
+void save_score(GameState *game);
+void reset_game(GameState *game);
+void game_over_screen(GameState *game);
+void draw_fruit(GameState *game, int x, int y, int color);
+void move_snake(GameState *game);
+void handle_input(GameState *game);
+void check_collisions(GameState *game);
+void free_memory(GameState *game);
 
 #endif
