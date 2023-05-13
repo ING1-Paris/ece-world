@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 //test
-
+//super test
 int est_sur_rondin(int x_grenouille, int y_grenouille, int x_rondin, int y_rondin, int largeur_rondin, int hauteur_rondin) {
     int sur_rondin = 0;
     if (y_grenouille == y_rondin) {
