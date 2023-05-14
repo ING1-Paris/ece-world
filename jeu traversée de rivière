@@ -7,13 +7,6 @@
 #define FROG_H 32
 #define LOG_WIDTH 128
 #define LOG_HEIGHT 64
-void initrondin(int log_x[8],int log_y[8],int log_speed[8]){
-    for (int i = 0; i < 4; i++) {
-        log_x[i] = SCREEN_W;
-        log_x[i+4]= SCREEN_W/2;
-        log_speed[i] = (rand() % 4) + 1;
-        log_speed[i+4] =log_speed[i] ;
-}}
 /*typedef struct grenouille{
     int x;
     int y;
@@ -54,49 +47,42 @@ int main() {
         allegro_message("Impossible de charger les sprites.");
         return 1;
     }
-
-
-    // Créer les sprites de grenouille et de rondins de bois
+// Déclaration des variables
     int frog_x = SCREEN_W / 2;
     int frog_y = SCREEN_H - FROG_H;
-    int score = 0;
-
-
-        // Faire sauter la grenouille
-        // deplacement grenouille
-        // Déclaration des variables
-    int log_x[8] = { 0, 0, 0, 0,0, 0, 0, 0};
-    int log_y[8] = { 120, 180, 240, 300 ,120, 180, 240, 300 };
-    int log_speed[8] = { LOG_SPEED, -LOG_SPEED, LOG_SPEED, -LOG_SPEED ,LOG_SPEED, -LOG_SPEED, LOG_SPEED, -LOG_SPEED };
+    int score = 0;        
+    int log_x[12] = { 0, 0, 0, 0,0, 0, 0, 0,0,0,0,0};
+    int log_y[12] = { 120, 180, 240, 300 ,120, 180, 240, 300,120, 180, 240, 300 ,120 };
+    int log_speed[12] = { LOG_SPEED, -LOG_SPEED, LOG_SPEED, -LOG_SPEED ,LOG_SPEED, -LOG_SPEED, LOG_SPEED, -LOG_SPEED,LOG_SPEED, -LOG_SPEED, LOG_SPEED, -LOG_SPEED };
+     //initialisation rondin
     for (int i = 0; i < 4; i++) {
-        log_x[i] = SCREEN_W;
-        log_x[i+4]= SCREEN_W/2;
+        log_x[i] = SCREEN_W/3;
+        log_x[i+4]= 2*SCREEN_W/3;
+        log_x[i+8]=SCREEN_W;
         log_speed[i] = (rand() % 4) + 1;
         log_speed[i+4] =log_speed[i] ;
-        /*if (rand() % 2 == 0) {
-            log_speed[i] = -log_speed[i];
-            log_speed[i+4] = -log_speed[i];
-            log_x[i] = 0 - LOG_WIDTH;
-            log_x[i+4] = 0 - LOG_WIDTH;
-        }*/
-    }
-    BITMAP *buffer= create_bitmap(SCREEN_W,SCREEN_H);
-    BITMAP *buffer2= create_bitmap(SCREEN_W,SCREEN_H);
+        log_speed[i+8] =log_speed[i];
+}
+    //création des buffer, initialisation du temps,de la vitesse de la grenouille et du score
     int frog_speed = 8;
-    clear_bitmap(buffer2);
+    BITMAP *buffer= create_bitmap(SCREEN_W,SCREEN_H);
     clear_bitmap(buffer);
-    BITMAP *buffer_rect= create_bitmap(SCREEN_W,SCREEN_H);
-    srand(time(NULL));
+    clock_t start_time = clock(); // temps de début du jeu
+    float elapsed_time = 0.0f; // temps écoulé
+    float scorefinal[10];
+    float max_score=0;
+    float score=0;
+    int num_played = 0;
 // Boucle de jeu
         while (!key[KEY_ESC]) {
             clear_to_color(buffer, makecol(0, 0, 0));
-
+            elapsed_time = (float)(clock() - start_time) / CLOCKS_PER_SEC;
             // Dessin du fond d'écran
             rectfill(buffer, 0, 0, SCREEN_W, SCREEN_H / 4, makecol(0, 255, 0));
             rectfill(buffer, 0, SCREEN_H - SCREEN_H / 4, SCREEN_W, SCREEN_H, makecol(0, 255, 0));
             rectfill(buffer,0,SCREEN_H/4,SCREEN_W,SCREEN_H-SCREEN_H/4, makecol(0,0,255));
-            rest(20); // Pause de 20 ms pour limiter la vitesse d'exécution du programme
-            
+
+           
             textprintf_ex(screen, font, 10, 10, makecol(0, 0, 0), -1, "Temps : %d", score);
             vsync();
             acquire_screen();
