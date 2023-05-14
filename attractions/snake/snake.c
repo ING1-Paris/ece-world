@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 // Ajoute un bloc à la fin du snake
 void add_block(GameState *game, int x, int y) {
@@ -19,6 +19,7 @@ void add_block(GameState *game, int x, int y) {
     }
 
     last_block->next = new_block;
+    new_block->prev = last_block;
 }
 
 // Initialise le jeu, crée le snake initial et créer le fruit
@@ -41,6 +42,23 @@ void init_game(GameState *game) {
     game->fruit_y = (rand() % (SCREEN_HEIGHT - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
 }
 
+void init_bitmap(GameState *game) {
+    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites.bmp", NULL);
+    if (!spritesheet) {
+        allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
+        exit(EXIT_FAILURE);
+    }
+
+    BITMAP *snake_body_sprites[10];
+    for (int i = 0; i < 10; i++) {
+        snake_body_sprites[i] = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE);
+    }
+
+    game->snake_body_sprites = snake_body_sprites;
+
+    destroy_bitmap(spritesheet);
+}
+
 // Obtiens le meilleurs score dans le fichier de sauvegarde
 int get_high_score() {
     FILE *file = fopen(SNAKE_SAVE_FILE, "r");
@@ -61,14 +79,15 @@ void draw_game(GameState *game) {
         textout_centre_ex(game->buffer, font, "Appuyer sur P ou Echap pour mettre en pause", SCREEN_W / 2, SCREEN_H / 2, makecol(200, 200, 200), -1);
     }
 
-    // Dessine la tête du serpent
+    // Dessine le serpent
     Block *current_block = game->snake_head;
-    rectfill(game->buffer, current_block->x, current_block->y, current_block->x + BLOCK_SIZE, current_block->y + BLOCK_SIZE, SNAKE_HEAD_COLOR);
-
-    // Dessine le reste du serpent
-    current_block = current_block->next;
     while (current_block != NULL) {
-        rectfill(game->buffer, current_block->x, current_block->y, current_block->x + BLOCK_SIZE, current_block->y + BLOCK_SIZE, SNAKE_COLOR);
+        assign_sprite(current_block);
+        if (current_block->sprite_id == 10) {
+            rectfill(game->buffer, current_block->x, current_block->y, current_block->x + BLOCK_SIZE, current_block->y + BLOCK_SIZE, SNAKE_COLOR);
+        } else {
+            draw_sprite(game->buffer, game->snake_body_sprites[current_block->sprite_id], current_block->x, current_block->y);
+        }
         current_block = current_block->next;
     }
 
@@ -278,8 +297,82 @@ void free_memory(GameState *game) {
         free(current_block);
         current_block = next_block;
     }
-    clear_bitmap(game->buffer);
-    clear_bitmap(screen);
+    destroy_bitmap(game->buffer);
+    destroy_bitmap(screen);
+    for (int i = 0; i < 11; i++) {
+        destroy_bitmap(game->snake_body_sprites[i]);
+    }
+}
+
+void assign_sprite(Block *block) {
+    int sprite_id;
+
+    print_debug("0");
+
+    if (block->prev == NULL) {  // 10 - la tête
+        print_debug("1");
+        sprite_id = 10;
+    } else if (block->next == NULL) {  // 6 à 9 - la queue
+        print_debug("2");
+        sprite_id = get_tail_orientation(block);
+    } else if (block->prev->x == block->next->x) {  // 1 - le corps horizontal
+        print_debug("3");
+        sprite_id = 1;
+    } else if (block->prev->y == block->next->y) {  // 0 - le corps vertical
+        print_debug("4");
+        sprite_id = 0;
+    } else {  // 2 à 5 - le corps courbé
+        print_debug("5");
+        sprite_id = get_corner_orientation(block);
+    }
+
+    print_debug("6");
+    fflush(stdout);
+
+    block->sprite_id = sprite_id;
+}
+
+int get_tail_orientation(Block *block) {
+    if (block->prev->x != block->x) {
+        if (block->prev->x > block->x) {
+            return 9;
+        } else {
+            return 7;
+        }
+    } else {
+        if (block->prev->y > block->y) {
+            return 8;
+        } else {
+            return 6;
+        }
+    }
+}
+
+int get_corner_orientation(Block *block) {
+    if (block->prev->x > block->x) {
+        if (block->next->y > block->y) {
+            return 3;
+        } else {
+            return 2;
+        }
+    } else {
+        if (block->next->y > block->y) {
+            return 4;
+        } else {
+            return 5;
+        }
+    }
+}
+
+void print_debug(char *message) {
+    // write in debug.txt
+    FILE *f = fopen("debug.txt", "a");
+    if (f == NULL) {
+        printf("Error opening file!\n");
+        exit(1);
+    }
+    fprintf(f, "%s\n", message);
+    fclose(f);
 }
 
 int main() {
@@ -288,13 +381,14 @@ int main() {
     allegro_init();
     install_keyboard();
     install_timer();
-    set_color_depth(32);
+    set_color_depth(24);
+
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
 
     // On initialise le jeu
     GameState game;
     init_game(&game);
-
+    init_bitmap(&game);
 
     // On lance la boucle principale du jeu
     while (game.game_exited == false) {
