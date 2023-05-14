@@ -40,23 +40,26 @@ void init_game(GameState *game) {
 
     game->fruit_x = (rand() % (SCREEN_WIDTH - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
     game->fruit_y = (rand() % (SCREEN_HEIGHT - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
+
+    game->snake_body_sprites = init_bitmap();
+
 }
 
-void init_bitmap(GameState *game) {
-    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites.bmp", NULL);
+BITMAP** init_bitmap() {
+    BITMAP** snake_body_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 10);
+
+    BITMAP *spritesheet = load_bitmap("snake_sprites.bmp", NULL);
     if (!spritesheet) {
         allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
         exit(EXIT_FAILURE);
     }
 
-    BITMAP *snake_body_sprites[10];
     for (int i = 0; i < 10; i++) {
         snake_body_sprites[i] = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE);
     }
 
-    game->snake_body_sprites = snake_body_sprites;
+    return snake_body_sprites;
 
-    destroy_bitmap(spritesheet);
 }
 
 // Obtiens le meilleurs score dans le fichier de sauvegarde
@@ -381,14 +384,13 @@ int main() {
     allegro_init();
     install_keyboard();
     install_timer();
-    set_color_depth(24);
+    set_color_depth(32);
 
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
 
     // On initialise le jeu
     GameState game;
     init_game(&game);
-    init_bitmap(&game);
 
     // On lance la boucle principale du jeu
     while (game.game_exited == false) {

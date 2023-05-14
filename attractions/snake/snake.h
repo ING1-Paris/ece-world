@@ -56,7 +56,7 @@ typedef struct GameState {
     int fps;
     int score;
     int direction;
-    int start_time;
+    long start_time;
     double snake_speed;
 
     bool paused;
@@ -67,7 +67,7 @@ typedef struct GameState {
 /* FONCTIONS */
 void add_block(GameState *game, int x, int y);
 void init_game(GameState *game);
-void init_bitmap(GameState *game);
+BITMAP** init_bitmap();
 int get_high_score();
 void draw_game(GameState *game);
 void save_score(GameState *game);
@@ -82,5 +82,6 @@ int get_tail_orientation(Block *block);
 int get_corner_orientation(Block *block);
 void print_debug(char *message);
 void move_snake(GameState *game);
+void debug_init(char* message);
 
 #endif
