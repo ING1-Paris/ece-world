@@ -39,6 +39,24 @@ void init_game(GameState *game) {
 
     game->fruit_x = (rand() % (SCREEN_WIDTH - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
     game->fruit_y = (rand() % (SCREEN_HEIGHT - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
+
+    game->snake_body_sprites = init_bitmap();
+}
+
+BITMAP **init_bitmap() {
+    BITMAP **snake_body_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 10);
+
+    BITMAP *spritesheet = load_bitmap("snake_sprites.bmp", NULL);
+    if (!spritesheet) {
+        allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < 10; i++) {
+        snake_body_sprites[i] = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 2 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
+    }
+
+    return snake_body_sprites;
 }
 
 // Obtiens le meilleurs score dans le fichier de sauvegarde
@@ -68,7 +86,15 @@ void draw_game(GameState *game) {
     // Dessine le reste du serpent
     current_block = current_block->next;
     while (current_block != NULL) {
-        rectfill(game->buffer, current_block->x, current_block->y, current_block->x + BLOCK_SIZE, current_block->y + BLOCK_SIZE, SNAKE_COLOR);
+        assign_sprite(current_block);
+        if (current_block->sprite_id == 10) {
+            rectfill(game->buffer, current_block->x, current_block->y, current_block->x + BLOCK_SIZE, current_block->y + BLOCK_SIZE, SNAKE_COLOR);
+        } else {
+            set_trans_blender(255, 0, 255, 0);
+            drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+            draw_sprite(game->buffer, game->snake_body_sprites[current_block->sprite_id], current_block->x, current_block->y);
+            drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
+        }
         current_block = current_block->next;
     }
 
@@ -278,6 +304,109 @@ void free_memory(GameState *game) {
         free(current_block);
         current_block = next_block;
     }
+    destroy_bitmap(game->buffer);
+    destroy_bitmap(screen);
+    for (int i = 0; i < 11; i++) {
+        destroy_bitmap(game->snake_body_sprites[i]);
+    }
+}
+
+void assign_sprite(Block *block) {
+    int sprite_id;
+
+    if (block->prev == NULL) {  // 10 - la tête
+        sprite_id = 10;
+    } else if (block->next == NULL) {  // 6 à 9 - la queue
+        sprite_id = get_tail_orientation(block);
+    } else if (block->prev->x == block->next->x) {  // 1 - le corps horizontal
+        sprite_id = 0;
+    } else if (block->prev->y == block->next->y) {  // 0 - le corps vertical
+        sprite_id = 1;
+    } else {  // 2 à 5 - le corps courbé
+        sprite_id = get_corner_orientation(block);
+        if (sprite_id == -1) {
+            sprite_id = 10;
+            allegro_message("Erreur lors de l'assignation du sprite");
+        }
+    }
+
+    block->sprite_id = sprite_id;
+}
+
+int get_tail_orientation(Block *block) {
+    if (block->prev->x != block->x) {
+        if (block->prev->x > block->x) {
+            return 9;
+        } else {
+            return 7;
+        }
+    } else {
+        if (block->prev->y > block->y) {
+            return 8;
+        } else {
+            return 6;
+        }
+    }
+}
+
+int get_corner_orientation(Block *block) {
+
+    // Déterminer la direction du mouvement entre le bloc précédent et le bloc courant
+    char *direction_prev;
+    if (block->x > block->prev->x) {
+        direction_prev = "right";
+    } else if (block->x < block->prev->x) {
+        direction_prev = "left";
+    } else if (block->y > block->prev->y) {
+        direction_prev = "up";
+    } else {
+        direction_prev = "down";
+    }
+
+    // Déterminer la direction du mouvement entre le bloc courant et le bloc suivant
+    char *direction_next;
+    if (block->x > block->next->x) {
+        direction_next = "right";
+    } else if (block->x < block->next->x) {
+        direction_next = "left";
+    } else if (block->y > block->next->y) {
+        direction_next = "up";
+    } else {
+        direction_next = "down";
+    }
+
+    // Déduire l'orientation du coin à partir des directions du mouvement
+    if (strcmp(direction_prev, "down") == 0 && strcmp(direction_next, "right") == 0) {
+        return SPRITE_BOTTOM_LEFT;
+    } else if (strcmp(direction_prev, "right") == 0 && strcmp(direction_next, "down") == 0) {
+        return SPRITE_BOTTOM_LEFT;
+    } else if (strcmp(direction_prev, "down") == 0 && strcmp(direction_next, "left") == 0) {
+        return SPRITE_BOTTOM_RIGHT;
+    } else if (strcmp(direction_prev, "left") == 0 && strcmp(direction_next, "down") == 0) {
+        return SPRITE_BOTTOM_RIGHT;
+    } else if (strcmp(direction_prev, "up") == 0 && strcmp(direction_next, "right") == 0) {
+        return SPRITE_TOP_LEFT;
+    } else if (strcmp(direction_prev, "right") == 0 && strcmp(direction_next, "up") == 0) {
+        return SPRITE_TOP_LEFT;
+    } else if (strcmp(direction_prev, "up") == 0 && strcmp(direction_next, "left") == 0) {
+        return SPRITE_TOP_RIGHT;
+    } else if (strcmp(direction_prev, "left") == 0 && strcmp(direction_next, "up") == 0) {
+        return SPRITE_TOP_RIGHT;
+    } else {
+        // Ce n'est pas un coin
+        return 10;
+    }
+}
+
+void print_debug(char *message) {
+    // write in debug.txt
+    FILE *f = fopen("debug.txt", "a");
+    if (f == NULL) {
+        printf("Error opening file!\n");
+        exit(1);
+    }
+    fprintf(f, "%s\n", message);
+    fclose(f);
     clear_bitmap(game->buffer);
     clear_bitmap(screen);
 }
@@ -289,12 +418,14 @@ int main() {
     install_keyboard();
     install_timer();
     set_color_depth(32);
+
+
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
+
 
     // On initialise le jeu
     GameState game;
     init_game(&game);
-
 
     // On lance la boucle principale du jeu
     while (game.game_exited == false) {

@@ -1,6 +1,7 @@
 /*
 
-TODO: Mettre des Bitmap sur le jeu
+TODO: Mettre les bitmaps pour la tête
+TODO: Trouvez comment aggrandir le snake (32*32)
 TODO: Chnanger les fonts du jeu
 TODO: Ajouter des effets sonores (fruit, fruit *5, mort) et une musique de fond
 TODO: ajouter un décompte avec de "dépauser" le jeu
@@ -21,7 +22,18 @@ TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu s
 #define MAX_FPS 20
 #define SCORE_PER_FPS 5
 #define MIN_DISTANCE_FROM_BORDER BLOCK_SIZE
-#define SNAKE_INITIAL_LENGTH 4
+#define SNAKE_INITIAL_LENGTH 10
+
+/* DIRECTIONS */
+#define SPRITE_TOP_LEFT 2 //2
+#define SPRITE_TOP_RIGHT 3 //3
+#define SPRITE_BOTTOM_LEFT 4 //4 
+#define SPRITE_BOTTOM_RIGHT 5 //5
+
+#define SPRITE_LEFT_TOP SPRITE_TOP_LEFT
+#define SPRITE_LEFT_BOTTOM SPRITE_BOTTOM_LEFT
+#define SPRITE_RIGHT_TOP SPRITE_TOP_RIGHT
+#define SPRITE_RIGHT_BOTTOM SPRITE_BOTTOM_RIGHT
 
 /* FICHIER DE SAUVEGARDE */
 #define SNAKE_SAVE_FILE "attractions/snake/snake.txt"
@@ -47,7 +59,7 @@ typedef struct GameState {
     int fps;
     int score;
     int direction;
-    int start_time;
+    long start_time;
     double snake_speed;
 
     bool paused;
@@ -58,6 +70,8 @@ typedef struct GameState {
 /* FONCTIONS */
 void add_block(GameState *game, int x, int y);
 void init_game(GameState *game);
+BITMAP** init_bitmap();
+int get_high_score();
 void draw_game(GameState *game);
 void save_score(GameState *game);
 void reset_game(GameState *game);
