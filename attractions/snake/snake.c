@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+
 
 // Ajoute un bloc à la fin du snake
 void add_block(GameState *game, int x, int y) {
@@ -19,7 +19,6 @@ void add_block(GameState *game, int x, int y) {
     }
 
     last_block->next = new_block;
-    new_block->prev = last_block;
 }
 
 // Initialise le jeu, crée le snake initial et créer le fruit
@@ -80,8 +79,12 @@ void draw_game(GameState *game) {
         textout_centre_ex(game->buffer, font, "Appuyer sur P ou Echap pour mettre en pause", SCREEN_W / 2, SCREEN_H / 2, makecol(200, 200, 200), -1);
     }
 
-    // Dessine le serpent
+    // Dessine la tête du serpent
     Block *current_block = game->snake_head;
+    rectfill(game->buffer, current_block->x, current_block->y, current_block->x + BLOCK_SIZE, current_block->y + BLOCK_SIZE, SNAKE_HEAD_COLOR);
+
+    // Dessine le reste du serpent
+    current_block = current_block->next;
     while (current_block != NULL) {
         assign_sprite(current_block);
         if (current_block->sprite_id == 10) {
@@ -404,6 +407,8 @@ void print_debug(char *message) {
     }
     fprintf(f, "%s\n", message);
     fclose(f);
+    clear_bitmap(game->buffer);
+    clear_bitmap(screen);
 }
 
 int main() {
