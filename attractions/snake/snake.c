@@ -41,10 +41,11 @@ void init_game(GameState *game) {
     game->fruit_y = (rand() % (SCREEN_HEIGHT - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
 
     game->snake_body_sprites = init_bitmap();
+
 }
 
-BITMAP **init_bitmap() {
-    BITMAP **snake_body_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 10);
+BITMAP** init_bitmap() {
+    BITMAP** snake_body_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 10);
 
     BITMAP *spritesheet = load_bitmap("snake_sprites.bmp", NULL);
     if (!spritesheet) {
@@ -53,10 +54,11 @@ BITMAP **init_bitmap() {
     }
 
     for (int i = 0; i < 10; i++) {
-        snake_body_sprites[i] = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 2 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
+        snake_body_sprites[i] = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE);
     }
 
     return snake_body_sprites;
+
 }
 
 // Obtiens le meilleurs score dans le fichier de sauvegarde
@@ -90,10 +92,7 @@ void draw_game(GameState *game) {
         if (current_block->sprite_id == 10) {
             rectfill(game->buffer, current_block->x, current_block->y, current_block->x + BLOCK_SIZE, current_block->y + BLOCK_SIZE, SNAKE_COLOR);
         } else {
-            set_trans_blender(255, 0, 255, 0);
-            drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
             draw_sprite(game->buffer, game->snake_body_sprites[current_block->sprite_id], current_block->x, current_block->y);
-            drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
         }
         current_block = current_block->next;
     }
@@ -314,21 +313,27 @@ void free_memory(GameState *game) {
 void assign_sprite(Block *block) {
     int sprite_id;
 
+    print_debug("0");
+
     if (block->prev == NULL) {  // 10 - la tête
+        print_debug("1");
         sprite_id = 10;
     } else if (block->next == NULL) {  // 6 à 9 - la queue
+        print_debug("2");
         sprite_id = get_tail_orientation(block);
     } else if (block->prev->x == block->next->x) {  // 1 - le corps horizontal
-        sprite_id = 0;
-    } else if (block->prev->y == block->next->y) {  // 0 - le corps vertical
+        print_debug("3");
         sprite_id = 1;
+    } else if (block->prev->y == block->next->y) {  // 0 - le corps vertical
+        print_debug("4");
+        sprite_id = 0;
     } else {  // 2 à 5 - le corps courbé
+        print_debug("5");
         sprite_id = get_corner_orientation(block);
-        if (sprite_id == -1) {
-            sprite_id = 10;
-            allegro_message("Erreur lors de l'assignation du sprite");
-        }
     }
+
+    print_debug("6");
+    fflush(stdout);
 
     block->sprite_id = sprite_id;
 }
@@ -350,51 +355,18 @@ int get_tail_orientation(Block *block) {
 }
 
 int get_corner_orientation(Block *block) {
-
-    // Déterminer la direction du mouvement entre le bloc précédent et le bloc courant
-    char *direction_prev;
-    if (block->x > block->prev->x) {
-        direction_prev = "right";
-    } else if (block->x < block->prev->x) {
-        direction_prev = "left";
-    } else if (block->y > block->prev->y) {
-        direction_prev = "up";
+    if (block->prev->x > block->x) {
+        if (block->next->y > block->y) {
+            return 3;
+        } else {
+            return 2;
+        }
     } else {
-        direction_prev = "down";
-    }
-
-    // Déterminer la direction du mouvement entre le bloc courant et le bloc suivant
-    char *direction_next;
-    if (block->x > block->next->x) {
-        direction_next = "right";
-    } else if (block->x < block->next->x) {
-        direction_next = "left";
-    } else if (block->y > block->next->y) {
-        direction_next = "up";
-    } else {
-        direction_next = "down";
-    }
-
-    // Déduire l'orientation du coin à partir des directions du mouvement
-    if (strcmp(direction_prev, "down") == 0 && strcmp(direction_next, "right") == 0) {
-        return SPRITE_BOTTOM_LEFT;
-    } else if (strcmp(direction_prev, "right") == 0 && strcmp(direction_next, "down") == 0) {
-        return SPRITE_BOTTOM_LEFT;
-    } else if (strcmp(direction_prev, "down") == 0 && strcmp(direction_next, "left") == 0) {
-        return SPRITE_BOTTOM_RIGHT;
-    } else if (strcmp(direction_prev, "left") == 0 && strcmp(direction_next, "down") == 0) {
-        return SPRITE_BOTTOM_RIGHT;
-    } else if (strcmp(direction_prev, "up") == 0 && strcmp(direction_next, "right") == 0) {
-        return SPRITE_TOP_LEFT;
-    } else if (strcmp(direction_prev, "right") == 0 && strcmp(direction_next, "up") == 0) {
-        return SPRITE_TOP_LEFT;
-    } else if (strcmp(direction_prev, "up") == 0 && strcmp(direction_next, "left") == 0) {
-        return SPRITE_TOP_RIGHT;
-    } else if (strcmp(direction_prev, "left") == 0 && strcmp(direction_next, "up") == 0) {
-        return SPRITE_TOP_RIGHT;
-    } else {
-        // Ce n'est pas un coin
-        return 10;
+        if (block->next->y > block->y) {
+            return 4;
+        } else {
+            return 5;
+        }
     }
 }
 
@@ -419,9 +391,7 @@ int main() {
     install_timer();
     set_color_depth(32);
 
-
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
-
 
     // On initialise le jeu
     GameState game;
