@@ -47,7 +47,7 @@ void init_game(GameState *game) {
 BITMAP **init_bitmap() {
     BITMAP **snake_body_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 10);
 
-    BITMAP *spritesheet = load_bitmap("snake_sprites.bmp", NULL);
+    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites_3.bmp", NULL);
     if (!spritesheet) {
         allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
         exit(EXIT_FAILURE);
@@ -411,7 +411,7 @@ int main() {
     allegro_init();
     install_keyboard();
     install_timer();
-    set_color_depth(32);
+    set_color_depth(desktop_color_depth());
 
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
 
