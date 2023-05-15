@@ -40,24 +40,126 @@ void init_game(GameState *game) {
 
     game->fruit_x = (rand() % (SCREEN_WIDTH - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
     game->fruit_y = (rand() % (SCREEN_HEIGHT - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
+    game->fruit_color = rand() % 3;
 
-    game->snake_body_sprites = init_bitmap();
+    game->snake_body_sprites = init_bitmap_snake_body();
+    game->snake_head_sprites = init_bitmap_snake_head();
+    game->fruit_sprites = init_bitmap_fruit();
+    game->floor_tiles_sprite = init_bitmap_floor();
+
+    game->floor_sprite = generate_floor_sprite(game);
 }
 
-BITMAP **init_bitmap() {
+BITMAP **init_bitmap_snake_body() {
     BITMAP **snake_body_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 10);
 
-    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites_3.bmp", NULL);
+    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites.bmp", NULL);
+
+    BITMAP *snake_body_sprites_temp;
+
     if (!spritesheet) {
         allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
         exit(EXIT_FAILURE);
     }
 
     for (int i = 0; i < 10; i++) {
-        snake_body_sprites[i] = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 2 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
+        snake_body_sprites_temp = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 2 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
+        snake_body_sprites[i] = create_bitmap(STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
+        stretch_blit(snake_body_sprites_temp, snake_body_sprites[i], 0, 0, SPRITE_SIZE, SPRITE_SIZE, 0, 0, STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
     }
 
+    destroy_bitmap(spritesheet);
+
     return snake_body_sprites;
+}
+
+BITMAP ***init_bitmap_snake_head() {
+    /// Liste de 4 lsite de 16 bitmaps
+    BITMAP ***snake_head_sprites = (BITMAP ***)malloc(sizeof(BITMAP **) * 4);
+
+    BITMAP *snake_head_sprites_temp;
+
+    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites.bmp", NULL);
+    if (!spritesheet) {
+        allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < 4; i++) {
+        snake_head_sprites[i] = (BITMAP **)malloc(sizeof(BITMAP *) * 16);
+        for (int j = 0; j < 16; j++) {
+            snake_head_sprites_temp = create_sub_bitmap(spritesheet, j * SPRITE_SIZE, (3 + i) * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
+            snake_head_sprites[i][j] = create_bitmap(STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
+            stretch_blit(snake_head_sprites_temp, snake_head_sprites[i][j], 0, 0, SPRITE_SIZE, SPRITE_SIZE, 0, 0, STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
+        }
+    }
+
+    destroy_bitmap(spritesheet);
+
+    return snake_head_sprites;
+}
+
+BITMAP **init_bitmap_fruit() {
+    BITMAP **fruit_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 3);
+
+    BITMAP *fruit_sprites_temp;
+
+    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites.bmp", NULL);
+    if (!spritesheet) {
+        allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < 3; i++) {
+        fruit_sprites_temp = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 21 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
+        fruit_sprites[i] = create_bitmap(STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
+        stretch_blit(fruit_sprites_temp, fruit_sprites[i], 0, 0, SPRITE_SIZE, SPRITE_SIZE, 0, 0, STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
+    }
+
+    destroy_bitmap(spritesheet);
+
+    return fruit_sprites;
+}
+
+BITMAP **init_bitmap_floor() {
+    BITMAP **floor_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 8);
+
+    BITMAP *floor_sprites_temp;
+
+    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites.bmp", NULL);
+    if (!spritesheet) {
+        allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 4; j++) {
+            floor_sprites_temp = create_sub_bitmap(spritesheet, j * SPRITE_SIZE, i * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
+            floor_sprites[i * 4 + j] = create_bitmap(STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
+            stretch_blit(floor_sprites_temp, floor_sprites[i * 4 + j], 0, 0, SPRITE_SIZE, SPRITE_SIZE, 0, 0, STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
+        }
+    }
+
+    destroy_bitmap(spritesheet);
+
+    return floor_sprites;
+}
+
+BITMAP *generate_floor_sprite(GameState *game) {
+    BITMAP *floor_tile_temp = create_bitmap(STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
+    BITMAP *floor_sprite = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    int floor_tile_index = 0;
+
+    for (int i = 0; i < SCREEN_WIDTH; i += STRETCHED_SPRITE_SIZE) {
+        for (int j = 0; j < SCREEN_HEIGHT; j += STRETCHED_SPRITE_SIZE) {
+            floor_tile_index = rand() % 8;
+            floor_tile_temp = game->floor_tiles_sprite[floor_tile_index];
+            blit(floor_tile_temp, floor_sprite, 0, 0, i, j, STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
+        }
+    }
+
+    return floor_sprite;
 }
 
 // Obtiens le meilleurs score dans le fichier de sauvegarde
@@ -74,14 +176,30 @@ int get_high_score() {
 // Dessine le jeu selon l'état actuel du serpent, du fruit et du score
 void draw_game(GameState *game) {
     clear_bitmap(game->buffer);
-    draw_fruit(game, game->fruit_x, game->fruit_y, makecol(255, 0, 0));
+
+    blit(game->floor_sprite, game->buffer, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    draw_fruit(game, game->fruit_x, game->fruit_y);
 
     if (game->paused == false) {
-        textout_centre_ex(game->buffer, font, "Appuyer sur P ou Echap pour mettre en pause", SCREEN_W / 2, SCREEN_H / 2, makecol(200, 200, 200), -1);
+        textout_centre_ex(game->buffer, font, "Appuyer sur P ou Echap pour mettre en pause", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
     }
 
-    // Dessine le serpent
     Block *current_block = game->snake_head;
+    // Dessine la tête animée du serpent
+    if (game->direction == 0) {
+        draw_sprite(game->buffer, game->snake_head_sprites[3][0], current_block->x, current_block->y);
+    } else if (game->direction == 1) {
+        draw_sprite(game->buffer, game->snake_head_sprites[0][0], current_block->x, current_block->y);
+    } else if (game->direction == 2) {
+        draw_sprite(game->buffer, game->snake_head_sprites[1][0], current_block->x, current_block->y);
+    } else if (game->direction == 3) {
+        draw_sprite(game->buffer, game->snake_head_sprites[2][0], current_block->x, current_block->y);
+    }
+
+    // Dessine le corps du serpent
+    current_block = current_block->next;
+
     while (current_block != NULL) {
         assign_sprite(current_block);
         if (current_block->sprite_id == 10) {
@@ -97,6 +215,7 @@ void draw_game(GameState *game) {
 
     if (game->paused == true) {
         // Assombrit l'arrière plan pour mettre en valeur l'état de pause
+
         set_trans_blender(0, 0, 0, 128);
         drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
         rectfill(game->buffer, 0, 0, SCREEN_W, SCREEN_H, makecol(0, 0, 0));
@@ -171,6 +290,12 @@ void game_over_screen(GameState *game) {
 
         // Affiche les choix possibles
         clear_bitmap(game->buffer);
+        blit(game->floor_sprite, game->buffer, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
+        set_trans_blender(0, 0, 0, 128);
+        drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+        rectfill(game->buffer, 0, 0, SCREEN_W, SCREEN_H, makecol(0, 0, 0));
+        drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
+
         textout_centre_ex(game->buffer, font, "Jeu terminé", SCREEN_W / 2, SCREEN_H / 2 - 50, makecol(255, 0, 0), -1);
         textout_centre_ex(game->buffer, font, "Redémarrer", SCREEN_W / 2, SCREEN_H / 2, choice == 0 ? makecol(255, 255, 255) : makecol(127, 127, 127), -1);
         textout_centre_ex(game->buffer, font, "Abandonner", SCREEN_W / 2, SCREEN_H / 2 + 50, choice == 1 ? makecol(255, 255, 255) : makecol(127, 127, 127), -1);
@@ -180,8 +305,8 @@ void game_over_screen(GameState *game) {
 
 // Dessine un fruit à la position (x, y)
 // Mit en fonction pour que le fruit soit facilement modifiable
-void draw_fruit(GameState *game, int x, int y, int color) {
-    rectfill(game->buffer, x, y, x + BLOCK_SIZE, y + BLOCK_SIZE, color);
+void draw_fruit(GameState *game, int x, int y) {
+    draw_sprite(game->buffer, game->fruit_sprites[game->fruit_color], x, y);
 }
 
 // Fait bouger le serpent dans la bonne direction
@@ -222,13 +347,13 @@ void move_snake(GameState *game) {
 // Gère les entrées clavier
 // Mit en fonction pour par ruiner le main
 void handle_input(GameState *game) {
-    if (key[KEY_UP] && game->direction != 3) {
+    if (key[KEY_UP] && game->direction != 3 && game->paused == false) {
         game->direction = 1;
-    } else if (key[KEY_DOWN] && game->direction != 1) {
+    } else if (key[KEY_DOWN] && game->direction != 1 && game->paused == false) {
         game->direction = 3;
-    } else if (key[KEY_LEFT] && game->direction != 0) {
+    } else if (key[KEY_LEFT] && game->direction != 0 && game->paused == false) {
         game->direction = 2;
-    } else if (key[KEY_RIGHT] && game->direction != 2) {
+    } else if (key[KEY_RIGHT] && game->direction != 2 && game->paused == false) {
         game->direction = 0;
     } else if (key[KEY_P] || key[KEY_ESC]) {
         game->paused = !(game->paused);
@@ -241,7 +366,8 @@ void handle_input(GameState *game) {
 void check_collisions(GameState *game) {
     // Vérfie si le serpent est sur le fruit
     if (game->snake_head->x == game->fruit_x && game->snake_head->y == game->fruit_y) {
-        game->score++;  // Augmente le score car fruit mangé
+        game->score++;                   // Augmente le score car fruit mangé
+        game->fruit_color = rand() % 3;  // Change la couleur du fruit
 
         int new_block_x, new_block_y;
         Block *last_block = game->snake_head;
@@ -302,9 +428,23 @@ void free_memory(GameState *game) {
         current_block = next_block;
     }
     destroy_bitmap(game->buffer);
+    destroy_bitmap(game->floor_sprite);
+
     destroy_bitmap(screen);
-    for (int i = 0; i < 11; i++) {
+
+    for (int i = 0; i < 10; i++) {
         destroy_bitmap(game->snake_body_sprites[i]);
+    }
+    for (int i = 0; i < 3; i++) {
+        destroy_bitmap(game->fruit_sprites[i]);
+    }
+    for (int i = 0; i < 4; i++) {
+        destroy_bitmap(game->floor_tiles_sprite[i]);
+    }
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 16; j++) {
+            destroy_bitmap(game->snake_head_sprites[i][j]);
+        }
     }
 }
 

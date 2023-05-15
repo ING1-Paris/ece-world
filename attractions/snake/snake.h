@@ -1,11 +1,9 @@
 /*
-
-TODO: Mettre les bitmaps pour la tête
-TODO: Trouvez comment aggrandir le snake (32*32)
-TODO: Chnanger les fonts du jeu
+TODO: animer la tête du serpent
+TODO: Changer les fonts du jeu
 TODO: Ajouter des effets sonores (fruit, fruit *5, mort) et une musique de fond
-TODO: ajouter un décompte avec de "dépauser" le jeu
 TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu sinon c'est violent
+//TODO: ajouter un décompte avec de "dépauser" le jeu
 */
 
 #ifndef SNAKE_H
@@ -16,11 +14,12 @@ TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu s
 
 /* CONSTANTES */
 #define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
-#define BLOCK_SIZE 16
+#define SCREEN_HEIGHT 608
+#define BLOCK_SIZE 32
 #define SPRITE_SIZE 16
-#define INITIAL_FPS 20
-#define MAX_FPS 30
+#define STRETCHED_SPRITE_SIZE 32
+#define INITIAL_FPS 15
+#define MAX_FPS 15
 #define SCORE_PER_FPS 5
 #define MIN_DISTANCE_FROM_BORDER BLOCK_SIZE
 #define SNAKE_INITIAL_LENGTH 10
@@ -55,14 +54,17 @@ typedef struct Block {
 
 typedef struct GameState {
     BITMAP *buffer;
+    BITMAP *floor_sprite;
     Block *snake_head;
 
-    // BITMAP *snake_head_sprite;
+    BITMAP ***snake_head_sprites;
     BITMAP **snake_body_sprites;
-    // BITMAP *fruit_sprite;
+    BITMAP **fruit_sprites;
+    BITMAP **floor_tiles_sprite;
 
     int fruit_x;
     int fruit_y;
+    int fruit_color;
 
     int fps;
     int score;
@@ -78,13 +80,18 @@ typedef struct GameState {
 /* FONCTIONS */
 void add_block(GameState *game, int x, int y);
 void init_game(GameState *game);
-BITMAP **init_bitmap();
+BITMAP **init_bitmap_snake_body();
+BITMAP ***init_bitmap_snake_head();
+BITMAP **init_bitmap_fruit();
+BITMAP **init_bitmap_floor();
+BITMAP *generate_floor_sprite();
+
 int get_high_score();
 void draw_game(GameState *game);
 void save_score(GameState *game);
 void reset_game(GameState *game);
 void game_over_screen(GameState *game);
-void draw_fruit(GameState *game, int x, int y, int color);
+void draw_fruit(GameState *game, int x, int y);
 void handle_input(GameState *game);
 void check_collisions(GameState *game);
 void free_memory(GameState *game);
