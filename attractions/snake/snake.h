@@ -1,6 +1,7 @@
 /*
 
-TODO: Mettre des Bitmap sur le jeu
+TODO: Mettre les bitmaps pour la tête
+TODO: Trouvez comment aggrandir le snake (32*32)
 TODO: Chnanger les fonts du jeu
 TODO: Ajouter des effets sonores (fruit, fruit *5, mort) et une musique de fond
 TODO: ajouter un décompte avec de "dépauser" le jeu
@@ -16,12 +17,24 @@ TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu s
 /* CONSTANTES */
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
-#define BLOCK_SIZE 25
-#define INITIAL_FPS 10
-#define MAX_FPS 20
+#define BLOCK_SIZE 16
+#define SPRITE_SIZE 16
+#define INITIAL_FPS 20
+#define MAX_FPS 30
 #define SCORE_PER_FPS 5
 #define MIN_DISTANCE_FROM_BORDER BLOCK_SIZE
-#define SNAKE_INITIAL_LENGTH 4
+#define SNAKE_INITIAL_LENGTH 10
+
+/* DIRECTIONS */
+#define SPRITE_TOP_LEFT 2      // 2
+#define SPRITE_TOP_RIGHT 3     // 3
+#define SPRITE_BOTTOM_LEFT 4   // 4
+#define SPRITE_BOTTOM_RIGHT 5  // 5
+
+#define SPRITE_LEFT_TOP SPRITE_TOP_LEFT
+#define SPRITE_LEFT_BOTTOM SPRITE_BOTTOM_LEFT
+#define SPRITE_RIGHT_TOP SPRITE_TOP_RIGHT
+#define SPRITE_RIGHT_BOTTOM SPRITE_BOTTOM_RIGHT
 
 /* FICHIER DE SAUVEGARDE */
 #define SNAKE_SAVE_FILE "attractions/snake/snake.txt"
@@ -34,12 +47,19 @@ TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu s
 typedef struct Block {
     int x;
     int y;
+    int sprite_id;
     struct Block *next;
+    struct Block *prev;
+
 } Block;
 
 typedef struct GameState {
     BITMAP *buffer;
     Block *snake_head;
+
+    // BITMAP *snake_head_sprite;
+    BITMAP **snake_body_sprites;
+    // BITMAP *fruit_sprite;
 
     int fruit_x;
     int fruit_y;
@@ -58,14 +78,13 @@ typedef struct GameState {
 /* FONCTIONS */
 void add_block(GameState *game, int x, int y);
 void init_game(GameState *game);
-BITMAP** init_bitmap();
+BITMAP **init_bitmap();
 int get_high_score();
 void draw_game(GameState *game);
 void save_score(GameState *game);
 void reset_game(GameState *game);
 void game_over_screen(GameState *game);
 void draw_fruit(GameState *game, int x, int y, int color);
-void move_snake(GameState *game);
 void handle_input(GameState *game);
 void check_collisions(GameState *game);
 void free_memory(GameState *game);
@@ -74,6 +93,5 @@ int get_tail_orientation(Block *block);
 int get_corner_orientation(Block *block);
 void print_debug(char *message);
 void move_snake(GameState *game);
-void debug_init(char* message);
 
 #endif
