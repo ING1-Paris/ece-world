@@ -29,6 +29,8 @@ void init_game(GameState *game) {
     game->score = 0;
     game->frame_counter = 0;
     game->fps = INITIAL_FPS;
+    game->over = false;
+    game->exited = false;
     game->started = false;
     game->paused = true;
 
@@ -70,7 +72,7 @@ void init_game(GameState *game) {
 
     destroy_bitmap(spritesheet);
 
-    play_sound(game, "start");
+    play_sound(game, 1);
 }
 
 BITMAP **init_bitmap_snake_body(BITMAP *spritesheet) {
@@ -224,7 +226,7 @@ void draw_game(GameState *game) {
 
     if (get_high_score() == game->score && game->new_high_score == false) {
         game->new_high_score = true;
-        play_sound(game, "high_score");
+        play_sound(game, 4);
     }
 
     textprintf_ex(game->buffer, game->snake_font, SCREEN_W - 90, 20, makecol(255, 255, 255), -1, "Best: %d", get_high_score() > game->score ? get_high_score() : game->score);
@@ -423,7 +425,7 @@ void check_collisions(GameState *game) {
         game->fruit_x = (rand() % (SCREEN_WIDTH - 2 * MIN_FRUIT_DISTANCE_FROM_BORDER) + MIN_FRUIT_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
         game->fruit_y = (rand() % (SCREEN_HEIGHT - 2 * MIN_FRUIT_DISTANCE_FROM_BORDER) + MIN_FRUIT_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
 
-        play_sound(game, "eating");
+        play_sound(game, 2);
     }
 
     // Collision avec le corps du serpent
@@ -571,45 +573,44 @@ void print_debug(char *message) {
 SAMPLE **init_sounds() {
     SAMPLE **sounds = malloc(sizeof(SAMPLE *) * SOUND_AMOUNT);
 
-    char *sound_files[SOUND_AMOUNT] = {
+    /*
+    char **sound_files = {
         SNAKE_START_SOUND_FILE,
         SNAKE_EATING_SOUND_FILE,
         SNAKE_SPEED_INCREASE_SOUND_FILE,
         SNAKE_HIGH_SCORE_SOUND_FILE,
         SNAKE_GAME_OVER_SOUND_FILE,
-    };
+    };*/
 
-    for (int i = 0; i < SOUND_AMOUNT; i++) {
-        sounds[i] = load_sample(sound_files[i]);
-        if (!sounds[i]) {
-            allegro_message("Erreur lors du chargement du son %s\n", sound_files[i]);
-            exit(EXIT_FAILURE);
-        }
-    }
+    sounds[0] = load_sample(SNAKE_START_SOUND_FILE);
+    sounds[1] = load_sample(SNAKE_EATING_SOUND_FILE);
+    sounds[2] = load_sample(SNAKE_SPEED_INCREASE_SOUND_FILE);
+    sounds[3] = load_sample(SNAKE_HIGH_SCORE_SOUND_FILE);
+    sounds[4] = load_sample(SNAKE_GAME_OVER_SOUND_FILE);
 
     return sounds;
 }
 
-/* start, eating, speed_increase, high_score, game_over */
-void play_sound(GameState *game, char *sound_name) {
-    if (strcmp(sound_name, "start") == 0) {
+/* 1start, 2eating, 3speed_increase, 4high_score, 5game_over */
+void play_sound(GameState *game, int sound_id) {
+    if (sound_id == 0) {
         play_sample(game->sounds[0], 128, 128, 1000, 0);
 
-    } else if (strcmp(sound_name, "eating") == 0) {
+    } else if (sound_id == 1) {
         play_sample(game->sounds[1], 128, 128, 1000, 0);
 
-    } else if (strcmp(sound_name, "speed_increase") == 0) {
+    } else if (sound_id == 0) {
         play_sample(game->sounds[2], 128, 128, 1000, 0);
 
-    } else if (strcmp(sound_name, "high_score") == 0) {
+    } else if (sound_id == 0) {
         play_sample(game->sounds[3], 128, 128, 1000, 0);
 
-    } else if (strcmp(sound_name, "game_over") == 0) {
+    } else if (sound_id == 0) {
         play_sample(game->sounds[4], 255, 128, 1000, 0);
     }
 }
 
-int main() {
+int snake_main() {
     // Initialisation du random et d'Allegro
     srand(time(NULL));
     allegro_init();
@@ -629,7 +630,7 @@ int main() {
 
         // On affiche l'écran de fin de jeu si le joueur a perdu
         if (game.over == true) {
-            play_sound(&game, "game_over");
+            play_sound(&game, 7);
             game_over_screen(&game);
         }
 
@@ -646,7 +647,7 @@ int main() {
         draw_game(&game);
 
         if (game.score % SCORE_PER_FPS == 0 && game.score != 0) {
-            play_sound(&game, "speed_increase");
+            play_sound(&game, 3);
         }
 
         game.fps = game.fps == MAX_FPS ? MAX_FPS : INITIAL_FPS + game.score / SCORE_PER_FPS;
@@ -665,9 +666,19 @@ int main() {
 
     // On nettoie la mémoire et on quitte le jeu
 
+
+
+    int final_score = game.score;
     allegro_exit();
+
     free_memory(&game);
 
-    return 0;
+
+    return final_score;
+}END_OF_MAIN()
+
+int main() {
+    int score = snake_main();
+    printf("score snake : %d\n", score);
+    return 0; 
 }
-END_OF_MAIN()

@@ -1,9 +1,3 @@
-/*
-TODO: Changer les fonts du jeu
-TODO: Ajouter des effets sonores (fruit, fruit *5, mort) et une musique de fond
-//TODO: ajouter un décompte avec de "dépauser" le jeu
-*/
-
 #ifndef SNAKE_H
 #define SNAKE_H
 
@@ -123,7 +117,7 @@ int get_corner_orientation(Block *block);
 void print_debug(char *message);
 void move_snake(GameState *game);
 SAMPLE **init_sounds();
-void play_sound(GameState *game, char *sound);
-// void play_sound(char *sound);
+void play_sound(GameState *game, int sound_id);
+int snake_main();
 
 #endif
