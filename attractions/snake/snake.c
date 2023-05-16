@@ -44,12 +44,22 @@ void init_game(GameState *game) {
     game->fruit_x = (rand() % (SCREEN_WIDTH - MIN_FRUIT_DISTANCE_FROM_BORDER) + MIN_FRUIT_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
     game->fruit_y = (rand() % (SCREEN_HEIGHT - MIN_FRUIT_DISTANCE_FROM_BORDER) + MIN_FRUIT_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
     game->fruit_color = rand() % 3;  // Couleur 1 à 3
+    game->fruit_eaten = false;
 
     BITMAP *spritesheet = load_bitmap(SNAKE_BITMAP_FILE, NULL);
     if (!spritesheet) {
         allegro_message("Erreur lors du chargement de l'image %s\n", SNAKE_BITMAP_FILE);
         exit(EXIT_FAILURE);
     }
+    FONT *snake_font = load_font(SNAKE_FONT_FILE, NULL, NULL);
+    if (!snake_font) {
+        allegro_message("Erreur lors du chargement de la police %s\n", SNAKE_FONT_FILE);
+        exit(EXIT_FAILURE);
+    }
+
+    game->snake_font = snake_font;
+
+    game->sounds = init_sounds();
 
     game->snake_body_sprites = init_bitmap_snake_body(spritesheet);
     game->snake_head_sprites = init_bitmap_snake_head(spritesheet);
@@ -57,12 +67,15 @@ void init_game(GameState *game) {
     game->floor_tiles_sprite = init_bitmap_floor(spritesheet);
 
     game->floor_sprite = generate_floor_sprite(game);
+
+    destroy_bitmap(spritesheet);
+
+    play_sound(game, "start");
 }
 
 BITMAP **init_bitmap_snake_body(BITMAP *spritesheet) {
     BITMAP **snake_body_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 10);
     BITMAP *snake_body_sprites_temp;
-
 
     for (int i = 0; i < 10; i++) {
         snake_body_sprites_temp = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 2 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
@@ -155,7 +168,7 @@ void draw_game(GameState *game) {
     draw_fruit(game, game->fruit_x, game->fruit_y);
 
     if (game->paused == false) {
-        textout_centre_ex(game->buffer, font, "Appuyer sur P ou Echap pour mettre en pause", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
+        textout_centre_ex(game->buffer, game->snake_font, "Appuyer sur P ou Echap pour mettre en pause", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
     }
 
     if (game->fruit_eaten == true && game->paused == false) {
@@ -183,14 +196,10 @@ void draw_game(GameState *game) {
 
     while (current_block != NULL) {
         assign_sprite(current_block);
-        if (current_block->sprite_id == 10) {
-            rectfill(game->buffer, current_block->x, current_block->y, current_block->x + BLOCK_SIZE, current_block->y + BLOCK_SIZE, SNAKE_COLOR);
-        } else {
-            set_trans_blender(255, 0, 255, 0);
-            drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
-            draw_sprite(game->buffer, game->snake_body_sprites[current_block->sprite_id], current_block->x, current_block->y);
-            drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
-        }
+        set_trans_blender(255, 0, 255, 0);
+        drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+        draw_sprite(game->buffer, game->snake_body_sprites[current_block->sprite_id], current_block->x, current_block->y);
+        drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
         current_block = current_block->next;
     }
 
@@ -203,16 +212,22 @@ void draw_game(GameState *game) {
         drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
 
         if (game->started == false) {
-            textout_centre_ex(game->buffer, font, "Appuyer sur ESPACE pour commencer.", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
+            textout_centre_ex(game->buffer, game->snake_font, "Appuyer sur ESPACE pour commencer.", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
 
         } else if (game->paused == true) {
-            textout_centre_ex(game->buffer, font, "Le jeu est en pause, appuyer sur P ou Echap pour reprendre.", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
+            textout_centre_ex(game->buffer, game->snake_font, "Le jeu est en pause, appuyer sur P ou Echap pour reprendre.", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
         }
     }
 
     // Affiche le score actuel et le meilleurs score
-    textprintf_ex(game->buffer, font, 0, 0, makecol(255, 255, 255), -1, "Score: %d", game->score);
-    textprintf_ex(game->buffer, font, SCREEN_W - 100, 10, makecol(255, 255, 255), -1, "Best: %d", get_high_score());
+    textprintf_ex(game->buffer, game->snake_font, 20, 20, makecol(255, 255, 255), -1, "Score: %d", game->score);
+
+    if (get_high_score() == game->score && game->new_high_score == false) {
+        game->new_high_score = true;
+        play_sound(game, "high_score");
+    }
+
+    textprintf_ex(game->buffer, game->snake_font, SCREEN_W - 90, 20, makecol(255, 255, 255), -1, "Best: %d", get_high_score() > game->score ? get_high_score() : game->score);
 
     blit(game->buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
 }
@@ -407,6 +422,8 @@ void check_collisions(GameState *game) {
         // Déplace le fruit à une nouvelle position aléatoire
         game->fruit_x = (rand() % (SCREEN_WIDTH - 2 * MIN_FRUIT_DISTANCE_FROM_BORDER) + MIN_FRUIT_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
         game->fruit_y = (rand() % (SCREEN_HEIGHT - 2 * MIN_FRUIT_DISTANCE_FROM_BORDER) + MIN_FRUIT_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
+
+        play_sound(game, "eating");
     }
 
     // Collision avec le corps du serpent
@@ -551,6 +568,47 @@ void print_debug(char *message) {
     fclose(f);
 }
 
+SAMPLE **init_sounds() {
+    SAMPLE **sounds = malloc(sizeof(SAMPLE *) * SOUND_AMOUNT);
+
+    char *sound_files[SOUND_AMOUNT] = {
+        SNAKE_START_SOUND_FILE,
+        SNAKE_EATING_SOUND_FILE,
+        SNAKE_SPEED_INCREASE_SOUND_FILE,
+        SNAKE_HIGH_SCORE_SOUND_FILE,
+        SNAKE_GAME_OVER_SOUND_FILE,
+    };
+
+    for (int i = 0; i < SOUND_AMOUNT; i++) {
+        sounds[i] = load_sample(sound_files[i]);
+        if (!sounds[i]) {
+            allegro_message("Erreur lors du chargement du son %s\n", sound_files[i]);
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    return sounds;
+}
+
+/* start, eating, speed_increase, high_score, game_over */
+void play_sound(GameState *game, char *sound_name) {
+    if (strcmp(sound_name, "start") == 0) {
+        play_sample(game->sounds[0], 128, 128, 1000, 0);
+
+    } else if (strcmp(sound_name, "eating") == 0) {
+        play_sample(game->sounds[1], 128, 128, 1000, 0);
+
+    } else if (strcmp(sound_name, "speed_increase") == 0) {
+        play_sample(game->sounds[2], 128, 128, 1000, 0);
+
+    } else if (strcmp(sound_name, "high_score") == 0) {
+        play_sample(game->sounds[3], 128, 128, 1000, 0);
+
+    } else if (strcmp(sound_name, "game_over") == 0) {
+        play_sample(game->sounds[4], 255, 128, 1000, 0);
+    }
+}
+
 int main() {
     // Initialisation du random et d'Allegro
     srand(time(NULL));
@@ -571,6 +629,7 @@ int main() {
 
         // On affiche l'écran de fin de jeu si le joueur a perdu
         if (game.over == true) {
+            play_sound(&game, "game_over");
             game_over_screen(&game);
         }
 
@@ -585,6 +644,10 @@ int main() {
 
         // On affiche le jeu
         draw_game(&game);
+
+        if (game.score % SCORE_PER_FPS == 0 && game.score != 0) {
+            play_sound(&game, "speed_increase");
+        }
 
         game.fps = game.fps == MAX_FPS ? MAX_FPS : INITIAL_FPS + game.score / SCORE_PER_FPS;
 
