@@ -6,7 +6,6 @@
 
 #include "snake.h"
 
-
 // Ajoute un bloc à la fin du snake
 void add_block(GameState *game, int x, int y) {
     Block *new_block = (Block *)malloc(sizeof(Block));
@@ -19,51 +18,51 @@ void add_block(GameState *game, int x, int y) {
         last_block = last_block->next;
     }
 
-
     last_block->next = new_block;
     new_block->prev = last_block;
 }
 
-
 // Initialise le jeu, crée le snake initial et créer le fruit
 void init_game(GameState *game) {
     game->buffer = create_bitmap(SCREEN_W, SCREEN_H);
-    game->direction = 0;
+    game->direction = DIRECTION_RIGHT;
     game->score = 0;
+    game->frame_counter = 0;
     game->fps = INITIAL_FPS;
+    game->started = false;
+    game->paused = true;
 
     game->snake_head = (Block *)malloc(sizeof(Block));
-    game->snake_head->x = (rand() % (SCREEN_WIDTH - 10 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
-    game->snake_head->y = (rand() % (SCREEN_WIDTH - 10 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
+    game->snake_head->x = (rand() % (SCREEN_WIDTH - MIN_SNAKE_SPAWN_DISTANCE_FROM_BORDER) + SPRITE_SIZE) / BLOCK_SIZE * BLOCK_SIZE;
+    game->snake_head->y = (rand() % (SCREEN_WIDTH - MIN_SNAKE_SPAWN_DISTANCE_FROM_BORDER) + SPRITE_SIZE) / BLOCK_SIZE * BLOCK_SIZE;
     game->snake_head->next = NULL;
 
     for (int i = 1; i < SNAKE_INITIAL_LENGTH; i++) {
         add_block(game, game->snake_head->x - i * BLOCK_SIZE, game->snake_head->y);
     }
 
-    game->fruit_x = (rand() % (SCREEN_WIDTH - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
-    game->fruit_y = (rand() % (SCREEN_HEIGHT - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
-    game->fruit_color = rand() % 3;
+    game->fruit_x = (rand() % (SCREEN_WIDTH - MIN_FRUIT_DISTANCE_FROM_BORDER) + MIN_FRUIT_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
+    game->fruit_y = (rand() % (SCREEN_HEIGHT - MIN_FRUIT_DISTANCE_FROM_BORDER) + MIN_FRUIT_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
+    game->fruit_color = rand() % 3;  // Couleur 1 à 3
 
-    game->snake_body_sprites = init_bitmap_snake_body();
-    game->snake_head_sprites = init_bitmap_snake_head();
-    game->fruit_sprites = init_bitmap_fruit();
-    game->floor_tiles_sprite = init_bitmap_floor();
+    BITMAP *spritesheet = load_bitmap(SNAKE_BITMAP_FILE, NULL);
+    if (!spritesheet) {
+        allegro_message("Erreur lors du chargement de l'image %s\n", SNAKE_BITMAP_FILE);
+        exit(EXIT_FAILURE);
+    }
+
+    game->snake_body_sprites = init_bitmap_snake_body(spritesheet);
+    game->snake_head_sprites = init_bitmap_snake_head(spritesheet);
+    game->fruit_sprites = init_bitmap_fruit(spritesheet);
+    game->floor_tiles_sprite = init_bitmap_floor(spritesheet);
 
     game->floor_sprite = generate_floor_sprite(game);
 }
 
-BITMAP **init_bitmap_snake_body() {
+BITMAP **init_bitmap_snake_body(BITMAP *spritesheet) {
     BITMAP **snake_body_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 10);
-
-    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites.bmp", NULL);
-
     BITMAP *snake_body_sprites_temp;
 
-    if (!spritesheet) {
-        allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
-        exit(EXIT_FAILURE);
-    }
 
     for (int i = 0; i < 10; i++) {
         snake_body_sprites_temp = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 2 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
@@ -71,22 +70,13 @@ BITMAP **init_bitmap_snake_body() {
         stretch_blit(snake_body_sprites_temp, snake_body_sprites[i], 0, 0, SPRITE_SIZE, SPRITE_SIZE, 0, 0, STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
     }
 
-    destroy_bitmap(spritesheet);
-
     return snake_body_sprites;
 }
 
-BITMAP ***init_bitmap_snake_head() {
+BITMAP ***init_bitmap_snake_head(BITMAP *spritesheet) {
     /// Liste de 4 lsite de 16 bitmaps
     BITMAP ***snake_head_sprites = (BITMAP ***)malloc(sizeof(BITMAP **) * 4);
-
     BITMAP *snake_head_sprites_temp;
-
-    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites.bmp", NULL);
-    if (!spritesheet) {
-        allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
-        exit(EXIT_FAILURE);
-    }
 
     for (int i = 0; i < 4; i++) {
         snake_head_sprites[i] = (BITMAP **)malloc(sizeof(BITMAP *) * 16);
@@ -97,21 +87,12 @@ BITMAP ***init_bitmap_snake_head() {
         }
     }
 
-    destroy_bitmap(spritesheet);
-
     return snake_head_sprites;
 }
 
-BITMAP **init_bitmap_fruit() {
+BITMAP **init_bitmap_fruit(BITMAP *spritesheet) {
     BITMAP **fruit_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 3);
-
     BITMAP *fruit_sprites_temp;
-
-    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites.bmp", NULL);
-    if (!spritesheet) {
-        allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
-        exit(EXIT_FAILURE);
-    }
 
     for (int i = 0; i < 3; i++) {
         fruit_sprites_temp = create_sub_bitmap(spritesheet, i * SPRITE_SIZE, 21 * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
@@ -119,21 +100,12 @@ BITMAP **init_bitmap_fruit() {
         stretch_blit(fruit_sprites_temp, fruit_sprites[i], 0, 0, SPRITE_SIZE, SPRITE_SIZE, 0, 0, STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
     }
 
-    destroy_bitmap(spritesheet);
-
     return fruit_sprites;
 }
 
-BITMAP **init_bitmap_floor() {
+BITMAP **init_bitmap_floor(BITMAP *spritesheet) {
     BITMAP **floor_sprites = (BITMAP **)malloc(sizeof(BITMAP *) * 8);
-
     BITMAP *floor_sprites_temp;
-
-    BITMAP *spritesheet = load_bitmap("attractions/snake/images/snake_sprites.bmp", NULL);
-    if (!spritesheet) {
-        allegro_message("Erreur: le fichier snake_sprites.bmp est introuvable");
-        exit(EXIT_FAILURE);
-    }
 
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 4; j++) {
@@ -142,8 +114,6 @@ BITMAP **init_bitmap_floor() {
             stretch_blit(floor_sprites_temp, floor_sprites[i * 4 + j], 0, 0, SPRITE_SIZE, SPRITE_SIZE, 0, 0, STRETCHED_SPRITE_SIZE, STRETCHED_SPRITE_SIZE);
         }
     }
-
-    destroy_bitmap(spritesheet);
 
     return floor_sprites;
 }
@@ -188,16 +158,24 @@ void draw_game(GameState *game) {
         textout_centre_ex(game->buffer, font, "Appuyer sur P ou Echap pour mettre en pause", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
     }
 
+    if (game->fruit_eaten == true && game->paused == false) {
+        game->frame_counter++;
+        if (game->frame_counter == 16) {
+            game->frame_counter = 0;
+            game->fruit_eaten = false;
+        }
+    }
+
     Block *current_block = game->snake_head;
     // Dessine la tête animée du serpent
     if (game->direction == 0) {
-        draw_sprite(game->buffer, game->snake_head_sprites[3][0], current_block->x, current_block->y);
+        draw_sprite(game->buffer, game->snake_head_sprites[3][game->frame_counter], current_block->x, current_block->y);
     } else if (game->direction == 1) {
-        draw_sprite(game->buffer, game->snake_head_sprites[0][0], current_block->x, current_block->y);
+        draw_sprite(game->buffer, game->snake_head_sprites[0][game->frame_counter], current_block->x, current_block->y);
     } else if (game->direction == 2) {
-        draw_sprite(game->buffer, game->snake_head_sprites[1][0], current_block->x, current_block->y);
+        draw_sprite(game->buffer, game->snake_head_sprites[1][game->frame_counter], current_block->x, current_block->y);
     } else if (game->direction == 3) {
-        draw_sprite(game->buffer, game->snake_head_sprites[2][0], current_block->x, current_block->y);
+        draw_sprite(game->buffer, game->snake_head_sprites[2][game->frame_counter], current_block->x, current_block->y);
     }
 
     // Dessine le corps du serpent
@@ -224,7 +202,12 @@ void draw_game(GameState *game) {
         rectfill(game->buffer, 0, 0, SCREEN_W, SCREEN_H, makecol(0, 0, 0));
         drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
 
-        textout_centre_ex(game->buffer, font, "Le jeu est en pause, appuyer sur P ou Echap pour reprendre.", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
+        if (game->started == false) {
+            textout_centre_ex(game->buffer, font, "Appuyer sur ESPACE pour commencer.", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
+
+        } else if (game->paused == true) {
+            textout_centre_ex(game->buffer, font, "Le jeu est en pause, appuyer sur P ou Echap pour reprendre.", SCREEN_W / 2, SCREEN_H / 2, makecol(255, 255, 255), -1);
+        }
     }
 
     // Affiche le score actuel et le meilleurs score
@@ -263,7 +246,7 @@ void reset_game(GameState *game) {
     }
 
     game->score = 0;
-    game->game_over = false;
+    game->over = false;
 
     init_game(game);
 }
@@ -286,9 +269,14 @@ void game_over_screen(GameState *game) {
                 done = 1;
             } else {
                 // Quitte le jeu
-                game->game_exited = 1;
+                game->exited = 1;
                 done = 1;
             }
+        }
+        if (key[KEY_ESC] || key[KEY_Q]) {
+            // Quitte le jeu
+            game->exited = 1;
+            done = 1;
         }
 
         // Affiche les choix possibles
@@ -358,6 +346,13 @@ void handle_input(GameState *game) {
         game->direction = 2;
     } else if (key[KEY_RIGHT] && game->direction != 2 && game->paused == false) {
         game->direction = 0;
+    } else if (key[KEY_R]) {
+        reset_game(game);
+    } else if (key[KEY_Q]) {
+        game->exited = true;
+    } else if (key[KEY_SPACE] && game->started == false) {
+        game->started = true;
+        game->paused = false;
     } else if (key[KEY_P] || key[KEY_ESC]) {
         game->paused = !(game->paused);
         draw_game(game);
@@ -367,50 +362,58 @@ void handle_input(GameState *game) {
 
 // Vérifie les différentes collisions du snake avec les murs, lui-même et le fruit
 void check_collisions(GameState *game) {
-    // Vérfie si le serpent est sur le fruit
+    // Vérfie si le serpent à mangé le fruit
     if (game->snake_head->x == game->fruit_x && game->snake_head->y == game->fruit_y) {
         game->score++;                   // Augmente le score car fruit mangé
         game->fruit_color = rand() % 3;  // Change la couleur du fruit
 
+        game->fruit_eaten = true;  // Indique qu'un fruit a été mangé (pour animation)
+        game->frame_counter = 0;   // Réinitialise le compteur de frames (pour animaiton)
+
         int new_block_x, new_block_y;
         Block *last_block = game->snake_head;
+        Block *prev_last_block = NULL;
         while (last_block->next != NULL) {
+            prev_last_block = last_block;
             last_block = last_block->next;
         }
 
-        // Determine le position du nouveau bloc en fonction de la direction du serpent
-        switch (game->direction) {
-            case 0:  // Droite
-                new_block_x = last_block->x - BLOCK_SIZE;
-                new_block_y = last_block->y;
-                break;
-            case 1:  // Haut
+        // Determine la direction du nouveau bloc en fonction de la direction du dernier bloc du serpent
+        if (last_block->x == prev_last_block->x) {
+            if (last_block->y > prev_last_block->y) {
+                // Le dernier bloc se déplace vers le bas
                 new_block_x = last_block->x;
                 new_block_y = last_block->y + BLOCK_SIZE;
-                break;
-            case 2:  // Gauche
-                new_block_x = last_block->x + BLOCK_SIZE;
-                new_block_y = last_block->y;
-                break;
-            case 3:  // Bas
+            } else {
+                // Le dernier bloc se déplace vers le haut
                 new_block_x = last_block->x;
                 new_block_y = last_block->y - BLOCK_SIZE;
-                break;
+            }
+        } else {
+            if (last_block->x > prev_last_block->x) {
+                // Le dernier bloc se déplace vers la droite
+                new_block_x = last_block->x + BLOCK_SIZE;
+                new_block_y = last_block->y;
+            } else {
+                // Le dernier bloc se déplace vers la gauche
+                new_block_x = last_block->x - BLOCK_SIZE;
+                new_block_y = last_block->y;
+            }
         }
 
         // Ajoute le nouveau bloc au serpent
         add_block(game, new_block_x, new_block_y);
 
         // Déplace le fruit à une nouvelle position aléatoire
-        game->fruit_x = (rand() % (SCREEN_WIDTH - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
-        game->fruit_y = (rand() % (SCREEN_HEIGHT - 2 * MIN_DISTANCE_FROM_BORDER) + MIN_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
+        game->fruit_x = (rand() % (SCREEN_WIDTH - 2 * MIN_FRUIT_DISTANCE_FROM_BORDER) + MIN_FRUIT_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
+        game->fruit_y = (rand() % (SCREEN_HEIGHT - 2 * MIN_FRUIT_DISTANCE_FROM_BORDER) + MIN_FRUIT_DISTANCE_FROM_BORDER) / BLOCK_SIZE * BLOCK_SIZE;
     }
 
     // Collision avec le corps du serpent
     Block *current_block = game->snake_head->next;
     while (current_block != NULL) {
         if (game->snake_head->x == current_block->x && game->snake_head->y == current_block->y) {
-            game->game_over = true;
+            game->over = true;
             break;
         }
         current_block = current_block->next;
@@ -418,7 +421,7 @@ void check_collisions(GameState *game) {
 
     // Collision avec les murs
     if (game->snake_head->x < 0 || game->snake_head->x >= SCREEN_WIDTH || game->snake_head->y < 0 || game->snake_head->y >= SCREEN_HEIGHT) {
-        game->game_over = true;
+        game->over = true;
     }
 }
 
@@ -563,11 +566,11 @@ int main() {
     init_game(&game);
 
     // On lance la boucle principale du jeu
-    while (game.game_exited == false) {
+    while (game.exited == false) {
         game.start_time = clock();
 
         // On affiche l'écran de fin de jeu si le joueur a perdu
-        if (game.game_over == true) {
+        if (game.over == true) {
             game_over_screen(&game);
         }
 
@@ -598,8 +601,7 @@ int main() {
     }
 
     // On nettoie la mémoire et on quitte le jeu
-    clear_bitmap(game.buffer);
-    clear_bitmap(screen);
+
     allegro_exit();
     free_memory(&game);
 

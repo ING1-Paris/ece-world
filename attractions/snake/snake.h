@@ -1,12 +1,8 @@
 /*
-TODO: animer la tête du serpent
 TODO: Changer les fonts du jeu
 TODO: Ajouter des effets sonores (fruit, fruit *5, mort) et une musique de fond
-TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu sinon c'est violent
 //TODO: ajouter un décompte avec de "dépauser" le jeu
 */
-
-
 
 #ifndef SNAKE_H
 #define SNAKE_H
@@ -17,13 +13,20 @@ TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu s
 #define BLOCK_SIZE 32
 #define SPRITE_SIZE 16
 #define STRETCHED_SPRITE_SIZE 32
-#define INITIAL_FPS 5
-#define MAX_FPS 5
+#define INITIAL_FPS 10
+#define MAX_FPS 5 + INITIAL_FPS
 #define SCORE_PER_FPS 5
-#define MIN_DISTANCE_FROM_BORDER BLOCK_SIZE
+#define MIN_FRUIT_DISTANCE_FROM_BORDER 2 * BLOCK_SIZE
+#define MIN_SNAKE_SPAWN_DISTANCE_FROM_BORDER 10 * BLOCK_SIZE
 #define SNAKE_INITIAL_LENGTH 10
 
-/* DIRECTIONS */
+/* DIRECTIONS DANS LE PLAN*/
+#define DIRECTION_RIGHT 0
+#define DIRECTION_DOWN 1
+#define DIRECTION_LEFT 2
+#define DIRECTION_UP P
+
+/* DIRECTIONS DES SPRITES*/
 #define SPRITE_TOP_LEFT 2      // 2
 #define SPRITE_TOP_RIGHT 3     // 3
 #define SPRITE_BOTTOM_LEFT 4   // 4
@@ -34,8 +37,9 @@ TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu s
 #define SPRITE_RIGHT_TOP SPRITE_TOP_RIGHT
 #define SPRITE_RIGHT_BOTTOM SPRITE_BOTTOM_RIGHT
 
-/* FICHIER DE SAUVEGARDE */
+/* FICHIERS */
 #define SNAKE_SAVE_FILE "attractions/snake/snake.txt"
+#define SNAKE_BITMAP_FILE "attractions/snake/images/snake_sprites.bmp"
 
 /* COULEURS */
 #define SNAKE_HEAD_COLOR makecol(0, 0, 255)
@@ -52,14 +56,18 @@ typedef struct Block {
 } Block;
 
 typedef struct GameState {
+    Block *snake_head;
+    
     BITMAP *buffer;
     BITMAP *floor_sprite;
-    Block *snake_head;
 
     BITMAP ***snake_head_sprites;
     BITMAP **snake_body_sprites;
     BITMAP **fruit_sprites;
     BITMAP **floor_tiles_sprite;
+
+    int frame_counter;  // Compteur pour savoir quand changer d'image
+    bool fruit_eaten;   // Si le fruit a été mangé
 
     int fruit_x;
     int fruit_y;
@@ -69,21 +77,21 @@ typedef struct GameState {
     int score;
     int direction;
     long start_time;
-    double snake_speed;
 
     bool paused;
-    bool game_over;
-    bool game_exited;
+    bool over;
+    bool exited;
+    bool started;
 } GameState;
 
 /* FONCTIONS */
 void add_block(GameState *game, int x, int y);
 void init_game(GameState *game);
-BITMAP **init_bitmap_snake_body();
-BITMAP ***init_bitmap_snake_head();
-BITMAP **init_bitmap_fruit();
-BITMAP **init_bitmap_floor();
-BITMAP *generate_floor_sprite();
+BITMAP **init_bitmap_snake_body(BITMAP *spritesheet);
+BITMAP ***init_bitmap_snake_head(BITMAP *spritesheet);
+BITMAP **init_bitmap_fruit(BITMAP *spritesheet);
+BITMAP **init_bitmap_floor(BITMAP *spritesheet);
+BITMAP *generate_floor_sprite(GameState *game);
 
 int get_high_score();
 void draw_game(GameState *game);
