@@ -1,10 +1,11 @@
-#include "snake.h"
-
 #include <allegro.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "snake.h"
+
 
 // Ajoute un bloc à la fin du snake
 void add_block(GameState *game, int x, int y) {
@@ -18,9 +19,11 @@ void add_block(GameState *game, int x, int y) {
         last_block = last_block->next;
     }
 
+
     last_block->next = new_block;
     new_block->prev = last_block;
 }
+
 
 // Initialise le jeu, crée le snake initial et créer le fruit
 void init_game(GameState *game) {

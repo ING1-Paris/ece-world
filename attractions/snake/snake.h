@@ -6,11 +6,10 @@ TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu s
 //TODO: ajouter un décompte avec de "dépauser" le jeu
 */
 
+
+
 #ifndef SNAKE_H
 #define SNAKE_H
-
-#include <allegro.h>
-#include <stdbool.h>
 
 /* CONSTANTES */
 #define SCREEN_WIDTH 800
@@ -18,8 +17,8 @@ TODO: ajouter un "appuyer sur espace pour commencer" avant de commencer le jeu s
 #define BLOCK_SIZE 32
 #define SPRITE_SIZE 16
 #define STRETCHED_SPRITE_SIZE 32
-#define INITIAL_FPS 15
-#define MAX_FPS 15
+#define INITIAL_FPS 5
+#define MAX_FPS 5
 #define SCORE_PER_FPS 5
 #define MIN_DISTANCE_FROM_BORDER BLOCK_SIZE
 #define SNAKE_INITIAL_LENGTH 10
