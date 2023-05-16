@@ -1,9 +1,3 @@
-/*
-TODO: Changer les fonts du jeu
-TODO: Ajouter des effets sonores (fruit, fruit *5, mort) et une musique de fond
-//TODO: ajouter un décompte avec de "dépauser" le jeu
-*/
-
 #ifndef SNAKE_H
 #define SNAKE_H
 
@@ -38,8 +32,18 @@ TODO: Ajouter des effets sonores (fruit, fruit *5, mort) et une musique de fond
 #define SPRITE_RIGHT_BOTTOM SPRITE_BOTTOM_RIGHT
 
 /* FICHIERS */
-#define SNAKE_SAVE_FILE "attractions/snake/snake.txt"
-#define SNAKE_BITMAP_FILE "attractions/snake/images/snake_sprites.bmp"
+#define SNAKE_SAVE_FILE "attractions/snake/assets/snake.txt"
+#define SNAKE_FONT_FILE "attractions/snake/assets/font.pcx"
+#define SNAKE_BITMAP_FILE "attractions/snake/assets/sprites.bmp"
+
+/* SONS */
+#define SNAKE_START_SOUND_FILE "attractions/snake/assets/sounds/start.wav"
+#define SNAKE_EATING_SOUND_FILE "attractions/snake/assets/sounds/eating.wav"
+#define SNAKE_SPEED_INCREASE_SOUND_FILE "attractions/snake/assets/sounds/speed_increase.wav"
+#define SNAKE_HIGH_SCORE_SOUND_FILE "attractions/snake/assets/sounds/high_score.wav"
+#define SNAKE_GAME_OVER_SOUND_FILE "attractions/snake/assets/sounds/game_over.wav"
+
+#define SOUND_AMOUNT 5
 
 /* COULEURS */
 #define SNAKE_HEAD_COLOR makecol(0, 0, 255)
@@ -57,7 +61,11 @@ typedef struct Block {
 
 typedef struct GameState {
     Block *snake_head;
-    
+
+    FONT *snake_font;
+
+    SAMPLE **sounds;
+
     BITMAP *buffer;
     BITMAP *floor_sprite;
 
@@ -78,6 +86,7 @@ typedef struct GameState {
     int direction;
     long start_time;
 
+    bool new_high_score;
     bool paused;
     bool over;
     bool exited;
@@ -107,5 +116,8 @@ int get_tail_orientation(Block *block);
 int get_corner_orientation(Block *block);
 void print_debug(char *message);
 void move_snake(GameState *game);
+SAMPLE **init_sounds();
+void play_sound(GameState *game, int sound_id);
+int snake_main();
 
 #endif
