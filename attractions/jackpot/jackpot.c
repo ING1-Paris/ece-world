@@ -62,7 +62,7 @@ int main() {
     bitmap[0] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
     bitmap[1] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
     bitmap[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image 7.bmp", NULL);
-    BITMAP *background=load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\images rouleau.bmp", NULL);
+  
     bitmap2[0]=load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
     bitmap2[1]=load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
     bitmap2[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image 7.bmp", NULL);
