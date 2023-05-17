@@ -33,7 +33,7 @@ int main() {
     // Charger les sprites à partir de fichiers bitmap
     BITMAP *frog_bmp = load_bitmap("../grenouilleoff.bmp", NULL);
     BITMAP *log_bmp = load_bitmap("../bois.bmp", NULL);
-    BITMAP *fond = load_bitmap("../fond.bmp", NULL);
+    BITMAP *fond = load_bitmap("../fondfrog.bmp", NULL);
     if (!frog_bmp || !log_bmp || !fond) {
         allegro_message("Impossible de charger les sprites.");
         return 1;
@@ -61,20 +61,28 @@ int main() {
 
     int frog_speed = 8;
     BITMAP *buffer = create_bitmap(SCREEN_W, SCREEN_H);
+    BITMAP *buffer_menu = create_bitmap(SCREEN_W, SCREEN_H);
+
     clear_bitmap(buffer);
-    clock_t start_time = clock(); 
-    float elapsed_time = 0.0f;
+    clear_bitmap(buffer_menu);
     float score_final[10];
     float max_score_ = 0;
     float score_ = 0;
     int num_played = 0;
-
-// Boucle de jeu
-
+    while(!key[KEY_ENTER]) {
+        //rectfill(buffer_menu, 0, 0, SCREEN_W, SCREEN_W, makecol(0, 0, 255));
+        rectfill(buffer_menu, SCREEN_W/2 - 50, SCREEN_H/2-25, SCREEN_W/2 + 50, SCREEN_H/2+25, makecol(255, 255, 255));
+        textout_centre_ex(buffer_menu, font, "Play", SCREEN_W / 4, SCREEN_H / 4, makecol(0, 0, 0), -1);
+        clear_to_color(buffer_menu, makecol(0,255,0));
+        draw_sprite(buffer_menu,fond , 80,50);//,SCREEN_H/3-50,SCREEN_H/3-50,500,281
+        vsync();
+        blit(buffer_menu, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
+    }
+    clock_t start_time = clock();
+    float elapsed_time = 0.0f;
     while (!key[KEY_ESC]) {
         clear_to_color(buffer, makecol(0, 0, 0));
         elapsed_time = (float) (clock() - start_time) / CLOCKS_PER_SEC;
-        // Dessin du fond d'écran
         rectfill(buffer, 0, 0, SCREEN_W, SCREEN_H / 4, makecol(0, 255, 0));
         rectfill(buffer, 0, SCREEN_H - SCREEN_H / 4, SCREEN_W, SCREEN_H, makecol(0, 255, 0));
         rectfill(buffer, 0, SCREEN_H / 4, SCREEN_W, SCREEN_H - SCREEN_H / 4, makecol(0, 0, 255));
@@ -149,8 +157,8 @@ int main() {
                 frog_y += frog_speed;
             }
         }
-        if ((sur_rondin == 0 && frog_y + FROG_H > SCREEN_H / 4 + 16 && frog_y + 16 < SCREEN_H - SCREEN_H / 4) ||
-            (sur_rondin == 1 && frog_x > SCREEN_W - FROG_W)) {
+        if ((sur_rondin == 0 && frog_y + 16 > SCREEN_H / 4 + 16 && frog_y + 16 < SCREEN_H - SCREEN_H / 4) ||
+            (sur_rondin == 1 && frog_x > SCREEN_W )) {
             allegro_message("Perdu ! Votre temps est de 0 secondes");
             allegro_exit();
         }
