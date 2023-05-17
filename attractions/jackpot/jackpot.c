@@ -59,20 +59,20 @@ int main() {
     player player;
 
     // Load bitmaps
-    bitmap[0] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
-    bitmap[1] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
-    bitmap[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image 7.bmp", NULL);
-  
-    bitmap2[0]=load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
-    bitmap2[1]=load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
-    bitmap2[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image 7.bmp", NULL);
+    bitmap[0] = load_bitmap("attractions/jackpot/assets/bar.bmp", NULL);
+    bitmap[1] = load_bitmap("attractions/jackpot/assets/piece.bmp", NULL);
+    bitmap[2] = load_bitmap("attractions/jackpot/assets/7.bmp", NULL);
 
-    bitmap3[0] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image 7.bmp", NULL);
-    bitmap3[1] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
-    bitmap3[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
+    bitmap2[0] = load_bitmap("attractions/jackpot/assets/bar.bmp", NULL);
+    bitmap2[1] = load_bitmap("attractions/jackpot/assets/piece.bmp", NULL);
+    bitmap2[2] = load_bitmap("attractions/jackpot/assets/7.bmp", NULL);
 
-    BITMAP* manivelle = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image manivelle.bmp", NULL);
-    BITMAP* manivelleretour = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\manivelle retour.bmp", NULL);
+    bitmap3[0] = load_bitmap("attractions/jackpot/assets/7.bmp", NULL);
+    bitmap3[1] = load_bitmap("attractions/jackpot/assets/bar.bmp", NULL);
+    bitmap3[2] = load_bitmap("attractions/jackpot/assets/piece.bmp", NULL);
+
+    BITMAP *manivelle = load_bitmap("attractions/jackpot/assets/levier_up.bmp", NULL);
+    BITMAP *manivelleretour = load_bitmap("attractions/jackpot/assets/levier_down.bmp", NULL);
 
     // Create double buffer
     buffer[0] = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
