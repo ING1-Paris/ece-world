@@ -32,16 +32,16 @@
 #define SPRITE_RIGHT_BOTTOM SPRITE_BOTTOM_RIGHT
 
 /* FICHIERS */
-#define SNAKE_SAVE_FILE "attractions/snake/assets/snake.txt"
+#define SNAKE_SAVE_FILE "attractions/snake/snake.txt"
 #define SNAKE_FONT_FILE "attractions/snake/assets/font.pcx"
 #define SNAKE_BITMAP_FILE "attractions/snake/assets/sprites.bmp"
 
 /* SONS */
-#define SNAKE_START_SOUND_FILE "attractions/snake/assets/sounds/start.wav"
-#define SNAKE_EATING_SOUND_FILE "attractions/snake/assets/sounds/eating.wav"
-#define SNAKE_SPEED_INCREASE_SOUND_FILE "attractions/snake/assets/sounds/speed_increase.wav"
-#define SNAKE_HIGH_SCORE_SOUND_FILE "attractions/snake/assets/sounds/high_score.wav"
-#define SNAKE_GAME_OVER_SOUND_FILE "attractions/snake/assets/sounds/game_over.wav"
+#define SNAKE_START_SOUND_FILE "attractions/snake/assets/sounds/start.wav" //0
+#define SNAKE_EATING_SOUND_FILE "attractions/snake/assets/sounds/eating.wav" //1
+#define SNAKE_SPEED_INCREASE_SOUND_FILE "attractions/snake/assets/sounds/speed_increase.wav" //2
+#define SNAKE_HIGH_SCORE_SOUND_FILE "attractions/snake/assets/sounds/high_score.wav"         // 3
+#define SNAKE_GAME_OVER_SOUND_FILE "attractions/snake/assets/sounds/game_over.wav" //4
 
 #define SOUND_AMOUNT 5
 
@@ -118,6 +118,6 @@ void print_debug(char *message);
 void move_snake(GameState *game);
 SAMPLE **init_sounds();
 void play_sound(GameState *game, int sound_id);
-int snake_main();
+void snake_main(int *final_score);
 
 #endif
