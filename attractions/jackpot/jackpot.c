@@ -60,16 +60,16 @@ int main() {
 
     // Load bitmaps
     bitmap[0] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
-    bitmap[1] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
-    bitmap[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image 7.bmp", NULL);
-  
-    bitmap2[0]=load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
-    bitmap2[1]=load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
-    bitmap2[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image 7.bmp", NULL);
+    bitmap[1] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image 7.bmp", NULL);
+    bitmap[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
+    BITMAP *background=load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\images rouleau.bmp", NULL);
+    bitmap2[0]=load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image 7.bmp", NULL);
+    bitmap2[1]=load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
+    bitmap2[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
 
     bitmap3[0] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image 7.bmp", NULL);
-    bitmap3[1] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
-    bitmap3[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
+    bitmap3[1] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image piece .bmp", NULL);
+    bitmap3[2] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\bar jakpot.bmp", NULL);
 
     BITMAP* manivelle = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\image manivelle.bmp", NULL);
     BITMAP* manivelleretour = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\manivelle retour.bmp", NULL);
@@ -139,26 +139,46 @@ int main() {
                 k=k+1;printf("%d\n",k);
                 if (k==755){
                 printf("je l'ai trouve las sjnjchdvcdnvkdjvkjkvjfjvfvl");
+                    //printf("les couleurs sont : %d  %d  %d",color1)
                 player.playerticket-=1;
-                int color1 = getpixel(screen, 175, SCREEN_HEIGHT-manivelleretour->h);
-                int color2=getpixel(screen, 530, SCREEN_HEIGHT-manivelleretour->h);
-                int color3=getpixel(screen, 885, SCREEN_HEIGHT-manivelleretour->h);
-                if ((color1==color2)&&(color1==color3)&&(color2==color3)){
-                    printf("la partie est gagne");
-                    printf("%d   %d   %d",color1,color2,color3);
-                    //piece=16637518  7=15343395
-                    if (color1==16637518){
-                        player.playerticket=player.playerticket+2;
-                    }
-                    if (color1==15343395){
-                        player.playerticket=player.playerticket-1;
-                    }
-                    printf(" le nombre de tich=ket du joueur est de %d",player.playerticket);
+                int color1 = getpixel(screen, 175, SCREEN_HEIGHT-manivelleretour->h);//175
+                int color2=getpixel(screen, 530, SCREEN_HEIGHT-manivelleretour->h);//530
+                int color3=getpixel(screen, 885, SCREEN_HEIGHT-manivelleretour->h);//885
+                printf("les couleurs sont : %d  %d  %d",color1,color2,color3);
+                if(color1==5789784&&color2==15987699&&color3==15987699){
+                    printf("la partie est gagne(bar)");
+
+                }
+                else if(color1==15343145&&color2==15473957&&color3==15473957){
+                        printf("la partie est gagne(7)");
+
+                }
+                else if(color1==16375889&&color2==16180054&&color3==16180054){
+                    printf("la partie est gagne(piece)");
                 }
                 else{
                     printf("partie perdue");
+
                 }
+
+
+                //if ((color1==color2)&&(color1==color3)&&(color2==color3)){
+                    //printf("la partie est gagne");
+                    //printf("%d   %d   %d",color1,color2,color3);
+                    //piece=16637518  7=15343395
+                    //if (color1==16637518){
+                        //player.playerticket=player.playerticket+2;
+                    //}
+                   // if (color1==15343395){
+                        //player.playerticket=player.playerticket-1;
+                    //}
+                    //printf(" le nombre de tich=ket du joueur est de %d",player.playerticket);
+                //}
+                //else{
+                    //printf("partie perdue");
+                //}
             }
+
 
 
         if(k<500){
@@ -173,8 +193,8 @@ int main() {
             scroll_offset3 =scroll_offset3 +SCROLL_SPEED+19;
         }
         else if (k>750 && k<1000){
-            scroll_offset =scroll_offset +SCROLL_SPEED+6;
-            scroll_offset2 =scroll_offset2 +SCROLL_SPEED+5;
+            scroll_offset =scroll_offset +SCROLL_SPEED+9;
+            scroll_offset2 =scroll_offset2 +SCROLL_SPEED+6;
             scroll_offset3 =scroll_offset3 +SCROLL_SPEED+5;
         }
         else{
