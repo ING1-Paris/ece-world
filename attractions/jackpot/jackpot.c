@@ -1,3 +1,51 @@
+#include <allegro.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+typedef struct player {
+    int playerticket;
+
+
+}player;
+
+// Constants
+const int SCREEN_WIDTH = 1200;
+const int SCREEN_HEIGHT = 600;
+const int BUFFER_SIZE = 2;
+const int BITMAP_WIDTH = 350;
+const int BITMAP_HEIGHT = 350;
+const int SCROLL_SPEED = 2;
+const int BORDER_WIDTH = 10;
+
+// Bitmaps
+BITMAP *bitmap[3];
+BITMAP *bitmap2[3];
+BITMAP *bitmap3[3];
+
+
+// Double buffer
+BITMAP *buffer[2];
+int buffer_index = 0;
+
+// Scroll offset
+int scroll_offset = 0;
+int scroll_offset2 = 0;
+int scroll_offset3 = 0;
+void shuffleBitmaps(BITMAP **bitmaps, int count) {
+    int i, j;
+    BITMAP *temp;
+
+    //srand(time(NULL)); // Initialisation de la graine aléatoire
+
+    // Mélange du tableau
+    for (i = count - 1; i > 0; i--) {
+        j = rand() % (i + 1);
+        temp = bitmaps[i];
+        bitmaps[i] = bitmaps[j];
+        bitmaps[j] = temp;
+    }
+}
+
 int main() {
     // Initialize Allegro
     allegro_init();
@@ -41,7 +89,28 @@ int main() {
     shuffleBitmaps(bitmap, 3);
     shuffleBitmaps(bitmap2, 3);
     shuffleBitmaps(bitmap3, 3);
-    
+
+    // Mélange du tableau
+    //for (i = 2; i > 0; i--) {
+        //j = rand() % (i + 1);
+        //temp = bitmap[i];
+        //bitmap[i] = bitmap[j];
+        //bitmap[j] = temp;
+    //}
+    //for (i = 2; i > 0; i--) {
+        //j = rand() % (i + 1);
+        //temp2 = bitmap2[i];
+        //bitmap2[i] = bitmap2[j];
+        //bitmap2[j] = temp2;
+    //}
+    //for (i = 2; i > 0; i--) {
+        //j = rand() % (i + 1);
+        //temp3 = bitmap3[i];
+        //bitmap3[i] = bitmap3[j];
+        //bitmap3[j] = temp3;
+    //}
+
+    // Main loop
     int bitmap_index = 0;
     int bitmap_index2 = 0;
     int bitmap_index3 = 0;
@@ -166,4 +235,31 @@ int main() {
 
         rest(1);
             }
+        else{
+            if (k!=0){
+                if (key[KEY_R]){
+                    clear_to_color(screen, makecol(0,0,0));
+                    draw_sprite(screen,bitmap[0],0,130);
 
+                }
+                }
+        }
+
+    }
+    //draw_sprite(screen,manivelle,0,0);
+    //rest(2000);
+
+    destroy_bitmap(buffer[0]);
+    destroy_bitmap(buffer[1]);
+    destroy_bitmap(bitmap[0]);
+    destroy_bitmap(bitmap[1]);
+    destroy_bitmap(bitmap[2]);
+    destroy_bitmap(bitmap2[0]);
+    destroy_bitmap(bitmap2[1]);
+    destroy_bitmap(bitmap2[2]);
+    destroy_bitmap(bitmap3[0]);
+    destroy_bitmap(bitmap3[1]);
+    destroy_bitmap(bitmap3[2]);
+    return 0;
+}
+END_OF_MAIN();
