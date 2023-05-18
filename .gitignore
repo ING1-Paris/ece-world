@@ -5,6 +5,7 @@ cmake-build-allegro/
 *.html
 *.pdf
 main
+*.txt
 
 # Prerequisites
 *.d
