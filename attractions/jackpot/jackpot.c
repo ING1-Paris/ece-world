@@ -60,6 +60,7 @@ int main() {
     player player;
 
     // Load bitmaps
+
     bitmap[0] = load_bitmap("attractions/jackpot/assets/bar.bmp", NULL);
     bitmap[1] = load_bitmap("attractions/jackpot/assets/7.bmp", NULL);
     bitmap[2] = load_bitmap("attractions/jackpot/assets/piece.bmp", NULL);
@@ -67,6 +68,7 @@ int main() {
     bitmap2[0] = load_bitmap("attractions/jackpot/assets/7.bmp", NULL);
     bitmap2[1] = load_bitmap("attractions/jackpot/assets/bar.bmp", NULL);
     bitmap2[2] = load_bitmap("attractions/jackpot/assets/piece.bmp", NULL);
+
 
     bitmap3[0] = load_bitmap("attractions/jackpot/assets/7.bmp", NULL);
     bitmap3[1] = load_bitmap("attractions/jackpot/assets/piece.bmp", NULL);
@@ -123,6 +125,7 @@ int main() {
 
     while (!key[KEY_ESC]) {
         // Le bouton gauche de la souris est enfoncé;
+
         if (((mouse_b & 1 && mouse_x > 106 && mouse_x < 1060 + manivelle->w && mouse_y >= 300 && mouse_y < 300 + manivelle->h) || (clic_gauche_precedent == 1)) && k <= 754) {
             clic_gauche_precedent = 1;
             k = k + 1;
@@ -147,6 +150,7 @@ int main() {
                 } else {
                     score = -1;  // perdu
                     break;
+
                 }
             }
 
@@ -169,12 +173,14 @@ int main() {
                 scroll_offset3 = scroll_offset3 + SCROLL_SPEED;
             }
 
+
             // If the first bitmap goes out of screen, reset scroll offset and bitmap index
             if (scroll_offset >= BITMAP_HEIGHT) {
                 scroll_offset = 0;
                 bitmap_index = (bitmap_index + 1) % 3;
             }
             if (scroll_offset2 >= BITMAP_HEIGHT) {
+
                 scroll_offset2 = 0;
                 bitmap_index2 = (bitmap_index2 + 1) % 3;
             }
