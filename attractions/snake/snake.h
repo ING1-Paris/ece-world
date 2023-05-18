@@ -32,7 +32,7 @@
 #define SPRITE_RIGHT_BOTTOM SPRITE_BOTTOM_RIGHT
 
 /* FICHIERS */
-#define SNAKE_END_FILE "attractions/snake/end.txt"
+#define SNAKE_END_SAVE_FILE "attractions/snake/end.txt"
 #define SNAKE_BEST_SAVE_FILE "attractions/snake/best.txt"
 #define SNAKE_FONT_FILE "attractions/snake/assets/font.pcx"
 #define SNAKE_BITMAP_FILE "attractions/snake/assets/sprites.bmp"

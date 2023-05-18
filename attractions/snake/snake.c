@@ -452,10 +452,10 @@ void free_memory(GameState *game) {
         free(current_block);
         current_block = next_block;
     }
+
     destroy_bitmap(game->buffer);
     destroy_bitmap(game->floor_sprite);
 
-    destroy_bitmap(screen);
 
     for (int i = 0; i < 10; i++) {
         destroy_bitmap(game->snake_body_sprites[i]);
@@ -681,10 +681,10 @@ int main() {
     int score = game.score;
     free_memory(&game);
 
-    FILE *f = fopen(SNAKE_END_FILE, "w");
+    FILE *f = fopen(SNAKE_END_SAVE_FILE, "w");
 
     if (f == NULL) {
-        printf("Error opening file!\n");
+        allegro_message("Error opening %s\n", SNAKE_END_SAVE_FILE);
         exit(1);
     }
     fprintf(f, "%d", score);
