@@ -3,8 +3,8 @@
         "stdio.h": "c",
         "stdbool.h": "c",
         "allegro.h": "c",
-        "snake.h": "c"
+        "snake.h": "c",
+        "typeinfo": "c"
     },
     "C_Cpp.clang_format_sortIncludes": false,
-
 }
