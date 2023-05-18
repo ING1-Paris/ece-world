@@ -7,9 +7,7 @@
             "command": "gcc",
             "args": [
                 "-o",
-                "main.o",
-                //"*.c",
-                //"**/*.c",
+                "${fileDirname}/${fileBasenameNoExtension}.o",
                 "${file}",
                 "-L/usr/local/lib",
                 "-lalleg",
@@ -28,7 +26,7 @@
                 "Build"
             ],
             "type": "shell",
-            "command": "./main.o",
+            "command": "${fileDirname}/${fileBasenameNoExtension}.o",
             "problemMatcher": [],
             "presentation": {
                 "echo": true,
