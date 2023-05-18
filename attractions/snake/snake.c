@@ -152,7 +152,7 @@ BITMAP *generate_floor_sprite(GameState *game) {
 
 // Obtiens le meilleurs score dans le fichier de sauvegarde
 int get_high_score() {
-    FILE *file = fopen(SNAKE_SAVE_FILE, "r");
+    FILE *file = fopen(SNAKE_BEST_SAVE_FILE, "r");
     int high_score = 0;
     if (file) {
         fscanf(file, "%d", &high_score);
@@ -236,14 +236,14 @@ void draw_game(GameState *game) {
 
 // Enregistre le score actuel si il est plus grand que le score enregistré
 void save_score(GameState *game) {
-    FILE *file = fopen(SNAKE_SAVE_FILE, "r");
+    FILE *file = fopen(SNAKE_BEST_SAVE_FILE, "r");
     int high_score = 0;
     if (file) {
         fscanf(file, "%d", &high_score);
         fclose(file);
     }
     if (game->score > high_score) {
-        file = fopen(SNAKE_SAVE_FILE, "w");
+        file = fopen(SNAKE_BEST_SAVE_FILE, "w");
         if (file) {
             fprintf(file, "%d", game->score);
             fclose(file);
@@ -592,29 +592,23 @@ SAMPLE **init_sounds() {
 /* 0 start, 1 eating, 2 speed_increase, 3 high_score, 4 game_over */
 void play_sound(GameState *game, int sound_id) {
     if (sound_id == 0) {
-        allegro_message("play sound start");
         play_sample(game->sounds[0], 128, 128, 1000, 0);
 
     } else if (sound_id == 1) {
-        allegro_message("play sound eating");
         play_sample(game->sounds[1], 128, 128, 1000, 0);
 
     } else if (sound_id == 2) {
-        allegro_message("play sound speed_increase");
         play_sample(game->sounds[2], 128, 128, 1000, 0);
 
     } else if (sound_id == 3) {
-        allegro_message("before play sound high_score");
         play_sample(game->sounds[3], 128, 128, 1000, 0);
-        allegro_message("play sound high_score");
 
     } else if (sound_id == 4) {
-        allegro_message("play sound game_over");
         play_sample(game->sounds[4], 255, 128, 1000, 0);
     }
 }
 
-void snake_main(int* final_score) {
+int main() {
     // Initialisation du random et d'Allegro
     srand(time(NULL));
     allegro_init();
@@ -663,8 +657,6 @@ void snake_main(int* final_score) {
         // On affiche le jeu
         draw_game(&game);
 
-
-
         if (game.score % SCORE_PER_FPS == 0 && game.score != 0 && game.score != old_score) {
             play_sound(&game, 2);
             old_score = game.score;
@@ -686,20 +678,18 @@ void snake_main(int* final_score) {
 
     // On nettoie la mémoire et on quitte le jeu
 
-    *final_score = game.score;
-
-
-
+    int score = game.score;
     free_memory(&game);
-}
-END_OF_MAIN()
 
-int main() {
-    int* final_score = malloc(sizeof(int));
-    snake_main(final_score);
+    FILE *f = fopen(SNAKE_END_FILE, "w");
 
-    allegro_message("Score finala : %d", *final_score);
-
+    if (f == NULL) {
+        printf("Error opening file!\n");
+        exit(1);
+    }
+    fprintf(f, "%d", score);
+    fclose(f);
 
     return 0;
 }
+END_OF_MAIN()
