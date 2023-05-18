@@ -14,8 +14,8 @@
 #define LOG_SPEED 1
 #define FROG_SPEED 2
 
-#define RIVIERE_END_SAVE_FILE "attractions/riviere/end.txt"
-#define RIVIERE_BEST_SAVE_FILE "attractions/riviere/best.txt"
+#define RIVIERE_END_SAVE_FILE "attractions/grenouille/end.txt"
+#define RIVIERE_BEST_SAVE_FILE "attractions/grenouille/best.txt"
 
 int est_sur_rondin(int x_grenouille, int y_grenouille, int x_rondin, int y_rondin, int largeur_rondin, int hauteur_rondin) {
     int sur_rondin = 0;
@@ -39,9 +39,9 @@ int main() {
     }
 
     // Charger les sprites à partir de fichiers bitmap
-    BITMAP *frog_bmp = load_bitmap("attractions/riviere/assets/grenouilleoff.bmp", NULL);
-    BITMAP *log_bmp = load_bitmap("attractions/riviere/assets/bois.bmp", NULL);
-    BITMAP *fond = load_bitmap("attractions/riviere/assets/fondfrog.bmp", NULL);
+    BITMAP *frog_bmp = load_bitmap("attractions/grenouille/assets/grenouilleoff.bmp", NULL);
+    BITMAP *log_bmp = load_bitmap("attractions/grenouille/assets/bois.bmp", NULL);
+    BITMAP *fond = load_bitmap("attractions/grenouille/assets/fondfrog.bmp", NULL);
 
     if (!frog_bmp || !log_bmp || !fond) {
         allegro_message("Impossible de charger les sprites.");
