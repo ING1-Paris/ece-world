@@ -456,7 +456,6 @@ void free_memory(GameState *game) {
     destroy_bitmap(game->buffer);
     destroy_bitmap(game->floor_sprite);
 
-
     for (int i = 0; i < 10; i++) {
         destroy_bitmap(game->snake_body_sprites[i]);
     }

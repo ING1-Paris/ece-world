@@ -4,7 +4,8 @@
         "stdbool.h": "c",
         "allegro.h": "c",
         "snake.h": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "stdlib.h": "c"
     },
     "C_Cpp.clang_format_sortIncludes": false,
 }
