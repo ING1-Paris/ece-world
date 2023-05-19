@@ -29,7 +29,7 @@ void init_horses(t_cheval cheval[8]) {
         //horse_bitmaps[i] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\cheval.bmp", NULL);
         cheval[i].x = 1;
         cheval[i].vitesse= rand() % 15 + 3;
-        printf("%f\n",cheval[i].vitesse);
+        //printf("%f\n",cheval[i].vitesse);
         cheval[i].frame=0;
         cheval[i].direction=0;
         cheval[i].y=(SCREEN_H/8)*i;
@@ -99,15 +99,68 @@ int main() {
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, 800, 600, 0, 0);
 
     int nombre;
-    int nombre2;
+    int nombre2 ;
     do {
-        printf("Le joueur 1  doit choisir le cheval gagnant entre les chevaux allant de 1 à 8:\n");
-        scanf("%d", &nombre);
-    } while (nombre < 1 || nombre > 8);
+        textprintf_ex(screen, font, 00, 230, makecol(255, 255, 255), -1, "Le joueur 1 choisit un nombre entre 1 et 8 avec les touches correspondantes mais pas celles du pad  :");
+    } while (!key[KEY_1]&&!key[KEY_2]&&!key[KEY_3]&&!key[KEY_4]&&!key[KEY_5]&&!key[KEY_6]&&!key[KEY_7]&&!key[KEY_8]);
+    if (key[KEY_1]){
+        nombre=1;
+    }
+    else if (key[KEY_2]){
+        nombre=2;
+    }
+    else if (key[KEY_3]){
+        nombre=3;
+    }
+    else if (key[KEY_4]){
+        nombre=4;
+    }
+    else if (key[KEY_5]){
+        nombre=5;
+    }
+    else if (key[KEY_6]){
+        nombre=6;
+    }
+    else if (key[KEY_7]){
+        nombre=7;
+    }
+    else{
+        nombre=8;
+    }
+    clear(screen);
     do {
-        printf("Le joueur 2  doit choisir  son  cheval gagnant entre les chevaux allant de  1 à 8 :\n ");
-        scanf("%d", &nombre2);
-    } while (nombre < 1 || nombre > 8);
+        textprintf_ex(screen, font, 0, 200, makecol(255, 255, 255), -1, "          Le joueur 2 choisit une lettre entre A et H dans l'ordre alphabetique correspondant :");
+        textprintf_ex(screen, font, 0, 230, makecol(255, 255, 255), -1, "        en effet la A correspond a un 1 et le H a un  8 le A etant bugge c'est un S");
+    } while (!key[KEY_S]&&!key[KEY_B]&&!key[KEY_C]&&!key[KEY_D]&&!key[KEY_E]&&!key[KEY_F]&&!key[KEY_G]&&!key[KEY_H]);
+    if (key[KEY_S]){
+        nombre2=1;
+    }
+    else if (key[KEY_B]){
+        nombre2=2;
+    }
+    else if (key[KEY_C]){
+        nombre2=3;
+    }
+    else if (key[KEY_D]){
+        nombre2=4;
+
+    }
+    else if (key[KEY_E]){
+        nombre2=5;
+    }
+    else if (key[KEY_F]){
+        nombre2=6;
+    }
+    else if (key[KEY_G]){
+        nombre2=7;
+    }
+    else{
+        nombre2=8;
+    }
+    printf("le nombre est de :%d\n",nombre);
+    printf("le nombre est de %d\n",nombre2);
+
+
     srand(time(NULL));
     BITMAP *sprite= load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\4.bmp",NULL);
     BITMAP *double_buffer= create_bitmap(SCREEN_W,SCREEN_H);
@@ -237,6 +290,7 @@ int main() {
     allegro_exit();
     return 0;
 }END_OF_MAIN()
+
 
 
 
