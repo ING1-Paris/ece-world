@@ -114,11 +114,11 @@ int main() {
             if (ducks[i].is_alive) {
             draw_sprite(buffer, canard, ducks[i].x, ducks[i].y);
         }}
-        if(elapsed_time>10.00 && score>0){
+        if(elapsed_time>10.00 && score>4 && score < 11){
             allegro_message("Bien joue ! vous avez attrapé %d canards\n \tVous avez gagné un ticket ! ", score);
             allegro_exit();
         }
-        if(elapsed_time>10.00 && score==0){
+        if(elapsed_time>10.00 && score<4 && score>0 ){
             allegro_message("Vous n'avez attrapé aucun canard\n \tVous n'avez rien gagné ");
             allegro_exit();
         }
