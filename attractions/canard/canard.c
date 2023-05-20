@@ -75,14 +75,6 @@ int main() {
         elapsed_time = (float) (clock() - start_time) / CLOCKS_PER_SEC;
         clear_to_color(buffer, makecol(0, 0, 255));
         if (mouse_b & 1) {
-            if (mouse_x > fishing_rod_x && mouse_x < fishing_rod_x + 64 &&
-                mouse_y > fishing_rod_y && mouse_y < fishing_rod_y + 64) {
-                score += 10 - time_elapsed;
-                ducks_caught++;
-            }
-        }
-
-        if (mouse_b & 1) {
             for (int i = 0; i < 10; i++) {
                 if (ducks[i].is_alive) {
                     int distance_x = ducks[i].x - mouse_x;
