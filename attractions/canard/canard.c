@@ -122,7 +122,7 @@ int main() {
             allegro_message("Vous n'avez attrapé aucun canard\n \tVous n'avez rien gagné ");
             allegro_exit();
         }
-        textprintf_centre_ex(screen, font, SCREEN_W / 2, 10, makecol(255, 255, 255),-1, "Score: %d", score);
+        textprintf_centre_ex(buffer, font, SCREEN_W / 2, 10, makecol(255, 255, 255),-1, "Score: %d", score);
         draw_sprite(buffer, harpon, mouse_x-harpon->w, mouse_y);
         textprintf_ex(buffer, font, 10, 10, makecol(0, 0, 0), -1, "Temps ecoule : %.2f secondes", 10.00-elapsed_time);
         vsync();
