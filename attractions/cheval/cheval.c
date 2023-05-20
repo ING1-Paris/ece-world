@@ -4,10 +4,6 @@
 #include <stdio.h>
 
 #define NUM_HORSES 8
-
-#define HORSE_W 64
-#define HORSE_H 64
-#define FINISH_LINE 500
 typedef struct cheval
 {
     BITMAP* droite[3];
@@ -22,19 +18,14 @@ typedef struct cheval
 
 void init_horses(t_cheval cheval[8]) {
     int i;
-    char filename[32];
 
     for (i = 0; i < NUM_HORSES; i++) {
-        sprintf(filename, "horse%d.bmp", i + 1);
-        //horse_bitmaps[i] = load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\cheval.bmp", NULL);
         cheval[i].x = 1;
         cheval[i].vitesse= rand() % 15 + 3;
-        //printf("%f\n",cheval[i].vitesse);
         cheval[i].frame=0;
         cheval[i].direction=0;
         cheval[i].y=(SCREEN_H/8)*i;
         cheval[i].en_deplacement=1;
-        //finished_horses[i] = 0;
     }
 }
 void separer_bitmap_personnage(t_cheval cheval[8], BITMAP* bitmap)
@@ -60,7 +51,7 @@ void update_horse_positions(t_cheval cheval[8]) {
             if (cheval[i].x+cheval[i].vitesse > SCREEN_W) {
                 cheval[i].x=0;
                 cheval[i].vitesse=0;
-                //cheval[i].rang++;
+
             }
         }
     }
@@ -157,9 +148,6 @@ int main() {
     else{
         nombre2=8;
     }
-    printf("le nombre est de :%d\n",nombre);
-    printf("le nombre est de %d\n",nombre2);
-
 
     srand(time(NULL));
     BITMAP *sprite= load_bitmap("C:\\Users\\kylia\\CLionProjects\\test 4\\4.bmp",NULL);
@@ -184,47 +172,44 @@ int main() {
     int frame_counter = 0;
     int test=0;
     rest(3000);
+    clear(screen);
 
 
     while (!key[KEY_ESC]) {
 
         if(cheval[0].x!=0&&cheval[1].x!=0&&cheval[2].x!=0&&cheval[3].x!=0&&cheval[4].x!=0&&cheval[6].x!=0&&cheval[7].x!=0){
-        clear_bitmap(buffer);
-        clear_bitmap(screen);
-        update_horse_positions(cheval);
-        line(buffer, 0, SCREEN_H/8+15, SCREEN_W, SCREEN_H/8+15, makecol(255, 0, 0));
-        line(buffer, 0, 2*SCREEN_H/8+15, SCREEN_W, 2*SCREEN_H/8+15, makecol(0, 255, 0));
-        line(buffer, 0, 3*SCREEN_H/8+15, SCREEN_W, 3*SCREEN_H/8+15, makecol(0, 0, 255));
-        line(buffer, 0, 4*SCREEN_H/8+15, SCREEN_W, 4*SCREEN_H/8+15, makecol(255, 255, 255));
-        line(buffer, 0, 5*SCREEN_H/8+15, SCREEN_W, 5*SCREEN_H/8+15, makecol(255, 0, 0));
-        line(buffer, 0, 6*SCREEN_H/8+15, SCREEN_W, 6*SCREEN_H/8+15, makecol(0, 255, 0));
-        line(buffer, 0, 7*SCREEN_H/8+15, SCREEN_W, 7*SCREEN_H/8+15, makecol(0, 0, 255));
+            clear_bitmap(buffer);
+            update_horse_positions(cheval);
+            line(buffer, 0, SCREEN_H/8+15, SCREEN_W, SCREEN_H/8+15, makecol(255, 0, 0));
+            line(buffer, 0, 2*SCREEN_H/8+15, SCREEN_W, 2*SCREEN_H/8+15, makecol(0, 255, 0));
+            line(buffer, 0, 3*SCREEN_H/8+15, SCREEN_W, 3*SCREEN_H/8+15, makecol(0, 0, 255));
+            line(buffer, 0, 4*SCREEN_H/8+15, SCREEN_W, 4*SCREEN_H/8+15, makecol(255, 255, 255));
+            line(buffer, 0, 5*SCREEN_H/8+15, SCREEN_W, 5*SCREEN_H/8+15, makecol(255, 0, 0));
+            line(buffer, 0, 6*SCREEN_H/8+15, SCREEN_W, 6*SCREEN_H/8+15, makecol(0, 255, 0));
+            line(buffer, 0, 7*SCREEN_H/8+15, SCREEN_W, 7*SCREEN_H/8+15, makecol(0, 0, 255));
 
 
 
-        dessiner_personnage(cheval, buffer);
-        //blit(buffer, buffer2, 0, 0, 0, 0, buffer->w, buffer->h);
+            dessiner_personnage(cheval, buffer);
 
-        blit(buffer, screen, 0, 0, 0, 0, buffer->w, buffer->h);
-        frame_counter++;
+            blit(buffer, screen, 0, 0, 0, 0, buffer->w, buffer->h);
+            frame_counter++;
 
-        for (int i = 0; i < 8; i++) {
-            if (frame_counter >= 2) {
-                if (cheval[i].en_deplacement==1) {
-                    cheval[i].frame = (cheval[i].frame + 1) % 3;
-                } else {
-                    cheval[i].frame = 0;
+            for (int i = 0; i < 8; i++) {
+                if (frame_counter >= 2) {
+                    if (cheval[i].en_deplacement==1) {
+                        cheval[i].frame = (cheval[i].frame + 1) % 3;
+                    } else {
+                        cheval[i].frame = 0;
+                    }
                 }
-                //frame_counter = 0;
+                rest(10);
             }
-            rest(10);
+            frame_counter = 1;
         }
-        frame_counter = 1;
-            }
 
-    else if (cheval[0].x==0&&cheval[1].x==0&&cheval[2].x==0&&cheval[3].x==0&&cheval[4].x==0&&cheval[6].x==0&&cheval[7].x==0){
-              clear_bitmap(sprite);
-              clear_bitmap(buffer3);
+        else if (cheval[0].x==0&&cheval[1].x==0&&cheval[2].x==0&&cheval[3].x==0&&cheval[4].x==0&&cheval[6].x==0&&cheval[7].x==0){
+            clear_bitmap(buffer);
 
             for (int i = 0; i < 8; i++) {
                 rectfill(double_buffer, 0, 10, SCREEN_W, 10 + text_height(font), makecol(0, 0, 0));
@@ -240,6 +225,9 @@ int main() {
             else if(nombre2==cheval[0].index+1){
                 textprintf_ex(double_buffer, font, 300, 200, makecol(255, 255, 255), -1, "Le joueur 2 a gagne la partie +1 ticket");
                 blit(double_buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);}
+            else if(nombre2==nombre==cheval[0].index+1){
+                textprintf_ex(double_buffer, font, 300, 200, makecol(255, 255, 255), -1, "Le joueur 1 et 2  ont  gagne la partie +1 ticket");
+                blit(double_buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);}
             else{
 
                 textprintf_ex(double_buffer, font, 300, 200, makecol(255, 255, 255), -1, "La partie est perdue pour les 2 joueurs ");
@@ -248,7 +236,6 @@ int main() {
             }
         } else{
             clear_bitmap(buffer);
-            clear_bitmap(screen);
             update_horse_positions(cheval);
             line(buffer, 0, SCREEN_H/8+15, SCREEN_W, SCREEN_H/8+15, makecol(255, 0, 0));
             line(buffer, 0, 2*SCREEN_H/8+15, SCREEN_W, 2*SCREEN_H/8+15, makecol(0, 255, 0));
@@ -279,14 +266,7 @@ int main() {
         }
 
 
-        }
-
-
-
-
-
-
-    //destroy_horses();
+    }
     allegro_exit();
     return 0;
 }END_OF_MAIN()
