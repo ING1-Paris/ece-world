@@ -8,7 +8,7 @@
             "args": [
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.o",
-                "${fileBasenameNoExtension}.c",
+                "${fileDirname}/${fileBasenameNoExtension}.c",
                 "-L/usr/local/lib",
                 "-lalleg",
                 "-lm",

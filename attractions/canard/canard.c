@@ -26,7 +26,10 @@ int main() {
     // Initialisation d'Allegro
     allegro_init();
     install_keyboard();
-    install_mouse();
+    if (install_mouse() < 0) {
+        allegro_message("Erreur lors de l'initialisation de la souris\n");
+        return 1;
+    }
     set_color_depth(desktop_color_depth());
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
 
@@ -51,7 +54,6 @@ int main() {
     }
     // Variables de jeu
     int score = 0;
-    double start_time = get_elapsed_time();
     double elapsed_time = 0;
 
     BITMAP *buffer = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -84,6 +86,7 @@ int main() {
         vsync();
         blit(buffer_menu, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
+    double start_time = get_elapsed_time();
     while (!key[KEY_ESC]) {
         double elapsed_time = get_elapsed_time() - start_time;
         clear_to_color(buffer, makecol(0, 0, 255));
@@ -129,30 +132,16 @@ int main() {
             }
         }
 
-        if (elapsed_time > 10.00 && score > 4 && score < 11) {
+        if (elapsed_time > 10.00 || score == 10) {
             FILE *fichier = fopen("attractions/canard/end.txt", "w");
             if (fichier == NULL) {
                 allegro_message("Erreur lors de l'ouverture du fichier\n");
                 exit(EXIT_FAILURE);
             }
-            allegro_message("Bien joue ! vous avez attrapé %d canards\n \tVous avez gagné un ticket ! ", score);
             fprintf(fichier, "%d", score);
-            allegro_exit();
             fclose(fichier);
+            break;
         }
-        else if (elapsed_time > 10.00) {
-            FILE *fichier = fopen("attractions/canard/end.txt", "w");
-            if (fichier == NULL) {
-                allegro_message("Erreur lors de l'ouverture du fichier\n");
-                exit(EXIT_FAILURE);
-            }
-            allegro_message("Vous n'avez attrapé aucun canard\n \tVous n'avez rien gagné ");
-            fprintf(fichier, "0");
-            allegro_exit();
-            fclose(fichier);
-        }
-
-        allegro_message("Elapsted time : %f", elapsed_time);
 
         textprintf_centre_ex(buffer, font, SCREEN_WIDTH / 2, 10, makecol(255, 255, 255), -1, "Score: %d", score);
         draw_sprite(buffer, harpon, mouse_x - harpon->w, mouse_y);

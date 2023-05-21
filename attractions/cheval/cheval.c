@@ -196,15 +196,15 @@ int main() {
             }
 
             if (nombre == cheval[0].index + 1) {
-                textprintf_ex(double_buffer, font, 300, 200, makecol(255, 255, 255), -1, "Le joueur 1 a gagne la partie +1 ticket");
+                textprintf_ex(double_buffer, font, 300, 200, makecol(255, 255, 255), -1, "Le joueur 1 a gagne la partie");
                 blit(double_buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
                 fprintf(f, "1");
             } else if (nombre2 == cheval[0].index + 1) {
-                textprintf_ex(double_buffer, font, 300, 200, makecol(255, 255, 255), -1, "Le joueur 2 a gagne la partie +1 ticket");
+                textprintf_ex(double_buffer, font, 300, 200, makecol(255, 255, 255), -1, "Le joueur 2 a gagne la partie");
                 blit(double_buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
                 fprintf(f, "2");
             } else if (nombre2 == nombre == cheval[0].index + 1) {
-                textprintf_ex(double_buffer, font, 300, 200, makecol(255, 255, 255), -1, "Le joueur 1 et 2  ont  gagne la partie +1 ticket");
+                textprintf_ex(double_buffer, font, 300, 200, makecol(255, 255, 255), -1, "Le joueur 1 et 2  ont  gagne la partie");
                 blit(double_buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
                 fprintf(f, "3");
 

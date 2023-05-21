@@ -169,7 +169,7 @@ int main() {
             (sur_rondin == 1 && frog_x > SCREEN_W)) {
             // allegro_message("Perdu ! Votre temps est de 0 secondes");
             game_over = 1;
-            score_ = -1;
+            score_ = 0;
         }
         if (sur_rondin == 0 && frog_y + FROG_H < SCREEN_H / 4 && frog_x < SCREEN_W && frog_x > 0) {
             // allegro_message("Bien joue ! votre temps est de %.2f secondes\n \tVous avez gagné un ticket ! ", elapsed_time);

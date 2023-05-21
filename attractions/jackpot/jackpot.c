@@ -136,7 +136,7 @@ int main() {
                 int color2 = getpixel(screen, 530, SCREEN_HEIGHT - manivelleretour->h);
                 int color3 = getpixel(screen, 885, SCREEN_HEIGHT - manivelleretour->h);
                 if (color1 == 5789784 && color2 == 15987699 && color3 == 15987699) {
-                    score = 0;  // bar
+                    score = 1;  // bar
                     break;
 
                 } else if (color1 == 15343145 && color2 == 15473957 && color3 == 15473957) {
@@ -144,11 +144,11 @@ int main() {
                     break;
 
                 } else if (color1 == 16375889 && color2 == 16180054 && color3 == 16180054) {
-                    score = 1;  // piece
+                    score = 3;  // piece
                     break;
 
                 } else {
-                    score = -1;  // perdu
+                    score = 0;  // perdu
                     break;
 
                 }

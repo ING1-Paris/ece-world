@@ -26,7 +26,7 @@ void add_block(GameState *game, int x, int y) {
 void init_game(GameState *game) {
     game->buffer = create_bitmap(SCREEN_W, SCREEN_H);
     game->direction = DIRECTION_RIGHT;
-    game->score = 0;
+    game->score = -1;
     game->frame_counter = 0;
     game->fps = INITIAL_FPS;
     game->over = false;
@@ -370,6 +370,7 @@ void handle_input(GameState *game) {
     } else if (key[KEY_SPACE] && game->started == false) {
         game->started = true;
         game->paused = false;
+        game->score = 0;
     } else if (key[KEY_P] || key[KEY_ESC]) {
         game->paused = !(game->paused);
         draw_game(game);
