@@ -33,9 +33,9 @@ int main() {
     set_color_depth(desktop_color_depth());
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
 
-    BITMAP *canard = load_bitmap("attractions/canard/assets/canard.bmp", NULL);
-    BITMAP *harpon = load_bitmap("attractions/canard/assets/harpon.bmp", NULL);
-    BITMAP *filet = load_bitmap("attractions/canard/assets/filet.bmp", NULL);
+    BITMAP *canard = load_bitmap("games/canard/assets/canard.bmp", NULL);
+    BITMAP *harpon = load_bitmap("games/canard/assets/harpon.bmp", NULL);
+    BITMAP *filet = load_bitmap("games/canard/assets/filet.bmp", NULL);
 
     if (!canard) {
         printf("Erreur lors du chargement de l'image du canard\n");
@@ -133,7 +133,7 @@ int main() {
         }
 
         if (elapsed_time > 10.00 || score == 10) {
-            FILE *fichier = fopen("attractions/canard/end.txt", "w");
+            FILE *fichier = fopen("games/canard/end.txt", "w");
             if (fichier == NULL) {
                 allegro_message("Erreur lors de l'ouverture du fichier\n");
                 exit(EXIT_FAILURE);

@@ -32,17 +32,17 @@
 #define SPRITE_RIGHT_BOTTOM SPRITE_BOTTOM_RIGHT
 
 /* FICHIERS */
-#define SNAKE_END_SAVE_FILE "attractions/snake/end.txt"
-#define SNAKE_BEST_SAVE_FILE "attractions/snake/best.txt"
-#define SNAKE_FONT_FILE "attractions/snake/assets/font.pcx"
-#define SNAKE_BITMAP_FILE "attractions/snake/assets/sprites.bmp"
+#define SNAKE_END_SAVE_FILE "games/snake/end.txt"
+#define SNAKE_BEST_SAVE_FILE "games/snake/best.txt"
+#define SNAKE_FONT_FILE "games/snake/assets/font.pcx"
+#define SNAKE_BITMAP_FILE "games/snake/assets/sprites.bmp"
 
 /* SONS */
-#define SNAKE_START_SOUND_FILE "attractions/snake/assets/sounds/start.wav"                    // 0
-#define SNAKE_EATING_SOUND_FILE "attractions/snake/assets/sounds/eating.wav"                  // 1
-#define SNAKE_SPEED_INCREASE_SOUND_FILE "attractions/snake/assets/sounds/speed_increase.wav"  // 2
-#define SNAKE_HIGH_SCORE_SOUND_FILE "attractions/snake/assets/sounds/high_score.wav"          // 3
-#define SNAKE_GAME_OVER_SOUND_FILE "attractions/snake/assets/sounds/game_over.wav"            // 4
+#define SNAKE_START_SOUND_FILE "games/snake/assets/sounds/start.wav"                    // 0
+#define SNAKE_EATING_SOUND_FILE "games/snake/assets/sounds/eating.wav"                  // 1
+#define SNAKE_SPEED_INCREASE_SOUND_FILE "games/snake/assets/sounds/speed_increase.wav"  // 2
+#define SNAKE_HIGH_SCORE_SOUND_FILE "games/snake/assets/sounds/high_score.wav"          // 3
+#define SNAKE_GAME_OVER_SOUND_FILE "games/snake/assets/sounds/game_over.wav"            // 4
 
 #define SOUND_AMOUNT 5
 

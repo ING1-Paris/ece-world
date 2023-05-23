@@ -16,7 +16,7 @@ typedef struct player {
 #define SCROLL_SPEED 2
 #define BORDER_WIDTH 10
 
-#define JACKPOT_END_FILE "attractions/jackpot/end.txt"
+#define JACKPOT_END_FILE "games/jackpot/end.txt"
 
 void shuffleBitmaps(BITMAP **bitmaps, int count) {
     int i, j;
@@ -61,21 +61,21 @@ int main() {
 
     // Load bitmaps
 
-    bitmap[0] = load_bitmap("attractions/jackpot/assets/bar.bmp", NULL);
-    bitmap[1] = load_bitmap("attractions/jackpot/assets/7.bmp", NULL);
-    bitmap[2] = load_bitmap("attractions/jackpot/assets/piece.bmp", NULL);
+    bitmap[0] = load_bitmap("games/jackpot/assets/bar.bmp", NULL);
+    bitmap[1] = load_bitmap("games/jackpot/assets/7.bmp", NULL);
+    bitmap[2] = load_bitmap("games/jackpot/assets/piece.bmp", NULL);
 
-    bitmap2[0] = load_bitmap("attractions/jackpot/assets/7.bmp", NULL);
-    bitmap2[1] = load_bitmap("attractions/jackpot/assets/bar.bmp", NULL);
-    bitmap2[2] = load_bitmap("attractions/jackpot/assets/piece.bmp", NULL);
+    bitmap2[0] = load_bitmap("games/jackpot/assets/7.bmp", NULL);
+    bitmap2[1] = load_bitmap("games/jackpot/assets/bar.bmp", NULL);
+    bitmap2[2] = load_bitmap("games/jackpot/assets/piece.bmp", NULL);
 
 
-    bitmap3[0] = load_bitmap("attractions/jackpot/assets/7.bmp", NULL);
-    bitmap3[1] = load_bitmap("attractions/jackpot/assets/piece.bmp", NULL);
-    bitmap3[2] = load_bitmap("attractions/jackpot/assets/bar.bmp", NULL);
+    bitmap3[0] = load_bitmap("games/jackpot/assets/7.bmp", NULL);
+    bitmap3[1] = load_bitmap("games/jackpot/assets/piece.bmp", NULL);
+    bitmap3[2] = load_bitmap("games/jackpot/assets/bar.bmp", NULL);
 
-    BITMAP *manivelle = load_bitmap("attractions/jackpot/assets/levier_up.bmp", NULL);
-    BITMAP *manivelleretour = load_bitmap("attractions/jackpot/assets/levier_down.bmp", NULL);
+    BITMAP *manivelle = load_bitmap("games/jackpot/assets/levier_up.bmp", NULL);
+    BITMAP *manivelleretour = load_bitmap("games/jackpot/assets/levier_down.bmp", NULL);
 
     for (int i = 0; i < 3; i++) {
         if (!bitmap[i]) {

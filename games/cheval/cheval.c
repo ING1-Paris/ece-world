@@ -126,7 +126,7 @@ int main() {
     }
 
     srand(time(NULL));
-    BITMAP *sprite = load_bitmap("attractions/cheval/4.bmp", NULL);
+    BITMAP *sprite = load_bitmap("games/cheval/4.bmp", NULL);
     BITMAP *double_buffer = create_bitmap(SCREEN_W, SCREEN_H);
     t_cheval cheval[8];
     BITMAP *buffer = create_bitmap(SCREEN_W, SCREEN_H);
@@ -189,7 +189,7 @@ int main() {
                 textprintf_ex(double_buffer, font, 300, 30 + i * 15, makecol(255, 255, 255), -1, "Cheval %d : Rang %d", cheval[i].index + 1, i + 1);
             }
 
-            FILE *f = fopen("attractions/cheval/end.txt", "w");
+            FILE *f = fopen("games/cheval/end.txt", "w");
             if (f == NULL) {
                 allegro_message("Error opening end.txt\n");
                 exit(1);
