@@ -355,13 +355,13 @@ void move_snake(GameState *game) {
 // Gère les entrées clavier
 // Mit en fonction pour par ruiner le main
 void handle_input(GameState *game) {
-    if (key[KEY_UP] && game->direction != 3 && game->paused == false) {
+    if (key[KEY_UP] && game->direction != 3 && game->paused == false && game->started == true) {
         game->direction = 1;
-    } else if (key[KEY_DOWN] && game->direction != 1 && game->paused == false) {
+    } else if (key[KEY_DOWN] && game->direction != 1 && game->paused == false && game->started == true) {
         game->direction = 3;
-    } else if (key[KEY_LEFT] && game->direction != 0 && game->paused == false) {
+    } else if (key[KEY_LEFT] && game->direction != 0 && game->paused == false && game->started == true) {
         game->direction = 2;
-    } else if (key[KEY_RIGHT] && game->direction != 2 && game->paused == false) {
+    } else if (key[KEY_RIGHT] && game->direction != 2 && game->paused == false && game->started == true) {
         game->direction = 0;
     } else if (key[KEY_R]) {
         reset_game(game);

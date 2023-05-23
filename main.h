@@ -10,6 +10,7 @@
 #include "functions/checks.h"
 #include "functions/keyboard.h"
 #include "functions/players.h"
+#include "functions/start.h"
 
 /* FONCTIONS */
 

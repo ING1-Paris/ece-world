@@ -1,3 +1,11 @@
+// TODO: Changer les BITMAPS des JOUEURS
+// TODO: Ajouter des bmp pour les tickets
+// TODO: Changer les bmps pour les attractions
+// TODO: Ajouter un bmp pour le background
+// TODO: Changer bmp exit et stats
+
+// TODO: Faire le menu stats avec SAVE + READ
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -8,26 +16,6 @@
 #include <sys/time.h>
 
 #include "main.h"
-
-/* ======================= * 
-* POUR LE DEBUG UNIQUEMENT *
-*  À DES FINS D'AFFICHAGE  *
-*  AFFICHER AVEC TOUCHE 0  *
-* ======================== */
-double fps;             // *
-double frames_accum;    // *
-double fps_timer;       // *
-//======================== */z
-
-
-const int PLAYER1_KEYS[MOUVEMENT_KEYS_AMOUNT] = {KEY_Z, KEY_S, KEY_Q, KEY_D};
-const int PLAYER2_KEYS[MOUVEMENT_KEYS_AMOUNT] = {KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT};
-const int PLAYER3_KEYS[MOUVEMENT_KEYS_AMOUNT] = {KEY_I, KEY_K, KEY_J, KEY_L};
-const int PLAYER4_KEYS[MOUVEMENT_KEYS_AMOUNT] = {KEY_T, KEY_G, KEY_F, KEY_H};
-
-const int* PLAYERS_KEYS[MOUVEMENT_KEYS_AMOUNT] = {PLAYER1_KEYS, PLAYER2_KEYS, PLAYER3_KEYS, PLAYER4_KEYS};
-
-const char* ATTRACTIONS_NAMES[ATTRACTIONS_AMOUNT] = {ATTRACTION0_NAME, ATTRACTION1_NAME, ATTRACTION2_NAME, ATTRACTION3_NAME, ATTRACTION4_NAME};
 
 
 int main() {
@@ -45,19 +33,12 @@ int main() {
     init_bitmap(&game);
 
     // Menu
-    // Appuyer sur ESPACE pour commencer
-    textout_centre_ex(screen, font, "Appuyer sur ESPACE pour commencer", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, makecol(255, 255, 255), -1);
-    while (!key[KEY_SPACE]) {
-        rest(1);
-    }
-    clear_bitmap(screen);
-    textout_centre_ex(screen, game.font, "Demarrage en cours", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 , makecol(255, 255, 255), -1);
-    rest(1500);
-    clear_bitmap(screen);
+    start_menu(&game);
 
     // Players creations menu
     players_creation_menu(&game);
-    show_mouse(screen);
+
+
     // Boucle de jeu principale
     while (!game.over) {
         // Gère les entrées clavier
@@ -75,10 +56,15 @@ int main() {
         // Rafraîchit l'écran
         display(&game);
 
+        if (close_button_pressed) {
+            game.over = true;
+        }
+
         // Gère le framerate, pour éviter que le jeu ne tourne trop vite
         rest(9);
     }
 
+    // On nettoie la mémoire
     clean_game(&game);
 
     return 0;

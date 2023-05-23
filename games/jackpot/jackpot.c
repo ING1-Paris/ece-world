@@ -52,6 +52,7 @@ int main() {
     allegro_init();
     install_keyboard();
     install_mouse();
+    show_mouse(screen);
     set_color_depth(desktop_color_depth());
 
     // rest(1000);

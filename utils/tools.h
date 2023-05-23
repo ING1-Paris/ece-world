@@ -7,5 +7,6 @@ double current_time();
 void draw_fps(GameState* game);
 int random_color();
 void clean_game(GameState* game);
+void close_button_handler();
 
 #endif

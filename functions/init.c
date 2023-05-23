@@ -1,6 +1,8 @@
 #include "init.h"
 
+// Charge les bitmaps du jeu
 void init_bitmap(GameState* game) {
+    // Chargement des bitmaps des attractions
     for (int i = 0; i < ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT; i++) {
         char path[100];
         // allegro_message("%s", game->attractions[i].name);
@@ -11,7 +13,9 @@ void init_bitmap(GameState* game) {
             exit(1);
         }
     }
-    for (int i = 0; i < PLAYER_AMOUNT; i++) {
+
+    // Chargement des bitmaps des joueurs
+    for (int i = 0; i < PLAYERS_AMOUNT; i++) {
         char path[100];
         sprintf(path, "assets/sprites/player%d.bmp", i + 1);
         game->player_bitmaps[i] = load_bitmap(path, NULL);
@@ -29,8 +33,9 @@ void init_bitmap(GameState* game) {
     }
 }
 
+// Initialise le jeu
 void init_game(GameState* game) {
-    // Création du buffer pour le rafraîchissement de l'écran
+    // Création du buffer du jeu
     BITMAP* buffer = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
     game->buffer = buffer;
 
@@ -51,7 +56,6 @@ void init_game(GameState* game) {
     game->attraction_winner_score = -1;
     game->attraction_winner_2_score = -1;
 
-
     // Initialisation des touches
     for (int i = 0; i < MISC_KEYS_AMOUNT; i++) {
         game->PRESSED_MISC_KEYS[i] = false;
@@ -65,7 +69,7 @@ void init_game(GameState* game) {
         }
     }
 
-    /* INITIALIZE PATH */
+    // Initialisation des chemins des attractions
     for (int a = 0; a < ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT; a++) {
         char attractions_directory_path_temp[50];
         strcpy(game->attractions[a].name, ATTRACTIONS_NAMES[a]);
@@ -79,7 +83,7 @@ void init_game(GameState* game) {
         game->attractions[a].width = ATTRACTION_WIDTH;
         game->attractions[a].height = ATTRACTION_HEIGHT;
         game->attractions[a].player_on_amount = 0;
-        for (int p = 0; p < PLAYER_AMOUNT; p++) {
+        for (int p = 0; p < PLAYERS_AMOUNT; p++) {
             game->attractions[a].triggered[p] = 0;
         }
 
@@ -97,28 +101,29 @@ void init_game(GameState* game) {
         game->attractions[s].width = ATTRACTION_WIDTH;
         game->attractions[s].height = ATTRACTION_HEIGHT;
         game->attractions[s].player_on_amount = 0;
-        for (int p = 0; p < PLAYER_AMOUNT; p++) {
+        for (int p = 0; p < PLAYERS_AMOUNT; p++) {
             game->attractions[s].triggered[p] = 0;
         }
     }
 
+    // Initialisation des attractions secondaires
     game->attractions[ATTRACTIONS_AMOUNT - 1].is_exit = true;
-    game->attractions[ATTRACTIONS_AMOUNT - 2].is_stats = true;
-
     game->attractions[ATTRACTIONS_AMOUNT - 1].x = SCREEN_WIDTH - ATTRACTION_WIDTH - 10;
     game->attractions[ATTRACTIONS_AMOUNT - 1].y = SCREEN_HEIGHT - ATTRACTION_HEIGHT - 10;
+    strcpy(game->attractions[ATTRACTIONS_AMOUNT - 1].name, "exit");
 
+    game->attractions[ATTRACTIONS_AMOUNT - 2].is_stats = true;
     game->attractions[ATTRACTIONS_AMOUNT - 2].x = 10;
     game->attractions[ATTRACTIONS_AMOUNT - 2].y = SCREEN_HEIGHT - ATTRACTION_HEIGHT - 10;
-
-    strcpy(game->attractions[ATTRACTIONS_AMOUNT - 1].name, "exit");
     strcpy(game->attractions[ATTRACTIONS_AMOUNT - 2].name, "stats");
 }
 
+// Installe toutes les modules d'Allegro nécessaires
+// et gère d'autres paramètres de la fenêtre
 void install_all_allegro() {
     allegro_init();
 
-    fps_timer = current_time();
+    debug_fps_timer = current_time();
     if (install_sound(DIGI_NONE, MIDI_NONE, NULL) != 0) {
         allegro_message("Error initializing sound system: %s\n", allegro_error);
         exit(EXIT_FAILURE);
@@ -139,6 +144,14 @@ void install_all_allegro() {
     set_color_depth(desktop_color_depth());
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
 
+    // Affiche la souris (ne marche que préciséement une fois sur deux)
+    enable_hardware_cursor();
+    show_mouse(screen);
 
+    // Change le titre de la fenêtre
+    set_window_title("ECE World 2023");
 
+    // On définit le gestionnaire du bouton de fermeture.
+    LOCK_FUNCTION(close_button_handler);
+    set_close_button_callback(close_button_handler);
 }

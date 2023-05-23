@@ -1,24 +1,27 @@
 #include "attractions.h"
 
+// Fonction qui lance les attractions
 void run_attractions(GameState* game) {
     for (int a = 0; a < ATTRACTIONS_AMOUNT; a++) {
-        if (game->attractions[a].player_on_amount == PLAYER_AMOUNT) {
+        if (game->attractions[a].player_on_amount == PLAYERS_AMOUNT) {
             if (game->attractions[a].is_exit == true) {
                 game->over = true;
             } else if (game->attractions[a].is_stats == true) {
                 game->stats_displayed = true;
             } else {
-                float end[PLAYER_AMOUNT] = {-1};
+                float end[PLAYERS_AMOUNT] = {-1};
                 char command[110];
                 game->attraction_is_running = true;
 
                 // Cost of the attraction
-                for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                for (int p = 0; p < PLAYERS_AMOUNT; p++) {
                     game->players[p].tickets -= 1;
                 }
 
                 sprintf(command, "./%s", game->attractions[a].executable_path);
-                allegro_message("Running %s\n", command);
+                if (game->debug == true) {
+                    allegro_message("Running %s\n", command);
+                }
                 // Get the score
                 display(game);
                 system(command);
@@ -28,12 +31,12 @@ void run_attractions(GameState* game) {
                     int best_player = 0;
                     switch (a) {
                         case 0:  // Canard
-                            for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                            for (int p = 1; p < PLAYERS_AMOUNT; p++) {
                                 wait_for_next_player(game, p);
-                                    system(command);
+                                system(command);
                                 end[p] = wait_attractions_end(game, a);
                             }
-                            for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                            for (int p = 0; p < PLAYERS_AMOUNT; p++) {
                                 if (end[p] > best) {
                                     best = end[p];
                                     best_player = p;
@@ -48,6 +51,8 @@ void run_attractions(GameState* game) {
                             game->attraction_is_over = true;
                             game->attraction_winner = best_player;
                             game->attraction_winner_score = best;
+                            game->attraction_winner_2 = -1;
+                            game->attraction_winner_2_score = -1;
                             break;
 
                         case 1:  // Cheval
@@ -73,12 +78,12 @@ void run_attractions(GameState* game) {
                             game->attraction_winner_2_score = -1;
                             break;
                         case 2:  // Grenouille
-                            for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                            for (int p = 1; p < PLAYERS_AMOUNT; p++) {
                                 wait_for_next_player(game, p);
                                 system(command);
                                 end[p] = wait_attractions_end(game, a);
                             }
-                            for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                            for (int p = 0; p < PLAYERS_AMOUNT; p++) {
                                 if (end[p] < best) {
                                     best = end[p];
                                     best_player = p;
@@ -95,12 +100,12 @@ void run_attractions(GameState* game) {
                             break;
 
                         case 3:  // Jackpot
-                            for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                            for (int p = 1; p < PLAYERS_AMOUNT; p++) {
                                 wait_for_next_player(game, p);
                                 system(command);
                                 end[p] = wait_attractions_end(game, a);
                             }
-                            for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                            for (int p = 0; p < PLAYERS_AMOUNT; p++) {
                                 if (end[p] > best) {
                                     best = end[p];
                                     best_player = p;
@@ -116,12 +121,12 @@ void run_attractions(GameState* game) {
                             game->attraction_winner_2_score = -1;
                             break;
                         case 4:  // Snake
-                            for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                            for (int p = 1; p < PLAYERS_AMOUNT; p++) {
                                 wait_for_next_player(game, p);
                                 system(command);
                                 end[p] = wait_attractions_end(game, a);
                             }
-                            for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                            for (int p = 0; p < PLAYERS_AMOUNT; p++) {
                                 if (end[p] > best) {
                                     best = end[p];
                                     best_player = p;
@@ -136,16 +141,20 @@ void run_attractions(GameState* game) {
                             game->attraction_is_over = true;
                             game->attraction_winner = best_player;
                             game->attraction_winner_score = best;
+                            game->attraction_winner_2 = -1;
+                            game->attraction_winner_2_score = -1;
                             break;
                     }
-                    allegro_message("Attraction %d is over\n", a);
-                    allegro_message("Winner is %d\n", game->attraction_winner);
-                    allegro_message("Score is %f\n", game->attraction_winner_score);
-                    game->attraction_winner_2 == -1 ? allegro_message("Winner 2 is %d\n", game->attraction_winner_2) : 1 == 1;
-                    game->attraction_winner_2_score == -1 ? allegro_message("Score 2 is %f\n", game->attraction_winner_2_score) : 1 == 1;
+                    if (game->debug == true) {
+                        allegro_message("Attraction %d is over\n", a);
+                        allegro_message("Winner is %d\n", game->attraction_winner);
+                        allegro_message("Score is %f\n", game->attraction_winner_score);
+                        game->attraction_winner_2 == -1 ? allegro_message("Winner 2 is %d\n", game->attraction_winner_2) : 1 == 1;
+                        game->attraction_winner_2_score == -1 ? allegro_message("Score 2 is %f\n", game->attraction_winner_2_score) : 1 == 1;
+                    }
                 }
 
-                for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                for (int p = 0; p < PLAYERS_AMOUNT; p++) {
                     game->players[p].x = SCREEN_WIDTH / 2 - PLAYER_WIDTH / 2;
                     game->players[p].y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10;
                 }
@@ -155,6 +164,7 @@ void run_attractions(GameState* game) {
     }
 }
 
+// Attend la fin d'une attraction et renvoie le endfile
 float wait_attractions_end(GameState* game, int attraction_index) {
     float end = -1;
     while (end == -1) {
@@ -170,11 +180,14 @@ float wait_attractions_end(GameState* game, int attraction_index) {
             break;
         }
     }
-    // allegro_message("End of %s\nScore : %f", game->attractions[attraction_index].name, end);
+    if (game->debug == true) {
+        allegro_message("End of %s\nScore : %f", game->attractions[attraction_index].name, end);
+    }
 
     return end;
 }
 
+// Attend que le joueur appuie sur ESPACE pour commencer l'attraction
 void wait_for_next_player(GameState* game, int player_index) {
     char next_str[100];
     sprintf(next_str, "Au tour de %s de jouer", game->players[player_index].name);

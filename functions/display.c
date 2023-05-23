@@ -23,7 +23,7 @@ void display(GameState* game) {
     }
 
     // Dessine les personnages
-    for (int i = 0; i < PLAYER_AMOUNT; i++) {
+    for (int i = 0; i < PLAYERS_AMOUNT; i++) {
         Player player = game->players[i];
         // rectfill(game->buffer, player.x, player.y, player.x + PLAYER_WIDTH, player.y + PLAYER_HEIGHT, player.color);
         draw_sprite(game->buffer, game->player_bitmaps[i], player.x, player.y);
@@ -35,24 +35,24 @@ void display(GameState* game) {
         if (game->attractions[a].is_exit == true) {
             if (game->attractions[a].player_on_amount == 0) {
                 color = makecol(0, 0, 0);
-            } else if (game->attractions[a].player_on_amount < PLAYER_AMOUNT) {
+            } else if (game->attractions[a].player_on_amount < PLAYERS_AMOUNT) {
                 color = makecol(255, 77, 0);
-            } else if (game->attractions[a].player_on_amount == PLAYER_AMOUNT) {
+            } else if (game->attractions[a].player_on_amount == PLAYERS_AMOUNT) {
                 color = makecol(255, 0, 0);
             }
         } else if (game->attractions[a].is_stats == true) {
             if (game->attractions[a].player_on_amount == 0) {
                 color = makecol(0, 0, 255);
-            } else if (game->attractions[a].player_on_amount < PLAYER_AMOUNT) {
+            } else if (game->attractions[a].player_on_amount < PLAYERS_AMOUNT) {
                 color = makecol(0, 128, 255);
-            } else if (game->attractions[a].player_on_amount == PLAYER_AMOUNT) {
+            } else if (game->attractions[a].player_on_amount == PLAYERS_AMOUNT) {
                 color = makecol(200, 0, 255);
             }
         } else if (game->attractions[a].player_on_amount == 0) {
             color = makecol(255, 0, 0);
-        } else if (game->attractions[a].player_on_amount < PLAYER_AMOUNT) {
+        } else if (game->attractions[a].player_on_amount < PLAYERS_AMOUNT) {
             color = makecol(255, 255, 0);
-        } else if (game->attractions[a].player_on_amount == PLAYER_AMOUNT) {
+        } else if (game->attractions[a].player_on_amount == PLAYERS_AMOUNT) {
             color = makecol(0, 255, 0);
         }
 
@@ -64,7 +64,7 @@ void display(GameState* game) {
 
         //  Écrire le nombre de joueurs sur l'attraction et le nom de l'attraction
         if (game->attractions[a].player_on_amount == 0) {
-        } else if (game->attractions[a].player_on_amount < PLAYER_AMOUNT) {
+        } else if (game->attractions[a].player_on_amount < PLAYERS_AMOUNT) {
             char player_on_amount_str[30];
             sprintf(player_on_amount_str, "%d", game->attractions[a].player_on_amount);
             // Faire un fond noir derrière l'attraction
@@ -74,14 +74,19 @@ void display(GameState* game) {
             drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
             
             textout_centre_ex(game->buffer, font, player_on_amount_str, game->attractions[a].x + game->attractions[a].width / 2, game->attractions[a].y + game->attractions[a].height / 2 - 5, makecol(255, 255, 255), -1);
-        } else if (game->attractions[a].player_on_amount == PLAYER_AMOUNT) {
+        } else if (game->attractions[a].player_on_amount == PLAYERS_AMOUNT) {
+            set_trans_blender(0, 0, 0, 128);
+            drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+            rectfill(game->buffer, game->attractions[a].x - 5, game->attractions[a].y - 5, game->attractions[a].x + ATTRACTION_WIDTH + 5, game->attractions[a].y + ATTRACTION_HEIGHT + 5, makecol(0, 0, 255));
+            drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
             textout_centre_ex(game->buffer, game->font, "EN COURS", game->attractions[a].x + game->attractions[a].width / 2, game->attractions[a].y + game->attractions[a].height / 2 - 5, makecol(255, 255, 255), -1);
+            textout_centre_ex(game->buffer, game->font, "Une attraction est en cours, appuyer sur ECHAP pour la quitter", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 5, makecol(255, 255, 255), -1);
         }
         textout_ex(game->buffer, game->font, game->attractions[a].name, game->attractions[a].x + 5, game->attractions[a].y + 5, game->attractions[a].is_exit == true || game->attractions[a].is_stats == true ? makecol(255, 255, 255) : makecol(0, 0, 0), -1);
     }
 
     // Dessine l'interface et le HUD
-    for (int p = 0; p < PLAYER_AMOUNT; p++) {
+    for (int p = 0; p < PLAYERS_AMOUNT; p++) {
         char tickets_str[50];
         sprintf(tickets_str, game->players[p].tickets > 1 ? "%s : %d tickets" : "%s : %d ticket", game->players[p].name, game->players[p].tickets);
         textout_right_ex(game->buffer, game->font, tickets_str, SCREEN_WIDTH - 5, 5 + p * 20, makecol(0, 0, 0), -1);

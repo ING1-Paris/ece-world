@@ -1,9 +1,10 @@
 #include "keyboard.h"
 
+// Fonction qui gère les entrées clavier
 void handle_input(GameState* game) {
     // Récupère les entrées clavier
     clear_keybuf();
-    for (int i = 0; i < PLAYER_AMOUNT; i++) {
+    for (int i = 0; i < PLAYERS_AMOUNT; i++) {
         Player player = game->players[i];
 
         /* DÉPLACEMENT DES JOUEURS */

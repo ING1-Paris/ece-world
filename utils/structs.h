@@ -25,7 +25,7 @@ typedef struct t_attraction {
     int height;
     int player_on_amount;
 
-    bool triggered[PLAYER_AMOUNT];
+    bool triggered[PLAYERS_AMOUNT];
     bool is_exit;
     bool is_stats;
 
@@ -38,7 +38,6 @@ typedef struct t_attraction {
 
 typedef struct t_gameState {
     int player_speed;
-    int fps;
     int winner;
 
     bool PRESSED_MISC_KEYS[MISC_KEYS_AMOUNT];
@@ -48,6 +47,7 @@ typedef struct t_gameState {
     bool stats_displayed;
     bool winner_displayed;
     bool attraction_is_over;
+    //volatile bool close_button_pressed;
 
     int attraction_index;
     int attraction_winner;
@@ -58,8 +58,8 @@ typedef struct t_gameState {
     FONT* font;
     BITMAP* buffer;
     BITMAP* attractions_bitmaps[ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT];
-    BITMAP* player_bitmaps[PLAYER_AMOUNT];
-    Player players[PLAYER_AMOUNT];
+    BITMAP* player_bitmaps[PLAYERS_AMOUNT];
+    Player players[PLAYERS_AMOUNT];
     Attraction attractions[ATTRACTIONS_AMOUNT];
 } GameState;
 

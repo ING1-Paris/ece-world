@@ -14,16 +14,17 @@ double current_time() {
 }
 
 // Calcul le nombre de frames par seconde
+// Et l'affiche dans le HUD si le mode debug est activé
 void draw_fps(GameState* game) {
     double current_timestamp = current_time();
 
-    if (current_timestamp >= fps_timer + 1000) {
-        fps = frames_accum;
-        frames_accum = 0;
-        fps_timer = current_timestamp;
+    if (current_timestamp >= debug_fps_timer + 1000) {
+        debug_fps = debug_frames_accum;
+        debug_frames_accum = 0;
+        debug_fps_timer = current_timestamp;
     }
 
-    frames_accum++;
+    debug_frames_accum++;
 
     if (game->debug) {
         char fps_str[30];
@@ -31,9 +32,9 @@ void draw_fps(GameState* game) {
         char fps_timer_str[30];
         char player_speed_str[30];
 
-        sprintf(fps_str, "FPS: %.0f", fps);
-        sprintf(frame_accum_str, "Frames: %.0f", frames_accum);
-        sprintf(fps_timer_str, "Timestamp: %.0f", fps_timer);
+        sprintf(fps_str, "FPS: %.0f", debug_fps);
+        sprintf(frame_accum_str, "Frames: %.0f", debug_frames_accum);
+        sprintf(fps_timer_str, "Timestamp: %.0f", debug_fps_timer);
         sprintf(player_speed_str, "Pl Speed: %d", game->player_speed);
 
         textout_ex(game->buffer, game->font, fps_str, 10, 20, makecol(255, 255, 255), -1);
@@ -62,7 +63,13 @@ void clean_game(GameState* game) {
     for (int i = 0; i < ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT; i++) {
         destroy_bitmap(game->attractions_bitmaps[i]);
     }
-    for (int i = 0; i < PLAYER_AMOUNT; i++) {
+    for (int i = 0; i < PLAYERS_AMOUNT; i++) {
         destroy_bitmap(game->player_bitmaps[i]);
     }
 }
+
+// Pour quitter le jeu avec la croix dans la fenêtre
+void close_button_handler() {
+    close_button_pressed = TRUE;
+}
+END_OF_FUNCTION(close_button_handler)
