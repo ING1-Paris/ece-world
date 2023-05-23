@@ -126,7 +126,7 @@ int main() {
     while (!key[KEY_ESC]) {
         // Le bouton gauche de la souris est enfoncé;
 
-        if (((mouse_b & 1 && mouse_x > 106 && mouse_x < 1060 + manivelle->w && mouse_y >= 300 && mouse_y < 300 + manivelle->h) || (clic_gauche_precedent == 1)) && k <= 754) {
+        if ((((mouse_b & 1 && mouse_x > 106 && mouse_x < 1060 + manivelle->w && mouse_y >= 300 && mouse_y < 300 + manivelle->h) || (clic_gauche_precedent == 1)) && k <= 754) || key[KEY_SPACE]) {
             clic_gauche_precedent = 1;
             k = k + 1;
 
