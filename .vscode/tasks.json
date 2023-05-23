@@ -2,6 +2,25 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Build active file",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.o",
+                "${fileDirname}/${fileBasename}",
+                "-L/usr/local/lib",
+                "-lalleg",
+                "-lm",
+                "-Wall",
+                "-Wextra",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+        },
+        {
             "label": "Build",
             "type": "shell",
             "command": "gcc",
@@ -32,6 +51,23 @@
             "type": "shell",
             //"command": "${fileDirname}/${fileBasenameNoExtension}.o",
             "command": "./main.o",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
+        },
+        {
+            "label": "Build and Run active file",
+            "dependsOn": [
+                "Build active file"
+            ],
+            "type": "shell",
+            "command": "${fileDirname}/${fileBasenameNoExtension}.o",
             "problemMatcher": [],
             "presentation": {
                 "echo": true,
