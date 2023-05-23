@@ -95,6 +95,8 @@ void display_string_in_box(BITMAP* buffer, char* str, int player_index, FONT* fo
     // Libère la mémoire.
     destroy_bitmap(text_bitmap);
     destroy_bitmap(stretched_bitmap);
+    destroy_bitmap(bg);
+
 }
 
 void draw_diagonal_gradient(BITMAP* bmp, int start_color, int end_color) {
