@@ -38,13 +38,34 @@ void draw_fps(GameState* game) {
         sprintf(fps_timer_str, "Timestamp: %.0f", fps_timer);
         sprintf(player_speed_str, "Pl Speed: %d", game->player_speed);
 
-        textout_ex(game->buffer, font, fps_str, 10, 20, makecol(255, 255, 255), -1);
-        textout_ex(game->buffer, font, frame_accum_str, 10, 40, makecol(255, 255, 255), -1);
-        textout_ex(game->buffer, font, player_speed_str, 10, 60, makecol(255, 255, 255), -1);
-        textout_ex(game->buffer, font, fps_timer_str, 10, 80, makecol(255, 255, 255), -1);
+        textout_ex(game->buffer, game->font, fps_str, 10, 20, makecol(255, 255, 255), -1);
+        textout_ex(game->buffer, game->font, frame_accum_str, 10, 40, makecol(255, 255, 255), -1);
+        textout_ex(game->buffer, game->font, player_speed_str, 10, 60, makecol(255, 255, 255), -1);
+        textout_ex(game->buffer, game->font, fps_timer_str, 10, 80, makecol(255, 255, 255), -1);
     }
 }
 
+void init_bitmap(GameState* game) {
+    for (int i = 0; i < ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT; i++) {
+        char path[100];
+        // allegro_message("%s", game->attractions[i].name);
+        sprintf(path, "assets/sprites/%s.bmp", game->attractions[i].name);
+        game->attractions_bitmaps[i] = load_bitmap(path, NULL);
+        if (!game->attractions_bitmaps[i]) {
+            printf("Impossible de charger le bitmap %s\n", path);
+            exit(1);
+        }
+    }
+    for (int i = 0; i < PLAYER_AMOUNT; i++) {
+        char path[100];
+        sprintf(path, "assets/sprites/player%d.bmp", i + 1);
+        game->player_bitmaps[i] = load_bitmap(path, NULL);
+        if (!game->player_bitmaps[i]) {
+            printf("Impossible de charger le bitmap %s\n", path);
+            exit(1);
+        }
+    }
+}
 int random_color() {
     int red = rand() % 256;
     int green = rand() % 256;
@@ -56,18 +77,52 @@ int random_color() {
 // Fonction de rafraîchissement de l'écran
 void display(GameState* game) {
     // Efface l'écran
-    clear_bitmap(game->buffer);
+    clear_to_color(game->buffer, makecol(0, 128, 0));
+
+    if (game->winner_displayed == true) {
+        set_trans_blender(0, 0, 0, 128);
+        drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+        rectfill(game->buffer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, makecol(0, 0, 0));
+        drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
+        char winner_str[30];
+        sprintf(winner_str, "Le joueur %d a gagne !", game->winner + 1);
+        // Ecrire un PARTIE TERMINEE
+        textout_centre_ex(game->buffer, game->font, "PARTIE TERMINEE", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20, makecol(255, 255, 255), -1);
+        textout_centre_ex(game->buffer, game->font, winner_str, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, makecol(255, 255, 255), -1);
+        textout_centre_ex(game->buffer, game->font, "Appuyez sur ECHAP pour quitter", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 20, makecol(255, 255, 255), -1);
+        blit(game->buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        while (!key[KEY_ESC]) {
+        }
+        exit(0);
+    }
 
     // Dessine les personnages
     for (int i = 0; i < PLAYER_AMOUNT; i++) {
         Player player = game->players[i];
-        rectfill(game->buffer, player.x, player.y, player.x + PLAYER_WIDTH, player.y + PLAYER_HEIGHT, player.color);
+        // rectfill(game->buffer, player.x, player.y, player.x + PLAYER_WIDTH, player.y + PLAYER_HEIGHT, player.color);
+        draw_sprite(game->buffer, game->player_bitmaps[i], player.x, player.y);
     }
 
     // Dessine les attractions
     for (int a = 0; a < ATTRACTIONS_AMOUNT; a++) {
         int color = 0;
-        if (game->attractions[a].player_on_amount == 0) {
+        if (game->attractions[a].is_exit == true) {
+            if (game->attractions[a].player_on_amount == 0) {
+                color = makecol(0, 0, 0);
+            } else if (game->attractions[a].player_on_amount < PLAYER_AMOUNT) {
+                color = makecol(255, 77, 0);
+            } else if (game->attractions[a].player_on_amount == PLAYER_AMOUNT) {
+                color = makecol(255, 0, 0);
+            }
+        } else if (game->attractions[a].is_stats == true) {
+            if (game->attractions[a].player_on_amount == 0) {
+                color = makecol(0, 0, 255);
+            } else if (game->attractions[a].player_on_amount < PLAYER_AMOUNT) {
+                color = makecol(0, 128, 255);
+            } else if (game->attractions[a].player_on_amount == PLAYER_AMOUNT) {
+                color = makecol(200, 0, 255);
+            }
+        } else if (game->attractions[a].player_on_amount == 0) {
             color = makecol(255, 0, 0);
         } else if (game->attractions[a].player_on_amount < PLAYER_AMOUNT) {
             color = makecol(255, 255, 0);
@@ -75,33 +130,56 @@ void display(GameState* game) {
             color = makecol(0, 255, 0);
         }
 
-        rectfill(game->buffer, game->attractions[a].x, game->attractions[a].y, game->attractions[a].x + game->attractions[a].width, game->attractions[a].y + game->attractions[a].height, color);
-        // Écrire le nombre de joueurs sur l'attraction et le nom de l'attraction
-        char player_on_amount_str[30];
-        sprintf(player_on_amount_str, "%d", game->attractions[a].player_on_amount);
-        textout_ex(game->buffer, font, player_on_amount_str, game->attractions[a].x + game->attractions[a].width / 2 - 5, game->attractions[a].y + game->attractions[a].height / 2 - 5, makecol(0, 0, 0), -1);
-        textout_ex(game->buffer, font, game->attractions[a].name, game->attractions[a].x + 5, game->attractions[a].y + 5, makecol(0, 0, 0), -1);
+        if (game->attractions[a].is_exit == false && game->attractions[a].is_stats == false) {
+            draw_sprite(game->buffer, game->attractions_bitmaps[a], game->attractions[a].x, game->attractions[a].y);
+        } else {
+            rectfill(game->buffer, game->attractions[a].x, game->attractions[a].y, game->attractions[a].x + game->attractions[a].width, game->attractions[a].y + game->attractions[a].height, color);
+        }
+
+        //  Écrire le nombre de joueurs sur l'attraction et le nom de l'attraction
+        if (game->attractions[a].player_on_amount == 0) {
+        } else if (game->attractions[a].player_on_amount < PLAYER_AMOUNT) {
+            char player_on_amount_str[30];
+            sprintf(player_on_amount_str, "%d", game->attractions[a].player_on_amount);
+            textout_centre_ex(game->buffer, game->font, player_on_amount_str, game->attractions[a].x + game->attractions[a].width / 2, game->attractions[a].y + game->attractions[a].height / 2 - 5, makecol(255, 255, 255), -1);
+        } else if (game->attractions[a].player_on_amount == PLAYER_AMOUNT) {
+            textout_centre_ex(game->buffer, game->font, "EN COURS", game->attractions[a].x + game->attractions[a].width / 2, game->attractions[a].y + game->attractions[a].height / 2 - 5, makecol(255, 255, 255), -1);
+        }
+        textout_ex(game->buffer, game->font, game->attractions[a].name, game->attractions[a].x + 5, game->attractions[a].y + 5, game->attractions[a].is_exit == true || game->attractions[a].is_stats == true ? makecol(255, 255, 255) : makecol(0, 0, 0), -1);
     }
 
     // Dessine l'interface et le HUD
-    // tickets
     for (int p = 0; p < PLAYER_AMOUNT; p++) {
         char tickets_str[30];
-        sprintf(tickets_str, "Joueur %d : %d", p + 1, game->players[p].tickets);
-        textout_ex(game->buffer, font, tickets_str, SCREEN_WIDTH - 150, 10 + 20 * p, makecol(255, 255, 255), -1);
+        sprintf(tickets_str, "Ticket joueur %d : %d", p + 1, game->players[p].tickets);
+        textout_ex(game->buffer, game->font, tickets_str, SCREEN_WIDTH - 200, 10 + 20 * p, makecol(255, 255, 255), -1);
     }
 
     if (game->attraction_is_over) {
         char attraction_is_over_str[60];
         char winners_are[60];
         char score_str[60];
-        sprintf(attraction_is_over_str, "L'attraction %s est terminée !", game->attractions[game->attraction_index].name);
+
+        // make a little square behind the text
+        set_trans_blender(0, 0, 0, 192);
+        drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+        rectfill(game->buffer, SCREEN_WIDTH * 0.4, SCREEN_HEIGHT * 0.4, SCREEN_WIDTH * 0.6, SCREEN_HEIGHT * 0.6, makecol(0,0,0));
+        drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
+
+        sprintf(attraction_is_over_str, "L'attraction %s est terminee !", game->attractions[game->attraction_index].name);
         game->attraction_winner_2 == -1 ? sprintf(winners_are, "Le gagnant est le joueur %d !", game->attraction_winner + 1) : sprintf(winners_are, "Les gagnants sont les joueurs %d et %d !", game->attraction_winner + 1, game->attraction_winner_2 + 1);
-        game->attraction_winner_2 == -1 ? sprintf(score_str, "Joueur %d : %f points", game->attraction_winner + 1, game->attraction_winner_score) : sprintf(score_str, "Joueur %d : %f points - Joueur %d : %f points", game->attraction_winner + 1, game->attraction_winner_score, game->attraction_winner_2 + 1, game->attraction_winner_2_score);
-        textout_ex(game->buffer, font, attraction_is_over_str, SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 40, makecol(255, 255, 255), -1);
-        textout_ex(game->buffer, font, winners_are, SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 20, makecol(255, 255, 255), -1);
-        textout_ex(game->buffer, font, score_str, SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2, makecol(255, 255, 255), -1);
-        textout_ex(game->buffer, font, "Appuyez sur espace pour continuer", SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 + 20, makecol(255, 255, 255), -1);
+        game->attraction_winner_2 == -1 ? sprintf(score_str, "Joueur %d : %.1f points", game->attraction_winner + 1, game->attraction_winner_score) : sprintf(score_str, "Joueur %d : %.1f points - Joueur %d : %.1f points", game->attraction_winner + 1, game->attraction_winner_score, game->attraction_winner_2 + 1, game->attraction_winner_2_score);
+        textout_centre_ex(game->buffer, game->font, attraction_is_over_str, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 60, makecol(255, 255, 255), -1);
+        textout_centre_ex(game->buffer, game->font, winners_are, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 30, makecol(255, 255, 255), -1);
+        textout_centre_ex(game->buffer, game->font, score_str, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, makecol(255, 255, 255), -1);
+        textout_centre_ex(game->buffer, game->font, "Appuyez sur espace pour continuer", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 30, makecol(255, 255, 255), -1);
+    }
+
+    if (game->attraction_is_running == true) {
+        set_trans_blender(0, 0, 0, 128);
+        drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+        rectfill(game->buffer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, makecol(0, 0, 0));
+        drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
     }
 
     // Affiche le contenu du buffer sur l'écran
@@ -139,8 +217,8 @@ void check_collisions(GameState* game) {
             if (game->attractions[a].triggered[p]) {
                 player_on_attraction++;
             }
+            game->attractions[a].player_on_amount = player_on_attraction;
         }
-        game->attractions[a].player_on_amount = player_on_attraction;
     }
 }
 
@@ -153,6 +231,11 @@ void init_game(GameState* game) {
     game->player_speed = 5;
     game->debug = false;
     game->over = false;
+    game->winner_displayed = false;
+    game->stats_displayed = false;
+    game->attraction_is_over = false;
+
+    game->winner = -1;
     game->attraction_is_running = false;
     game->attraction_is_over = false;
     game->attraction_index = -1;
@@ -166,7 +249,7 @@ void init_game(GameState* game) {
         game->players[i].x = SCREEN_WIDTH / 2 - PLAYER_WIDTH / 2;
         game->players[i].y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10;
         game->players[i].color = random_color();
-        game->players[i].tickets = 5;
+        game->players[i].tickets = TICKETS_AMOUNT;
     }
 
     // Initialisation des touches
@@ -183,7 +266,7 @@ void init_game(GameState* game) {
     }
 
     /* INITIALIZE PATH */
-    for (int a = 0; a < ATTRACTIONS_AMOUNT; a++) {
+    for (int a = 0; a < ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT; a++) {
         char attractions_directory_path_temp[50];
         strcpy(game->attractions[a].name, ATTRACTIONS_NAMES[a]);
         sprintf(attractions_directory_path_temp, "attractions/%s/", game->attractions[a].name);
@@ -192,7 +275,7 @@ void init_game(GameState* game) {
         sprintf(game->attractions[a].best_path, "%s%s", attractions_directory_path_temp, "best.txt");
     }
 
-    for (int a = 0; a < ATTRACTIONS_AMOUNT; a++) {
+    for (int a = 0; a < ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT; a++) {
         game->attractions[a].width = ATTRACTION_WIDTH;
         game->attractions[a].height = ATTRACTION_HEIGHT;
         game->attractions[a].player_on_amount = 0;
@@ -209,6 +292,27 @@ void init_game(GameState* game) {
         fprintf(end_file, "-1");
         fclose(end_file);
     }
+
+    for (int s = ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT; s < ATTRACTIONS_AMOUNT; s++) {
+        game->attractions[s].width = ATTRACTION_WIDTH;
+        game->attractions[s].height = ATTRACTION_HEIGHT;
+        game->attractions[s].player_on_amount = 0;
+        for (int p = 0; p < PLAYER_AMOUNT; p++) {
+            game->attractions[s].triggered[p] = 0;
+        }
+    }
+
+    game->attractions[ATTRACTIONS_AMOUNT - 1].is_exit = true;
+    game->attractions[ATTRACTIONS_AMOUNT - 2].is_stats = true;
+
+    game->attractions[ATTRACTIONS_AMOUNT - 1].x = SCREEN_WIDTH - ATTRACTION_WIDTH - 10;
+    game->attractions[ATTRACTIONS_AMOUNT - 1].y = SCREEN_HEIGHT - ATTRACTION_HEIGHT - 10;
+
+    game->attractions[ATTRACTIONS_AMOUNT - 2].x = 10;
+    game->attractions[ATTRACTIONS_AMOUNT - 2].y = SCREEN_HEIGHT - ATTRACTION_HEIGHT - 10;
+
+    strcpy(game->attractions[ATTRACTIONS_AMOUNT - 1].name, "exit");
+    strcpy(game->attractions[ATTRACTIONS_AMOUNT - 2].name, "stats");
 }
 
 void handle_input(GameState* game) {
@@ -274,144 +378,150 @@ void handle_input(GameState* game) {
 void run_attractions(GameState* game) {
     for (int a = 0; a < ATTRACTIONS_AMOUNT; a++) {
         if (game->attractions[a].player_on_amount == PLAYER_AMOUNT) {
-            float end[PLAYER_AMOUNT] = {-1};
-            char command[110];
+            if (game->attractions[a].is_exit == true) {
+                game->over = true;
+            } else if (game->attractions[a].is_stats == true) {
+                game->stats_displayed = true;
+            } else {
+                float end[PLAYER_AMOUNT] = {-1};
+                char command[110];
+                game->attraction_is_running = true;
 
-            game->attraction_is_running = true;
-
-            // Cost of the attraction
-            for (int p = 0; p < PLAYER_AMOUNT; p++) {
-                game->players[p].tickets -= 1;
-            }
-
-            sprintf(command, "./%s", game->attractions[a].executable_path);
-            allegro_message("Running %s\n", command);
-            // Get the score
-            system(command);
-            end[0] = wait_attractions_end(game, a);
-            if (end[0] != -1) {
-                float best = 0;
-                int best_player = 0;
-                switch (a) {
-                    case 0:  // Canard
-                        for (int p = 1; p < PLAYER_AMOUNT; p++) {
-                            system(command);
-                            end[p] = wait_attractions_end(game, a);
-                        }
-                        for (int p = 0; p < PLAYER_AMOUNT; p++) {
-                            if (end[p] > best) {
-                                best = end[p];
-                                best_player = p;
-                            } else if (end[p] == best) {
-                                game->attraction_winner_2 = p;
-                                game->attraction_winner_2_score = end[p];
-                            }
-                        }
-                        game->players[best_player].tickets += 1;
-
-                        game->attraction_index = a;
-                        game->attraction_is_over = true;
-                        game->attraction_winner = best_player;
-                        game->attraction_winner_score = best;
-                        break;
-
-                    case 1:  // Cheval
-                        if (end[0] == 0) {
-                            game->attraction_winner = -1;
-                        } else if (end[0] == 1) {
-                            game->attraction_winner = 0;
-                        } else if (end[0] == 2) {
-                            game->attraction_winner = 1;
-                        } else if (end[0] == 3) {
-                            game->attraction_winner = 0;
-                            game->attraction_winner_2 = 1;
-                        }
-                        if (game->attraction_winner != -1) {
-                            game->players[game->attraction_winner].tickets += 1;
-                        }
-                        if (game->attraction_winner_2 != -1) {
-                            game->players[game->attraction_winner_2].tickets += 1;
-                        }
-                        game->attraction_index = a;
-                        game->attraction_is_over = true;
-                        game->attraction_winner_2 = -1;
-                        game->attraction_winner_2_score = -1;
-                        break;
-                    case 2:  // Grenouille
-                        for (int p = 1; p < PLAYER_AMOUNT; p++) {
-                            system(command);
-                            end[p] = wait_attractions_end(game, a);
-                        }
-                        for (int p = 0; p < PLAYER_AMOUNT; p++) {
-                            if (end[p] < best) {
-                                best = end[p];
-                                best_player = p;
-                            }
-                        }
-                        game->players[best_player].tickets += 1;
-
-                        game->attraction_index = a;
-                        game->attraction_is_over = true;
-                        game->attraction_winner = best_player;
-                        game->attraction_winner_score = best;
-                        game->attraction_winner_2 = -1;
-                        game->attraction_winner_2_score = -1;
-                        break;
-
-                    case 3:  // Jackpot
-                        for (int p = 1; p < PLAYER_AMOUNT; p++) {
-                            system(command);
-                            end[p] = wait_attractions_end(game, a);
-                        }
-                        for (int p = 0; p < PLAYER_AMOUNT; p++) {
-                            if (end[p] > best) {
-                                best = end[p];
-                                best_player = p;
-                            }
-                        }
-                        game->players[best_player].tickets += best;
-
-                        game->attraction_index = a;
-                        game->attraction_is_over = true;
-                        game->attraction_winner = best_player;
-                        game->attraction_winner_score = best;
-                        game->attraction_winner_2 = -1;
-                        game->attraction_winner_2_score = -1;
-                        break;
-                    case 4:  // Snake
-                        for (int p = 1; p < PLAYER_AMOUNT; p++) {
-                            system(command);
-                            end[p] = wait_attractions_end(game, a);
-                        }
-                        for (int p = 0; p < PLAYER_AMOUNT; p++) {
-                            if (end[p] > best) {
-                                best = end[p];
-                                best_player = p;
-                            } else if (end[p] == best) {
-                                game->attraction_winner_2 = p;
-                                game->attraction_winner_2_score = end[p];
-                            }
-                        }
-                        game->players[best_player].tickets += 1;
-
-                        game->attraction_index = a;
-                        game->attraction_is_over = true;
-                        game->attraction_winner = best_player;
-                        game->attraction_winner_score = best;
-                        break;
+                // Cost of the attraction
+                for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                    game->players[p].tickets -= 1;
                 }
-                allegro_message("Attraction %d is over\n", a);
-                allegro_message("Winner is %d\n", game->attraction_winner);
-                allegro_message("Score is %f\n", game->attraction_winner_score);
-                game->attraction_winner_2 == -1 ? allegro_message("Winner 2 is %d\n", game->attraction_winner_2) : 1 == 1;
-                game->attraction_winner_2_score == -1 ? allegro_message("Score 2 is %f\n", game->attraction_winner_2_score) : 1 == 1;
-            }
 
-            for (int p = 0; p < PLAYER_AMOUNT; p++) {
-                game->players[p].x = SCREEN_WIDTH / 2 - PLAYER_WIDTH / 2;
-                game->players[p].y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10;
+                sprintf(command, "./%s", game->attractions[a].executable_path);
+                allegro_message("Running %s\n", command);
+                // Get the score
+                display(game);
+                system(command);
+                end[0] = wait_attractions_end(game, a);
+                if (end[0] != -1) {
+                    float best = 0;
+                    int best_player = 0;
+                    switch (a) {
+                        case 0:  // Canard
+                            for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                                system(command);
+                                end[p] = wait_attractions_end(game, a);
+                            }
+                            for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                                if (end[p] > best) {
+                                    best = end[p];
+                                    best_player = p;
+                                } else if (end[p] == best) {
+                                    game->attraction_winner_2 = p;
+                                    game->attraction_winner_2_score = end[p];
+                                }
+                            }
+                            game->players[best_player].tickets += 1;
+
+                            game->attraction_index = a;
+                            game->attraction_is_over = true;
+                            game->attraction_winner = best_player;
+                            game->attraction_winner_score = best;
+                            break;
+
+                        case 1:  // Cheval
+                            if (end[0] == 0) {
+                                game->attraction_winner = -1;
+                            } else if (end[0] == 1) {
+                                game->attraction_winner = 0;
+                            } else if (end[0] == 2) {
+                                game->attraction_winner = 1;
+                            } else if (end[0] == 3) {
+                                game->attraction_winner = 0;
+                                game->attraction_winner_2 = 1;
+                            }
+                            if (game->attraction_winner != -1) {
+                                game->players[game->attraction_winner].tickets += 1;
+                            }
+                            if (game->attraction_winner_2 != -1) {
+                                game->players[game->attraction_winner_2].tickets += 1;
+                            }
+                            game->attraction_index = a;
+                            game->attraction_is_over = true;
+                            game->attraction_winner_2 = -1;
+                            game->attraction_winner_2_score = -1;
+                            break;
+                        case 2:  // Grenouille
+                            for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                                system(command);
+                                end[p] = wait_attractions_end(game, a);
+                            }
+                            for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                                if (end[p] < best) {
+                                    best = end[p];
+                                    best_player = p;
+                                }
+                            }
+                            game->players[best_player].tickets += 1;
+
+                            game->attraction_index = a;
+                            game->attraction_is_over = true;
+                            game->attraction_winner = best_player;
+                            game->attraction_winner_score = best;
+                            game->attraction_winner_2 = -1;
+                            game->attraction_winner_2_score = -1;
+                            break;
+
+                        case 3:  // Jackpot
+                            for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                                system(command);
+                                end[p] = wait_attractions_end(game, a);
+                            }
+                            for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                                if (end[p] > best) {
+                                    best = end[p];
+                                    best_player = p;
+                                }
+                            }
+                            game->players[best_player].tickets += best;
+
+                            game->attraction_index = a;
+                            game->attraction_is_over = true;
+                            game->attraction_winner = best_player;
+                            game->attraction_winner_score = best;
+                            game->attraction_winner_2 = -1;
+                            game->attraction_winner_2_score = -1;
+                            break;
+                        case 4:  // Snake
+                            for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                                system(command);
+                                end[p] = wait_attractions_end(game, a);
+                            }
+                            for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                                if (end[p] > best) {
+                                    best = end[p];
+                                    best_player = p;
+                                } else if (end[p] == best) {
+                                    game->attraction_winner_2 = p;
+                                    game->attraction_winner_2_score = end[p];
+                                }
+                            }
+                            game->players[best_player].tickets += 1;
+
+                            game->attraction_index = a;
+                            game->attraction_is_over = true;
+                            game->attraction_winner = best_player;
+                            game->attraction_winner_score = best;
+                            break;
+                    }
+                    allegro_message("Attraction %d is over\n", a);
+                    allegro_message("Winner is %d\n", game->attraction_winner);
+                    allegro_message("Score is %f\n", game->attraction_winner_score);
+                    game->attraction_winner_2 == -1 ? allegro_message("Winner 2 is %d\n", game->attraction_winner_2) : 1 == 1;
+                    game->attraction_winner_2_score == -1 ? allegro_message("Score 2 is %f\n", game->attraction_winner_2_score) : 1 == 1;
+                }
+
+                for (int p = 0; p < PLAYER_AMOUNT; p++) {
+                    game->players[p].x = SCREEN_WIDTH / 2 - PLAYER_WIDTH / 2;
+                    game->players[p].y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10;
+                }
+                game->attraction_is_running = false;
             }
-            game->attraction_is_running = false;
         }
     }
 }
@@ -427,16 +537,10 @@ float wait_attractions_end(GameState* game, int attraction_index) {
         fscanf(end_file, "%f", &end);
         fclose(end_file);
         if (key[KEY_ESC]) {
-            if (!game->PRESSED_MISC_KEYS[3]) {
-                clear_keybuf();
-                break;
-            }
-            game->PRESSED_MISC_KEYS[3] = true;
-        } else {
-            game->PRESSED_MISC_KEYS[3] = false;
+            rest(300);
+            break;
         }
     }
-
     allegro_message("End of %s\nScore : %f", game->attractions[attraction_index].name, end);
 
     return end;
@@ -445,13 +549,51 @@ float wait_attractions_end(GameState* game, int attraction_index) {
 void clean_game(GameState* game) {
     // Libère la mémoire salope
 
+    destroy_font(game->font);
+
     destroy_bitmap(game->buffer);
+    for (int i = 0; i < ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT; i++) {
+        destroy_bitmap(game->attractions_bitmaps[i]);
+    }
+    for (int i = 0; i < PLAYER_AMOUNT; i++) {
+        destroy_bitmap(game->player_bitmaps[i]);
+    }
+}
+
+void check_for_winner(GameState* game) {
+    // Check if there is a player with 0 tickets and if there is, return the player with the most tickets
+    int winner = -1;
+    int best = -1;
+
+    bool loser_in_game = false;
+
+    for (int i = 0; i < PLAYER_AMOUNT; i++) {
+        if (game->players[i].tickets == 0) {
+            loser_in_game = true;
+        }
+    }
+
+    if (loser_in_game) {
+        for (int i = 0; i < PLAYER_AMOUNT; i++) {
+            if (game->players[i].tickets == 0) {
+                for (int j = 0; j < PLAYER_AMOUNT; j++) {
+                    if (game->players[j].tickets > best) {
+                        best = game->players[j].tickets;
+                        winner = j;
+                    }
+                }
+            }
+        }
+        game->winner_displayed = true;
+        game->winner = winner;
+    }
 }
 
 int main() {
     // Initialisation d'Allegro
     srand(time(NULL));
     allegro_init();
+
     fps_timer = current_time();
     if (install_sound(DIGI_NONE, MIDI_NONE, NULL) != 0) {
         allegro_message("Error initializing sound system: %s\n", allegro_error);
@@ -476,6 +618,15 @@ int main() {
     GameState game;
     init_game(&game);
 
+    game.font = load_font("assets/font.pcx", NULL, NULL);
+    if (!game.font) {
+        allegro_message("Error loading font\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // Init Bitmap
+    init_bitmap(&game);
+
     // Boucle de jeu principale
     while (!game.over) {
         // Gère les entrées clavier
@@ -489,6 +640,9 @@ int main() {
 
         // On lance les attractions
         run_attractions(&game);
+
+        // On vérifie si il y a un gagnant
+        check_for_winner(&game);
 
         // Gère le framerate, pour éviter que le jeu ne tourne trop vite
         rest(10);
