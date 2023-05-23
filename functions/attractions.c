@@ -29,7 +29,8 @@ void run_attractions(GameState* game) {
                     switch (a) {
                         case 0:  // Canard
                             for (int p = 1; p < PLAYER_AMOUNT; p++) {
-                                system(command);
+                                wait_for_next_player(game, p);
+                                    system(command);
                                 end[p] = wait_attractions_end(game, a);
                             }
                             for (int p = 0; p < PLAYER_AMOUNT; p++) {
@@ -73,6 +74,7 @@ void run_attractions(GameState* game) {
                             break;
                         case 2:  // Grenouille
                             for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                                wait_for_next_player(game, p);
                                 system(command);
                                 end[p] = wait_attractions_end(game, a);
                             }
@@ -94,6 +96,7 @@ void run_attractions(GameState* game) {
 
                         case 3:  // Jackpot
                             for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                                wait_for_next_player(game, p);
                                 system(command);
                                 end[p] = wait_attractions_end(game, a);
                             }
@@ -114,6 +117,7 @@ void run_attractions(GameState* game) {
                             break;
                         case 4:  // Snake
                             for (int p = 1; p < PLAYER_AMOUNT; p++) {
+                                wait_for_next_player(game, p);
                                 system(command);
                                 end[p] = wait_attractions_end(game, a);
                             }
@@ -166,7 +170,20 @@ float wait_attractions_end(GameState* game, int attraction_index) {
             break;
         }
     }
-    allegro_message("End of %s\nScore : %f", game->attractions[attraction_index].name, end);
+    // allegro_message("End of %s\nScore : %f", game->attractions[attraction_index].name, end);
 
     return end;
+}
+
+void wait_for_next_player(GameState* game, int player_index) {
+    char next_str[100];
+    sprintf(next_str, "Au tour de %s de jouer", game->players[player_index].name);
+    rectfill(screen, SCREEN_WIDTH * 0.4, SCREEN_HEIGHT * 0.45, SCREEN_WIDTH * 0.6, SCREEN_HEIGHT * 0.57, makecol(0, 0, 0));
+    textout_centre_ex(screen, game->font, next_str, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20, makecol(255, 255, 255), -1);
+    textout_centre_ex(screen, game->font, "Appuie sur ESPACE pour commencer", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 20, makecol(255, 255, 255), -1);
+    while (!key[KEY_SPACE]) {
+        rest(10);
+    }
+    clear_keybuf();
+    display(game);
 }

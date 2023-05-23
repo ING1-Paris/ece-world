@@ -7,5 +7,6 @@
 
 void run_attractions(GameState* game);
 float wait_attractions_end(GameState* game, int attraction_index);
+void wait_for_next_player(GameState* game, int player_index);
 
 #endif
