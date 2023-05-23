@@ -10,8 +10,8 @@ void display(GameState* game) {
         drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
         rectfill(game->buffer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, makecol(0, 0, 0));
         drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
-        char winner_str[30];
-        sprintf(winner_str, "Le joueur %d a gagne !", game->winner + 1);
+        char winner_str[50];
+        sprintf(winner_str, "Le joueur %s a gagne !", game->players[game->winner].name);
         // Ecrire un PARTIE TERMINEE
         textout_centre_ex(game->buffer, game->font, "PARTIE TERMINEE", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20, makecol(255, 255, 255), -1);
         textout_centre_ex(game->buffer, game->font, winner_str, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, makecol(255, 255, 255), -1);
@@ -67,7 +67,13 @@ void display(GameState* game) {
         } else if (game->attractions[a].player_on_amount < PLAYER_AMOUNT) {
             char player_on_amount_str[30];
             sprintf(player_on_amount_str, "%d", game->attractions[a].player_on_amount);
-            textout_centre_ex(game->buffer, game->font, player_on_amount_str, game->attractions[a].x + game->attractions[a].width / 2, game->attractions[a].y + game->attractions[a].height / 2 - 5, makecol(255, 255, 255), -1);
+            // Faire un fond noir derrière l'attraction
+            set_trans_blender(0, 0, 0, 128);
+            drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+            rectfill(game->buffer, game->attractions[a].x - 5, game->attractions[a].y - 5, game->attractions[a].x + ATTRACTION_WIDTH + 5, game->attractions[a].y + ATTRACTION_HEIGHT + 5, makecol(0, 0, 0));
+            drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
+            
+            textout_centre_ex(game->buffer, font, player_on_amount_str, game->attractions[a].x + game->attractions[a].width / 2, game->attractions[a].y + game->attractions[a].height / 2 - 5, makecol(255, 255, 255), -1);
         } else if (game->attractions[a].player_on_amount == PLAYER_AMOUNT) {
             textout_centre_ex(game->buffer, game->font, "EN COURS", game->attractions[a].x + game->attractions[a].width / 2, game->attractions[a].y + game->attractions[a].height / 2 - 5, makecol(255, 255, 255), -1);
         }
@@ -77,8 +83,8 @@ void display(GameState* game) {
     // Dessine l'interface et le HUD
     for (int p = 0; p < PLAYER_AMOUNT; p++) {
         char tickets_str[50];
-        sprintf(tickets_str, "Ticket %s : %d", game->players[p].name, game->players[p].tickets);
-        textout_ex(game->buffer, game->font, tickets_str, SCREEN_WIDTH - 200, 10 + 20 * p, makecol(255, 255, 255), -1);
+        sprintf(tickets_str, game->players[p].tickets > 1 ? "%s : %d tickets" : "%s : %d ticket", game->players[p].name, game->players[p].tickets);
+        textout_right_ex(game->buffer, game->font, tickets_str, SCREEN_WIDTH - 5, 5 + p * 20, makecol(0, 0, 0), -1);
     }
 
     if (game->attraction_is_over) {
