@@ -37,6 +37,9 @@ void players_creation_menu(GameState* game) {
                 clear_keybuf();
                 rest(500);
             }
+            if (key[KEY_ESC]) {
+                return;
+            }
 
             display_string_in_box(game->buffer, str, i, game->font);
         }
