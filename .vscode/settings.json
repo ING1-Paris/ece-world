@@ -6,7 +6,18 @@
         "snake.h": "c",
         "typeinfo": "c",
         "stdlib.h": "c",
-        "main.h": "c"
+        "main.h": "c",
+        "tools.C": "cpp",
+        "time.h": "c",
+        "const.h": "c",
+        "tools.h": "c",
+        "keyboard.h": "c",
+        "display.h": "c",
+        "structs.h": "c",
+        "checks.h": "c",
+        "init.h": "c",
+        "consts.h": "c",
+        "players.h": "c"
     },
     "C_Cpp.clang_format_sortIncludes": false,
 }
