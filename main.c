@@ -44,6 +44,17 @@ int main() {
     // Init Bitmap
     init_bitmap(&game);
 
+    // Menu
+    // Appuyer sur ESPACE pour commencer
+    textout_centre_ex(screen, font, "Appuyer sur ESPACE pour commencer", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, makecol(255, 255, 255), -1);
+    while (!key[KEY_SPACE]) {
+        rest(1);
+    }
+    clear_bitmap(screen);
+    textout_centre_ex(screen, game.font, "Demarrage en cours", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 , makecol(255, 255, 255), -1);
+    rest(1500);
+    clear_bitmap(screen);
+
     // Players creations menu
     players_creation_menu(&game);
     show_mouse(screen);
