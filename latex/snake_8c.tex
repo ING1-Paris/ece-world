@@ -1,0 +1,454 @@
+\doxysection{attractions/snake/snake.c File Reference}
+\hypertarget{snake_8c}{}\label{snake_8c}\index{attractions/snake/snake.c@{attractions/snake/snake.c}}
+{\ttfamily \#include $<$allegro.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \"{}snake.\+h\"{}}\newline
+Include dependency graph for snake.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{snake_8c_ac7a72418a236715be812b1b2496bda36}{add\+\_\+block}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game, int x, int y)
+\item 
+void \mbox{\hyperlink{snake_8c_a3be5aa099f17a3e55005fe597c9c1c81}{init\+\_\+game}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{snake_8c_a8be22dd859bfd11888ab1eb6f567e2cf}{init\+\_\+bitmap\+\_\+snake\+\_\+body}} (BITMAP \texorpdfstring{$\ast$}{*}spritesheet)
+\item 
+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{snake_8c_a77583199422700523d77bf8faa8bb460}{init\+\_\+bitmap\+\_\+snake\+\_\+head}} (BITMAP \texorpdfstring{$\ast$}{*}spritesheet)
+\item 
+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{snake_8c_af0e1e68632a1022b2c6212edac8d1bbb}{init\+\_\+bitmap\+\_\+fruit}} (BITMAP \texorpdfstring{$\ast$}{*}spritesheet)
+\item 
+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{snake_8c_a946066f31d820767a4c8a0f8a50c4841}{init\+\_\+bitmap\+\_\+floor}} (BITMAP \texorpdfstring{$\ast$}{*}spritesheet)
+\item 
+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{snake_8c_acfbe90c54d57214375964b5ad230763a}{generate\+\_\+floor\+\_\+sprite}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+int \mbox{\hyperlink{snake_8c_ad338f231ac0a9e0d3ed47069fc70c452}{get\+\_\+high\+\_\+score}} ()
+\item 
+void \mbox{\hyperlink{snake_8c_a8a6daf47b3012e18a2ac37d6a89bccb9}{draw\+\_\+game}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{snake_8c_ab6d41ca573a207e22be216547afdbd63}{save\+\_\+score}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{snake_8c_a879616ec2a27a4726ac211d01acec510}{reset\+\_\+game}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{snake_8c_a5890e3baf5a303cac858107ad4c1ea02}{game\+\_\+over\+\_\+screen}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{snake_8c_aeb1b5cfbced2f3561887d269cd6230dc}{draw\+\_\+fruit}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game, int x, int y)
+\item 
+void \mbox{\hyperlink{snake_8c_a9651682fae9ced19faefbb1e2448f7bc}{move\+\_\+snake}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{snake_8c_a043bab3aebb77ca901157a7a64853751}{handle\+\_\+input}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{snake_8c_ad61f84d47c211a68c6f3a8ac42f3e370}{check\+\_\+collisions}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{snake_8c_aa15668e1f8bf757101e64735de3f0b0b}{free\+\_\+memory}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{snake_8c_a1e6681790a49620047f930db98566679}{assign\+\_\+sprite}} (\mbox{\hyperlink{struct_block}{Block}} \texorpdfstring{$\ast$}{*}block)
+\item 
+int \mbox{\hyperlink{snake_8c_a958da102846296b8351eb56a927a642c}{get\+\_\+tail\+\_\+orientation}} (\mbox{\hyperlink{struct_block}{Block}} \texorpdfstring{$\ast$}{*}block)
+\item 
+int \mbox{\hyperlink{snake_8c_a998290f5ba3f2128638310a54b1b64fc}{get\+\_\+corner\+\_\+orientation}} (\mbox{\hyperlink{struct_block}{Block}} \texorpdfstring{$\ast$}{*}block)
+\item 
+void \mbox{\hyperlink{snake_8c_afabc004fbf5121e961a85c05c4a59c8c}{print\+\_\+debug}} (char \texorpdfstring{$\ast$}{*}message)
+\item 
+SAMPLE \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{snake_8c_a057c649bd5fa41f33dfe1198625bab77}{init\+\_\+sounds}} ()
+\item 
+void \mbox{\hyperlink{snake_8c_a681f4354bf592de2cf93760d5d2c6d46}{play\+\_\+sound}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game, int sound\+\_\+id)
+\item 
+int \mbox{\hyperlink{snake_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{snake_8c_ac7a72418a236715be812b1b2496bda36}\label{snake_8c_ac7a72418a236715be812b1b2496bda36} 
+\index{snake.c@{snake.c}!add\_block@{add\_block}}
+\index{add\_block@{add\_block}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{add\_block()}{add\_block()}}
+{\footnotesize\ttfamily void add\+\_\+block (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_ac7a72418a236715be812b1b2496bda36_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a1e6681790a49620047f930db98566679}\label{snake_8c_a1e6681790a49620047f930db98566679} 
+\index{snake.c@{snake.c}!assign\_sprite@{assign\_sprite}}
+\index{assign\_sprite@{assign\_sprite}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{assign\_sprite()}{assign\_sprite()}}
+{\footnotesize\ttfamily void assign\+\_\+sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_block}{Block}} \texorpdfstring{$\ast$}{*}}]{block }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{snake_8c_a1e6681790a49620047f930db98566679_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a1e6681790a49620047f930db98566679_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_ad61f84d47c211a68c6f3a8ac42f3e370}\label{snake_8c_ad61f84d47c211a68c6f3a8ac42f3e370} 
+\index{snake.c@{snake.c}!check\_collisions@{check\_collisions}}
+\index{check\_collisions@{check\_collisions}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{check\_collisions()}{check\_collisions()}}
+{\footnotesize\ttfamily void check\+\_\+collisions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{snake_8c_ad61f84d47c211a68c6f3a8ac42f3e370_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{snake_8c_ad61f84d47c211a68c6f3a8ac42f3e370_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_aeb1b5cfbced2f3561887d269cd6230dc}\label{snake_8c_aeb1b5cfbced2f3561887d269cd6230dc} 
+\index{snake.c@{snake.c}!draw\_fruit@{draw\_fruit}}
+\index{draw\_fruit@{draw\_fruit}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{draw\_fruit()}{draw\_fruit()}}
+{\footnotesize\ttfamily void draw\+\_\+fruit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_aeb1b5cfbced2f3561887d269cd6230dc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a8a6daf47b3012e18a2ac37d6a89bccb9}\label{snake_8c_a8a6daf47b3012e18a2ac37d6a89bccb9} 
+\index{snake.c@{snake.c}!draw\_game@{draw\_game}}
+\index{draw\_game@{draw\_game}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{draw\_game()}{draw\_game()}}
+{\footnotesize\ttfamily void draw\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a8a6daf47b3012e18a2ac37d6a89bccb9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{snake_8c_a8a6daf47b3012e18a2ac37d6a89bccb9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_aa15668e1f8bf757101e64735de3f0b0b}\label{snake_8c_aa15668e1f8bf757101e64735de3f0b0b} 
+\index{snake.c@{snake.c}!free\_memory@{free\_memory}}
+\index{free\_memory@{free\_memory}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{free\_memory()}{free\_memory()}}
+{\footnotesize\ttfamily void free\+\_\+memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{snake_8c_aa15668e1f8bf757101e64735de3f0b0b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a5890e3baf5a303cac858107ad4c1ea02}\label{snake_8c_a5890e3baf5a303cac858107ad4c1ea02} 
+\index{snake.c@{snake.c}!game\_over\_screen@{game\_over\_screen}}
+\index{game\_over\_screen@{game\_over\_screen}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{game\_over\_screen()}{game\_over\_screen()}}
+{\footnotesize\ttfamily void game\+\_\+over\+\_\+screen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a5890e3baf5a303cac858107ad4c1ea02_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{snake_8c_a5890e3baf5a303cac858107ad4c1ea02_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_acfbe90c54d57214375964b5ad230763a}\label{snake_8c_acfbe90c54d57214375964b5ad230763a} 
+\index{snake.c@{snake.c}!generate\_floor\_sprite@{generate\_floor\_sprite}}
+\index{generate\_floor\_sprite@{generate\_floor\_sprite}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{generate\_floor\_sprite()}{generate\_floor\_sprite()}}
+{\footnotesize\ttfamily BITMAP \texorpdfstring{$\ast$}{*} generate\+\_\+floor\+\_\+sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_acfbe90c54d57214375964b5ad230763a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a998290f5ba3f2128638310a54b1b64fc}\label{snake_8c_a998290f5ba3f2128638310a54b1b64fc} 
+\index{snake.c@{snake.c}!get\_corner\_orientation@{get\_corner\_orientation}}
+\index{get\_corner\_orientation@{get\_corner\_orientation}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{get\_corner\_orientation()}{get\_corner\_orientation()}}
+{\footnotesize\ttfamily int get\+\_\+corner\+\_\+orientation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_block}{Block}} \texorpdfstring{$\ast$}{*}}]{block }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a998290f5ba3f2128638310a54b1b64fc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_ad338f231ac0a9e0d3ed47069fc70c452}\label{snake_8c_ad338f231ac0a9e0d3ed47069fc70c452} 
+\index{snake.c@{snake.c}!get\_high\_score@{get\_high\_score}}
+\index{get\_high\_score@{get\_high\_score}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{get\_high\_score()}{get\_high\_score()}}
+{\footnotesize\ttfamily int get\+\_\+high\+\_\+score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_ad338f231ac0a9e0d3ed47069fc70c452_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a958da102846296b8351eb56a927a642c}\label{snake_8c_a958da102846296b8351eb56a927a642c} 
+\index{snake.c@{snake.c}!get\_tail\_orientation@{get\_tail\_orientation}}
+\index{get\_tail\_orientation@{get\_tail\_orientation}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{get\_tail\_orientation()}{get\_tail\_orientation()}}
+{\footnotesize\ttfamily int get\+\_\+tail\+\_\+orientation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_block}{Block}} \texorpdfstring{$\ast$}{*}}]{block }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a958da102846296b8351eb56a927a642c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a043bab3aebb77ca901157a7a64853751}\label{snake_8c_a043bab3aebb77ca901157a7a64853751} 
+\index{snake.c@{snake.c}!handle\_input@{handle\_input}}
+\index{handle\_input@{handle\_input}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{handle\_input()}{handle\_input()}}
+{\footnotesize\ttfamily void handle\+\_\+input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a043bab3aebb77ca901157a7a64853751_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{snake_8c_a043bab3aebb77ca901157a7a64853751_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a946066f31d820767a4c8a0f8a50c4841}\label{snake_8c_a946066f31d820767a4c8a0f8a50c4841} 
+\index{snake.c@{snake.c}!init\_bitmap\_floor@{init\_bitmap\_floor}}
+\index{init\_bitmap\_floor@{init\_bitmap\_floor}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{init\_bitmap\_floor()}{init\_bitmap\_floor()}}
+{\footnotesize\ttfamily BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} init\+\_\+bitmap\+\_\+floor (\begin{DoxyParamCaption}\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{spritesheet }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a946066f31d820767a4c8a0f8a50c4841_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_af0e1e68632a1022b2c6212edac8d1bbb}\label{snake_8c_af0e1e68632a1022b2c6212edac8d1bbb} 
+\index{snake.c@{snake.c}!init\_bitmap\_fruit@{init\_bitmap\_fruit}}
+\index{init\_bitmap\_fruit@{init\_bitmap\_fruit}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{init\_bitmap\_fruit()}{init\_bitmap\_fruit()}}
+{\footnotesize\ttfamily BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} init\+\_\+bitmap\+\_\+fruit (\begin{DoxyParamCaption}\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{spritesheet }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_af0e1e68632a1022b2c6212edac8d1bbb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a8be22dd859bfd11888ab1eb6f567e2cf}\label{snake_8c_a8be22dd859bfd11888ab1eb6f567e2cf} 
+\index{snake.c@{snake.c}!init\_bitmap\_snake\_body@{init\_bitmap\_snake\_body}}
+\index{init\_bitmap\_snake\_body@{init\_bitmap\_snake\_body}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{init\_bitmap\_snake\_body()}{init\_bitmap\_snake\_body()}}
+{\footnotesize\ttfamily BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} init\+\_\+bitmap\+\_\+snake\+\_\+body (\begin{DoxyParamCaption}\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{spritesheet }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a8be22dd859bfd11888ab1eb6f567e2cf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a77583199422700523d77bf8faa8bb460}\label{snake_8c_a77583199422700523d77bf8faa8bb460} 
+\index{snake.c@{snake.c}!init\_bitmap\_snake\_head@{init\_bitmap\_snake\_head}}
+\index{init\_bitmap\_snake\_head@{init\_bitmap\_snake\_head}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{init\_bitmap\_snake\_head()}{init\_bitmap\_snake\_head()}}
+{\footnotesize\ttfamily BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} init\+\_\+bitmap\+\_\+snake\+\_\+head (\begin{DoxyParamCaption}\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{spritesheet }\end{DoxyParamCaption})}
+
+Liste de 4 lsite de 16 bitmapsHere is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a77583199422700523d77bf8faa8bb460_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a3be5aa099f17a3e55005fe597c9c1c81}\label{snake_8c_a3be5aa099f17a3e55005fe597c9c1c81} 
+\index{snake.c@{snake.c}!init\_game@{init\_game}}
+\index{init\_game@{init\_game}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{init\_game()}{init\_game()}}
+{\footnotesize\ttfamily void init\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=295pt]{snake_8c_a3be5aa099f17a3e55005fe597c9c1c81_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a3be5aa099f17a3e55005fe597c9c1c81_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a057c649bd5fa41f33dfe1198625bab77}\label{snake_8c_a057c649bd5fa41f33dfe1198625bab77} 
+\index{snake.c@{snake.c}!init\_sounds@{init\_sounds}}
+\index{init\_sounds@{init\_sounds}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{init\_sounds()}{init\_sounds()}}
+{\footnotesize\ttfamily SAMPLE \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} init\+\_\+sounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a057c649bd5fa41f33dfe1198625bab77_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{snake_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{snake.c@{snake.c}!main@{main}}
+\index{main@{main}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a9651682fae9ced19faefbb1e2448f7bc}\label{snake_8c_a9651682fae9ced19faefbb1e2448f7bc} 
+\index{snake.c@{snake.c}!move\_snake@{move\_snake}}
+\index{move\_snake@{move\_snake}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{move\_snake()}{move\_snake()}}
+{\footnotesize\ttfamily void move\+\_\+snake (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{snake_8c_a9651682fae9ced19faefbb1e2448f7bc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_a681f4354bf592de2cf93760d5d2c6d46}\label{snake_8c_a681f4354bf592de2cf93760d5d2c6d46} 
+\index{snake.c@{snake.c}!play\_sound@{play\_sound}}
+\index{play\_sound@{play\_sound}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{play\_sound()}{play\_sound()}}
+{\footnotesize\ttfamily void play\+\_\+sound (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{sound\+\_\+id }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a681f4354bf592de2cf93760d5d2c6d46_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_afabc004fbf5121e961a85c05c4a59c8c}\label{snake_8c_afabc004fbf5121e961a85c05c4a59c8c} 
+\index{snake.c@{snake.c}!print\_debug@{print\_debug}}
+\index{print\_debug@{print\_debug}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{print\_debug()}{print\_debug()}}
+{\footnotesize\ttfamily void print\+\_\+debug (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{message }\end{DoxyParamCaption})}
+
+\Hypertarget{snake_8c_a879616ec2a27a4726ac211d01acec510}\label{snake_8c_a879616ec2a27a4726ac211d01acec510} 
+\index{snake.c@{snake.c}!reset\_game@{reset\_game}}
+\index{reset\_game@{reset\_game}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{reset\_game()}{reset\_game()}}
+{\footnotesize\ttfamily void reset\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a879616ec2a27a4726ac211d01acec510_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_a879616ec2a27a4726ac211d01acec510_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snake_8c_ab6d41ca573a207e22be216547afdbd63}\label{snake_8c_ab6d41ca573a207e22be216547afdbd63} 
+\index{snake.c@{snake.c}!save\_score@{save\_score}}
+\index{save\_score@{save\_score}!snake.c@{snake.c}}
+\doxysubsubsection{\texorpdfstring{save\_score()}{save\_score()}}
+{\footnotesize\ttfamily void save\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8c_ab6d41ca573a207e22be216547afdbd63_icgraph}
+\end{center}
+\end{figure}

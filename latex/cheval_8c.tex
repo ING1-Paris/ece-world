@@ -1,0 +1,149 @@
+\doxysection{attractions/cheval/cheval.c File Reference}
+\hypertarget{cheval_8c}{}\label{cheval_8c}\index{attractions/cheval/cheval.c@{attractions/cheval/cheval.c}}
+{\ttfamily \#include $<$allegro.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for cheval.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{cheval_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcheval}{cheval}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cheval_8c_ac0735be2784c654a36c11871e288c7f8}{NUM\+\_\+\+HORSES}}~8
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structcheval}{cheval}} \mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{cheval_8c_a9d0eccd459e4762ceaf7b592669ca3eb}{init\+\_\+horses}} (\mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}} \mbox{\hyperlink{structcheval}{cheval}}\mbox{[}8\mbox{]})
+\item 
+void \mbox{\hyperlink{cheval_8c_a48788954c02742efc19c37e6c91445a4}{separer\+\_\+bitmap\+\_\+personnage}} (\mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}} \mbox{\hyperlink{structcheval}{cheval}}\mbox{[}8\mbox{]}, BITMAP \texorpdfstring{$\ast$}{*}bitmap)
+\item 
+void \mbox{\hyperlink{cheval_8c_a5dcdf1a6a28e4a2aa560bd6799f75ad2}{update\+\_\+horse\+\_\+positions}} (\mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}} \mbox{\hyperlink{structcheval}{cheval}}\mbox{[}8\mbox{]})
+\item 
+void \mbox{\hyperlink{cheval_8c_a2cbc807b58f16f9e35685d81f2053ef5}{dessiner\+\_\+personnage}} (\mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}} \mbox{\hyperlink{structcheval}{cheval}}\mbox{[}8\mbox{]}, BITMAP \texorpdfstring{$\ast$}{*}buffer)
+\item 
+void \mbox{\hyperlink{cheval_8c_a5018b97a112760a0f6d889863d32f1fd}{classer\+Chevaux}} (\mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}} chevaux\mbox{[}8\mbox{]}, int taille)
+\item 
+int \mbox{\hyperlink{cheval_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{cheval_8c_ac0735be2784c654a36c11871e288c7f8}\label{cheval_8c_ac0735be2784c654a36c11871e288c7f8} 
+\index{cheval.c@{cheval.c}!NUM\_HORSES@{NUM\_HORSES}}
+\index{NUM\_HORSES@{NUM\_HORSES}!cheval.c@{cheval.c}}
+\doxysubsubsection{\texorpdfstring{NUM\_HORSES}{NUM\_HORSES}}
+{\footnotesize\ttfamily \#define NUM\+\_\+\+HORSES~8}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{cheval_8c_abbea317d914bdda9a66f18959ed373da}\label{cheval_8c_abbea317d914bdda9a66f18959ed373da} 
+\index{cheval.c@{cheval.c}!t\_cheval@{t\_cheval}}
+\index{t\_cheval@{t\_cheval}!cheval.c@{cheval.c}}
+\doxysubsubsection{\texorpdfstring{t\_cheval}{t\_cheval}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structcheval}{cheval}} \mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{cheval_8c_a5018b97a112760a0f6d889863d32f1fd}\label{cheval_8c_a5018b97a112760a0f6d889863d32f1fd} 
+\index{cheval.c@{cheval.c}!classerChevaux@{classerChevaux}}
+\index{classerChevaux@{classerChevaux}!cheval.c@{cheval.c}}
+\doxysubsubsection{\texorpdfstring{classerChevaux()}{classerChevaux()}}
+{\footnotesize\ttfamily void classer\+Chevaux (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}}}]{chevaux\mbox{[}8\mbox{]},  }\item[{int}]{taille }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{cheval_8c_a5018b97a112760a0f6d889863d32f1fd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cheval_8c_a2cbc807b58f16f9e35685d81f2053ef5}\label{cheval_8c_a2cbc807b58f16f9e35685d81f2053ef5} 
+\index{cheval.c@{cheval.c}!dessiner\_personnage@{dessiner\_personnage}}
+\index{dessiner\_personnage@{dessiner\_personnage}!cheval.c@{cheval.c}}
+\doxysubsubsection{\texorpdfstring{dessiner\_personnage()}{dessiner\_personnage()}}
+{\footnotesize\ttfamily void dessiner\+\_\+personnage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}}}]{cheval\mbox{[}8\mbox{]},  }\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{buffer }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{cheval_8c_a2cbc807b58f16f9e35685d81f2053ef5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cheval_8c_a9d0eccd459e4762ceaf7b592669ca3eb}\label{cheval_8c_a9d0eccd459e4762ceaf7b592669ca3eb} 
+\index{cheval.c@{cheval.c}!init\_horses@{init\_horses}}
+\index{init\_horses@{init\_horses}!cheval.c@{cheval.c}}
+\doxysubsubsection{\texorpdfstring{init\_horses()}{init\_horses()}}
+{\footnotesize\ttfamily void init\+\_\+horses (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}}}]{cheval\mbox{[}8\mbox{]} }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{cheval_8c_a9d0eccd459e4762ceaf7b592669ca3eb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cheval_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{cheval_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{cheval.c@{cheval.c}!main@{main}}
+\index{main@{main}!cheval.c@{cheval.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{cheval_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cheval_8c_a48788954c02742efc19c37e6c91445a4}\label{cheval_8c_a48788954c02742efc19c37e6c91445a4} 
+\index{cheval.c@{cheval.c}!separer\_bitmap\_personnage@{separer\_bitmap\_personnage}}
+\index{separer\_bitmap\_personnage@{separer\_bitmap\_personnage}!cheval.c@{cheval.c}}
+\doxysubsubsection{\texorpdfstring{separer\_bitmap\_personnage()}{separer\_bitmap\_personnage()}}
+{\footnotesize\ttfamily void separer\+\_\+bitmap\+\_\+personnage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}}}]{cheval\mbox{[}8\mbox{]},  }\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{bitmap }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{cheval_8c_a48788954c02742efc19c37e6c91445a4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cheval_8c_a5dcdf1a6a28e4a2aa560bd6799f75ad2}\label{cheval_8c_a5dcdf1a6a28e4a2aa560bd6799f75ad2} 
+\index{cheval.c@{cheval.c}!update\_horse\_positions@{update\_horse\_positions}}
+\index{update\_horse\_positions@{update\_horse\_positions}!cheval.c@{cheval.c}}
+\doxysubsubsection{\texorpdfstring{update\_horse\_positions()}{update\_horse\_positions()}}
+{\footnotesize\ttfamily void update\+\_\+horse\+\_\+positions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cheval_8c_abbea317d914bdda9a66f18959ed373da}{t\+\_\+cheval}}}]{cheval\mbox{[}8\mbox{]} }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{cheval_8c_a5dcdf1a6a28e4a2aa560bd6799f75ad2_icgraph}
+\end{center}
+\end{figure}

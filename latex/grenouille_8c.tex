@@ -1,0 +1,139 @@
+\doxysection{attractions/grenouille/grenouille.c File Reference}
+\hypertarget{grenouille_8c}{}\label{grenouille_8c}\index{attractions/grenouille/grenouille.c@{attractions/grenouille/grenouille.c}}
+{\ttfamily \#include $<$allegro.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for grenouille.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{grenouille_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{grenouille_8c_a2cd109632a6dcccaa80b43561b1ab700}{SCREEN\+\_\+\+WIDTH}}~640
+\item 
+\#define \mbox{\hyperlink{grenouille_8c_a6974d08a74da681b3957b2fead2608b8}{SCREEN\+\_\+\+HEIGHT}}~480
+\item 
+\#define \mbox{\hyperlink{grenouille_8c_a56471431099527c37fa36a405d628842}{FROG\+\_\+H}}~32
+\item 
+\#define \mbox{\hyperlink{grenouille_8c_a9cc0c3097330e20a5329c60f7cd93b3d}{FROG\+\_\+W}}~32
+\item 
+\#define \mbox{\hyperlink{grenouille_8c_aa2fe3a37e3c02e026c3b3e325511593f}{LOG\+\_\+\+WIDTH}}~128
+\item 
+\#define \mbox{\hyperlink{grenouille_8c_a5b76a984f3647e3ce7af97696d079f23}{LOG\+\_\+\+HEIGHT}}~64
+\item 
+\#define \mbox{\hyperlink{grenouille_8c_aef299b98b95d5bd84015ed48cefa813e}{LOG\+\_\+\+SPEED}}~1
+\item 
+\#define \mbox{\hyperlink{grenouille_8c_a389431e80777b31392d2275d688f0fcf}{FROG\+\_\+\+SPEED}}~2
+\item 
+\#define \mbox{\hyperlink{grenouille_8c_ac45fb81db13d8f37c3e6664c9d698fe8}{RIVIERE\+\_\+\+END\+\_\+\+SAVE\+\_\+\+FILE}}~\"{}attractions/grenouille/end.\+txt\"{}
+\item 
+\#define \mbox{\hyperlink{grenouille_8c_af7273f8b57d404b2b76319cb6afde071}{RIVIERE\+\_\+\+BEST\+\_\+\+SAVE\+\_\+\+FILE}}~\"{}attractions/grenouille/best.\+txt\"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{grenouille_8c_a820705a4d72ac5061c776083d0664286}{est\+\_\+sur\+\_\+rondin}} (int x\+\_\+grenouille, int y\+\_\+grenouille, int x\+\_\+rondin, int y\+\_\+rondin, int largeur\+\_\+rondin, int hauteur\+\_\+rondin)
+\item 
+int \mbox{\hyperlink{grenouille_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{grenouille_8c_a56471431099527c37fa36a405d628842}\label{grenouille_8c_a56471431099527c37fa36a405d628842} 
+\index{grenouille.c@{grenouille.c}!FROG\_H@{FROG\_H}}
+\index{FROG\_H@{FROG\_H}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{FROG\_H}{FROG\_H}}
+{\footnotesize\ttfamily \#define FROG\+\_\+H~32}
+
+\Hypertarget{grenouille_8c_a389431e80777b31392d2275d688f0fcf}\label{grenouille_8c_a389431e80777b31392d2275d688f0fcf} 
+\index{grenouille.c@{grenouille.c}!FROG\_SPEED@{FROG\_SPEED}}
+\index{FROG\_SPEED@{FROG\_SPEED}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{FROG\_SPEED}{FROG\_SPEED}}
+{\footnotesize\ttfamily \#define FROG\+\_\+\+SPEED~2}
+
+\Hypertarget{grenouille_8c_a9cc0c3097330e20a5329c60f7cd93b3d}\label{grenouille_8c_a9cc0c3097330e20a5329c60f7cd93b3d} 
+\index{grenouille.c@{grenouille.c}!FROG\_W@{FROG\_W}}
+\index{FROG\_W@{FROG\_W}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{FROG\_W}{FROG\_W}}
+{\footnotesize\ttfamily \#define FROG\+\_\+W~32}
+
+\Hypertarget{grenouille_8c_a5b76a984f3647e3ce7af97696d079f23}\label{grenouille_8c_a5b76a984f3647e3ce7af97696d079f23} 
+\index{grenouille.c@{grenouille.c}!LOG\_HEIGHT@{LOG\_HEIGHT}}
+\index{LOG\_HEIGHT@{LOG\_HEIGHT}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{LOG\_HEIGHT}{LOG\_HEIGHT}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+HEIGHT~64}
+
+\Hypertarget{grenouille_8c_aef299b98b95d5bd84015ed48cefa813e}\label{grenouille_8c_aef299b98b95d5bd84015ed48cefa813e} 
+\index{grenouille.c@{grenouille.c}!LOG\_SPEED@{LOG\_SPEED}}
+\index{LOG\_SPEED@{LOG\_SPEED}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{LOG\_SPEED}{LOG\_SPEED}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+SPEED~1}
+
+\Hypertarget{grenouille_8c_aa2fe3a37e3c02e026c3b3e325511593f}\label{grenouille_8c_aa2fe3a37e3c02e026c3b3e325511593f} 
+\index{grenouille.c@{grenouille.c}!LOG\_WIDTH@{LOG\_WIDTH}}
+\index{LOG\_WIDTH@{LOG\_WIDTH}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{LOG\_WIDTH}{LOG\_WIDTH}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+WIDTH~128}
+
+\Hypertarget{grenouille_8c_af7273f8b57d404b2b76319cb6afde071}\label{grenouille_8c_af7273f8b57d404b2b76319cb6afde071} 
+\index{grenouille.c@{grenouille.c}!RIVIERE\_BEST\_SAVE\_FILE@{RIVIERE\_BEST\_SAVE\_FILE}}
+\index{RIVIERE\_BEST\_SAVE\_FILE@{RIVIERE\_BEST\_SAVE\_FILE}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{RIVIERE\_BEST\_SAVE\_FILE}{RIVIERE\_BEST\_SAVE\_FILE}}
+{\footnotesize\ttfamily \#define RIVIERE\+\_\+\+BEST\+\_\+\+SAVE\+\_\+\+FILE~\"{}attractions/grenouille/best.\+txt\"{}}
+
+\Hypertarget{grenouille_8c_ac45fb81db13d8f37c3e6664c9d698fe8}\label{grenouille_8c_ac45fb81db13d8f37c3e6664c9d698fe8} 
+\index{grenouille.c@{grenouille.c}!RIVIERE\_END\_SAVE\_FILE@{RIVIERE\_END\_SAVE\_FILE}}
+\index{RIVIERE\_END\_SAVE\_FILE@{RIVIERE\_END\_SAVE\_FILE}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{RIVIERE\_END\_SAVE\_FILE}{RIVIERE\_END\_SAVE\_FILE}}
+{\footnotesize\ttfamily \#define RIVIERE\+\_\+\+END\+\_\+\+SAVE\+\_\+\+FILE~\"{}attractions/grenouille/end.\+txt\"{}}
+
+\Hypertarget{grenouille_8c_a6974d08a74da681b3957b2fead2608b8}\label{grenouille_8c_a6974d08a74da681b3957b2fead2608b8} 
+\index{grenouille.c@{grenouille.c}!SCREEN\_HEIGHT@{SCREEN\_HEIGHT}}
+\index{SCREEN\_HEIGHT@{SCREEN\_HEIGHT}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_HEIGHT}{SCREEN\_HEIGHT}}
+{\footnotesize\ttfamily \#define SCREEN\+\_\+\+HEIGHT~480}
+
+\Hypertarget{grenouille_8c_a2cd109632a6dcccaa80b43561b1ab700}\label{grenouille_8c_a2cd109632a6dcccaa80b43561b1ab700} 
+\index{grenouille.c@{grenouille.c}!SCREEN\_WIDTH@{SCREEN\_WIDTH}}
+\index{SCREEN\_WIDTH@{SCREEN\_WIDTH}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_WIDTH}{SCREEN\_WIDTH}}
+{\footnotesize\ttfamily \#define SCREEN\+\_\+\+WIDTH~640}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{grenouille_8c_a820705a4d72ac5061c776083d0664286}\label{grenouille_8c_a820705a4d72ac5061c776083d0664286} 
+\index{grenouille.c@{grenouille.c}!est\_sur\_rondin@{est\_sur\_rondin}}
+\index{est\_sur\_rondin@{est\_sur\_rondin}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{est\_sur\_rondin()}{est\_sur\_rondin()}}
+{\footnotesize\ttfamily int est\+\_\+sur\+\_\+rondin (\begin{DoxyParamCaption}\item[{int}]{x\+\_\+grenouille,  }\item[{int}]{y\+\_\+grenouille,  }\item[{int}]{x\+\_\+rondin,  }\item[{int}]{y\+\_\+rondin,  }\item[{int}]{largeur\+\_\+rondin,  }\item[{int}]{hauteur\+\_\+rondin }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{grenouille_8c_a820705a4d72ac5061c776083d0664286_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{grenouille_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{grenouille_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{grenouille.c@{grenouille.c}!main@{main}}
+\index{main@{main}!grenouille.c@{grenouille.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{grenouille_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}

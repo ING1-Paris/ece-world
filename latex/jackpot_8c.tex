@@ -1,0 +1,149 @@
+\doxysection{attractions/jackpot/jackpot.c File Reference}
+\hypertarget{jackpot_8c}{}\label{jackpot_8c}\index{attractions/jackpot/jackpot.c@{attractions/jackpot/jackpot.c}}
+{\ttfamily \#include $<$allegro.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for jackpot.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{jackpot_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structplayer}{player}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{jackpot_8c_a2cd109632a6dcccaa80b43561b1ab700}{SCREEN\+\_\+\+WIDTH}}~1200
+\item 
+\#define \mbox{\hyperlink{jackpot_8c_a6974d08a74da681b3957b2fead2608b8}{SCREEN\+\_\+\+HEIGHT}}~600
+\item 
+\#define \mbox{\hyperlink{jackpot_8c_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~2
+\item 
+\#define \mbox{\hyperlink{jackpot_8c_a444fec18efc59740428a6bb879824685}{BITMAP\+\_\+\+WIDTH}}~350
+\item 
+\#define \mbox{\hyperlink{jackpot_8c_a9406d1c1ce745f80a0d2ce9fa4f3bafe}{BITMAP\+\_\+\+HEIGHT}}~350
+\item 
+\#define \mbox{\hyperlink{jackpot_8c_a4e7c3fad71f0d2ad019992d63364194e}{SCROLL\+\_\+\+SPEED}}~2
+\item 
+\#define \mbox{\hyperlink{jackpot_8c_a4221b0a24a1716cf086b820f988e4285}{BORDER\+\_\+\+WIDTH}}~10
+\item 
+\#define \mbox{\hyperlink{jackpot_8c_aa7eebe46cb0543d0aabcba36e67a0302}{JACKPOT\+\_\+\+END\+\_\+\+FILE}}~\"{}attractions/jackpot/end.\+txt\"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{jackpot_8c_af40a611aff74b489090a3f7f5bedc72d}{player}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{jackpot_8c_a4b7052f6981e6687702613aaec1834e2}{shuffle\+Bitmaps}} (BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}bitmaps, int count)
+\item 
+int \mbox{\hyperlink{jackpot_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\item 
+\mbox{\hyperlink{jackpot_8c_ae5ce30f43c1f65cf5e459ac242938867}{END\+\_\+\+OF\+\_\+\+MAIN}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{jackpot_8c_a9406d1c1ce745f80a0d2ce9fa4f3bafe}\label{jackpot_8c_a9406d1c1ce745f80a0d2ce9fa4f3bafe} 
+\index{jackpot.c@{jackpot.c}!BITMAP\_HEIGHT@{BITMAP\_HEIGHT}}
+\index{BITMAP\_HEIGHT@{BITMAP\_HEIGHT}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{BITMAP\_HEIGHT}{BITMAP\_HEIGHT}}
+{\footnotesize\ttfamily \#define BITMAP\+\_\+\+HEIGHT~350}
+
+\Hypertarget{jackpot_8c_a444fec18efc59740428a6bb879824685}\label{jackpot_8c_a444fec18efc59740428a6bb879824685} 
+\index{jackpot.c@{jackpot.c}!BITMAP\_WIDTH@{BITMAP\_WIDTH}}
+\index{BITMAP\_WIDTH@{BITMAP\_WIDTH}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{BITMAP\_WIDTH}{BITMAP\_WIDTH}}
+{\footnotesize\ttfamily \#define BITMAP\+\_\+\+WIDTH~350}
+
+\Hypertarget{jackpot_8c_a4221b0a24a1716cf086b820f988e4285}\label{jackpot_8c_a4221b0a24a1716cf086b820f988e4285} 
+\index{jackpot.c@{jackpot.c}!BORDER\_WIDTH@{BORDER\_WIDTH}}
+\index{BORDER\_WIDTH@{BORDER\_WIDTH}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{BORDER\_WIDTH}{BORDER\_WIDTH}}
+{\footnotesize\ttfamily \#define BORDER\+\_\+\+WIDTH~10}
+
+\Hypertarget{jackpot_8c_a6b20d41d6252e9871430c242cb1a56e7}\label{jackpot_8c_a6b20d41d6252e9871430c242cb1a56e7} 
+\index{jackpot.c@{jackpot.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define BUFFER\+\_\+\+SIZE~2}
+
+\Hypertarget{jackpot_8c_aa7eebe46cb0543d0aabcba36e67a0302}\label{jackpot_8c_aa7eebe46cb0543d0aabcba36e67a0302} 
+\index{jackpot.c@{jackpot.c}!JACKPOT\_END\_FILE@{JACKPOT\_END\_FILE}}
+\index{JACKPOT\_END\_FILE@{JACKPOT\_END\_FILE}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{JACKPOT\_END\_FILE}{JACKPOT\_END\_FILE}}
+{\footnotesize\ttfamily \#define JACKPOT\+\_\+\+END\+\_\+\+FILE~\"{}attractions/jackpot/end.\+txt\"{}}
+
+\Hypertarget{jackpot_8c_a6974d08a74da681b3957b2fead2608b8}\label{jackpot_8c_a6974d08a74da681b3957b2fead2608b8} 
+\index{jackpot.c@{jackpot.c}!SCREEN\_HEIGHT@{SCREEN\_HEIGHT}}
+\index{SCREEN\_HEIGHT@{SCREEN\_HEIGHT}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_HEIGHT}{SCREEN\_HEIGHT}}
+{\footnotesize\ttfamily \#define SCREEN\+\_\+\+HEIGHT~600}
+
+\Hypertarget{jackpot_8c_a2cd109632a6dcccaa80b43561b1ab700}\label{jackpot_8c_a2cd109632a6dcccaa80b43561b1ab700} 
+\index{jackpot.c@{jackpot.c}!SCREEN\_WIDTH@{SCREEN\_WIDTH}}
+\index{SCREEN\_WIDTH@{SCREEN\_WIDTH}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_WIDTH}{SCREEN\_WIDTH}}
+{\footnotesize\ttfamily \#define SCREEN\+\_\+\+WIDTH~1200}
+
+\Hypertarget{jackpot_8c_a4e7c3fad71f0d2ad019992d63364194e}\label{jackpot_8c_a4e7c3fad71f0d2ad019992d63364194e} 
+\index{jackpot.c@{jackpot.c}!SCROLL\_SPEED@{SCROLL\_SPEED}}
+\index{SCROLL\_SPEED@{SCROLL\_SPEED}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{SCROLL\_SPEED}{SCROLL\_SPEED}}
+{\footnotesize\ttfamily \#define SCROLL\+\_\+\+SPEED~2}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{jackpot_8c_af40a611aff74b489090a3f7f5bedc72d}\label{jackpot_8c_af40a611aff74b489090a3f7f5bedc72d} 
+\index{jackpot.c@{jackpot.c}!player@{player}}
+\index{player@{player}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{player}{player}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{structplayer}{player}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{jackpot_8c_ae5ce30f43c1f65cf5e459ac242938867}\label{jackpot_8c_ae5ce30f43c1f65cf5e459ac242938867} 
+\index{jackpot.c@{jackpot.c}!END\_OF\_MAIN@{END\_OF\_MAIN}}
+\index{END\_OF\_MAIN@{END\_OF\_MAIN}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{END\_OF\_MAIN()}{END\_OF\_MAIN()}}
+{\footnotesize\ttfamily END\+\_\+\+OF\+\_\+\+MAIN (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{jackpot_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{jackpot_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{jackpot.c@{jackpot.c}!main@{main}}
+\index{main@{main}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{jackpot_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{jackpot_8c_a4b7052f6981e6687702613aaec1834e2}\label{jackpot_8c_a4b7052f6981e6687702613aaec1834e2} 
+\index{jackpot.c@{jackpot.c}!shuffleBitmaps@{shuffleBitmaps}}
+\index{shuffleBitmaps@{shuffleBitmaps}!jackpot.c@{jackpot.c}}
+\doxysubsubsection{\texorpdfstring{shuffleBitmaps()}{shuffleBitmaps()}}
+{\footnotesize\ttfamily void shuffle\+Bitmaps (\begin{DoxyParamCaption}\item[{BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{bitmaps,  }\item[{int}]{count }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{jackpot_8c_a4b7052f6981e6687702613aaec1834e2_icgraph}
+\end{center}
+\end{figure}

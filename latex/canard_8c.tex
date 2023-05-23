@@ -1,0 +1,95 @@
+\doxysection{attractions/canard/canard.c File Reference}
+\hypertarget{canard_8c}{}\label{canard_8c}\index{attractions/canard/canard.c@{attractions/canard/canard.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$allegro.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include \"{}math.\+h\"{}}\newline
+Include dependency graph for canard.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{canard_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_duck}{Duck}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{canard_8c_a2cd109632a6dcccaa80b43561b1ab700}{SCREEN\+\_\+\+WIDTH}}~640
+\item 
+\#define \mbox{\hyperlink{canard_8c_a6974d08a74da681b3957b2fead2608b8}{SCREEN\+\_\+\+HEIGHT}}~480
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{canard_8c_a9d2d9364cd52d922a70a1a98b531fc25}{canardcollision}} (int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
+\item 
+double \mbox{\hyperlink{canard_8c_a352a81f399f1f7de4be6808cbad04646}{get\+\_\+elapsed\+\_\+time}} ()
+\item 
+int \mbox{\hyperlink{canard_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{canard_8c_a6974d08a74da681b3957b2fead2608b8}\label{canard_8c_a6974d08a74da681b3957b2fead2608b8} 
+\index{canard.c@{canard.c}!SCREEN\_HEIGHT@{SCREEN\_HEIGHT}}
+\index{SCREEN\_HEIGHT@{SCREEN\_HEIGHT}!canard.c@{canard.c}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_HEIGHT}{SCREEN\_HEIGHT}}
+{\footnotesize\ttfamily \#define SCREEN\+\_\+\+HEIGHT~480}
+
+\Hypertarget{canard_8c_a2cd109632a6dcccaa80b43561b1ab700}\label{canard_8c_a2cd109632a6dcccaa80b43561b1ab700} 
+\index{canard.c@{canard.c}!SCREEN\_WIDTH@{SCREEN\_WIDTH}}
+\index{SCREEN\_WIDTH@{SCREEN\_WIDTH}!canard.c@{canard.c}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_WIDTH}{SCREEN\_WIDTH}}
+{\footnotesize\ttfamily \#define SCREEN\+\_\+\+WIDTH~640}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{canard_8c_a9d2d9364cd52d922a70a1a98b531fc25}\label{canard_8c_a9d2d9364cd52d922a70a1a98b531fc25} 
+\index{canard.c@{canard.c}!canardcollision@{canardcollision}}
+\index{canardcollision@{canardcollision}!canard.c@{canard.c}}
+\doxysubsubsection{\texorpdfstring{canardcollision()}{canardcollision()}}
+{\footnotesize\ttfamily int canardcollision (\begin{DoxyParamCaption}\item[{int}]{x1,  }\item[{int}]{y1,  }\item[{int}]{w1,  }\item[{int}]{h1,  }\item[{int}]{x2,  }\item[{int}]{y2,  }\item[{int}]{w2,  }\item[{int}]{h2 }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{canard_8c_a9d2d9364cd52d922a70a1a98b531fc25_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canard_8c_a352a81f399f1f7de4be6808cbad04646}\label{canard_8c_a352a81f399f1f7de4be6808cbad04646} 
+\index{canard.c@{canard.c}!get\_elapsed\_time@{get\_elapsed\_time}}
+\index{get\_elapsed\_time@{get\_elapsed\_time}!canard.c@{canard.c}}
+\doxysubsubsection{\texorpdfstring{get\_elapsed\_time()}{get\_elapsed\_time()}}
+{\footnotesize\ttfamily double get\+\_\+elapsed\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{canard_8c_a352a81f399f1f7de4be6808cbad04646_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canard_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{canard_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{canard.c@{canard.c}!main@{main}}
+\index{main@{main}!canard.c@{canard.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{canard_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}

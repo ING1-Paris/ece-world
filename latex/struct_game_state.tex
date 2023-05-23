@@ -1,0 +1,211 @@
+\doxysection{Game\+State Struct Reference}
+\hypertarget{struct_game_state}{}\label{struct_game_state}\index{GameState@{GameState}}
+
+
+{\ttfamily \#include $<$snake.\+h$>$}
+
+
+
+Collaboration diagram for Game\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{struct_game_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_game_state_a883b459b02d0a6e9b90612af1dafa4a2}{snake\+\_\+head}}
+\item 
+FONT \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_game_state_ab184be951afda0173ea3bbf7409894d5}{snake\+\_\+font}}
+\item 
+SAMPLE \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_game_state_a385814973080176ebd1d43c6f53825bc}{sounds}}
+\item 
+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_game_state_a35a180ae78ff84794db9e9e3dd9016d6}{buffer}}
+\item 
+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_game_state_a2747457de0fdf125a3ffc8c7f5f54a8d}{floor\+\_\+sprite}}
+\item 
+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_game_state_ad2f853fbe3ca2137dac7f4934b901863}{snake\+\_\+head\+\_\+sprites}}
+\item 
+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_game_state_a9f9ca01c537ffb9b4aff61115b83a78b}{snake\+\_\+body\+\_\+sprites}}
+\item 
+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_game_state_afd4929ca5c2f4b7850f9c04046dfd069}{fruit\+\_\+sprites}}
+\item 
+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_game_state_a9f224bd71e9669b6da714a71f8c54823}{floor\+\_\+tiles\+\_\+sprite}}
+\item 
+int \mbox{\hyperlink{struct_game_state_a3eb3578ded110aa310b73e57f78ecd6a}{frame\+\_\+counter}}
+\item 
+bool \mbox{\hyperlink{struct_game_state_a36652dcdb6e4fcc491b10153b66bd3e8}{fruit\+\_\+eaten}}
+\item 
+int \mbox{\hyperlink{struct_game_state_a31bdf2f4877a7ed9191eee57639d2c6e}{fruit\+\_\+x}}
+\item 
+int \mbox{\hyperlink{struct_game_state_a886e59b2d99c8f278bf3ec8f58415982}{fruit\+\_\+y}}
+\item 
+int \mbox{\hyperlink{struct_game_state_a3bf063dc139f474f7cbcebd17d817d3b}{fruit\+\_\+color}}
+\item 
+int \mbox{\hyperlink{struct_game_state_a882900f7bd3c6af6bec05cb32c9fb047}{fps}}
+\item 
+int \mbox{\hyperlink{struct_game_state_a0dfc0a1d78577160646acae8a1f81a51}{score}}
+\item 
+int \mbox{\hyperlink{struct_game_state_a614c59f66e098eb156d4552efa4ed292}{direction}}
+\item 
+long \mbox{\hyperlink{struct_game_state_a49624eb215dbf82800086d1cdfadfe61}{start\+\_\+time}}
+\item 
+bool \mbox{\hyperlink{struct_game_state_a68c3ae097ea3e8a4b61e4812280eadb0}{new\+\_\+high\+\_\+score}}
+\item 
+bool \mbox{\hyperlink{struct_game_state_acd86c056832e34dd6d669c99b607036f}{paused}}
+\item 
+bool \mbox{\hyperlink{struct_game_state_a70ef348c815b591339ab0ac4919f875d}{over}}
+\item 
+bool \mbox{\hyperlink{struct_game_state_a5528ecb54b0b1cfd4b75640f9078acda}{exited}}
+\item 
+bool \mbox{\hyperlink{struct_game_state_ac54555d78a1b1efce717d04d77b3ab34}{started}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_game_state_a35a180ae78ff84794db9e9e3dd9016d6}\label{struct_game_state_a35a180ae78ff84794db9e9e3dd9016d6} 
+\index{GameState@{GameState}!buffer@{buffer}}
+\index{buffer@{buffer}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily BITMAP\texorpdfstring{$\ast$}{*} Game\+State\+::buffer}
+
+\Hypertarget{struct_game_state_a614c59f66e098eb156d4552efa4ed292}\label{struct_game_state_a614c59f66e098eb156d4552efa4ed292} 
+\index{GameState@{GameState}!direction@{direction}}
+\index{direction@{direction}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{direction}{direction}}
+{\footnotesize\ttfamily int Game\+State\+::direction}
+
+\Hypertarget{struct_game_state_a5528ecb54b0b1cfd4b75640f9078acda}\label{struct_game_state_a5528ecb54b0b1cfd4b75640f9078acda} 
+\index{GameState@{GameState}!exited@{exited}}
+\index{exited@{exited}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{exited}{exited}}
+{\footnotesize\ttfamily bool Game\+State\+::exited}
+
+\Hypertarget{struct_game_state_a2747457de0fdf125a3ffc8c7f5f54a8d}\label{struct_game_state_a2747457de0fdf125a3ffc8c7f5f54a8d} 
+\index{GameState@{GameState}!floor\_sprite@{floor\_sprite}}
+\index{floor\_sprite@{floor\_sprite}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{floor\_sprite}{floor\_sprite}}
+{\footnotesize\ttfamily BITMAP\texorpdfstring{$\ast$}{*} Game\+State\+::floor\+\_\+sprite}
+
+\Hypertarget{struct_game_state_a9f224bd71e9669b6da714a71f8c54823}\label{struct_game_state_a9f224bd71e9669b6da714a71f8c54823} 
+\index{GameState@{GameState}!floor\_tiles\_sprite@{floor\_tiles\_sprite}}
+\index{floor\_tiles\_sprite@{floor\_tiles\_sprite}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{floor\_tiles\_sprite}{floor\_tiles\_sprite}}
+{\footnotesize\ttfamily BITMAP\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Game\+State\+::floor\+\_\+tiles\+\_\+sprite}
+
+\Hypertarget{struct_game_state_a882900f7bd3c6af6bec05cb32c9fb047}\label{struct_game_state_a882900f7bd3c6af6bec05cb32c9fb047} 
+\index{GameState@{GameState}!fps@{fps}}
+\index{fps@{fps}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{fps}{fps}}
+{\footnotesize\ttfamily int Game\+State\+::fps}
+
+\Hypertarget{struct_game_state_a3eb3578ded110aa310b73e57f78ecd6a}\label{struct_game_state_a3eb3578ded110aa310b73e57f78ecd6a} 
+\index{GameState@{GameState}!frame\_counter@{frame\_counter}}
+\index{frame\_counter@{frame\_counter}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{frame\_counter}{frame\_counter}}
+{\footnotesize\ttfamily int Game\+State\+::frame\+\_\+counter}
+
+\Hypertarget{struct_game_state_a3bf063dc139f474f7cbcebd17d817d3b}\label{struct_game_state_a3bf063dc139f474f7cbcebd17d817d3b} 
+\index{GameState@{GameState}!fruit\_color@{fruit\_color}}
+\index{fruit\_color@{fruit\_color}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{fruit\_color}{fruit\_color}}
+{\footnotesize\ttfamily int Game\+State\+::fruit\+\_\+color}
+
+\Hypertarget{struct_game_state_a36652dcdb6e4fcc491b10153b66bd3e8}\label{struct_game_state_a36652dcdb6e4fcc491b10153b66bd3e8} 
+\index{GameState@{GameState}!fruit\_eaten@{fruit\_eaten}}
+\index{fruit\_eaten@{fruit\_eaten}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{fruit\_eaten}{fruit\_eaten}}
+{\footnotesize\ttfamily bool Game\+State\+::fruit\+\_\+eaten}
+
+\Hypertarget{struct_game_state_afd4929ca5c2f4b7850f9c04046dfd069}\label{struct_game_state_afd4929ca5c2f4b7850f9c04046dfd069} 
+\index{GameState@{GameState}!fruit\_sprites@{fruit\_sprites}}
+\index{fruit\_sprites@{fruit\_sprites}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{fruit\_sprites}{fruit\_sprites}}
+{\footnotesize\ttfamily BITMAP\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Game\+State\+::fruit\+\_\+sprites}
+
+\Hypertarget{struct_game_state_a31bdf2f4877a7ed9191eee57639d2c6e}\label{struct_game_state_a31bdf2f4877a7ed9191eee57639d2c6e} 
+\index{GameState@{GameState}!fruit\_x@{fruit\_x}}
+\index{fruit\_x@{fruit\_x}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{fruit\_x}{fruit\_x}}
+{\footnotesize\ttfamily int Game\+State\+::fruit\+\_\+x}
+
+\Hypertarget{struct_game_state_a886e59b2d99c8f278bf3ec8f58415982}\label{struct_game_state_a886e59b2d99c8f278bf3ec8f58415982} 
+\index{GameState@{GameState}!fruit\_y@{fruit\_y}}
+\index{fruit\_y@{fruit\_y}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{fruit\_y}{fruit\_y}}
+{\footnotesize\ttfamily int Game\+State\+::fruit\+\_\+y}
+
+\Hypertarget{struct_game_state_a68c3ae097ea3e8a4b61e4812280eadb0}\label{struct_game_state_a68c3ae097ea3e8a4b61e4812280eadb0} 
+\index{GameState@{GameState}!new\_high\_score@{new\_high\_score}}
+\index{new\_high\_score@{new\_high\_score}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{new\_high\_score}{new\_high\_score}}
+{\footnotesize\ttfamily bool Game\+State\+::new\+\_\+high\+\_\+score}
+
+\Hypertarget{struct_game_state_a70ef348c815b591339ab0ac4919f875d}\label{struct_game_state_a70ef348c815b591339ab0ac4919f875d} 
+\index{GameState@{GameState}!over@{over}}
+\index{over@{over}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{over}{over}}
+{\footnotesize\ttfamily bool Game\+State\+::over}
+
+\Hypertarget{struct_game_state_acd86c056832e34dd6d669c99b607036f}\label{struct_game_state_acd86c056832e34dd6d669c99b607036f} 
+\index{GameState@{GameState}!paused@{paused}}
+\index{paused@{paused}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{paused}{paused}}
+{\footnotesize\ttfamily bool Game\+State\+::paused}
+
+\Hypertarget{struct_game_state_a0dfc0a1d78577160646acae8a1f81a51}\label{struct_game_state_a0dfc0a1d78577160646acae8a1f81a51} 
+\index{GameState@{GameState}!score@{score}}
+\index{score@{score}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily int Game\+State\+::score}
+
+\Hypertarget{struct_game_state_a9f9ca01c537ffb9b4aff61115b83a78b}\label{struct_game_state_a9f9ca01c537ffb9b4aff61115b83a78b} 
+\index{GameState@{GameState}!snake\_body\_sprites@{snake\_body\_sprites}}
+\index{snake\_body\_sprites@{snake\_body\_sprites}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{snake\_body\_sprites}{snake\_body\_sprites}}
+{\footnotesize\ttfamily BITMAP\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Game\+State\+::snake\+\_\+body\+\_\+sprites}
+
+\Hypertarget{struct_game_state_ab184be951afda0173ea3bbf7409894d5}\label{struct_game_state_ab184be951afda0173ea3bbf7409894d5} 
+\index{GameState@{GameState}!snake\_font@{snake\_font}}
+\index{snake\_font@{snake\_font}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{snake\_font}{snake\_font}}
+{\footnotesize\ttfamily FONT\texorpdfstring{$\ast$}{*} Game\+State\+::snake\+\_\+font}
+
+\Hypertarget{struct_game_state_a883b459b02d0a6e9b90612af1dafa4a2}\label{struct_game_state_a883b459b02d0a6e9b90612af1dafa4a2} 
+\index{GameState@{GameState}!snake\_head@{snake\_head}}
+\index{snake\_head@{snake\_head}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{snake\_head}{snake\_head}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_block}{Block}}\texorpdfstring{$\ast$}{*} Game\+State\+::snake\+\_\+head}
+
+\Hypertarget{struct_game_state_ad2f853fbe3ca2137dac7f4934b901863}\label{struct_game_state_ad2f853fbe3ca2137dac7f4934b901863} 
+\index{GameState@{GameState}!snake\_head\_sprites@{snake\_head\_sprites}}
+\index{snake\_head\_sprites@{snake\_head\_sprites}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{snake\_head\_sprites}{snake\_head\_sprites}}
+{\footnotesize\ttfamily BITMAP\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Game\+State\+::snake\+\_\+head\+\_\+sprites}
+
+\Hypertarget{struct_game_state_a385814973080176ebd1d43c6f53825bc}\label{struct_game_state_a385814973080176ebd1d43c6f53825bc} 
+\index{GameState@{GameState}!sounds@{sounds}}
+\index{sounds@{sounds}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{sounds}{sounds}}
+{\footnotesize\ttfamily SAMPLE\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Game\+State\+::sounds}
+
+\Hypertarget{struct_game_state_a49624eb215dbf82800086d1cdfadfe61}\label{struct_game_state_a49624eb215dbf82800086d1cdfadfe61} 
+\index{GameState@{GameState}!start\_time@{start\_time}}
+\index{start\_time@{start\_time}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{start\_time}{start\_time}}
+{\footnotesize\ttfamily long Game\+State\+::start\+\_\+time}
+
+\Hypertarget{struct_game_state_ac54555d78a1b1efce717d04d77b3ab34}\label{struct_game_state_ac54555d78a1b1efce717d04d77b3ab34} 
+\index{GameState@{GameState}!started@{started}}
+\index{started@{started}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{started}{started}}
+{\footnotesize\ttfamily bool Game\+State\+::started}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+attractions/snake/\mbox{\hyperlink{snake_8h}{snake.\+h}}\end{DoxyCompactItemize}

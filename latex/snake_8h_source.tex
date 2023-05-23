@@ -1,0 +1,129 @@
+\doxysection{snake.\+h}
+\hypertarget{snake_8h_source}{}\label{snake_8h_source}\index{attractions/snake/snake.h@{attractions/snake/snake.h}}
+\mbox{\hyperlink{snake_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SNAKE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SNAKE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{/*\ CONSTANTES\ */}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ SCREEN\_WIDTH\ 800}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ SCREEN\_HEIGHT\ 608}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ BLOCK\_SIZE\ 32}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ SPRITE\_SIZE\ 16}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ STRETCHED\_SPRITE\_SIZE\ 32}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ INITIAL\_FPS\ 10}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ MAX\_FPS\ 5\ +\ INITIAL\_FPS}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ SCORE\_PER\_FPS\ 5}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ MIN\_FRUIT\_DISTANCE\_FROM\_BORDER\ 2\ *\ BLOCK\_SIZE}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ MIN\_SNAKE\_SPAWN\_DISTANCE\_FROM\_BORDER\ 10\ *\ BLOCK\_SIZE}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ SNAKE\_INITIAL\_LENGTH\ 10}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{/*\ DIRECTIONS\ DANS\ LE\ PLAN*/}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ DIRECTION\_RIGHT\ 0}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ DIRECTION\_DOWN\ 1}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ DIRECTION\_LEFT\ 2}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ DIRECTION\_UP\ 3}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{/*\ DIRECTIONS\ DES\ SPRITES*/}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ SPRITE\_TOP\_LEFT\ 2\ \ \ \ \ \ }\textcolor{comment}{//\ 2}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ SPRITE\_TOP\_RIGHT\ 3\ \ \ \ \ }\textcolor{comment}{//\ 3}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ SPRITE\_BOTTOM\_LEFT\ 4\ \ \ }\textcolor{comment}{//\ 4}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ SPRITE\_BOTTOM\_RIGHT\ 5\ \ }\textcolor{comment}{//\ 5}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ SPRITE\_LEFT\_TOP\ SPRITE\_TOP\_LEFT}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SPRITE\_LEFT\_BOTTOM\ SPRITE\_BOTTOM\_LEFT}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SPRITE\_RIGHT\_TOP\ SPRITE\_TOP\_RIGHT}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ SPRITE\_RIGHT\_BOTTOM\ SPRITE\_BOTTOM\_RIGHT}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{/*\ FICHIERS\ */}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ SNAKE\_END\_SAVE\_FILE\ "{}attractions/snake/end.txt"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ SNAKE\_BEST\_SAVE\_FILE\ "{}attractions/snake/best.txt"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ SNAKE\_FONT\_FILE\ "{}attractions/snake/assets/font.pcx"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ SNAKE\_BITMAP\_FILE\ "{}attractions/snake/assets/sprites.bmp"{}}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{/*\ SONS\ */}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ SNAKE\_START\_SOUND\_FILE\ "{}attractions/snake/assets/sounds/start.wav"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ SNAKE\_EATING\_SOUND\_FILE\ "{}attractions/snake/assets/sounds/eating.wav"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ SNAKE\_SPEED\_INCREASE\_SOUND\_FILE\ "{}attractions/snake/assets/sounds/speed\_increase.wav"{}}\ \ \textcolor{comment}{//\ 2}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ SNAKE\_HIGH\_SCORE\_SOUND\_FILE\ "{}attractions/snake/assets/sounds/high\_score.wav"{}}\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ SNAKE\_GAME\_OVER\_SOUND\_FILE\ "{}attractions/snake/assets/sounds/game\_over.wav"{}}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ SOUND\_AMOUNT\ 5}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{/*\ COULEURS\ */}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ SNAKE\_HEAD\_COLOR\ makecol(0,\ 0,\ 255)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ SNAKE\_COLOR\ makecol(0,\ 255,\ 0)\ \ }\textcolor{comment}{//\ Light\ green}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{/*\ STRUCTURES\ */}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_block}{Block}}\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_block_a13d0a6d225233353862fa5adcbadf661}{x}};}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_block_a9328d6b6fcc9f9c019d091d87ceda41c}{y}};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_block_adff0f8b437ce8fb32b717682e89dfef5}{sprite\_id}};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_block}{Block}}\ *\mbox{\hyperlink{struct_block_a7272602169ce97fd42027544e185b6ba}{next}};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_block}{Block}}\ *\mbox{\hyperlink{struct_block_a71d9782babbacf3dbc3d837e74c33b00}{prev}};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \}\ \mbox{\hyperlink{struct_block}{Block}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_game_state}{GameState}}\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{struct_block}{Block}}\ *\mbox{\hyperlink{struct_game_state_a883b459b02d0a6e9b90612af1dafa4a2}{snake\_head}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ FONT\ *\mbox{\hyperlink{struct_game_state_ab184be951afda0173ea3bbf7409894d5}{snake\_font}};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ SAMPLE\ **\mbox{\hyperlink{struct_game_state_a385814973080176ebd1d43c6f53825bc}{sounds}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ BITMAP\ *\mbox{\hyperlink{struct_game_state_a35a180ae78ff84794db9e9e3dd9016d6}{buffer}};}
+\DoxyCodeLine{00071\ \ \ \ \ BITMAP\ *\mbox{\hyperlink{struct_game_state_a2747457de0fdf125a3ffc8c7f5f54a8d}{floor\_sprite}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ BITMAP\ ***\mbox{\hyperlink{struct_game_state_ad2f853fbe3ca2137dac7f4934b901863}{snake\_head\_sprites}};}
+\DoxyCodeLine{00074\ \ \ \ \ BITMAP\ **\mbox{\hyperlink{struct_game_state_a9f9ca01c537ffb9b4aff61115b83a78b}{snake\_body\_sprites}};}
+\DoxyCodeLine{00075\ \ \ \ \ BITMAP\ **\mbox{\hyperlink{struct_game_state_afd4929ca5c2f4b7850f9c04046dfd069}{fruit\_sprites}};}
+\DoxyCodeLine{00076\ \ \ \ \ BITMAP\ **\mbox{\hyperlink{struct_game_state_a9f224bd71e9669b6da714a71f8c54823}{floor\_tiles\_sprite}};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_game_state_a3eb3578ded110aa310b73e57f78ecd6a}{frame\_counter}};\ \ \textcolor{comment}{//\ Compteur\ pour\ savoir\ quand\ changer\ d'image}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_game_state_a36652dcdb6e4fcc491b10153b66bd3e8}{fruit\_eaten}};\ \ \ \textcolor{comment}{//\ Si\ le\ fruit\ a\ été\ mangé}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_game_state_a31bdf2f4877a7ed9191eee57639d2c6e}{fruit\_x}};}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_game_state_a886e59b2d99c8f278bf3ec8f58415982}{fruit\_y}};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_game_state_a3bf063dc139f474f7cbcebd17d817d3b}{fruit\_color}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_game_state_a882900f7bd3c6af6bec05cb32c9fb047}{fps}};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_game_state_a0dfc0a1d78577160646acae8a1f81a51}{score}};}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_game_state_a614c59f66e098eb156d4552efa4ed292}{direction}};}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{struct_game_state_a49624eb215dbf82800086d1cdfadfe61}{start\_time}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_game_state_a68c3ae097ea3e8a4b61e4812280eadb0}{new\_high\_score}};}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_game_state_acd86c056832e34dd6d669c99b607036f}{paused}};}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_game_state_a70ef348c815b591339ab0ac4919f875d}{over}};}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_game_state_a5528ecb54b0b1cfd4b75640f9078acda}{exited}};}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_game_state_ac54555d78a1b1efce717d04d77b3ab34}{started}};}
+\DoxyCodeLine{00095\ \}\ \mbox{\hyperlink{struct_game_state}{GameState}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{/*\ FONCTIONS\ */}}
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_ac7a72418a236715be812b1b2496bda36}{add\_block}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00099\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_a3be5aa099f17a3e55005fe597c9c1c81}{init\_game}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game);}
+\DoxyCodeLine{00100\ BITMAP\ **\mbox{\hyperlink{snake_8h_a8be22dd859bfd11888ab1eb6f567e2cf}{init\_bitmap\_snake\_body}}(BITMAP\ *spritesheet);}
+\DoxyCodeLine{00101\ BITMAP\ ***\mbox{\hyperlink{snake_8h_a77583199422700523d77bf8faa8bb460}{init\_bitmap\_snake\_head}}(BITMAP\ *spritesheet);}
+\DoxyCodeLine{00102\ BITMAP\ **\mbox{\hyperlink{snake_8h_af0e1e68632a1022b2c6212edac8d1bbb}{init\_bitmap\_fruit}}(BITMAP\ *spritesheet);}
+\DoxyCodeLine{00103\ BITMAP\ **\mbox{\hyperlink{snake_8h_a946066f31d820767a4c8a0f8a50c4841}{init\_bitmap\_floor}}(BITMAP\ *spritesheet);}
+\DoxyCodeLine{00104\ BITMAP\ *\mbox{\hyperlink{snake_8h_acfbe90c54d57214375964b5ad230763a}{generate\_floor\_sprite}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{snake_8h_ad338f231ac0a9e0d3ed47069fc70c452}{get\_high\_score}}();}
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_a8a6daf47b3012e18a2ac37d6a89bccb9}{draw\_game}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game);}
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_ab6d41ca573a207e22be216547afdbd63}{save\_score}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game);}
+\DoxyCodeLine{00109\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_a879616ec2a27a4726ac211d01acec510}{reset\_game}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game);}
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_a5890e3baf5a303cac858107ad4c1ea02}{game\_over\_screen}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game);}
+\DoxyCodeLine{00111\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_aeb1b5cfbced2f3561887d269cd6230dc}{draw\_fruit}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00112\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_a043bab3aebb77ca901157a7a64853751}{handle\_input}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game);}
+\DoxyCodeLine{00113\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_ad61f84d47c211a68c6f3a8ac42f3e370}{check\_collisions}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game);}
+\DoxyCodeLine{00114\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_aa15668e1f8bf757101e64735de3f0b0b}{free\_memory}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game);}
+\DoxyCodeLine{00115\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_a1e6681790a49620047f930db98566679}{assign\_sprite}}(\mbox{\hyperlink{struct_block}{Block}}\ *block);}
+\DoxyCodeLine{00116\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{snake_8h_a958da102846296b8351eb56a927a642c}{get\_tail\_orientation}}(\mbox{\hyperlink{struct_block}{Block}}\ *block);}
+\DoxyCodeLine{00117\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{snake_8h_a998290f5ba3f2128638310a54b1b64fc}{get\_corner\_orientation}}(\mbox{\hyperlink{struct_block}{Block}}\ *block);}
+\DoxyCodeLine{00118\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_afabc004fbf5121e961a85c05c4a59c8c}{print\_debug}}(\textcolor{keywordtype}{char}\ *message);}
+\DoxyCodeLine{00119\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_a9651682fae9ced19faefbb1e2448f7bc}{move\_snake}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game);}
+\DoxyCodeLine{00120\ SAMPLE\ **\mbox{\hyperlink{snake_8h_a057c649bd5fa41f33dfe1198625bab77}{init\_sounds}}();}
+\DoxyCodeLine{00121\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_a681f4354bf592de2cf93760d5d2c6d46}{play\_sound}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *game,\ \textcolor{keywordtype}{int}\ sound\_id);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

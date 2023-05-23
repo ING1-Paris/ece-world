@@ -1,0 +1,27 @@
+var snake_8c =
+[
+    [ "add_block", "snake_8c.html#ac7a72418a236715be812b1b2496bda36", null ],
+    [ "assign_sprite", "snake_8c.html#a1e6681790a49620047f930db98566679", null ],
+    [ "check_collisions", "snake_8c.html#ad61f84d47c211a68c6f3a8ac42f3e370", null ],
+    [ "draw_fruit", "snake_8c.html#aeb1b5cfbced2f3561887d269cd6230dc", null ],
+    [ "draw_game", "snake_8c.html#a8a6daf47b3012e18a2ac37d6a89bccb9", null ],
+    [ "free_memory", "snake_8c.html#aa15668e1f8bf757101e64735de3f0b0b", null ],
+    [ "game_over_screen", "snake_8c.html#a5890e3baf5a303cac858107ad4c1ea02", null ],
+    [ "generate_floor_sprite", "snake_8c.html#acfbe90c54d57214375964b5ad230763a", null ],
+    [ "get_corner_orientation", "snake_8c.html#a998290f5ba3f2128638310a54b1b64fc", null ],
+    [ "get_high_score", "snake_8c.html#ad338f231ac0a9e0d3ed47069fc70c452", null ],
+    [ "get_tail_orientation", "snake_8c.html#a958da102846296b8351eb56a927a642c", null ],
+    [ "handle_input", "snake_8c.html#a043bab3aebb77ca901157a7a64853751", null ],
+    [ "init_bitmap_floor", "snake_8c.html#a946066f31d820767a4c8a0f8a50c4841", null ],
+    [ "init_bitmap_fruit", "snake_8c.html#af0e1e68632a1022b2c6212edac8d1bbb", null ],
+    [ "init_bitmap_snake_body", "snake_8c.html#a8be22dd859bfd11888ab1eb6f567e2cf", null ],
+    [ "init_bitmap_snake_head", "snake_8c.html#a77583199422700523d77bf8faa8bb460", null ],
+    [ "init_game", "snake_8c.html#a3be5aa099f17a3e55005fe597c9c1c81", null ],
+    [ "init_sounds", "snake_8c.html#a057c649bd5fa41f33dfe1198625bab77", null ],
+    [ "main", "snake_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4", null ],
+    [ "move_snake", "snake_8c.html#a9651682fae9ced19faefbb1e2448f7bc", null ],
+    [ "play_sound", "snake_8c.html#a681f4354bf592de2cf93760d5d2c6d46", null ],
+    [ "print_debug", "snake_8c.html#afabc004fbf5121e961a85c05c4a59c8c", null ],
+    [ "reset_game", "snake_8c.html#a879616ec2a27a4726ac211d01acec510", null ],
+    [ "save_score", "snake_8c.html#ab6d41ca573a207e22be216547afdbd63", null ]
+];

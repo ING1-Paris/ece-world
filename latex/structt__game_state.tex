@@ -1,0 +1,147 @@
+\doxysection{t\+\_\+game\+State Struct Reference}
+\hypertarget{structt__game_state}{}\label{structt__game_state}\index{t\_gameState@{t\_gameState}}
+
+
+{\ttfamily \#include $<$main.\+h$>$}
+
+
+
+Collaboration diagram for t\+\_\+game\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{structt__game_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structt__game_state_a743269680e86800462c89b3bdfd31698}{player\+\_\+speed}}
+\item 
+int \mbox{\hyperlink{structt__game_state_af9d4eb7d78834bdcc6074a22f6d65959}{fps}}
+\item 
+bool \mbox{\hyperlink{structt__game_state_afa4e9a77db0493e5b04e6e58d0e34325}{PRESSED\+\_\+\+MISC\+\_\+\+KEYS}} \mbox{[}\mbox{\hyperlink{main_8h_a380fc0ea01a0b867ed7dad77802d12a9}{MISC\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{structt__game_state_a6b03abb9705576ee921e28c6c515b0fc}{debug}}
+\item 
+bool \mbox{\hyperlink{structt__game_state_aaed226e06f0aeab3b4786b9dd3734262}{over}}
+\item 
+bool \mbox{\hyperlink{structt__game_state_a99107cc563de5f65dc0852a8748a63b5}{attraction\+\_\+is\+\_\+running}}
+\item 
+bool \mbox{\hyperlink{structt__game_state_a330fa305a6dd14470dce8e16a3fbfd31}{attraction\+\_\+is\+\_\+over}}
+\item 
+int \mbox{\hyperlink{structt__game_state_aa6c74a962ce30718c90e990900862097}{attraction\+\_\+index}}
+\item 
+int \mbox{\hyperlink{structt__game_state_a0472f0fdbbb77454e7b421a1e61f6ecf}{attraction\+\_\+winner}}
+\item 
+int \mbox{\hyperlink{structt__game_state_a8d6205412dd47b9bc817f059ad87905e}{attraction\+\_\+winner\+\_\+2}}
+\item 
+float \mbox{\hyperlink{structt__game_state_a99bd89791f6316bfc26fc6c0497209a5}{attraction\+\_\+winner\+\_\+score}}
+\item 
+float \mbox{\hyperlink{structt__game_state_afce10845b9dcec669b669bc3ecec680e}{attraction\+\_\+winner\+\_\+2\+\_\+score}}
+\item 
+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structt__game_state_a7cb22f392c83ba1fa76970d9cdf51cea}{buffer}}
+\item 
+\mbox{\hyperlink{main_8h_a813965931906aa33af71cb59bb423b62}{Player}} \mbox{\hyperlink{structt__game_state_a5ab57430b5d80013a40e1d93c58ec84b}{players}} \mbox{[}\mbox{\hyperlink{main_8h_a71f9b9d919c8b7b4c1adc1b1eea49393}{PLAYER\+\_\+\+AMOUNT}}\mbox{]}
+\item 
+\mbox{\hyperlink{main_8h_ad1bda5279904083139440f9b1fafb8ac}{Attraction}} \mbox{\hyperlink{structt__game_state_a78da26311fc53ad38aab51943a0c534d}{attractions}} \mbox{[}\mbox{\hyperlink{main_8h_a88a2fb3da3452d0a364f95e415d719a1}{ATTRACTIONS\+\_\+\+AMOUNT}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structt__game_state_aa6c74a962ce30718c90e990900862097}\label{structt__game_state_aa6c74a962ce30718c90e990900862097} 
+\index{t\_gameState@{t\_gameState}!attraction\_index@{attraction\_index}}
+\index{attraction\_index@{attraction\_index}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{attraction\_index}{attraction\_index}}
+{\footnotesize\ttfamily int t\+\_\+game\+State\+::attraction\+\_\+index}
+
+\Hypertarget{structt__game_state_a330fa305a6dd14470dce8e16a3fbfd31}\label{structt__game_state_a330fa305a6dd14470dce8e16a3fbfd31} 
+\index{t\_gameState@{t\_gameState}!attraction\_is\_over@{attraction\_is\_over}}
+\index{attraction\_is\_over@{attraction\_is\_over}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{attraction\_is\_over}{attraction\_is\_over}}
+{\footnotesize\ttfamily bool t\+\_\+game\+State\+::attraction\+\_\+is\+\_\+over}
+
+\Hypertarget{structt__game_state_a99107cc563de5f65dc0852a8748a63b5}\label{structt__game_state_a99107cc563de5f65dc0852a8748a63b5} 
+\index{t\_gameState@{t\_gameState}!attraction\_is\_running@{attraction\_is\_running}}
+\index{attraction\_is\_running@{attraction\_is\_running}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{attraction\_is\_running}{attraction\_is\_running}}
+{\footnotesize\ttfamily bool t\+\_\+game\+State\+::attraction\+\_\+is\+\_\+running}
+
+\Hypertarget{structt__game_state_a0472f0fdbbb77454e7b421a1e61f6ecf}\label{structt__game_state_a0472f0fdbbb77454e7b421a1e61f6ecf} 
+\index{t\_gameState@{t\_gameState}!attraction\_winner@{attraction\_winner}}
+\index{attraction\_winner@{attraction\_winner}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{attraction\_winner}{attraction\_winner}}
+{\footnotesize\ttfamily int t\+\_\+game\+State\+::attraction\+\_\+winner}
+
+\Hypertarget{structt__game_state_a8d6205412dd47b9bc817f059ad87905e}\label{structt__game_state_a8d6205412dd47b9bc817f059ad87905e} 
+\index{t\_gameState@{t\_gameState}!attraction\_winner\_2@{attraction\_winner\_2}}
+\index{attraction\_winner\_2@{attraction\_winner\_2}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{attraction\_winner\_2}{attraction\_winner\_2}}
+{\footnotesize\ttfamily int t\+\_\+game\+State\+::attraction\+\_\+winner\+\_\+2}
+
+\Hypertarget{structt__game_state_afce10845b9dcec669b669bc3ecec680e}\label{structt__game_state_afce10845b9dcec669b669bc3ecec680e} 
+\index{t\_gameState@{t\_gameState}!attraction\_winner\_2\_score@{attraction\_winner\_2\_score}}
+\index{attraction\_winner\_2\_score@{attraction\_winner\_2\_score}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{attraction\_winner\_2\_score}{attraction\_winner\_2\_score}}
+{\footnotesize\ttfamily float t\+\_\+game\+State\+::attraction\+\_\+winner\+\_\+2\+\_\+score}
+
+\Hypertarget{structt__game_state_a99bd89791f6316bfc26fc6c0497209a5}\label{structt__game_state_a99bd89791f6316bfc26fc6c0497209a5} 
+\index{t\_gameState@{t\_gameState}!attraction\_winner\_score@{attraction\_winner\_score}}
+\index{attraction\_winner\_score@{attraction\_winner\_score}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{attraction\_winner\_score}{attraction\_winner\_score}}
+{\footnotesize\ttfamily float t\+\_\+game\+State\+::attraction\+\_\+winner\+\_\+score}
+
+\Hypertarget{structt__game_state_a78da26311fc53ad38aab51943a0c534d}\label{structt__game_state_a78da26311fc53ad38aab51943a0c534d} 
+\index{t\_gameState@{t\_gameState}!attractions@{attractions}}
+\index{attractions@{attractions}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{attractions}{attractions}}
+{\footnotesize\ttfamily \mbox{\hyperlink{main_8h_ad1bda5279904083139440f9b1fafb8ac}{Attraction}} t\+\_\+game\+State\+::attractions\mbox{[}\mbox{\hyperlink{main_8h_a88a2fb3da3452d0a364f95e415d719a1}{ATTRACTIONS\+\_\+\+AMOUNT}}\mbox{]}}
+
+\Hypertarget{structt__game_state_a7cb22f392c83ba1fa76970d9cdf51cea}\label{structt__game_state_a7cb22f392c83ba1fa76970d9cdf51cea} 
+\index{t\_gameState@{t\_gameState}!buffer@{buffer}}
+\index{buffer@{buffer}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily BITMAP\texorpdfstring{$\ast$}{*} t\+\_\+game\+State\+::buffer}
+
+\Hypertarget{structt__game_state_a6b03abb9705576ee921e28c6c515b0fc}\label{structt__game_state_a6b03abb9705576ee921e28c6c515b0fc} 
+\index{t\_gameState@{t\_gameState}!debug@{debug}}
+\index{debug@{debug}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily bool t\+\_\+game\+State\+::debug}
+
+\Hypertarget{structt__game_state_af9d4eb7d78834bdcc6074a22f6d65959}\label{structt__game_state_af9d4eb7d78834bdcc6074a22f6d65959} 
+\index{t\_gameState@{t\_gameState}!fps@{fps}}
+\index{fps@{fps}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{fps}{fps}}
+{\footnotesize\ttfamily int t\+\_\+game\+State\+::fps}
+
+\Hypertarget{structt__game_state_aaed226e06f0aeab3b4786b9dd3734262}\label{structt__game_state_aaed226e06f0aeab3b4786b9dd3734262} 
+\index{t\_gameState@{t\_gameState}!over@{over}}
+\index{over@{over}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{over}{over}}
+{\footnotesize\ttfamily bool t\+\_\+game\+State\+::over}
+
+\Hypertarget{structt__game_state_a743269680e86800462c89b3bdfd31698}\label{structt__game_state_a743269680e86800462c89b3bdfd31698} 
+\index{t\_gameState@{t\_gameState}!player\_speed@{player\_speed}}
+\index{player\_speed@{player\_speed}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{player\_speed}{player\_speed}}
+{\footnotesize\ttfamily int t\+\_\+game\+State\+::player\+\_\+speed}
+
+\Hypertarget{structt__game_state_a5ab57430b5d80013a40e1d93c58ec84b}\label{structt__game_state_a5ab57430b5d80013a40e1d93c58ec84b} 
+\index{t\_gameState@{t\_gameState}!players@{players}}
+\index{players@{players}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{players}{players}}
+{\footnotesize\ttfamily \mbox{\hyperlink{main_8h_a813965931906aa33af71cb59bb423b62}{Player}} t\+\_\+game\+State\+::players\mbox{[}\mbox{\hyperlink{main_8h_a71f9b9d919c8b7b4c1adc1b1eea49393}{PLAYER\+\_\+\+AMOUNT}}\mbox{]}}
+
+\Hypertarget{structt__game_state_afa4e9a77db0493e5b04e6e58d0e34325}\label{structt__game_state_afa4e9a77db0493e5b04e6e58d0e34325} 
+\index{t\_gameState@{t\_gameState}!PRESSED\_MISC\_KEYS@{PRESSED\_MISC\_KEYS}}
+\index{PRESSED\_MISC\_KEYS@{PRESSED\_MISC\_KEYS}!t\_gameState@{t\_gameState}}
+\doxysubsubsection{\texorpdfstring{PRESSED\_MISC\_KEYS}{PRESSED\_MISC\_KEYS}}
+{\footnotesize\ttfamily bool t\+\_\+game\+State\+::\+PRESSED\+\_\+\+MISC\+\_\+\+KEYS\mbox{[}\mbox{\hyperlink{main_8h_a380fc0ea01a0b867ed7dad77802d12a9}{MISC\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{main_8h}{main.\+h}}\end{DoxyCompactItemize}
