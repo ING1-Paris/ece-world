@@ -6,24 +6,21 @@ void init_bitmap(GameState* game) {
     for (int i = 0; i < ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT; i++) {
         char path[100];
         // allegro_message("%s", game->attractions[i].name);
-        sprintf(path, "assets/sprites/%s.bmp", game->attractions[i].name);
-        game->attractions_bitmaps[i] = load_bitmap(path, NULL);
+        sprintf(path, "assets/sprites/old/%s.bmp", game->attractions[i].name);
+        BITMAP* sprite = load_bitmap(path, NULL);
+        BITMAP* temp = create_sub_bitmap(sprite, 0, 0, ATTRACTION_SPRITES_WIDTH, ATTRACTION_SPRITES_HEIGHT);
+        game->attractions_bitmaps[i] = create_bitmap(ATTRACTION_WIDTH, ATTRACTION_HEIGHT);
+        stretch_blit(temp, game->attractions_bitmaps[i], 0, 0, ATTRACTION_SPRITES_WIDTH, ATTRACTION_SPRITES_HEIGHT, 0, 0, ATTRACTION_WIDTH, ATTRACTION_HEIGHT);
+
         if (!game->attractions_bitmaps[i]) {
             printf("Impossible de charger le bitmap %s\n", path);
             exit(1);
         }
+
+        destroy_bitmap(sprite);
+        destroy_bitmap(temp);
     }
 
-    // Chargement des bitmaps des joueurs
-    for (int i = 0; i < PLAYERS_AMOUNT; i++) {
-        char path[100];
-        sprintf(path, "assets/sprites/player%d.bmp", i + 1);
-        game->player_bitmaps[i] = load_bitmap(path, NULL);
-        if (!game->player_bitmaps[i]) {
-            printf("Impossible de charger le bitmap %s\n", path);
-            exit(1);
-        }
-    }
 
     // Chargement des fonts
     game->font = load_font("assets/font.pcx", NULL, NULL);
@@ -40,8 +37,10 @@ void init_game(GameState* game) {
     game->buffer = buffer;
 
     // Initialisation des variables du jeu
-    game->player_speed = 5;
-    game->debug = false;
+    game->player_speed = 3;
+    game->animation_frame = 0;
+    game->last_frame_time = 0;
+    game->debug_mode = DEBUG_MODE;
     game->over = false;
     game->winner_displayed = false;
     game->stats_displayed = false;
@@ -62,10 +61,18 @@ void init_game(GameState* game) {
     }
 
     // Initialisation des attractions
+    int attraction_spacing_x = 150;
+    int attraction_spacing_y = 150;
+
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 2; j++) {
-            game->attractions[i * 2 + j].x = SCREEN_WIDTH / 2 - ATTRACTION_WIDTH / 2 + (i - 1) * (ATTRACTION_WIDTH + 50);
-            game->attractions[i * 2 + j].y = SCREEN_HEIGHT / 2 - ATTRACTION_HEIGHT / 2 + (j - 1) * (ATTRACTION_HEIGHT + 50);
+            // Ici, on ajoute un décalage supplémentaire basé sur l'espacement défini.
+            game->attractions[i * 2 + j].y = SCREEN_HEIGHT / 2 - ATTRACTION_HEIGHT / 2 + (j - 1) * (ATTRACTION_HEIGHT + attraction_spacing_y) + (j == 1 ? attraction_spacing_y / 2 : 0);
+
+            int attraction_in_row = j == 0 ? 3 : 2;
+
+            // Et ici aussi pour l'axe "x".
+            game->attractions[i * 2 + j].x = (SCREEN_WIDTH - attraction_in_row * (ATTRACTION_WIDTH + attraction_spacing_x)) / 2 + i * (ATTRACTION_WIDTH + (attraction_in_row == 3 ? attraction_spacing_x : attraction_spacing_x * 2));
         }
     }
 
@@ -83,6 +90,8 @@ void init_game(GameState* game) {
         game->attractions[a].width = ATTRACTION_WIDTH;
         game->attractions[a].height = ATTRACTION_HEIGHT;
         game->attractions[a].player_on_amount = 0;
+        game->attractions[a].is_exit = false;
+        game->attractions[a].is_stats = false;
         for (int p = 0; p < PLAYERS_AMOUNT; p++) {
             game->attractions[a].triggered[p] = 0;
         }
@@ -101,6 +110,7 @@ void init_game(GameState* game) {
         game->attractions[s].width = ATTRACTION_WIDTH;
         game->attractions[s].height = ATTRACTION_HEIGHT;
         game->attractions[s].player_on_amount = 0;
+
         for (int p = 0; p < PLAYERS_AMOUNT; p++) {
             game->attractions[s].triggered[p] = 0;
         }
@@ -123,7 +133,7 @@ void init_game(GameState* game) {
 void install_all_allegro() {
     allegro_init();
 
-    debug_fps_timer = current_time();
+    debug_timestamp = current_time();
     if (install_sound(DIGI_NONE, MIDI_NONE, NULL) != 0) {
         allegro_message("Error initializing sound system: %s\n", allegro_error);
         exit(EXIT_FAILURE);
