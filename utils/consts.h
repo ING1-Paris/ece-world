@@ -16,7 +16,7 @@ extern volatile int close_button_pressed;
 // Paramètres fixe duq jeu
 #define PLAYERS_AMOUNT 4
 #define MAX_PLAYERS_AMOUNT 4
-#define TICKETS_AMOUNT 5
+#define TICKETS_AMOUNT 2
 
 // Dimensions de la fenêtre du jeu
 #define SCREEN_WIDTH 1800

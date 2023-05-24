@@ -12,8 +12,10 @@ void players_creation_menu(GameState* game) {
         game->players[i].is_walking = false;
         int pos = 0;
         bool done = game->debug_mode > 0 ? true : false;
-        bool fist_time = true;
         char str[NAME_MAX_LENGTH + 1] = {0};
+        game->debug_mode > 0 ? sprintf(str, "Player %d", i + 1) : 0;
+        game->debug_mode > 0 ? strcpy(game->players[i].name, str) : 0;
+        bool fist_time = true;
         while (!done) {
             if (keypressed()) {
                 int newkey = readkey();

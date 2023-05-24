@@ -5,12 +5,13 @@
 int main() {
     // Initialisation de l'aléatoires
     srand(time(NULL));
+    
 
     // Initialisation d'Allegro
     install_all_allegro();
 
     // Menu
-    start_menu();
+    DEBUG_MODE > 0 ? : start_menu();
 
     // Creatin du jeu
     GameState game;

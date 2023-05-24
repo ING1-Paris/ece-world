@@ -117,10 +117,10 @@ void display(GameState* game) {
     }
 
     if (game->attraction_is_over) {
-        char attraction_is_over_str[100];
-        char winners_are[100];
-        char winners[50];
-        char score_str[100];
+        char attraction_is_over_str[100] = "";
+        char winners_are[50] = "";
+        char winners[50] = "";
+        char score_str[100] = "";
 
         // Petit carré derrère le texte
         set_trans_blender(0, 0, 0, 192);
@@ -130,6 +130,8 @@ void display(GameState* game) {
         drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
 
         sprintf(attraction_is_over_str, "L'attraction %s est terminee !", game->attractions[game->attraction_index].name);
+
+        allegro_message("winner 1 %f winner 2 %f", game->attraction_winner_score, game->attraction_winner_2_score);
 
         if (game->attraction_winner_2 == -1 && game->attraction_winner == -1) {
             sprintf(winners_are, "Tous les joueurs ont perdu !");
@@ -142,7 +144,6 @@ void display(GameState* game) {
         }
 
         if (game->attraction_winner_2_score == -1 && game->attraction_winner_score == -1) {
-            sprintf(score_str, " ");
         } else if (game->attraction_winner_2_score == -1) {
             sprintf(score_str, game->attraction_winner_2_score >= 2 ? "%.f points" : "%.f point", game->attraction_winner_score);
         } else {
@@ -160,8 +161,10 @@ void display(GameState* game) {
         }
         textout_centre_ex(game->buffer, game->font, attraction_is_over_str, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 60, makecol(255, 255, 255), -1);
         textout_centre_ex(game->buffer, game->font, winners_are, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 30, makecol(255, 255, 255), -1);
-        textout_centre_ex(game->buffer, game->font, winners, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, makecol(255, 0, 0), -1);
-        textout_centre_ex(game->buffer, game->font, score_str, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 30, makecol(255, 255, 255), -1);
+        if (game->attraction_winner == -1 && game->attraction_winner_2 == -1) {
+            textout_centre_ex(game->buffer, game->font, winners, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, makecol(255, 0, 0), -1);
+            textout_centre_ex(game->buffer, game->font, score_str, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 30, makecol(255, 255, 255), -1);
+        }
         textout_centre_ex(game->buffer, game->font, "Appuyez sur espace pour continuer", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 60, makecol(156, 220, 100), -1);
     }
 
