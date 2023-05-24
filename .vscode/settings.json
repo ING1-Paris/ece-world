@@ -7,7 +7,7 @@
         "typeinfo": "c",
         "stdlib.h": "c",
         "main.h": "c",
-        "tools.C": "cpp",
+        "tools.c": "c",
         "time.h": "c",
         "const.h": "c",
         "tools.h": "c",
@@ -17,7 +17,8 @@
         "checks.h": "c",
         "init.h": "c",
         "consts.h": "c",
-        "players.h": "c"
+        "players.h": "c",
+        "sprites.h": "c",
+        "start.h": "c"
     },
-    "C_Cpp.clang_format_sortIncludes": false,
 }
