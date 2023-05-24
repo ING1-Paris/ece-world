@@ -3,7 +3,8 @@
 
 #include "../utils/consts.h"
 #include "../utils/structs.h"
+#include "../utils/tools.h"
 
-void start_menu(GameState *game);
+void start_menu();
 
 #endif
