@@ -1,22 +1,6 @@
-// TODO: Changer les BITMAPS des JOUEURS
-// TODO: Ajouter des bmp pour les tickets
-// TODO: Changer les bmps pour les attractions
-// TODO: Ajouter un bmp pour le background
-// TODO: Changer bmp exit et stats
-
 // TODO: Faire le menu stats avec SAVE + READ
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-#include <math.h>
-#include <string.h>
-#include <stdbool.h>
-#include <allegro.h>
-#include <sys/time.h>
-
 #include "main.h"
-
 
 int main() {
     // Initialisation de l'aléatoires
@@ -25,6 +9,9 @@ int main() {
     // Initialisation d'Allegro
     install_all_allegro();
 
+    // Menu
+    start_menu();
+
     // Creatin du jeu
     GameState game;
     init_game(&game);
@@ -32,15 +19,25 @@ int main() {
     // Init Bitmap
     init_bitmap(&game);
 
-    // Menu
-    start_menu(&game);
+    // Load sprites
+    load_idle_sprites(&game);
+    load_walk_sprites(&game);
+    load_background_sprite(&game);
+    load_background_overlay_sprite(&game);
+    load_ticket_sprite(&game);
+    game.debug_hud = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
+    clear_to_color(game.debug_hud, makecol(255, 0, 255));
+
 
     // Players creations menu
     players_creation_menu(&game);
 
-
     // Boucle de jeu principale
     while (!game.over) {
+        // On incrémente le compteur d'animation
+
+        update_animation_frame(&game);
+
         // Gère les entrées clavier
         handle_input(&game);
 
@@ -55,13 +52,11 @@ int main() {
 
         // Rafraîchit l'écran
         display(&game);
-
         if (close_button_pressed) {
             game.over = true;
         }
-
         // Gère le framerate, pour éviter que le jeu ne tourne trop vite
-        rest(9);
+        rest(5);
     }
 
     // On nettoie la mémoire

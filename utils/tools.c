@@ -46,9 +46,6 @@ int get_random_color() {
     int green = rand() % 255;
     int blue = rand() % 255;
 
-
-
-
     return makecol(red, green, blue);
 }
 
@@ -162,6 +159,7 @@ void draw_diagonal_gradient(BITMAP* bmp, int start_color, int end_color) {
     }
 }
 
+// Fait une transition entre deux bitmaps
 void draw_transition(BITMAP* bmp, BITMAP* grad1, BITMAP* grad2, int t) {
     int width = bmp->w;
     int height = bmp->h;
@@ -192,6 +190,7 @@ void draw_transition(BITMAP* bmp, BITMAP* grad1, BITMAP* grad2, int t) {
     }
 }
 
+// Fait une transition au noir depuis un bitmap
 void fadeout(BITMAP* last_screen) {
     BITMAP* buffer = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
     drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
@@ -208,6 +207,7 @@ void fadeout(BITMAP* last_screen) {
     destroy_bitmap(buffer);
 }
 
+// Fait une transition vers un bitmap depuis le noir
 void fadein(BITMAP* new_screen) {
     BITMAP* buffer = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
 
