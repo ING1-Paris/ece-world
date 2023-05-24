@@ -3,13 +3,16 @@
 // Menu de création des joueurs
 void players_creation_menu(GameState* game) {
     // Initialisation des personnages
+    clear_keybuf();
     for (int i = 0; i < PLAYERS_AMOUNT; i++) {
-        game->players[i].x = SCREEN_WIDTH / 2 - PLAYER_WIDTH / 2;
-        game->players[i].y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10;
-        game->players[i].color = random_color();
+        game->players[i].x = (SCREEN_WIDTH - PLAYERS_AMOUNT * PLAYER_WIDTH) / 2 + PLAYER_WIDTH * i;
+        game->players[i].y = SCREEN_HEIGHT - PLAYER_HEIGHT - 60;
         game->players[i].tickets = TICKETS_AMOUNT;
+        game->players[i].direction = DIRECTION_DOWN;
+        game->players[i].is_walking = false;
         int pos = 0;
-        bool done = false;
+        bool done = game->debug_mode > 0 ? true : false;
+        bool fist_time = true;
         char str[NAME_MAX_LENGTH + 1] = {0};
         while (!done) {
             if (keypressed()) {
@@ -29,6 +32,7 @@ void players_creation_menu(GameState* game) {
                     }
                 }
             }
+
             if (key[KEY_ENTER] && str[0] != 0) {
                 done = true;
                 // Afficher Enregistrement en cours
@@ -40,17 +44,18 @@ void players_creation_menu(GameState* game) {
                 return;
             }
 
-            display_string_in_box(game->buffer, str, i, game->font);
+            display_string_in_box(game->buffer, str, i, game->font, fist_time);
+            fist_time = false;
         }
         strcpy(game->players[i].name, str);
-        if (game->debug) {
-            allegro_message("Player %d: %s", i + 1, game->players[i].name);
+        if (game->debug_mode > 0) {
+            allegro_message("Nom player %d: %s", i + 1, game->players[i].name);
         }
     }
 }
 
 // Affiche la chaîne de caractères dans la boîte de texte.
-void display_string_in_box(BITMAP* buffer, char* str, int player_index, FONT* font2) {
+void display_string_in_box(BITMAP* buffer, char* str, int player_index, FONT* font2, bool first_time) {
     BITMAP* bg = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
     draw_diagonal_gradient(bg, grad_colors[player_index * 2], grad_colors[player_index * 2 + 1]);
 
@@ -83,46 +88,13 @@ void display_string_in_box(BITMAP* buffer, char* str, int player_index, FONT* fo
     int text_x = box_x + (TEXT_INPUT_BOX_WIDTH - stretched_bitmap->w) / 2;
     int text_y = box_y + (TEXT_INPUT_BOX_HEIGHT - stretched_bitmap->h) / 2;
     draw_sprite(buffer, stretched_bitmap, text_x, text_y);
-
-    blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);  // Affiche le buffer sur l'écran.
-
+    if (first_time == true) {
+        fadein(buffer);
+    } else {
+        blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);  // Affiche le buffer sur l'écran.
+    }
     // Libère la mémoire.
     destroy_bitmap(text_bitmap);
     destroy_bitmap(stretched_bitmap);
     destroy_bitmap(bg);
-}
-
-// Dessine un dégradé diagonal dans la background.
-// Je n'ai pas créee cette fonction, je l'ai trouvée sur internet.
-// Je n'ai pas réussi à en retrouver le lien par contre
-void draw_diagonal_gradient(BITMAP* bmp, int start_color, int end_color) {
-    int width = bmp->w;
-    int height = bmp->h;
-
-    // Extract RGB components from start and end colors
-    int start_r = getr(start_color), start_g = getg(start_color), start_b = getb(start_color);
-    int end_r = getr(end_color), end_g = getg(end_color), end_b = getb(end_color);
-
-    // Calculate color differences
-    int r_diff = end_r - start_r;
-    int g_diff = end_g - start_g;
-    int b_diff = end_b - start_b;
-
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            // Determining the ratio for color interpolation.
-            float ratio = (float)(x + y) / (width + height - 2);
-
-            // Interpolating the colors.
-            int r = start_r + r_diff * ratio;
-            int g = start_g + g_diff * ratio;
-            int b = start_b + b_diff * ratio;
-
-            // Getting the color.
-            int color = makecol(r, g, b);
-
-            // Setting the pixel.
-            putpixel(bmp, x, y, color);
-        }
-    }
 }
