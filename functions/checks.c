@@ -5,11 +5,11 @@ void check_collisions(GameState* game) {
     for (int a = 0; a < ATTRACTIONS_AMOUNT; a++) {
         for (int p = 0; p < PLAYERS_AMOUNT; p++) {
             game->attractions[a].triggered[p] = 0;
-            if (game->players[p].x < game->attractions[a].x + game->attractions[a].width &&
-                game->players[p].x + PLAYER_WIDTH > game->attractions[a].x &&
-                game->players[p].y < game->attractions[a].y + game->attractions[a].height &&
-                game->players[p].y + PLAYER_HEIGHT > game->attractions[a].y) {
-                game->attractions[a].triggered[p] = 1;
+            if (game->players[p].x + 50 < game->attractions[a].x + game->attractions[a].width  &&
+                game->players[p].x - 50 + PLAYER_WIDTH > game->attractions[a].x &&
+                game->players[p].y + 50 < game->attractions[a].y + game->attractions[a].height &&
+                game->players[p].y - 50 + PLAYER_HEIGHT > game->attractions[a].y) {
+                game->attractions[a].triggered[p] = true;
             }
         }
     }
@@ -29,6 +29,7 @@ void check_collisions(GameState* game) {
 void check_for_winner(GameState* game) {
     int winner = -1;
     int best = -1;
+
 
     bool loser_in_game = false;
 
