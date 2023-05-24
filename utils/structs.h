@@ -10,11 +10,16 @@
 // Structure de données pour les personnages
 typedef struct t_player {
     char name[20];
-    int bitmap_index;
+    int direction;
     int x;
     int y;
-    int color;
     int tickets;
+
+    bool is_walking;
+
+    BITMAP*** idle_bitmaps;  // Liste de bitmaps (4 directions, 2 frames)
+    BITMAP*** walk_bitmaps;  // Liste de bitmaps (4 directions, 4 frames)
+
 } Player;
 
 // Structure de données pour les attractions spéciaux
@@ -39,15 +44,16 @@ typedef struct t_attraction {
 typedef struct t_gameState {
     int player_speed;
     int winner;
+    int animation_frame;
+    double last_frame_time;
 
     bool PRESSED_MISC_KEYS[MISC_KEYS_AMOUNT];
-    bool debug;
+    int debug_mode;
     bool over;
     bool attraction_is_running;
     bool stats_displayed;
     bool winner_displayed;
     bool attraction_is_over;
-    //volatile bool close_button_pressed;
 
     int attraction_index;
     int attraction_winner;
@@ -57,6 +63,10 @@ typedef struct t_gameState {
 
     FONT* font;
     BITMAP* buffer;
+    BITMAP* background;
+    BITMAP* background_overlay;
+    BITMAP* debug_hud;
+    BITMAP* ticket;
     BITMAP* attractions_bitmaps[ATTRACTIONS_AMOUNT - SECONDARY_AMOUNT];
     BITMAP* player_bitmaps[PLAYERS_AMOUNT];
     Player players[PLAYERS_AMOUNT];

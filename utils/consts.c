@@ -7,7 +7,7 @@
  * ======================== */
 double debug_fps;
 double debug_frames_accum;
-double debug_fps_timer;
+double debug_timestamp;
 //======================== */
 
 // Voir "consts.h" pour les informations sur les variables
@@ -23,4 +23,4 @@ const char* ATTRACTIONS_NAMES[ATTRACTIONS_AMOUNT] = {ATTRACTION0_NAME, ATTRACTIO
 
 volatile int close_button_pressed = FALSE;
 
-const int grad_colors[MAX_PLAYERS_AMOUNT * 2] = {16750894, 14292071, 15740866, 6329578, 15740866, 6329578, 6329578, 16750894};
+const int grad_colors[MAX_PLAYERS_AMOUNT * 2] = {2295629, 13390643, 16750894, 14292071, 2636934, 4563527, 12135207, 1402304};

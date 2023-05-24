@@ -3,16 +3,18 @@
 
 #include <allegro.h>
 
+#define DEBUG_MODE 1
+
 /* VARIABLE GLOBALE DE *DEBUG UNIQUEMENT* */
 extern double debug_fps;
 extern double debug_frames_accum;
-extern double debug_fps_timer;
+extern double debug_timestamp;
 
 // Variable globale pour la fermeture de la fenêtre (par pitié c'est le seul moyen)
 extern volatile int close_button_pressed;
 
-// Paramètres fixe du jeu
-#define PLAYERS_AMOUNT 2
+// Paramètres fixe duq jeu
+#define PLAYERS_AMOUNT 4
 #define MAX_PLAYERS_AMOUNT 4
 #define TICKETS_AMOUNT 5
 
@@ -21,12 +23,29 @@ extern volatile int close_button_pressed;
 #define SCREEN_HEIGHT 900
 
 // Dimensions d'un sprite de joueur
-#define PLAYER_WIDTH 50
-#define PLAYER_HEIGHT 50
+#define PLAYER_WIDTH CHARACTERS_SPRITES_SIZE_STRETCHED
+#define PLAYER_HEIGHT CHARACTERS_SPRITES_SIZE_STRETCHED
+
+#define CHARACTERS_SPRITES_SIZE 32
+#define CHARACTERS_SPRITES_SIZE_STRETCHED 128
+
+// Directions
+#define DIRECTION_DOWN 0
+#define DIRECTION_UP 1
+#define DIRECTION_RIGHT 2
+#define DIRECTION_LEFT 3
+
+#define IDLE_SPRITESHET_FILE "assets/sprites/idle"
+#define WALK_SPRITESHET_FILE "assets/sprites/walk"
+#define BACKGROUND_FILE "assets/background.bmp"
+#define BACKGROUND_OVERLAY_FILE "assets/overlay.bmp"
+#define TICKET_FILE "assets/ticket.bmp"
 
 // Dimensions d'un sprite d'attraction
-#define ATTRACTION_WIDTH 100
-#define ATTRACTION_HEIGHT 100
+#define ATTRACTION_WIDTH 200
+#define ATTRACTION_HEIGHT 200
+#define ATTRACTION_SPRITES_WIDTH 100
+#define ATTRACTION_SPRITES_HEIGHT 100
 
 // Nombre d'attractions
 #define ATTRACTIONS_AMOUNT 7
