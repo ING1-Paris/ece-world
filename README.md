@@ -1,6 +1,6 @@
 # ECE-WORLD
 ### Assignment :
-Making of an amusement park with GUI by using Allegro 4.4.
+Making of an amusement park with GUI by using Allegro 4.4 in C.
 <br /><br />
 Kinan LAKHDAR<br /> 
 Reda HASSANI<br /> 
