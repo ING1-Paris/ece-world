@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['frog_5fh_0',['FROG_H',['../grenouille_8c.html#a56471431099527c37fa36a405d628842',1,'grenouille.c']]],
-  ['frog_5fspeed_1',['FROG_SPEED',['../grenouille_8c.html#a389431e80777b31392d2275d688f0fcf',1,'grenouille.c']]],
-  ['frog_5fw_2',['FROG_W',['../grenouille_8c.html#a9cc0c3097330e20a5329c60f7cd93b3d',1,'grenouille.c']]]
+  ['characters_5fsprites_5fsize_0',['CHARACTERS_SPRITES_SIZE',['../consts_8h.html#a66f770a7f867cc8e312e99574ef5bdad',1,'consts.h']]],
+  ['characters_5fsprites_5fsize_5fstretched_1',['CHARACTERS_SPRITES_SIZE_STRETCHED',['../consts_8h.html#a66b0651b008ae5be31ccad93879ef3b7',1,'consts.h']]]
 ];

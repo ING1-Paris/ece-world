@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['log_5fheight_0',['LOG_HEIGHT',['../grenouille_8c.html#a5b76a984f3647e3ce7af97696d079f23',1,'grenouille.c']]],
-  ['log_5fspeed_1',['LOG_SPEED',['../grenouille_8c.html#aef299b98b95d5bd84015ed48cefa813e',1,'grenouille.c']]],
-  ['log_5fwidth_2',['LOG_WIDTH',['../grenouille_8c.html#aa2fe3a37e3c02e026c3b3e325511593f',1,'grenouille.c']]]
+  ['idle_5fspriteshet_5ffile_0',['IDLE_SPRITESHET_FILE',['../consts_8h.html#a258d9597a422ae27ea0c4eb51e69a100',1,'consts.h']]],
+  ['initial_5ffps_1',['INITIAL_FPS',['../snake_8h.html#a3b03753653c41ae9e4d62551ba3cb59b',1,'snake.h']]]
 ];

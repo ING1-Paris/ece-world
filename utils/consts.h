@@ -3,7 +3,7 @@
 
 #include <allegro.h>
 
-#define DEBUG_MODE 1
+#define DEBUG_MODE 0
 
 /* VARIABLE GLOBALE DE *DEBUG UNIQUEMENT* */
 extern double debug_fps;
@@ -16,7 +16,7 @@ extern volatile int close_button_pressed;
 // Paramètres fixe duq jeu
 #define PLAYERS_AMOUNT 4
 #define MAX_PLAYERS_AMOUNT 4
-#define TICKETS_AMOUNT 2
+#define TICKETS_AMOUNT 5
 
 // Dimensions de la fenêtre du jeu
 #define SCREEN_WIDTH 1800

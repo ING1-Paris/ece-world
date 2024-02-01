@@ -2,33 +2,65 @@
 \hypertarget{structt__player}{}\label{structt__player}\index{t\_player@{t\_player}}
 
 
-{\ttfamily \#include $<$main.\+h$>$}
+{\ttfamily \#include $<$structs.\+h$>$}
 
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structt__player_a960a7e0bb236b9b4b6c3587b122b4f28}{name}} \mbox{[}20\mbox{]}
+\item 
+int \mbox{\hyperlink{structt__player_a31c00c7cb54c41f1dfd9987e61e1c550}{direction}}
 \item 
 int \mbox{\hyperlink{structt__player_a0bb4ef941b9751e6e932a52bb8524d6f}{x}}
 \item 
 int \mbox{\hyperlink{structt__player_a81675872f88bf9575fc9658ec9518dfd}{y}}
 \item 
-int \mbox{\hyperlink{structt__player_a25082f9e3f7025ceab758695c78301dd}{color}}
-\item 
 int \mbox{\hyperlink{structt__player_af3ac899b00fcda5283d2e5d739492298}{tickets}}
+\item 
+bool \mbox{\hyperlink{structt__player_aa6deef2a05312abde037b9190ca2cff1}{is\+\_\+walking}}
+\item 
+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structt__player_a2f1e752d32fc7fb224ce743483c8bb22}{idle\+\_\+bitmaps}}
+\item 
+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structt__player_a27ada8a47ce7ad8314f939de66d5352e}{walk\+\_\+bitmaps}}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Data Documentation}
-\Hypertarget{structt__player_a25082f9e3f7025ceab758695c78301dd}\label{structt__player_a25082f9e3f7025ceab758695c78301dd} 
-\index{t\_player@{t\_player}!color@{color}}
-\index{color@{color}!t\_player@{t\_player}}
-\doxysubsubsection{\texorpdfstring{color}{color}}
-{\footnotesize\ttfamily int t\+\_\+player\+::color}
+\Hypertarget{structt__player_a31c00c7cb54c41f1dfd9987e61e1c550}\label{structt__player_a31c00c7cb54c41f1dfd9987e61e1c550} 
+\index{t\_player@{t\_player}!direction@{direction}}
+\index{direction@{direction}!t\_player@{t\_player}}
+\doxysubsubsection{\texorpdfstring{direction}{direction}}
+{\footnotesize\ttfamily int t\+\_\+player\+::direction}
+
+\Hypertarget{structt__player_a2f1e752d32fc7fb224ce743483c8bb22}\label{structt__player_a2f1e752d32fc7fb224ce743483c8bb22} 
+\index{t\_player@{t\_player}!idle\_bitmaps@{idle\_bitmaps}}
+\index{idle\_bitmaps@{idle\_bitmaps}!t\_player@{t\_player}}
+\doxysubsubsection{\texorpdfstring{idle\_bitmaps}{idle\_bitmaps}}
+{\footnotesize\ttfamily BITMAP\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} t\+\_\+player\+::idle\+\_\+bitmaps}
+
+\Hypertarget{structt__player_aa6deef2a05312abde037b9190ca2cff1}\label{structt__player_aa6deef2a05312abde037b9190ca2cff1} 
+\index{t\_player@{t\_player}!is\_walking@{is\_walking}}
+\index{is\_walking@{is\_walking}!t\_player@{t\_player}}
+\doxysubsubsection{\texorpdfstring{is\_walking}{is\_walking}}
+{\footnotesize\ttfamily bool t\+\_\+player\+::is\+\_\+walking}
+
+\Hypertarget{structt__player_a960a7e0bb236b9b4b6c3587b122b4f28}\label{structt__player_a960a7e0bb236b9b4b6c3587b122b4f28} 
+\index{t\_player@{t\_player}!name@{name}}
+\index{name@{name}!t\_player@{t\_player}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char t\+\_\+player\+::name\mbox{[}20\mbox{]}}
 
 \Hypertarget{structt__player_af3ac899b00fcda5283d2e5d739492298}\label{structt__player_af3ac899b00fcda5283d2e5d739492298} 
 \index{t\_player@{t\_player}!tickets@{tickets}}
 \index{tickets@{tickets}!t\_player@{t\_player}}
 \doxysubsubsection{\texorpdfstring{tickets}{tickets}}
 {\footnotesize\ttfamily int t\+\_\+player\+::tickets}
+
+\Hypertarget{structt__player_a27ada8a47ce7ad8314f939de66d5352e}\label{structt__player_a27ada8a47ce7ad8314f939de66d5352e} 
+\index{t\_player@{t\_player}!walk\_bitmaps@{walk\_bitmaps}}
+\index{walk\_bitmaps@{walk\_bitmaps}!t\_player@{t\_player}}
+\doxysubsubsection{\texorpdfstring{walk\_bitmaps}{walk\_bitmaps}}
+{\footnotesize\ttfamily BITMAP\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} t\+\_\+player\+::walk\+\_\+bitmaps}
 
 \Hypertarget{structt__player_a0bb4ef941b9751e6e932a52bb8524d6f}\label{structt__player_a0bb4ef941b9751e6e932a52bb8524d6f} 
 \index{t\_player@{t\_player}!x@{x}}
@@ -46,4 +78,4 @@ int \mbox{\hyperlink{structt__player_af3ac899b00fcda5283d2e5d739492298}{tickets}
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{main_8h}{main.\+h}}\end{DoxyCompactItemize}
+utils/\mbox{\hyperlink{structs_8h}{structs.\+h}}\end{DoxyCompactItemize}

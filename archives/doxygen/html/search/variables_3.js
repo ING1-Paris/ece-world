@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['debug_0',['debug',['../structt__game_state.html#a6b03abb9705576ee921e28c6c515b0fc',1,'t_gameState']]],
-  ['direction_1',['direction',['../structcheval.html#af0b178d7454c31e3685ef494653be586',1,'cheval::direction'],['../struct_game_state.html#a614c59f66e098eb156d4552efa4ed292',1,'GameState::direction']]],
-  ['droite_2',['droite',['../structcheval.html#aa8c029c622289443b6990dad14ea1e88',1,'cheval']]]
+  ['close_5fbutton_5fpressed_0',['close_button_pressed',['../consts_8c.html#af8b1c6816f2c078ad41785f149ee3fbc',1,'close_button_pressed:&#160;consts.c'],['../consts_8h.html#af8b1c6816f2c078ad41785f149ee3fbc',1,'close_button_pressed:&#160;consts.c']]]
 ];

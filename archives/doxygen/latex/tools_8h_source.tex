@@ -1,0 +1,32 @@
+\doxysection{tools.\+h}
+\hypertarget{tools_8h_source}{}\label{tools_8h_source}\index{utils/tools.h@{utils/tools.h}}
+\mbox{\hyperlink{tools_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TOOLS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TOOLS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <sys/time.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{consts_8h}{consts.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{structs_8h}{structs.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{tools_8h_a0b7a80252bd91beb735d1c20d9a07d52}{current\_time}}();}
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tools_8h_a0ee68cd31e0b63cab0d4ea1c060648e7}{draw\_fps}}(\mbox{\hyperlink{struct_game_state}{GameState}}*\ game);}
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tools_8h_acf94a63206fcbf2f29d9415b37e54d2e}{get\_random\_color}}();}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tools_8h_a4f8b72540342c2b2c7841e77404d5f02}{clean\_game}}(\mbox{\hyperlink{struct_game_state}{GameState}}*\ game);}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tools_8h_a22aa7101aabec65ba174e48f9da58761}{close\_button\_handler}}();}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tools_8h_a43d50ae6e8f7872dca0275d6c56fcab9}{free\_idle\_bitmaps}}(\mbox{\hyperlink{struct_game_state}{GameState}}*\ game);}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tools_8h_afba58b2687f44debd27e8349d078ea31}{update\_animation\_frame}}(\mbox{\hyperlink{struct_game_state}{GameState}}*\ game);}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tools_8h_ac01a2a325684b1cf7adb928da0a92a20}{free\_walk\_bitmaps}}(\mbox{\hyperlink{struct_game_state}{GameState}}*\ game);}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tools_8h_a1bc21864532be597a37694de563beed9}{draw\_diagonal\_gradient}}(BITMAP*\ bmp,\ \textcolor{keywordtype}{int}\ start\_color,\ \textcolor{keywordtype}{int}\ end\_color);}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tools_8h_a2586f951ec2f074acac9017f68bb24bf}{draw\_transition}}(BITMAP*\ bmp,\ BITMAP*\ grad1,\ BITMAP*\ grad2,\ \textcolor{keywordtype}{int}\ t);}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tools_8h_ac5967e23ee3c186778901600e39e4c77}{fadeout}}(BITMAP*\ last\_screen);}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tools_8h_ac39ca88be1addebf5c0b05dd0d804888}{fadein}}(BITMAP*\ new\_screen);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

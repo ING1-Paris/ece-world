@@ -1,13 +1,5 @@
 \doxysection{main.\+c File Reference}
 \hypertarget{main_8c}{}\label{main_8c}\index{main.c@{main.c}}
-{\ttfamily \#include $<$stdio.\+h$>$}\newline
-{\ttfamily \#include $<$stdlib.\+h$>$}\newline
-{\ttfamily \#include $<$time.\+h$>$}\newline
-{\ttfamily \#include $<$math.\+h$>$}\newline
-{\ttfamily \#include $<$string.\+h$>$}\newline
-{\ttfamily \#include $<$stdbool.\+h$>$}\newline
-{\ttfamily \#include $<$allegro.\+h$>$}\newline
-{\ttfamily \#include $<$sys/time.\+h$>$}\newline
 {\ttfamily \#include \"{}main.\+h\"{}}\newline
 Include dependency graph for main.\+c\+:
 \nopagebreak
@@ -20,153 +12,11 @@ Include dependency graph for main.\+c\+:
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-double \mbox{\hyperlink{main_8c_a0b7a80252bd91beb735d1c20d9a07d52}{current\+\_\+time}} ()
-\item 
-void \mbox{\hyperlink{main_8c_a0ee68cd31e0b63cab0d4ea1c060648e7}{draw\+\_\+fps}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-int \mbox{\hyperlink{main_8c_ac7132f875351b34e875f66af3984d28c}{random\+\_\+color}} ()
-\item 
-void \mbox{\hyperlink{main_8c_a94f0cbf1d888ff82aba1e11be87d9545}{display}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-void \mbox{\hyperlink{main_8c_ad61f84d47c211a68c6f3a8ac42f3e370}{check\+\_\+collisions}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-void \mbox{\hyperlink{main_8c_a3be5aa099f17a3e55005fe597c9c1c81}{init\+\_\+game}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-void \mbox{\hyperlink{main_8c_a043bab3aebb77ca901157a7a64853751}{handle\+\_\+input}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-void \mbox{\hyperlink{main_8c_a69c0ff181c345bd62e78d8086cdfb666}{run\+\_\+attractions}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-float \mbox{\hyperlink{main_8c_aa74f4048b69bf54acd5e6905d94de84e}{wait\+\_\+attractions\+\_\+end}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game, int attraction\+\_\+index)
-\item 
-void \mbox{\hyperlink{main_8c_a4f8b72540342c2b2c7841e77404d5f02}{clean\+\_\+game}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
 int \mbox{\hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{main_8c_ad61f84d47c211a68c6f3a8ac42f3e370}\label{main_8c_ad61f84d47c211a68c6f3a8ac42f3e370} 
-\index{main.c@{main.c}!check\_collisions@{check\_collisions}}
-\index{check\_collisions@{check\_collisions}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{check\_collisions()}{check\_collisions()}}
-{\footnotesize\ttfamily void check\+\_\+collisions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=241pt]{main_8c_ad61f84d47c211a68c6f3a8ac42f3e370_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8c_a4f8b72540342c2b2c7841e77404d5f02}\label{main_8c_a4f8b72540342c2b2c7841e77404d5f02} 
-\index{main.c@{main.c}!clean\_game@{clean\_game}}
-\index{clean\_game@{clean\_game}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{clean\_game()}{clean\_game()}}
-{\footnotesize\ttfamily void clean\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=222pt]{main_8c_a4f8b72540342c2b2c7841e77404d5f02_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8c_a0b7a80252bd91beb735d1c20d9a07d52}\label{main_8c_a0b7a80252bd91beb735d1c20d9a07d52} 
-\index{main.c@{main.c}!current\_time@{current\_time}}
-\index{current\_time@{current\_time}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{current\_time()}{current\_time()}}
-{\footnotesize\ttfamily double current\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{main_8c_a0b7a80252bd91beb735d1c20d9a07d52_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8c_a94f0cbf1d888ff82aba1e11be87d9545}\label{main_8c_a94f0cbf1d888ff82aba1e11be87d9545} 
-\index{main.c@{main.c}!display@{display}}
-\index{display@{display}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{display()}{display()}}
-{\footnotesize\ttfamily void display (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=325pt]{main_8c_a94f0cbf1d888ff82aba1e11be87d9545_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=200pt]{main_8c_a94f0cbf1d888ff82aba1e11be87d9545_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8c_a0ee68cd31e0b63cab0d4ea1c060648e7}\label{main_8c_a0ee68cd31e0b63cab0d4ea1c060648e7} 
-\index{main.c@{main.c}!draw\_fps@{draw\_fps}}
-\index{draw\_fps@{draw\_fps}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{draw\_fps()}{draw\_fps()}}
-{\footnotesize\ttfamily void draw\+\_\+fps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=242pt]{main_8c_a0ee68cd31e0b63cab0d4ea1c060648e7_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=292pt]{main_8c_a0ee68cd31e0b63cab0d4ea1c060648e7_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8c_a043bab3aebb77ca901157a7a64853751}\label{main_8c_a043bab3aebb77ca901157a7a64853751} 
-\index{main.c@{main.c}!handle\_input@{handle\_input}}
-\index{handle\_input@{handle\_input}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{handle\_input()}{handle\_input()}}
-{\footnotesize\ttfamily void handle\+\_\+input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=224pt]{main_8c_a043bab3aebb77ca901157a7a64853751_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8c_a3be5aa099f17a3e55005fe597c9c1c81}\label{main_8c_a3be5aa099f17a3e55005fe597c9c1c81} 
-\index{main.c@{main.c}!init\_game@{init\_game}}
-\index{init\_game@{init\_game}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{init\_game()}{init\_game()}}
-{\footnotesize\ttfamily void init\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=249pt]{main_8c_a3be5aa099f17a3e55005fe597c9c1c81_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=211pt]{main_8c_a3be5aa099f17a3e55005fe597c9c1c81_icgraph}
-\end{center}
-\end{figure}
 \Hypertarget{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
 \index{main.c@{main.c}!main@{main}}
 \index{main@{main}!main.c@{main.c}}
@@ -179,55 +29,5 @@ Here is the call graph for this function\+:
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8c_ac7132f875351b34e875f66af3984d28c}\label{main_8c_ac7132f875351b34e875f66af3984d28c} 
-\index{main.c@{main.c}!random\_color@{random\_color}}
-\index{random\_color@{random\_color}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{random\_color()}{random\_color()}}
-{\footnotesize\ttfamily int random\+\_\+color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=322pt]{main_8c_ac7132f875351b34e875f66af3984d28c_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8c_a69c0ff181c345bd62e78d8086cdfb666}\label{main_8c_a69c0ff181c345bd62e78d8086cdfb666} 
-\index{main.c@{main.c}!run\_attractions@{run\_attractions}}
-\index{run\_attractions@{run\_attractions}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{run\_attractions()}{run\_attractions()}}
-{\footnotesize\ttfamily void run\+\_\+attractions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=303pt]{main_8c_a69c0ff181c345bd62e78d8086cdfb666_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=234pt]{main_8c_a69c0ff181c345bd62e78d8086cdfb666_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8c_aa74f4048b69bf54acd5e6905d94de84e}\label{main_8c_aa74f4048b69bf54acd5e6905d94de84e} 
-\index{main.c@{main.c}!wait\_attractions\_end@{wait\_attractions\_end}}
-\index{wait\_attractions\_end@{wait\_attractions\_end}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{wait\_attractions\_end()}{wait\_attractions\_end()}}
-{\footnotesize\ttfamily float wait\+\_\+attractions\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{attraction\+\_\+index }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{main_8c_aa74f4048b69bf54acd5e6905d94de84e_icgraph}
 \end{center}
 \end{figure}

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['add_5fblock_0',['add_block',['../snake_8c.html#ac7a72418a236715be812b1b2496bda36',1,'add_block(GameState *game, int x, int y):&#160;snake.c'],['../snake_8h.html#ac7a72418a236715be812b1b2496bda36',1,'add_block(GameState *game, int x, int y):&#160;snake.c']]],
-  ['assign_5fsprite_1',['assign_sprite',['../snake_8c.html#a1e6681790a49620047f930db98566679',1,'assign_sprite(Block *block):&#160;snake.c'],['../snake_8h.html#a1e6681790a49620047f930db98566679',1,'assign_sprite(Block *block):&#160;snake.c']]]
+  ['_5ftinydir_5ffile_5fcmp_0',['_tinydir_file_cmp',['../tinydir_8h.html#a0020634f11c304c23ba2e7cebf6fdfe8',1,'tinydir.h']]],
+  ['_5ftinydir_5fget_5fext_1',['_tinydir_get_ext',['../tinydir_8h.html#af0bcd377e6e5712d292d22406b38a656',1,'tinydir.h']]]
 ];

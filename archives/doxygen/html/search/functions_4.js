@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['free_5fmemory_0',['free_memory',['../snake_8c.html#aa15668e1f8bf757101e64735de3f0b0b',1,'free_memory(GameState *game):&#160;snake.c'],['../snake_8h.html#aa15668e1f8bf757101e64735de3f0b0b',1,'free_memory(GameState *game):&#160;snake.c']]]
+  ['end_5fof_5fmain_0',['END_OF_MAIN',['../jackpot_8c.html#ae5ce30f43c1f65cf5e459ac242938867',1,'jackpot.c']]],
+  ['est_5fsur_5frondin_1',['est_sur_rondin',['../grenouille_8c.html#a820705a4d72ac5061c776083d0664286',1,'grenouille.c']]]
 ];

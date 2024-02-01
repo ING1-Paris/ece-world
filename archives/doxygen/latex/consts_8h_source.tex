@@ -1,0 +1,85 @@
+\doxysection{consts.\+h}
+\hypertarget{consts_8h_source}{}\label{consts_8h_source}\index{utils/consts.h@{utils/consts.h}}
+\mbox{\hyperlink{consts_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CONSTS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CONSTS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ DEBUG\_MODE\ 0}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{/*\ VARIABLE\ GLOBALE\ DE\ *DEBUG\ UNIQUEMENT*\ */}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{consts_8h_a84cec23f0fba2d20f7c78c971a650e6c}{debug\_fps}};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{consts_8h_a57ee3972c4fdfae8c9d5837d984a4cda}{debug\_frames\_accum}};}
+\DoxyCodeLine{00011\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{consts_8h_a0a86c56a8ef6fb8b00a62165a94b7690}{debug\_timestamp}};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Variable\ globale\ pour\ la\ fermeture\ de\ la\ fenêtre\ (par\ pitié\ c'est\ le\ seul\ moyen)}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{consts_8h_af8b1c6816f2c078ad41785f149ee3fbc}{close\_button\_pressed}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Paramètres\ fixe\ duq\ jeu}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ PLAYERS\_AMOUNT\ 4}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ MAX\_PLAYERS\_AMOUNT\ 4}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ TICKETS\_AMOUNT\ 5}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Dimensions\ de\ la\ fenêtre\ du\ jeu}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ SCREEN\_WIDTH\ 1800}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ SCREEN\_HEIGHT\ 900}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Dimensions\ d'un\ sprite\ de\ joueur}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ PLAYER\_WIDTH\ CHARACTERS\_SPRITES\_SIZE\_STRETCHED}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ PLAYER\_HEIGHT\ CHARACTERS\_SPRITES\_SIZE\_STRETCHED}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ CHARACTERS\_SPRITES\_SIZE\ 32}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ CHARACTERS\_SPRITES\_SIZE\_STRETCHED\ 128}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ Directions}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ DIRECTION\_DOWN\ 0}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ DIRECTION\_UP\ 1}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ DIRECTION\_RIGHT\ 2}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ DIRECTION\_LEFT\ 3}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ IDLE\_SPRITESHET\_FILE\ "{}assets/sprites/idle"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ WALK\_SPRITESHET\_FILE\ "{}assets/sprites/walk"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ BACKGROUND\_FILE\ "{}assets/background.bmp"{}}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ BACKGROUND\_OVERLAY\_FILE\ "{}assets/overlay.bmp"{}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ TICKET\_FILE\ "{}assets/ticket.bmp"{}}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ Dimensions\ d'un\ sprite\ d'attraction}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ ATTRACTION\_WIDTH\ 200}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ ATTRACTION\_HEIGHT\ 200}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ ATTRACTION\_SPRITES\_WIDTH\ 100}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ ATTRACTION\_SPRITES\_HEIGHT\ 100}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Nombre\ d'attractions}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ ATTRACTIONS\_AMOUNT\ 7}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ SECONDARY\_AMOUNT\ 2}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ Nombre\ maximum\ de\ caractères\ dans\ les\ noms\ des\ joueurs}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ NAME\_MAX\_LENGTH\ 20}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ Touche\ des\ joueurs}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ MOUVEMENT\_KEYS\_AMOUNT\ 4}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ MISC\_KEYS\_AMOUNT\ 5}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{consts_8h_a89885931534fe5dc18e6dd5417fb731a}{PLAYER1\_KEYS}}[\mbox{\hyperlink{consts_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\_KEYS\_AMOUNT}}];}
+\DoxyCodeLine{00061\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{consts_8h_a74438ef97d4a26365204c63632172135}{PLAYER2\_KEYS}}[\mbox{\hyperlink{consts_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\_KEYS\_AMOUNT}}];}
+\DoxyCodeLine{00062\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{consts_8h_ac2ce183271bca15306dc69391f17e7a7}{PLAYER3\_KEYS}}[\mbox{\hyperlink{consts_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\_KEYS\_AMOUNT}}];}
+\DoxyCodeLine{00063\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{consts_8h_a474eb08ad7b913c55e38e026588df48c}{PLAYER4\_KEYS}}[\mbox{\hyperlink{consts_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\_KEYS\_AMOUNT}}];}
+\DoxyCodeLine{00064\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ \mbox{\hyperlink{consts_8h_a34a53fee5c6dccaf9aaa4cdda9b639eb}{PLAYERS\_KEYS}}[\mbox{\hyperlink{consts_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\_KEYS\_AMOUNT}}];}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ Nom\ des\ attractions}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ ATTRACTION0\_NAME\ "{}canard"{}}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ ATTRACTION1\_NAME\ "{}cheval"{}}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ ATTRACTION2\_NAME\ "{}grenouille"{}}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ ATTRACTION3\_NAME\ "{}jackpot"{}}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ ATTRACTION4\_NAME\ "{}snake"{}}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{consts_8h_a4b562a445a91d12bc7231b16c154fb12}{ATTRACTIONS\_NAMES}}[\mbox{\hyperlink{consts_8h_a88a2fb3da3452d0a364f95e415d719a1}{ATTRACTIONS\_AMOUNT}}];}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ Page\ de\ création\ des\ joueurs}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ TEXT\_INPUT\_BOX\_WIDTH\ 500}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ TEXT\_INPUT\_BOX\_HEIGHT\ 50}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{consts_8h_ad8aa2daac762b64da7d846250a3099a2}{grad\_colors}}[\mbox{\hyperlink{consts_8h_a0b07ccd5f77e411a117b837ef0738bf0}{MAX\_PLAYERS\_AMOUNT}}\ *\ 2];}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

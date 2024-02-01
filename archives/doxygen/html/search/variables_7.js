@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['index_0',['index',['../structcheval.html#a51abe51696b4b8812bb8ef38df26622b',1,'cheval']]],
-  ['is_5falive_1',['is_alive',['../struct_duck.html#a4cb74a895a1b1321032ad73c22354ec5',1,'Duck']]]
+  ['grad_5fcolors_0',['grad_colors',['../consts_8c.html#ad8aa2daac762b64da7d846250a3099a2',1,'grad_colors:&#160;consts.c'],['../consts_8h.html#ad8aa2daac762b64da7d846250a3099a2',1,'grad_colors:&#160;consts.c']]]
 ];

@@ -1,5 +1,6 @@
 var structt__game_state =
 [
+    [ "animation_frame", "structt__game_state.html#a4f4a05552b0ed71d26f61e6141004b39", null ],
     [ "attraction_index", "structt__game_state.html#aa6c74a962ce30718c90e990900862097", null ],
     [ "attraction_is_over", "structt__game_state.html#a330fa305a6dd14470dce8e16a3fbfd31", null ],
     [ "attraction_is_running", "structt__game_state.html#a99107cc563de5f65dc0852a8748a63b5", null ],
@@ -8,11 +9,21 @@ var structt__game_state =
     [ "attraction_winner_2_score", "structt__game_state.html#afce10845b9dcec669b669bc3ecec680e", null ],
     [ "attraction_winner_score", "structt__game_state.html#a99bd89791f6316bfc26fc6c0497209a5", null ],
     [ "attractions", "structt__game_state.html#a78da26311fc53ad38aab51943a0c534d", null ],
+    [ "attractions_bitmaps", "structt__game_state.html#aadfe122f41f44f745ad341e3c166c023", null ],
+    [ "background", "structt__game_state.html#af71b63f84fcb2fcf6809a2a31c85f430", null ],
+    [ "background_overlay", "structt__game_state.html#a41631e71c5d4558eb022a452fb0bc214", null ],
     [ "buffer", "structt__game_state.html#a7cb22f392c83ba1fa76970d9cdf51cea", null ],
-    [ "debug", "structt__game_state.html#a6b03abb9705576ee921e28c6c515b0fc", null ],
-    [ "fps", "structt__game_state.html#af9d4eb7d78834bdcc6074a22f6d65959", null ],
+    [ "debug_hud", "structt__game_state.html#aa38eab57c364b2fd67a8ca8b3a5cffe7", null ],
+    [ "debug_mode", "structt__game_state.html#acf6888ae743afb1e87ee5edcde4d88b6", null ],
+    [ "font", "structt__game_state.html#af032a422a05115e909fc28f235fce570", null ],
+    [ "last_frame_time", "structt__game_state.html#a263243bd4463a0ba770285c28278d9d8", null ],
     [ "over", "structt__game_state.html#aaed226e06f0aeab3b4786b9dd3734262", null ],
+    [ "player_bitmaps", "structt__game_state.html#acb8c5d75a5ca152063e7bad00f1f20a4", null ],
     [ "player_speed", "structt__game_state.html#a743269680e86800462c89b3bdfd31698", null ],
-    [ "players", "structt__game_state.html#a5ab57430b5d80013a40e1d93c58ec84b", null ],
-    [ "PRESSED_MISC_KEYS", "structt__game_state.html#afa4e9a77db0493e5b04e6e58d0e34325", null ]
+    [ "players", "structt__game_state.html#a15ceb419ddb609b0a436bdd376fe7630", null ],
+    [ "PRESSED_MISC_KEYS", "structt__game_state.html#afa4e9a77db0493e5b04e6e58d0e34325", null ],
+    [ "stats_displayed", "structt__game_state.html#a5e9e6ccc520ec618b6f117ed403834c1", null ],
+    [ "ticket", "structt__game_state.html#aa745e8e38a1d73d8252b688fd862149d", null ],
+    [ "winner", "structt__game_state.html#ab15fe5609334f3b508fba16d5d027166", null ],
+    [ "winner_displayed", "structt__game_state.html#a9cf1ce40e5e365bb9b2e3e5561e72742", null ]
 ];

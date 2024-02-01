@@ -1,0 +1,233 @@
+\doxysection{utils/tools.c File Reference}
+\hypertarget{tools_8c}{}\label{tools_8c}\index{utils/tools.c@{utils/tools.c}}
+{\ttfamily \#include \"{}tools.\+h\"{}}\newline
+Include dependency graph for tools.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{tools_8c_a0b7a80252bd91beb735d1c20d9a07d52}{current\+\_\+time}} ()
+\item 
+void \mbox{\hyperlink{tools_8c_a0ee68cd31e0b63cab0d4ea1c060648e7}{draw\+\_\+fps}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+int \mbox{\hyperlink{tools_8c_acf94a63206fcbf2f29d9415b37e54d2e}{get\+\_\+random\+\_\+color}} ()
+\item 
+void \mbox{\hyperlink{tools_8c_a4f8b72540342c2b2c7841e77404d5f02}{clean\+\_\+game}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{tools_8c_a43d50ae6e8f7872dca0275d6c56fcab9}{free\+\_\+idle\+\_\+bitmaps}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{tools_8c_ac01a2a325684b1cf7adb928da0a92a20}{free\+\_\+walk\+\_\+bitmaps}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{tools_8c_a22aa7101aabec65ba174e48f9da58761}{close\+\_\+button\+\_\+handler}} ()
+\item 
+void \mbox{\hyperlink{tools_8c_afba58b2687f44debd27e8349d078ea31}{update\+\_\+animation\+\_\+frame}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void \mbox{\hyperlink{tools_8c_a1bc21864532be597a37694de563beed9}{draw\+\_\+diagonal\+\_\+gradient}} (BITMAP \texorpdfstring{$\ast$}{*}bmp, int start\+\_\+color, int end\+\_\+color)
+\item 
+void \mbox{\hyperlink{tools_8c_a2586f951ec2f074acac9017f68bb24bf}{draw\+\_\+transition}} (BITMAP \texorpdfstring{$\ast$}{*}bmp, BITMAP \texorpdfstring{$\ast$}{*}grad1, BITMAP \texorpdfstring{$\ast$}{*}grad2, int t)
+\item 
+void \mbox{\hyperlink{tools_8c_ac5967e23ee3c186778901600e39e4c77}{fadeout}} (BITMAP \texorpdfstring{$\ast$}{*}last\+\_\+screen)
+\item 
+void \mbox{\hyperlink{tools_8c_ac39ca88be1addebf5c0b05dd0d804888}{fadein}} (BITMAP \texorpdfstring{$\ast$}{*}new\+\_\+screen)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{tools_8c_a4f8b72540342c2b2c7841e77404d5f02}\label{tools_8c_a4f8b72540342c2b2c7841e77404d5f02} 
+\index{tools.c@{tools.c}!clean\_game@{clean\_game}}
+\index{clean\_game@{clean\_game}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{clean\_game()}{clean\_game()}}
+{\footnotesize\ttfamily void clean\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{tools_8c_a4f8b72540342c2b2c7841e77404d5f02_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{tools_8c_a4f8b72540342c2b2c7841e77404d5f02_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_a22aa7101aabec65ba174e48f9da58761}\label{tools_8c_a22aa7101aabec65ba174e48f9da58761} 
+\index{tools.c@{tools.c}!close\_button\_handler@{close\_button\_handler}}
+\index{close\_button\_handler@{close\_button\_handler}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{close\_button\_handler()}{close\_button\_handler()}}
+{\footnotesize\ttfamily void close\+\_\+button\+\_\+handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_8c_a22aa7101aabec65ba174e48f9da58761_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_a0b7a80252bd91beb735d1c20d9a07d52}\label{tools_8c_a0b7a80252bd91beb735d1c20d9a07d52} 
+\index{tools.c@{tools.c}!current\_time@{current\_time}}
+\index{current\_time@{current\_time}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{current\_time()}{current\_time()}}
+{\footnotesize\ttfamily double current\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_8c_a0b7a80252bd91beb735d1c20d9a07d52_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_a1bc21864532be597a37694de563beed9}\label{tools_8c_a1bc21864532be597a37694de563beed9} 
+\index{tools.c@{tools.c}!draw\_diagonal\_gradient@{draw\_diagonal\_gradient}}
+\index{draw\_diagonal\_gradient@{draw\_diagonal\_gradient}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{draw\_diagonal\_gradient()}{draw\_diagonal\_gradient()}}
+{\footnotesize\ttfamily void draw\+\_\+diagonal\+\_\+gradient (\begin{DoxyParamCaption}\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{bmp,  }\item[{int}]{start\+\_\+color,  }\item[{int}]{end\+\_\+color }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_8c_a1bc21864532be597a37694de563beed9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_a0ee68cd31e0b63cab0d4ea1c060648e7}\label{tools_8c_a0ee68cd31e0b63cab0d4ea1c060648e7} 
+\index{tools.c@{tools.c}!draw\_fps@{draw\_fps}}
+\index{draw\_fps@{draw\_fps}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{draw\_fps()}{draw\_fps()}}
+{\footnotesize\ttfamily void draw\+\_\+fps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{tools_8c_a0ee68cd31e0b63cab0d4ea1c060648e7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_8c_a0ee68cd31e0b63cab0d4ea1c060648e7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_a2586f951ec2f074acac9017f68bb24bf}\label{tools_8c_a2586f951ec2f074acac9017f68bb24bf} 
+\index{tools.c@{tools.c}!draw\_transition@{draw\_transition}}
+\index{draw\_transition@{draw\_transition}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{draw\_transition()}{draw\_transition()}}
+{\footnotesize\ttfamily void draw\+\_\+transition (\begin{DoxyParamCaption}\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{bmp,  }\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{grad1,  }\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{grad2,  }\item[{int}]{t }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{tools_8c_a2586f951ec2f074acac9017f68bb24bf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_ac39ca88be1addebf5c0b05dd0d804888}\label{tools_8c_ac39ca88be1addebf5c0b05dd0d804888} 
+\index{tools.c@{tools.c}!fadein@{fadein}}
+\index{fadein@{fadein}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{fadein()}{fadein()}}
+{\footnotesize\ttfamily void fadein (\begin{DoxyParamCaption}\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{new\+\_\+screen }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_8c_ac39ca88be1addebf5c0b05dd0d804888_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_ac5967e23ee3c186778901600e39e4c77}\label{tools_8c_ac5967e23ee3c186778901600e39e4c77} 
+\index{tools.c@{tools.c}!fadeout@{fadeout}}
+\index{fadeout@{fadeout}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{fadeout()}{fadeout()}}
+{\footnotesize\ttfamily void fadeout (\begin{DoxyParamCaption}\item[{BITMAP \texorpdfstring{$\ast$}{*}}]{last\+\_\+screen }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{tools_8c_ac5967e23ee3c186778901600e39e4c77_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_a43d50ae6e8f7872dca0275d6c56fcab9}\label{tools_8c_a43d50ae6e8f7872dca0275d6c56fcab9} 
+\index{tools.c@{tools.c}!free\_idle\_bitmaps@{free\_idle\_bitmaps}}
+\index{free\_idle\_bitmaps@{free\_idle\_bitmaps}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{free\_idle\_bitmaps()}{free\_idle\_bitmaps()}}
+{\footnotesize\ttfamily void free\+\_\+idle\+\_\+bitmaps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_8c_a43d50ae6e8f7872dca0275d6c56fcab9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_ac01a2a325684b1cf7adb928da0a92a20}\label{tools_8c_ac01a2a325684b1cf7adb928da0a92a20} 
+\index{tools.c@{tools.c}!free\_walk\_bitmaps@{free\_walk\_bitmaps}}
+\index{free\_walk\_bitmaps@{free\_walk\_bitmaps}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{free\_walk\_bitmaps()}{free\_walk\_bitmaps()}}
+{\footnotesize\ttfamily void free\+\_\+walk\+\_\+bitmaps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_8c_ac01a2a325684b1cf7adb928da0a92a20_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_acf94a63206fcbf2f29d9415b37e54d2e}\label{tools_8c_acf94a63206fcbf2f29d9415b37e54d2e} 
+\index{tools.c@{tools.c}!get\_random\_color@{get\_random\_color}}
+\index{get\_random\_color@{get\_random\_color}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{get\_random\_color()}{get\_random\_color()}}
+{\footnotesize\ttfamily int get\+\_\+random\+\_\+color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=347pt]{tools_8c_acf94a63206fcbf2f29d9415b37e54d2e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tools_8c_afba58b2687f44debd27e8349d078ea31}\label{tools_8c_afba58b2687f44debd27e8349d078ea31} 
+\index{tools.c@{tools.c}!update\_animation\_frame@{update\_animation\_frame}}
+\index{update\_animation\_frame@{update\_animation\_frame}!tools.c@{tools.c}}
+\doxysubsubsection{\texorpdfstring{update\_animation\_frame()}{update\_animation\_frame()}}
+{\footnotesize\ttfamily void update\+\_\+animation\+\_\+frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{tools_8c_afba58b2687f44debd27e8349d078ea31_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{tools_8c_afba58b2687f44debd27e8349d078ea31_icgraph}
+\end{center}
+\end{figure}

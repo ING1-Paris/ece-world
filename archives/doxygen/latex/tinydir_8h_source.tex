@@ -1,0 +1,777 @@
+\doxysection{tinydir.\+h}
+\hypertarget{tinydir_8h_source}{}\label{tinydir_8h_source}\index{include/tinydir.h@{include/tinydir.h}}
+\mbox{\hyperlink{tinydir_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Copyright\ (c)\ 2013-\/2021,\ tinydir\ authors:}}
+\DoxyCodeLine{00003\ \textcolor{comment}{-\/\ Cong\ Xu}}
+\DoxyCodeLine{00004\ \textcolor{comment}{-\/\ Lautis\ Sun}}
+\DoxyCodeLine{00005\ \textcolor{comment}{-\/\ Baudouin\ Feildel}}
+\DoxyCodeLine{00006\ \textcolor{comment}{-\/\ Andargor\ <andargor@yahoo.com>}}
+\DoxyCodeLine{00007\ \textcolor{comment}{All\ rights\ reserved.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{00010\ \textcolor{comment}{modification,\ are\ permitted\ provided\ that\ the\ following\ conditions\ are\ met:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{1.\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright\ notice,\ this}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{2.\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above\ copyright\ notice,}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ this\ list\ of\ conditions\ and\ the\ following\ disclaimer\ in\ the\ documentation}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ and/or\ other\ materials\ provided\ with\ the\ distribution.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ COPYRIGHT\ HOLDERS\ AND\ CONTRIBUTORS\ "{}AS\ IS"{}\ AND}}
+\DoxyCodeLine{00019\ \textcolor{comment}{ANY\ EXPRESS\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ THE\ IMPLIED}}
+\DoxyCodeLine{00020\ \textcolor{comment}{WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ ARE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{DISCLAIMED.\ IN\ NO\ EVENT\ SHALL\ THE\ COPYRIGHT\ OWNER\ OR\ CONTRIBUTORS\ BE\ LIABLE\ FOR}}
+\DoxyCodeLine{00022\ \textcolor{comment}{ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL\ DAMAGES}}
+\DoxyCodeLine{00023\ \textcolor{comment}{(INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE\ GOODS\ OR\ SERVICES;}}
+\DoxyCodeLine{00024\ \textcolor{comment}{LOSS\ OF\ USE,\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND}}
+\DoxyCodeLine{00025\ \textcolor{comment}{ON\ ANY\ THEORY\ OF\ LIABILITY,\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT}}
+\DoxyCodeLine{00026\ \textcolor{comment}{(INCLUDING\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE\ OF\ THIS}}
+\DoxyCodeLine{00027\ \textcolor{comment}{SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifndef\ TINYDIR\_H}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ TINYDIR\_H}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#if\ ((defined\ \_UNICODE)\ \&\&\ !(defined\ UNICODE))}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ UNICODE}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#if\ ((defined\ UNICODE)\ \&\&\ !(defined\ \_UNICODE))}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ \_UNICODE}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <errno.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifndef\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <tchar.h>}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#pragma\ warning(push)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4996)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ <dirent.h>}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <libgen.h>}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#ifdef\ \_\_MINGW32\_\_}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ <tchar.h>}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{/*\ types\ */}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{/*\ Windows\ UNICODE\ wide\ character\ support\ */}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#if\ defined\ \_MSC\_VER\ ||\ defined\ \_\_MINGW32\_\_}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ \_tinydir\_char\_t\ TCHAR}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ TINYDIR\_STRING(s)\ \_TEXT(s)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ \_tinydir\_strlen\ \_tcslen}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ \_tinydir\_strcpy\ \_tcscpy}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ \_tinydir\_strcat\ \_tcscat}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ \_tinydir\_strcmp\ \_tcscmp}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ \_tinydir\_strrchr\ \_tcsrchr}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ \_tinydir\_strncmp\ \_tcsncmp}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ \_tinydir\_char\_t\ char}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ TINYDIR\_STRING(s)\ s}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ \_tinydir\_strlen\ strlen}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ \_tinydir\_strcpy\ strcpy}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ \_tinydir\_strcat\ strcat}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ \_tinydir\_strcmp\ strcmp}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ \_tinydir\_strrchr\ strrchr}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ \_tinydir\_strncmp\ strncmp}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#if\ (defined\ \_MSC\_VER\ ||\ defined\ \_\_MINGW32\_\_)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_PATH\_MAX\ MAX\_PATH}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#elif\ defined\ \_\_linux\_\_}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#include\ <limits.h>}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#ifdef\ PATH\_MAX}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_PATH\_MAX\ PATH\_MAX}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#elif\ defined(\_\_unix\_\_)\ ||\ (defined(\_\_APPLE\_\_)\ \&\&\ defined(\_\_MACH\_\_))}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#include\ <sys/param.h>}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#if\ defined(BSD)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#include\ <limits.h>}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#ifdef\ PATH\_MAX}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_PATH\_MAX\ PATH\_MAX}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#ifndef\ \_TINYDIR\_PATH\_MAX}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_PATH\_MAX\ 4096}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00111\ \textcolor{comment}{/*\ extra\ chars\ for\ the\ "{}\(\backslash\)\(\backslash\)*"{}\ mask\ */}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_PATH\_EXTRA\ 2}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_PATH\_EXTRA\ 0}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_FILENAME\_MAX\ 256}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#if\ (defined\ \_MSC\_VER\ ||\ defined\ \_\_MINGW32\_\_)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_DRIVE\_MAX\ 3}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_FUNC\ static\ \_\_inline}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#elif\ !defined\ \_\_STDC\_VERSION\_\_\ ||\ \_\_STDC\_VERSION\_\_\ <\ 199901L}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_FUNC\ static\ \_\_inline\_\_}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#elif\ defined(\_\_cplusplus)}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_FUNC\ static\ inline}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{00130\ \textcolor{comment}{/*\ Suppress\ unused\ function\ warning\ */}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_FUNC\ \_\_attribute\_\_((unused))\ static}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_FUNC\ static}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{comment}{/*\ readdir\_r\ usage;\ define\ TINYDIR\_USE\_READDIR\_R\ to\ use\ it\ (if\ supported)\ */}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#ifdef\ TINYDIR\_USE\_READDIR\_R}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{/*\ readdir\_r\ is\ a\ POSIX-\/only\ function,\ and\ may\ not\ be\ available\ under\ various}}
+\DoxyCodeLine{00140\ \textcolor{comment}{\ *\ environments/settings,\ e.g.\ MinGW.\ Use\ readdir\ fallback\ */}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#if\ \_POSIX\_C\_SOURCE\ >=\ 1\ ||\ \_XOPEN\_SOURCE\ ||\ \_BSD\_SOURCE\ ||\ \_SVID\_SOURCE\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ \ \ \_POSIX\_SOURCE}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_HAS\_READDIR\_R}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#if\ \_POSIX\_C\_SOURCE\ >=\ 200112L}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_HAS\_FPATHCONF}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#if\ \_BSD\_SOURCE\ ||\ \_SVID\_SOURCE\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ (\_POSIX\_C\_SOURCE\ >=\ 200809L\ ||\ \_XOPEN\_SOURCE\ >=\ 700)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_HAS\_DIRFD}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#if\ defined\ \_TINYDIR\_HAS\_FPATHCONF\ \&\&\ defined\ \_TINYDIR\_HAS\_DIRFD\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ \ \ defined\ \_PC\_NAME\_MAX}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_USE\_FPATHCONF}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#if\ defined\ \_\_MINGW32\_\_\ ||\ !defined\ \_TINYDIR\_HAS\_READDIR\_R\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\ \ \ \ !(defined\ \_TINYDIR\_USE\_FPATHCONF\ ||\ defined\ NAME\_MAX)}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_USE\_READDIR}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{comment}{/*\ Use\ readdir\ by\ default\ */}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_USE\_READDIR}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{comment}{/*\ MINGW32\ has\ two\ versions\ of\ dirent,\ ASCII\ and\ UNICODE*/}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#if\ (defined\ \_\_MINGW32\_\_)\ \&\&\ (defined\ \_UNICODE)}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_DIR\ \_WDIR}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ \_tinydir\_dirent\ \_wdirent}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#define\ \_tinydir\_opendir\ \_wopendir}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ \_tinydir\_readdir\ \_wreaddir}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#define\ \_tinydir\_closedir\ \_wclosedir}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_DIR\ DIR}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#define\ \_tinydir\_dirent\ dirent}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#define\ \_tinydir\_opendir\ opendir}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#define\ \_tinydir\_readdir\ readdir}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#define\ \_tinydir\_closedir\ closedir}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{comment}{/*\ Allow\ user\ to\ use\ a\ custom\ allocator\ by\ defining\ \_TINYDIR\_MALLOC\ and\ \_TINYDIR\_FREE.\ */}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#if\ defined(\_TINYDIR\_MALLOC)\ \&\&\ defined(\_TINYDIR\_FREE)}}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#elif\ !defined(\_TINYDIR\_MALLOC)\ \&\&\ !defined(\_TINYDIR\_FREE)}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#error\ "{}Either\ define\ both\ alloc\ and\ free\ or\ none\ of\ them!"{}}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#if\ !defined(\_TINYDIR\_MALLOC)}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_MALLOC(\_size)\ malloc(\_size)}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#define\ \_TINYDIR\_FREE(\_ptr)\ free(\_ptr)}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !defined(\_TINYDIR\_MALLOC)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ \mbox{\hyperlink{structtinydir__file_a6ca794f217eb2c2b74ce07a17f74b1f3}{path}}[\mbox{\hyperlink{tinydir_8h_a0851f369d026104769d8a016741f2bc2}{\_TINYDIR\_PATH\_MAX}}];}
+\DoxyCodeLine{00199\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ \mbox{\hyperlink{structtinydir__file_adbd035af9b7cf25dfdf692ab0045c829}{name}}[\mbox{\hyperlink{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb}{\_TINYDIR\_FILENAME\_MAX}}];}
+\DoxyCodeLine{00200\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *\mbox{\hyperlink{structtinydir__file_a95f17c9c7d16ad040d02570a0cb3632e}{extension}};}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structtinydir__file_a702617c7ea4fad8a0ebde539eec9e5a7}{is\_dir}};}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structtinydir__file_a5d54c59718ccf7ada9fba3aec8c109bf}{is\_reg}};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#ifdef\ \_\_MINGW32\_\_}}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{struct\ }\_stat\ \mbox{\hyperlink{structtinydir__file_a71140206c03eb005035143ec3032a712}{\_s}};}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{struct\ }stat\ \mbox{\hyperlink{structtinydir__file_a71140206c03eb005035143ec3032a712}{\_s}};}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00211\ \}\ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}};}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ \mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}}[\mbox{\hyperlink{tinydir_8h_a0851f369d026104769d8a016741f2bc2}{\_TINYDIR\_PATH\_MAX}}];}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structtinydir__dir_a199eae7f7fa402e1c3f5195de9beb15b}{has\_next}};}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structtinydir__dir_afcb78c8c7847fd984faf7cbb16cf9768}{n\_files}};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}};}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00220\ \ \ \ \ HANDLE\ \_h;}
+\DoxyCodeLine{00221\ \ \ \ \ WIN32\_FIND\_DATA\ \_f;}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00223\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_aa2363d46103630126c630784ac32406f}{\_TINYDIR\_DIR}}\ *\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}};}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{tinydir_8h_ad791b1ff7c9112338a635ee1a9b04efb}{\_tinydir\_dirent}}\ *\mbox{\hyperlink{structtinydir__dir_a806eb8a7b51eeb3f7a131a506d41b6c6}{\_e}};}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#ifndef\ \_TINYDIR\_USE\_READDIR}}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{tinydir_8h_ad791b1ff7c9112338a635ee1a9b04efb}{\_tinydir\_dirent}}\ *\_ep;}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00229\ \}\ \mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}};}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{comment}{/*\ declarations\ */}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00234\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_ac82f351b056d10d7e6d0073b3f3f4a39}{tinydir\_open}}(\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *path);}
+\DoxyCodeLine{00235\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00236\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a7a4e3ab93c0a59477ba031f6f19c627a}{tinydir\_open\_sorted}}(\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *path);}
+\DoxyCodeLine{00237\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00238\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}{tinydir\_close}}(\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir);}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00241\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a699d0deef9ffde1d9fa75379d32714f9}{tinydir\_next}}(\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir);}
+\DoxyCodeLine{00242\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00243\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a61b7dcb5bf8b9d410f8d54e1d2f3e0d4}{tinydir\_readfile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir,\ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *file);}
+\DoxyCodeLine{00244\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00245\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a4f943bf19a9a0b2b4dbd94cf956337bb}{tinydir\_readfile\_n}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir,\ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *file,\ \textcolor{keywordtype}{size\_t}\ i);}
+\DoxyCodeLine{00246\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00247\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_acac889a2227f4855963fd543cf9215f8}{tinydir\_open\_subdir\_n}}(\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir,\ \textcolor{keywordtype}{size\_t}\ i);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00250\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a1d834edddffc4c66a5fa9c76acaf9bd8}{tinydir\_file\_open}}(\mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *file,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *path);}
+\DoxyCodeLine{00251\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00252\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tinydir_8h_af0bcd377e6e5712d292d22406b38a656}{\_tinydir\_get\_ext}}(\mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *file);}
+\DoxyCodeLine{00253\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00254\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a0020634f11c304c23ba2e7cebf6fdfe8}{\_tinydir\_file\_cmp}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *b);}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\#ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#ifndef\ \_TINYDIR\_USE\_READDIR}}
+\DoxyCodeLine{00257\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00258\ \textcolor{keywordtype}{size\_t}\ \_tinydir\_dirent\_buf\_size(\mbox{\hyperlink{tinydir_8h_aa2363d46103630126c630784ac32406f}{\_TINYDIR\_DIR}}\ *dirp);}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{comment}{/*\ definitions*/}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00265\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_ac82f351b056d10d7e6d0073b3f3f4a39}{tinydir\_open}}(\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *path)\ \{}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\#ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#ifndef\ \_TINYDIR\_USE\_READDIR}}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordtype}{int}\ error;}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordtype}{int}\ size;\ \textcolor{comment}{/*\ using\ int\ size\ */}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00272\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ path\_buf[\mbox{\hyperlink{tinydir_8h_a0851f369d026104769d8a016741f2bc2}{\_TINYDIR\_PATH\_MAX}}];}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *pathp;}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir\ ==\ NULL\ ||\ path\ ==\ NULL\ ||\ \mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(path)\ ==\ 0)\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ errno\ =\ EINVAL;}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00279\ \ \ \ \ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(path)\ +\ \mbox{\hyperlink{tinydir_8h_a1466f82a8701044c7804033003d0b180}{\_TINYDIR\_PATH\_EXTRA}}\ >=\ \mbox{\hyperlink{tinydir_8h_a0851f369d026104769d8a016741f2bc2}{\_TINYDIR\_PATH\_MAX}})\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ errno\ =\ ENAMETOOLONG;}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00283\ \ \ \ \ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{comment}{/*\ initialise\ dir\ */}}
+\DoxyCodeLine{00286\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}}\ =\ NULL;}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00288\ \ \ \ \ dir-\/>\_h\ =\ INVALID\_HANDLE\_VALUE;}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00290\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}}\ =\ NULL;}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#ifndef\ \_TINYDIR\_USE\_READDIR}}
+\DoxyCodeLine{00292\ \ \ \ \ dir-\/>\_ep\ =\ NULL;}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00295\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}{tinydir\_close}}(dir);}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}{\_tinydir\_strcpy}}(dir-\/>\mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}},\ path);}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{comment}{/*\ Remove\ trailing\ slashes\ */}}
+\DoxyCodeLine{00299\ \ \ \ \ pathp\ =\ \&dir-\/>\mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}}[\mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(dir-\/>\mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}})\ -\/\ 1];}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{while}\ (pathp\ !=\ dir-\/>\mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}}\ \&\&\ (*pathp\ ==\ \mbox{\hyperlink{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}{TINYDIR\_STRING}}(\textcolor{charliteral}{'\(\backslash\)\(\backslash\)'})\ ||\ *pathp\ ==\ \mbox{\hyperlink{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}{TINYDIR\_STRING}}(\textcolor{charliteral}{'/'})))\ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ *pathp\ =\ \mbox{\hyperlink{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}{TINYDIR\_STRING}}(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ pathp++;}
+\DoxyCodeLine{00303\ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00305\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}{\_tinydir\_strcpy}}(path\_buf,\ dir-\/>\mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}});}
+\DoxyCodeLine{00306\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a2d139d0acbd6c5854856f088a0d3de7f}{\_tinydir\_strcat}}(path\_buf,\ \mbox{\hyperlink{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}{TINYDIR\_STRING}}(\textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)*"{}}));}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#if\ (defined\ WINAPI\_FAMILY)\ \&\&\ (WINAPI\_FAMILY\ !=\ WINAPI\_FAMILY\_DESKTOP\_APP)}}
+\DoxyCodeLine{00308\ \ \ \ \ dir-\/>\_h\ =\ FindFirstFileEx(path\_buf,\ FindExInfoStandard,\ \&dir-\/>\_f,\ FindExSearchNameMatch,\ NULL,\ 0);}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00310\ \ \ \ \ dir-\/>\_h\ =\ FindFirstFile(path\_buf,\ \&dir-\/>\_f);}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\_h\ ==\ INVALID\_HANDLE\_VALUE)\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ errno\ =\ ENOENT;}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00315\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}}\ =\ \mbox{\hyperlink{tinydir_8h_a92e8dd0a668950a1738f677f0096fef2}{\_tinydir\_opendir}}(path);}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}}\ ==\ NULL)\ \{}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ bail;}
+\DoxyCodeLine{00319\ \ \ \ \ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{comment}{/*\ read\ first\ file\ */}}
+\DoxyCodeLine{00322\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_a199eae7f7fa402e1c3f5195de9beb15b}{has\_next}}\ =\ 1;}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#ifdef\ \_TINYDIR\_USE\_READDIR}}
+\DoxyCodeLine{00325\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_a806eb8a7b51eeb3f7a131a506d41b6c6}{\_e}}\ =\ \mbox{\hyperlink{tinydir_8h_ab4dae4d5771712651b1e61fb50dcce8f}{\_tinydir\_readdir}}(dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}});}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{comment}{/*\ allocate\ dirent\ buffer\ for\ readdir\_r\ */}}
+\DoxyCodeLine{00328\ \ \ \ \ size\ =\ \_tinydir\_dirent\_buf\_size(dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}});\ \textcolor{comment}{/*\ conversion\ to\ int\ */}}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ ==\ -\/1)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00330\ \ \ \ \ dir-\/>\_ep\ =\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{tinydir_8h_ad791b1ff7c9112338a635ee1a9b04efb}{\_tinydir\_dirent}}\ *)\mbox{\hyperlink{tinydir_8h_a96c2756a723c6ef4d7108cded93a0abc}{\_TINYDIR\_MALLOC}}(size);}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\_ep\ ==\ NULL)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ error\ =\ readdir\_r(dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}},\ dir-\/>\_ep,\ \&dir-\/>\mbox{\hyperlink{structtinydir__dir_a806eb8a7b51eeb3f7a131a506d41b6c6}{\_e}});}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordflow}{if}\ (error\ !=\ 0)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\mbox{\hyperlink{structtinydir__dir_a806eb8a7b51eeb3f7a131a506d41b6c6}{\_e}}\ ==\ NULL)\ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_a199eae7f7fa402e1c3f5195de9beb15b}{has\_next}}\ =\ 0;}
+\DoxyCodeLine{00338\ \ \ \ \ \}}
+\DoxyCodeLine{00339\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ bail:}
+\DoxyCodeLine{00344\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}{tinydir\_close}}(dir);}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00346\ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00349\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a7a4e3ab93c0a59477ba031f6f19c627a}{tinydir\_open\_sorted}}(\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *path)\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{comment}{/*\ Count\ the\ number\ of\ files\ first,\ to\ pre-\/allocate\ the\ files\ array\ */}}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ n\_files\ =\ 0;}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_ac82f351b056d10d7e6d0073b3f3f4a39}{tinydir\_open}}(dir,\ path)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keywordflow}{while}\ (dir-\/>\mbox{\hyperlink{structtinydir__dir_a199eae7f7fa402e1c3f5195de9beb15b}{has\_next}})\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ n\_files++;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_a699d0deef9ffde1d9fa75379d32714f9}{tinydir\_next}}(dir)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ bail;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00360\ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}{tinydir\_close}}(dir);}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keywordflow}{if}\ (n\_files\ ==\ 0\ ||\ \mbox{\hyperlink{tinydir_8h_ac82f351b056d10d7e6d0073b3f3f4a39}{tinydir\_open}}(dir,\ path)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00365\ \ \ \ \ \}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_afcb78c8c7847fd984faf7cbb16cf9768}{n\_files}}\ =\ 0;}
+\DoxyCodeLine{00368\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}}\ =\ (\mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *)\mbox{\hyperlink{tinydir_8h_a96c2756a723c6ef4d7108cded93a0abc}{\_TINYDIR\_MALLOC}}(\textcolor{keyword}{sizeof}\ *dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}}\ *\ n\_files);}
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}}\ ==\ NULL)\ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ bail;}
+\DoxyCodeLine{00371\ \ \ \ \ \}}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{while}\ (dir-\/>\mbox{\hyperlink{structtinydir__dir_a199eae7f7fa402e1c3f5195de9beb15b}{has\_next}})\ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *p\_file;}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_afcb78c8c7847fd984faf7cbb16cf9768}{n\_files}}++;}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ p\_file\ =\ \&dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}}[dir-\/>\mbox{\hyperlink{structtinydir__dir_afcb78c8c7847fd984faf7cbb16cf9768}{n\_files}}\ -\/\ 1];}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_a61b7dcb5bf8b9d410f8d54e1d2f3e0d4}{tinydir\_readfile}}(dir,\ p\_file)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ bail;}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_a699d0deef9ffde1d9fa75379d32714f9}{tinydir\_next}}(dir)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ bail;}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Just\ in\ case\ the\ number\ of\ files\ has\ changed\ between\ the\ first\ and}}
+\DoxyCodeLine{00386\ \textcolor{comment}{\ \ \ \ \ \ \ \ second\ reads,\ terminate\ without\ writing\ into\ unallocated\ memory\ */}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\mbox{\hyperlink{structtinydir__dir_afcb78c8c7847fd984faf7cbb16cf9768}{n\_files}}\ ==\ n\_files)\ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00390\ \ \ \ \ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ qsort(dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}},\ dir-\/>\mbox{\hyperlink{structtinydir__dir_afcb78c8c7847fd984faf7cbb16cf9768}{n\_files}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structtinydir__file}{tinydir\_file}}),\ \mbox{\hyperlink{tinydir_8h_a0020634f11c304c23ba2e7cebf6fdfe8}{\_tinydir\_file\_cmp}});}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ bail:}
+\DoxyCodeLine{00397\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}{tinydir\_close}}(dir);}
+\DoxyCodeLine{00398\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00399\ \}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00402\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}{tinydir\_close}}(\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir)\ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir\ ==\ NULL)\ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00405\ \ \ \ \ \}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ memset(dir-\/>\mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}},\ 0,\ \textcolor{keyword}{sizeof}(dir-\/>\mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}}));}
+\DoxyCodeLine{00408\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_a199eae7f7fa402e1c3f5195de9beb15b}{has\_next}}\ =\ 0;}
+\DoxyCodeLine{00409\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_afcb78c8c7847fd984faf7cbb16cf9768}{n\_files}}\ =\ 0;}
+\DoxyCodeLine{00410\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a9b3cd15e3e9df4a81baa22a516ee6b11}{\_TINYDIR\_FREE}}(dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}});}
+\DoxyCodeLine{00411\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}}\ =\ NULL;}
+\DoxyCodeLine{00412\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00413\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\_h\ !=\ INVALID\_HANDLE\_VALUE)\ \{}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ FindClose(dir-\/>\_h);}
+\DoxyCodeLine{00415\ \ \ \ \ \}}
+\DoxyCodeLine{00416\ \ \ \ \ dir-\/>\_h\ =\ INVALID\_HANDLE\_VALUE;}
+\DoxyCodeLine{00417\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}})\ \{}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a2fb6491f18f08724a1fbff8f0a14027c}{\_tinydir\_closedir}}(dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}});}
+\DoxyCodeLine{00420\ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}}\ =\ NULL;}
+\DoxyCodeLine{00422\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_a806eb8a7b51eeb3f7a131a506d41b6c6}{\_e}}\ =\ NULL;}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#ifndef\ \_TINYDIR\_USE\_READDIR}}
+\DoxyCodeLine{00424\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a9b3cd15e3e9df4a81baa22a516ee6b11}{\_TINYDIR\_FREE}}(dir-\/>\_ep);}
+\DoxyCodeLine{00425\ \ \ \ \ dir-\/>\_ep\ =\ NULL;}
+\DoxyCodeLine{00426\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00428\ \}}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00431\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a699d0deef9ffde1d9fa75379d32714f9}{tinydir\_next}}(\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir)\ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir\ ==\ NULL)\ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ errno\ =\ EINVAL;}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00435\ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir-\/>\mbox{\hyperlink{structtinydir__dir_a199eae7f7fa402e1c3f5195de9beb15b}{has\_next}})\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ errno\ =\ ENOENT;}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00439\ \ \ \ \ \}}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keywordflow}{if}\ (FindNextFile(dir-\/>\_h,\ \&dir-\/>\_f)\ ==\ 0)}
+\DoxyCodeLine{00443\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\#ifdef\ \_TINYDIR\_USE\_READDIR}}
+\DoxyCodeLine{00445\ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_a806eb8a7b51eeb3f7a131a506d41b6c6}{\_e}}\ =\ \mbox{\hyperlink{tinydir_8h_ab4dae4d5771712651b1e61fb50dcce8f}{\_tinydir\_readdir}}(dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}});}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\_ep\ ==\ NULL)\ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00449\ \ \ \ \ \}}
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keywordflow}{if}\ (readdir\_r(dir-\/>\mbox{\hyperlink{structtinydir__dir_aab4bd049dd7b5c08579de50a4544b220}{\_d}},\ dir-\/>\_ep,\ \&dir-\/>\mbox{\hyperlink{structtinydir__dir_a806eb8a7b51eeb3f7a131a506d41b6c6}{\_e}})\ !=\ 0)\ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00452\ \ \ \ \ \}}
+\DoxyCodeLine{00453\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\mbox{\hyperlink{structtinydir__dir_a806eb8a7b51eeb3f7a131a506d41b6c6}{\_e}}\ ==\ NULL)}
+\DoxyCodeLine{00455\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00456\ \ \ \ \ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_a199eae7f7fa402e1c3f5195de9beb15b}{has\_next}}\ =\ 0;}
+\DoxyCodeLine{00458\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GetLastError()\ !=\ ERROR\_SUCCESS\ \&\&}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ GetLastError()\ !=\ ERROR\_NO\_MORE\_FILES)\ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}{tinydir\_close}}(dir);}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ errno\ =\ EIO;}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00465\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00466\ \ \ \ \ \}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00469\ \}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00472\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a61b7dcb5bf8b9d410f8d54e1d2f3e0d4}{tinydir\_readfile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir,\ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *file)\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *filename;}
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir\ ==\ NULL\ ||\ file\ ==\ NULL)\ \{}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ errno\ =\ EINVAL;}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00477\ \ \ \ \ \}}
+\DoxyCodeLine{00478\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00479\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\_h\ ==\ INVALID\_HANDLE\_VALUE)}
+\DoxyCodeLine{00480\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00481\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir-\/>\mbox{\hyperlink{structtinydir__dir_a806eb8a7b51eeb3f7a131a506d41b6c6}{\_e}}\ ==\ NULL)}
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00483\ \ \ \ \ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ errno\ =\ ENOENT;}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00486\ \ \ \ \ \}}
+\DoxyCodeLine{00487\ \ \ \ \ filename\ =}
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ dir-\/>\_f.cFileName;}
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ dir-\/>\mbox{\hyperlink{structtinydir__dir_a806eb8a7b51eeb3f7a131a506d41b6c6}{\_e}}-\/>d\_name;}
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(dir-\/>\mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}})\ +}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(filename)\ +\ 1\ +\ \mbox{\hyperlink{tinydir_8h_a1466f82a8701044c7804033003d0b180}{\_TINYDIR\_PATH\_EXTRA}}\ >=}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a0851f369d026104769d8a016741f2bc2}{\_TINYDIR\_PATH\_MAX}})\ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ the\ path\ for\ the\ file\ will\ be\ too\ long\ */}}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ errno\ =\ ENAMETOOLONG;}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00499\ \ \ \ \ \}}
+\DoxyCodeLine{00500\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(filename)\ >=\ \mbox{\hyperlink{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb}{\_TINYDIR\_FILENAME\_MAX}})\ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ errno\ =\ ENAMETOOLONG;}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00503\ \ \ \ \ \}}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}{\_tinydir\_strcpy}}(file-\/>\mbox{\hyperlink{structtinydir__file_a6ca794f217eb2c2b74ce07a17f74b1f3}{path}},\ dir-\/>\mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}});}
+\DoxyCodeLine{00506\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_aef889cd0ad628dffd8102be2d1c53072}{\_tinydir\_strcmp}}(dir-\/>\mbox{\hyperlink{structtinydir__dir_a0c76a062e0ee7714be2c8edd4d539eae}{path}},\ \mbox{\hyperlink{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}{TINYDIR\_STRING}}(\textcolor{stringliteral}{"{}/"{}}))\ !=\ 0)}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a2d139d0acbd6c5854856f088a0d3de7f}{\_tinydir\_strcat}}(file-\/>\mbox{\hyperlink{structtinydir__file_a6ca794f217eb2c2b74ce07a17f74b1f3}{path}},\ \mbox{\hyperlink{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}{TINYDIR\_STRING}}(\textcolor{stringliteral}{"{}/"{}}));}
+\DoxyCodeLine{00508\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}{\_tinydir\_strcpy}}(file-\/>\mbox{\hyperlink{structtinydir__file_adbd035af9b7cf25dfdf692ab0045c829}{name}},\ filename);}
+\DoxyCodeLine{00509\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a2d139d0acbd6c5854856f088a0d3de7f}{\_tinydir\_strcat}}(file-\/>\mbox{\hyperlink{structtinydir__file_a6ca794f217eb2c2b74ce07a17f74b1f3}{path}},\ filename);}
+\DoxyCodeLine{00510\ \textcolor{preprocessor}{\#ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\#ifdef\ \_\_MINGW32\_\_}}
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_tstat(}
+\DoxyCodeLine{00513\ \#elif\ (defined\ \_BSD\_SOURCE)\ ||\ (defined\ \_DEFAULT\_SOURCE)\ ||\ ((defined\ \_XOPEN\_SOURCE)\ \&\&\ (\_XOPEN\_SOURCE\ >=\ 500))\ ||\ ((defined\ \_POSIX\_C\_SOURCE)\ \&\&\ (\_POSIX\_C\_SOURCE\ >=\ 200112L))\ ||\ ((defined\ \_\_APPLE\_\_)\ \&\&\ (defined\ \_\_MACH\_\_))\ ||\ (defined\ BSD)}
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(}
+\DoxyCodeLine{00515\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00516\ \ \ \ \ \textcolor{keywordflow}{if}\ (stat(}
+\DoxyCodeLine{00517\ \#endif}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ file-\/>\mbox{\hyperlink{structtinydir__file_a6ca794f217eb2c2b74ce07a17f74b1f3}{path}},\ \&file-\/>\mbox{\hyperlink{structtinydir__file_a71140206c03eb005035143ec3032a712}{\_s}})\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ return\ -\/1;}
+\DoxyCodeLine{00520\ \ \ \ \ \}}
+\DoxyCodeLine{00521\ \#endif}
+\DoxyCodeLine{00522\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_af0bcd377e6e5712d292d22406b38a656}{\_tinydir\_get\_ext}}(file);}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \ \ \ \ file-\/>\mbox{\hyperlink{structtinydir__file_a702617c7ea4fad8a0ebde539eec9e5a7}{is\_dir}}\ =}
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ !!(dir-\/>\_f.dwFileAttributes\ \&\ FILE\_ATTRIBUTE\_DIRECTORY);}
+\DoxyCodeLine{00527\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ S\_ISDIR(file-\/>\mbox{\hyperlink{structtinydir__file_a71140206c03eb005035143ec3032a712}{\_s}}.st\_mode);}
+\DoxyCodeLine{00529\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00530\ \ \ \ \ file-\/>\mbox{\hyperlink{structtinydir__file_a5d54c59718ccf7ada9fba3aec8c109bf}{is\_reg}}\ =}
+\DoxyCodeLine{00531\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ !!(dir-\/>\_f.dwFileAttributes\ \&\ FILE\_ATTRIBUTE\_NORMAL)\ ||}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ (!(dir-\/>\_f.dwFileAttributes\ \&\ FILE\_ATTRIBUTE\_DEVICE)\ \&\&}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ !(dir-\/>\_f.dwFileAttributes\ \&\ FILE\_ATTRIBUTE\_DIRECTORY)\ \&\&}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ !(dir-\/>\_f.dwFileAttributes\ \&\ FILE\_ATTRIBUTE\_ENCRYPTED)\ \&\&}
+\DoxyCodeLine{00536\ \textcolor{preprocessor}{\#ifdef\ FILE\_ATTRIBUTE\_INTEGRITY\_STREAM}}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ !(dir-\/>\_f.dwFileAttributes\ \&\ FILE\_ATTRIBUTE\_INTEGRITY\_STREAM)\ \&\&}
+\DoxyCodeLine{00538\ \#endif}
+\DoxyCodeLine{00539\ \#ifdef\ FILE\_ATTRIBUTE\_NO\_SCRUB\_DATA}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ !(dir-\/>\_f.dwFileAttributes\ \&\ FILE\_ATTRIBUTE\_NO\_SCRUB\_DATA)\ \&\&}
+\DoxyCodeLine{00541\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ !(dir-\/>\_f.dwFileAttributes\ \&\ FILE\_ATTRIBUTE\_OFFLINE)\ \&\&}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ !(dir-\/>\_f.dwFileAttributes\ \&\ FILE\_ATTRIBUTE\_TEMPORARY));}
+\DoxyCodeLine{00544\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ S\_ISREG(file-\/>\mbox{\hyperlink{structtinydir__file_a71140206c03eb005035143ec3032a712}{\_s}}.st\_mode);}
+\DoxyCodeLine{00546\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00549\ \}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00552\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a4f943bf19a9a0b2b4dbd94cf956337bb}{tinydir\_readfile\_n}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir,\ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *file,\ \textcolor{keywordtype}{size\_t}\ i)\ \{}
+\DoxyCodeLine{00553\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir\ ==\ NULL\ ||\ file\ ==\ NULL)\ \{}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ errno\ =\ EINVAL;}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00556\ \ \ \ \ \}}
+\DoxyCodeLine{00557\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >=\ dir-\/>\mbox{\hyperlink{structtinydir__dir_afcb78c8c7847fd984faf7cbb16cf9768}{n\_files}})\ \{}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ errno\ =\ ENOENT;}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00560\ \ \ \ \ \}}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \ \ \ \ memcpy(file,\ \&dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}}[i],\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structtinydir__file}{tinydir\_file}}));}
+\DoxyCodeLine{00563\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_af0bcd377e6e5712d292d22406b38a656}{\_tinydir\_get\_ext}}(file);}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00566\ \}}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00569\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_acac889a2227f4855963fd543cf9215f8}{tinydir\_open\_subdir\_n}}(\mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ *dir,\ \textcolor{keywordtype}{size\_t}\ i)\ \{}
+\DoxyCodeLine{00570\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ path[\mbox{\hyperlink{tinydir_8h_a0851f369d026104769d8a016741f2bc2}{\_TINYDIR\_PATH\_MAX}}];}
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir\ ==\ NULL)\ \{}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ errno\ =\ EINVAL;}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00574\ \ \ \ \ \}}
+\DoxyCodeLine{00575\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >=\ dir-\/>\mbox{\hyperlink{structtinydir__dir_afcb78c8c7847fd984faf7cbb16cf9768}{n\_files}}\ ||\ !dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}}[i].\mbox{\hyperlink{structtinydir__file_a702617c7ea4fad8a0ebde539eec9e5a7}{is\_dir}})\ \{}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ errno\ =\ ENOENT;}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00578\ \ \ \ \ \}}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}{\_tinydir\_strcpy}}(path,\ dir-\/>\mbox{\hyperlink{structtinydir__dir_aa410f654a220b8dbe75f492b0285594b}{\_files}}[i].\mbox{\hyperlink{structtinydir__file_a6ca794f217eb2c2b74ce07a17f74b1f3}{path}});}
+\DoxyCodeLine{00581\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}{tinydir\_close}}(dir);}
+\DoxyCodeLine{00582\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_a7a4e3ab93c0a59477ba031f6f19c627a}{tinydir\_open\_sorted}}(dir,\ path)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00584\ \ \ \ \ \}}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00587\ \}}
+\DoxyCodeLine{00588\ }
+\DoxyCodeLine{00589\ \textcolor{comment}{/*\ Open\ a\ single\ file\ given\ its\ path\ */}}
+\DoxyCodeLine{00590\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00591\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a1d834edddffc4c66a5fa9c76acaf9bd8}{tinydir\_file\_open}}(\mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *file,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *path)\ \{}
+\DoxyCodeLine{00592\ \ \ \ \ \mbox{\hyperlink{structtinydir__dir}{tinydir\_dir}}\ dir;}
+\DoxyCodeLine{00593\ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ 0;}
+\DoxyCodeLine{00594\ \ \ \ \ \textcolor{keywordtype}{int}\ found\ =\ 0;}
+\DoxyCodeLine{00595\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ dir\_name\_buf[\mbox{\hyperlink{tinydir_8h_a0851f369d026104769d8a016741f2bc2}{\_TINYDIR\_PATH\_MAX}}];}
+\DoxyCodeLine{00596\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ file\_name\_buf[\mbox{\hyperlink{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb}{\_TINYDIR\_FILENAME\_MAX}}];}
+\DoxyCodeLine{00597\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *dir\_name;}
+\DoxyCodeLine{00598\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *base\_name;}
+\DoxyCodeLine{00599\ \textcolor{preprocessor}{\#if\ (defined\ \_MSC\_VER\ ||\ defined\ \_\_MINGW32\_\_)}}
+\DoxyCodeLine{00600\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ drive\_buf[\mbox{\hyperlink{tinydir_8h_a0851f369d026104769d8a016741f2bc2}{\_TINYDIR\_PATH\_MAX}}];}
+\DoxyCodeLine{00601\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ ext\_buf[\mbox{\hyperlink{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb}{\_TINYDIR\_FILENAME\_MAX}}];}
+\DoxyCodeLine{00602\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keywordflow}{if}\ (file\ ==\ NULL\ ||\ path\ ==\ NULL\ ||\ \mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(path)\ ==\ 0)\ \{}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ errno\ =\ EINVAL;}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00607\ \ \ \ \ \}}
+\DoxyCodeLine{00608\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(path)\ +\ \mbox{\hyperlink{tinydir_8h_a1466f82a8701044c7804033003d0b180}{\_TINYDIR\_PATH\_EXTRA}}\ >=\ \mbox{\hyperlink{tinydir_8h_a0851f369d026104769d8a016741f2bc2}{\_TINYDIR\_PATH\_MAX}})\ \{}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ errno\ =\ ENAMETOOLONG;}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00611\ \ \ \ \ \}}
+\DoxyCodeLine{00612\ }
+\DoxyCodeLine{00613\ \ \ \ \ \textcolor{comment}{/*\ Get\ the\ parent\ path\ */}}
+\DoxyCodeLine{00614\ \textcolor{preprocessor}{\#if\ (defined\ \_MSC\_VER\ ||\ defined\ \_\_MINGW32\_\_)}}
+\DoxyCodeLine{00615\ \textcolor{preprocessor}{\#if\ ((defined\ \_MSC\_VER)\ \&\&\ (\_MSC\_VER\ >=\ 1400))}}
+\DoxyCodeLine{00616\ \ \ \ \ errno\ =\ \_tsplitpath\_s(}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ path,}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ drive\_buf,\ \_TINYDIR\_DRIVE\_MAX,}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ dir\_name\_buf,\ \mbox{\hyperlink{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb}{\_TINYDIR\_FILENAME\_MAX}},}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ file\_name\_buf,\ \mbox{\hyperlink{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb}{\_TINYDIR\_FILENAME\_MAX}},}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ ext\_buf,\ \mbox{\hyperlink{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb}{\_TINYDIR\_FILENAME\_MAX}});}
+\DoxyCodeLine{00622\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00623\ \ \ \ \ \_tsplitpath(}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ path,}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ drive\_buf,}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ dir\_name\_buf,}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ file\_name\_buf,}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ ext\_buf);}
+\DoxyCodeLine{00629\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ \ \ \ \ \textcolor{keywordflow}{if}\ (errno)\ \{}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00633\ \ \ \ \ \}}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \textcolor{comment}{/*\ \_splitpath\_s\ not\ work\ fine\ with\ only\ filename\ and\ widechar\ support\ */}}
+\DoxyCodeLine{00636\ \textcolor{preprocessor}{\#ifdef\ \_UNICODE}}
+\DoxyCodeLine{00637\ \ \ \ \ \textcolor{keywordflow}{if}\ (drive\_buf[0]\ ==\ L\textcolor{stringliteral}{'\(\backslash\)xFEFE'})}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ drive\_buf[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00639\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir\_name\_buf[0]\ ==\ L\textcolor{stringliteral}{'\(\backslash\)xFEFE'})}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ dir\_name\_buf[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00641\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00642\ }
+\DoxyCodeLine{00643\ \ \ \ \ \textcolor{comment}{/*\ Emulate\ the\ behavior\ of\ dirname\ by\ returning\ "{}."{}\ for\ dir\ name\ if\ it's}}
+\DoxyCodeLine{00644\ \textcolor{comment}{\ \ \ \ empty\ */}}
+\DoxyCodeLine{00645\ \ \ \ \ \textcolor{keywordflow}{if}\ (drive\_buf[0]\ ==\ \textcolor{charliteral}{'\(\backslash\)0'}\ \&\&\ dir\_name\_buf[0]\ ==\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}{\_tinydir\_strcpy}}(dir\_name\_buf,\ \mbox{\hyperlink{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}{TINYDIR\_STRING}}(\textcolor{stringliteral}{"{}."{}}));}
+\DoxyCodeLine{00647\ \ \ \ \ \}}
+\DoxyCodeLine{00648\ \ \ \ \ \textcolor{comment}{/*\ Concatenate\ the\ drive\ letter\ and\ dir\ name\ to\ form\ full\ dir\ name\ */}}
+\DoxyCodeLine{00649\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a2d139d0acbd6c5854856f088a0d3de7f}{\_tinydir\_strcat}}(drive\_buf,\ dir\_name\_buf);}
+\DoxyCodeLine{00650\ \ \ \ \ dir\_name\ =\ drive\_buf;}
+\DoxyCodeLine{00651\ \ \ \ \ \textcolor{comment}{/*\ Concatenate\ the\ file\ name\ and\ extension\ to\ form\ base\ name\ */}}
+\DoxyCodeLine{00652\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a2d139d0acbd6c5854856f088a0d3de7f}{\_tinydir\_strcat}}(file\_name\_buf,\ ext\_buf);}
+\DoxyCodeLine{00653\ \ \ \ \ base\_name\ =\ file\_name\_buf;}
+\DoxyCodeLine{00654\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00655\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}{\_tinydir\_strcpy}}(dir\_name\_buf,\ path);}
+\DoxyCodeLine{00656\ \ \ \ \ dir\_name\ =\ dirname(dir\_name\_buf);}
+\DoxyCodeLine{00657\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}{\_tinydir\_strcpy}}(file\_name\_buf,\ path);}
+\DoxyCodeLine{00658\ \ \ \ \ base\_name\ =\ basename(file\_name\_buf);}
+\DoxyCodeLine{00659\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00660\ }
+\DoxyCodeLine{00661\ \ \ \ \ \textcolor{comment}{/*\ Special\ case:\ if\ the\ path\ is\ a\ root\ dir,\ open\ the\ parent\ dir\ as\ the\ file\ */}}
+\DoxyCodeLine{00662\ \textcolor{preprocessor}{\#if\ (defined\ \_MSC\_VER\ ||\ defined\ \_\_MINGW32\_\_)}}
+\DoxyCodeLine{00663\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(base\_name)\ ==\ 0)}
+\DoxyCodeLine{00664\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00665\ \ \ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{tinydir_8h_aef889cd0ad628dffd8102be2d1c53072}{\_tinydir\_strcmp}}(base\_name,\ \mbox{\hyperlink{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}{TINYDIR\_STRING}}(\textcolor{stringliteral}{"{}/"{}})))\ ==\ 0)}
+\DoxyCodeLine{00666\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00667\ \ \ \ \ \{}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ memset(file,\ 0,\ \textcolor{keyword}{sizeof}\ *file);}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ file-\/>\mbox{\hyperlink{structtinydir__file_a702617c7ea4fad8a0ebde539eec9e5a7}{is\_dir}}\ =\ 1;}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ file-\/>\mbox{\hyperlink{structtinydir__file_a5d54c59718ccf7ada9fba3aec8c109bf}{is\_reg}}\ =\ 0;}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}{\_tinydir\_strcpy}}(file-\/>\mbox{\hyperlink{structtinydir__file_a6ca794f217eb2c2b74ce07a17f74b1f3}{path}},\ dir\_name);}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ file-\/>\mbox{\hyperlink{structtinydir__file_a95f17c9c7d16ad040d02570a0cb3632e}{extension}}\ =\ file-\/>\mbox{\hyperlink{structtinydir__file_a6ca794f217eb2c2b74ce07a17f74b1f3}{path}}\ +\ \mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(file-\/>\mbox{\hyperlink{structtinydir__file_a6ca794f217eb2c2b74ce07a17f74b1f3}{path}});}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00674\ \ \ \ \ \}}
+\DoxyCodeLine{00675\ }
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{comment}{/*\ Open\ the\ parent\ directory\ */}}
+\DoxyCodeLine{00677\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_ac82f351b056d10d7e6d0073b3f3f4a39}{tinydir\_open}}(\&dir,\ dir\_name)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00679\ \ \ \ \ \}}
+\DoxyCodeLine{00680\ }
+\DoxyCodeLine{00681\ \ \ \ \ \textcolor{comment}{/*\ Read\ through\ the\ parent\ directory\ and\ look\ for\ the\ file\ */}}
+\DoxyCodeLine{00682\ \ \ \ \ \textcolor{keywordflow}{while}\ (dir.\mbox{\hyperlink{structtinydir__dir_a199eae7f7fa402e1c3f5195de9beb15b}{has\_next}})\ \{}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_a61b7dcb5bf8b9d410f8d54e1d2f3e0d4}{tinydir\_readfile}}(\&dir,\ file)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ -\/1;}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ bail;}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{tinydir_8h_aef889cd0ad628dffd8102be2d1c53072}{\_tinydir\_strcmp}}(file-\/>\mbox{\hyperlink{structtinydir__file_adbd035af9b7cf25dfdf692ab0045c829}{name}},\ base\_name)\ ==\ 0)\ \{}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ File\ found\ */}}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ found\ =\ 1;}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a699d0deef9ffde1d9fa75379d32714f9}{tinydir\_next}}(\&dir);}
+\DoxyCodeLine{00693\ \ \ \ \ \}}
+\DoxyCodeLine{00694\ \ \ \ \ \textcolor{keywordflow}{if}\ (!found)\ \{}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ result\ =\ -\/1;}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ errno\ =\ ENOENT;}
+\DoxyCodeLine{00697\ \ \ \ \ \}}
+\DoxyCodeLine{00698\ }
+\DoxyCodeLine{00699\ bail:}
+\DoxyCodeLine{00700\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}{tinydir\_close}}(\&dir);}
+\DoxyCodeLine{00701\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00702\ \}}
+\DoxyCodeLine{00703\ }
+\DoxyCodeLine{00704\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00705\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tinydir_8h_af0bcd377e6e5712d292d22406b38a656}{\_tinydir\_get\_ext}}(\mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *file)\ \{}
+\DoxyCodeLine{00706\ \ \ \ \ \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\_tinydir\_char\_t}}\ *period\ =\ \mbox{\hyperlink{tinydir_8h_a130723c2014ababcd28d938488e1192f}{\_tinydir\_strrchr}}(file-\/>\mbox{\hyperlink{structtinydir__file_adbd035af9b7cf25dfdf692ab0045c829}{name}},\ \mbox{\hyperlink{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}{TINYDIR\_STRING}}(\textcolor{charliteral}{'.'}));}
+\DoxyCodeLine{00707\ \ \ \ \ \textcolor{keywordflow}{if}\ (period\ ==\ NULL)\ \{}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ file-\/>\mbox{\hyperlink{structtinydir__file_a95f17c9c7d16ad040d02570a0cb3632e}{extension}}\ =\ \&(file-\/>\mbox{\hyperlink{structtinydir__file_adbd035af9b7cf25dfdf692ab0045c829}{name}}[\mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\_tinydir\_strlen}}(file-\/>\mbox{\hyperlink{structtinydir__file_adbd035af9b7cf25dfdf692ab0045c829}{name}})]);}
+\DoxyCodeLine{00709\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ file-\/>\mbox{\hyperlink{structtinydir__file_a95f17c9c7d16ad040d02570a0cb3632e}{extension}}\ =\ period\ +\ 1;}
+\DoxyCodeLine{00711\ \ \ \ \ \}}
+\DoxyCodeLine{00712\ \}}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00714\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00715\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tinydir_8h_a0020634f11c304c23ba2e7cebf6fdfe8}{\_tinydir\_file\_cmp}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *b)\ \{}
+\DoxyCodeLine{00716\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *fa\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *)a;}
+\DoxyCodeLine{00717\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *fb\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{structtinydir__file}{tinydir\_file}}\ *)b;}
+\DoxyCodeLine{00718\ \ \ \ \ \textcolor{keywordflow}{if}\ (fa-\/>\mbox{\hyperlink{structtinydir__file_a702617c7ea4fad8a0ebde539eec9e5a7}{is\_dir}}\ !=\ fb-\/>\mbox{\hyperlink{structtinydir__file_a702617c7ea4fad8a0ebde539eec9e5a7}{is\_dir}})\ \{}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/(fa-\/>\mbox{\hyperlink{structtinydir__file_a702617c7ea4fad8a0ebde539eec9e5a7}{is\_dir}}\ -\/\ fb-\/>\mbox{\hyperlink{structtinydir__file_a702617c7ea4fad8a0ebde539eec9e5a7}{is\_dir}});}
+\DoxyCodeLine{00720\ \ \ \ \ \}}
+\DoxyCodeLine{00721\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{tinydir_8h_a07cc791edf5c11f0834712355a58f244}{\_tinydir\_strncmp}}(fa-\/>\mbox{\hyperlink{structtinydir__file_adbd035af9b7cf25dfdf692ab0045c829}{name}},\ fb-\/>\mbox{\hyperlink{structtinydir__file_adbd035af9b7cf25dfdf692ab0045c829}{name}},\ \mbox{\hyperlink{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb}{\_TINYDIR\_FILENAME\_MAX}});}
+\DoxyCodeLine{00722\ \}}
+\DoxyCodeLine{00723\ }
+\DoxyCodeLine{00724\ \textcolor{preprocessor}{\#ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00725\ \textcolor{preprocessor}{\#ifndef\ \_TINYDIR\_USE\_READDIR}}
+\DoxyCodeLine{00726\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00727\ \textcolor{comment}{The\ following\ authored\ by\ Ben\ Hutchings\ <ben@decadent.org.uk>}}
+\DoxyCodeLine{00728\ \textcolor{comment}{from\ https://womble.decadent.org.uk/readdir\_r-\/advisory.html}}
+\DoxyCodeLine{00729\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00730\ \textcolor{comment}{/*\ Calculate\ the\ required\ buffer\ size\ (in\ bytes)\ for\ directory\ \ \ \ \ \ *}}
+\DoxyCodeLine{00731\ \textcolor{comment}{\ *\ entries\ read\ from\ the\ given\ directory\ handle.\ \ Return\ -\/1\ if\ this\ \ *}}
+\DoxyCodeLine{00732\ \textcolor{comment}{\ *\ this\ cannot\ be\ done.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00733\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00734\ \textcolor{comment}{\ *\ This\ code\ does\ not\ trust\ values\ of\ NAME\_MAX\ that\ are\ less\ than\ \ \ \ *}}
+\DoxyCodeLine{00735\ \textcolor{comment}{\ *\ 255,\ since\ some\ systems\ (including\ at\ least\ HP-\/UX)\ incorrectly\ \ \ \ *}}
+\DoxyCodeLine{00736\ \textcolor{comment}{\ *\ define\ it\ to\ be\ a\ smaller\ value.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00737\ \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\_TINYDIR\_FUNC}}}
+\DoxyCodeLine{00738\ \textcolor{keywordtype}{size\_t}\ \_tinydir\_dirent\_buf\_size(\mbox{\hyperlink{tinydir_8h_aa2363d46103630126c630784ac32406f}{\_TINYDIR\_DIR}}\ *dirp)\ \{}
+\DoxyCodeLine{00739\ \ \ \ \ \textcolor{keywordtype}{long}\ name\_max;}
+\DoxyCodeLine{00740\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ name\_end;}
+\DoxyCodeLine{00741\ \ \ \ \ \textcolor{comment}{/*\ parameter\ may\ be\ unused\ */}}
+\DoxyCodeLine{00742\ \ \ \ \ (void)dirp;}
+\DoxyCodeLine{00743\ }
+\DoxyCodeLine{00744\ \textcolor{preprocessor}{\#if\ defined\ \_TINYDIR\_USE\_FPATHCONF}}
+\DoxyCodeLine{00745\ \ \ \ \ name\_max\ =\ fpathconf(dirfd(dirp),\ \_PC\_NAME\_MAX);}
+\DoxyCodeLine{00746\ \ \ \ \ \textcolor{keywordflow}{if}\ (name\_max\ ==\ -\/1)}
+\DoxyCodeLine{00747\ \textcolor{preprocessor}{\#if\ defined(NAME\_MAX)}}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ name\_max\ =\ (NAME\_MAX\ >\ 255)\ ?\ NAME\_MAX\ :\ 255;}
+\DoxyCodeLine{00749\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{size\_t})(-\/1);}
+\DoxyCodeLine{00751\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00752\ \textcolor{preprocessor}{\#elif\ defined(NAME\_MAX)}}
+\DoxyCodeLine{00753\ \ \ \ \ name\_max\ =\ (NAME\_MAX\ >\ 255)\ ?\ NAME\_MAX\ :\ 255;}
+\DoxyCodeLine{00754\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00755\ \textcolor{preprocessor}{\#error\ "{}buffer\ size\ for\ readdir\_r\ cannot\ be\ determined"{}}}
+\DoxyCodeLine{00756\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00757\ \ \ \ \ name\_end\ =\ (size\_t)offsetof(\textcolor{keyword}{struct}\ \mbox{\hyperlink{tinydir_8h_ad791b1ff7c9112338a635ee1a9b04efb}{\_tinydir\_dirent}},\ d\_name)\ +\ name\_max\ +\ 1;}
+\DoxyCodeLine{00758\ \ \ \ \ \textcolor{keywordflow}{return}\ (name\_end\ >\ \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{tinydir_8h_ad791b1ff7c9112338a635ee1a9b04efb}{\_tinydir\_dirent}})\ ?\ name\_end\ :\ \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct\ }\mbox{\hyperlink{tinydir_8h_ad791b1ff7c9112338a635ee1a9b04efb}{\_tinydir\_dirent}}));}
+\DoxyCodeLine{00759\ \}}
+\DoxyCodeLine{00760\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00761\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00762\ }
+\DoxyCodeLine{00763\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00764\ \}}
+\DoxyCodeLine{00765\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00766\ }
+\DoxyCodeLine{00767\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00768\ \textcolor{preprocessor}{\#pragma\ warning(pop)}}
+\DoxyCodeLine{00769\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00770\ }
+\DoxyCodeLine{00771\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -76,6 +76,7 @@ void classerChevaux(t_cheval chevaux[8], int taille) {
 int main() {
     allegro_init();
     install_keyboard();
+    install_timer();
     set_color_depth(32);
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, 800, 600, 0, 0);
 

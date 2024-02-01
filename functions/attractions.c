@@ -291,8 +291,8 @@ float wait_attractions_end(GameState* game, int attraction_index) {
     while (end == -1) {
         FILE* end_file = fopen(game->attractions[attraction_index].end_path, "r");
         if (end_file == NULL) {
-            printf("Error opening %s\n", game->attractions[attraction_index].end_path);
-            exit(1);
+            allegro_message("Error opening %s\n", game->attractions[attraction_index].end_path);
+            exit(1);    
         }
         fscanf(end_file, "%f", &end);
         fclose(end_file);

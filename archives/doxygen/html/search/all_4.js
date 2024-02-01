@@ -1,10 +1,26 @@
 var searchData=
 [
-  ['ece_2dworld_0',['ECE-WORLD',['../md__r_e_a_d_m_e.html',1,'']]],
-  ['en_5fdeplacement_1',['en_deplacement',['../structcheval.html#a7fdc3655046c816f2fc49cf09569f66d',1,'cheval']]],
-  ['end_5fof_5fmain_2',['END_OF_MAIN',['../jackpot_8c.html#ae5ce30f43c1f65cf5e459ac242938867',1,'jackpot.c']]],
-  ['end_5fpath_3',['end_path',['../structt__attraction.html#aaf8b966c53369592c76e6baecd7f0b05',1,'t_attraction']]],
-  ['est_5fsur_5frondin_4',['est_sur_rondin',['../grenouille_8c.html#a820705a4d72ac5061c776083d0664286',1,'grenouille.c']]],
-  ['executable_5fpath_5',['executable_path',['../structt__attraction.html#a8c9238c2a30b4ed89a0370a826c54949',1,'t_attraction']]],
-  ['exited_6',['exited',['../struct_game_state.html#a5528ecb54b0b1cfd4b75640f9078acda',1,'GameState']]]
+  ['debug_5ffps_0',['debug_fps',['../consts_8c.html#a84cec23f0fba2d20f7c78c971a650e6c',1,'debug_fps:&#160;consts.c'],['../consts_8h.html#a84cec23f0fba2d20f7c78c971a650e6c',1,'debug_fps:&#160;consts.c']]],
+  ['debug_5fframes_5faccum_1',['debug_frames_accum',['../consts_8c.html#a57ee3972c4fdfae8c9d5837d984a4cda',1,'debug_frames_accum:&#160;consts.c'],['../consts_8h.html#a57ee3972c4fdfae8c9d5837d984a4cda',1,'debug_frames_accum:&#160;consts.c']]],
+  ['debug_5fhud_2',['debug_hud',['../structt__game_state.html#aa38eab57c364b2fd67a8ca8b3a5cffe7',1,'t_gameState']]],
+  ['debug_5fmode_3',['debug_mode',['../structt__game_state.html#acf6888ae743afb1e87ee5edcde4d88b6',1,'t_gameState']]],
+  ['debug_5fmode_4',['DEBUG_MODE',['../consts_8h.html#ac80a3592e72fd96b772ee47a7d8e0d0a',1,'consts.h']]],
+  ['debug_5ftimestamp_5',['debug_timestamp',['../consts_8h.html#a0a86c56a8ef6fb8b00a62165a94b7690',1,'debug_timestamp:&#160;consts.c'],['../consts_8c.html#a0a86c56a8ef6fb8b00a62165a94b7690',1,'debug_timestamp:&#160;consts.c']]],
+  ['dessiner_5fpersonnage_6',['dessiner_personnage',['../cheval_8c.html#a2cbc807b58f16f9e35685d81f2053ef5',1,'cheval.c']]],
+  ['direction_7',['direction',['../structcheval.html#af0b178d7454c31e3685ef494653be586',1,'cheval::direction'],['../struct_game_state.html#a614c59f66e098eb156d4552efa4ed292',1,'GameState::direction'],['../structt__player.html#a31c00c7cb54c41f1dfd9987e61e1c550',1,'t_player::direction']]],
+  ['direction_5fdown_8',['DIRECTION_DOWN',['../snake_8h.html#a854f9aaf17c5861c78f3a35a1b4e2f74',1,'DIRECTION_DOWN:&#160;snake.h'],['../consts_8h.html#a854f9aaf17c5861c78f3a35a1b4e2f74',1,'DIRECTION_DOWN:&#160;consts.h']]],
+  ['direction_5fleft_9',['DIRECTION_LEFT',['../snake_8h.html#aeccc1afd6280d351aadb9a304bd6e04e',1,'DIRECTION_LEFT:&#160;snake.h'],['../consts_8h.html#aeccc1afd6280d351aadb9a304bd6e04e',1,'DIRECTION_LEFT:&#160;consts.h']]],
+  ['direction_5fright_10',['DIRECTION_RIGHT',['../snake_8h.html#a67080451e5c5225c8e11f84f26ae2252',1,'DIRECTION_RIGHT:&#160;snake.h'],['../consts_8h.html#a67080451e5c5225c8e11f84f26ae2252',1,'DIRECTION_RIGHT:&#160;consts.h']]],
+  ['direction_5fup_11',['DIRECTION_UP',['../snake_8h.html#a6185c96166318ded1f458ece45e14726',1,'DIRECTION_UP:&#160;snake.h'],['../consts_8h.html#a6185c96166318ded1f458ece45e14726',1,'DIRECTION_UP:&#160;consts.h']]],
+  ['display_12',['display',['../display_8c.html#a94f0cbf1d888ff82aba1e11be87d9545',1,'display(GameState *game):&#160;display.c'],['../display_8h.html#a94f0cbf1d888ff82aba1e11be87d9545',1,'display(GameState *game):&#160;display.c']]],
+  ['display_2ec_13',['display.c',['../display_8c.html',1,'']]],
+  ['display_2eh_14',['display.h',['../display_8h.html',1,'']]],
+  ['display_5fstring_5fin_5fbox_15',['display_string_in_box',['../players_8c.html#ade90ce09c04503058682dc43fbc5d20a',1,'display_string_in_box(BITMAP *buffer, char *str, int player_index, FONT *font2, bool first_time):&#160;players.c'],['../players_8h.html#a1a9f3a1f2d7d46b9dd34b33242efdc87',1,'display_string_in_box(BITMAP *buffer, char *str, int player_index, FONT *font, bool first_time):&#160;players.c']]],
+  ['draw_5fdiagonal_5fgradient_16',['draw_diagonal_gradient',['../tools_8c.html#a1bc21864532be597a37694de563beed9',1,'draw_diagonal_gradient(BITMAP *bmp, int start_color, int end_color):&#160;tools.c'],['../tools_8h.html#a1bc21864532be597a37694de563beed9',1,'draw_diagonal_gradient(BITMAP *bmp, int start_color, int end_color):&#160;tools.c']]],
+  ['draw_5ffps_17',['draw_fps',['../tools_8c.html#a0ee68cd31e0b63cab0d4ea1c060648e7',1,'draw_fps(GameState *game):&#160;tools.c'],['../tools_8h.html#a0ee68cd31e0b63cab0d4ea1c060648e7',1,'draw_fps(GameState *game):&#160;tools.c']]],
+  ['draw_5ffruit_18',['draw_fruit',['../snake_8c.html#aeb1b5cfbced2f3561887d269cd6230dc',1,'draw_fruit(GameState *game, int x, int y):&#160;snake.c'],['../snake_8h.html#aeb1b5cfbced2f3561887d269cd6230dc',1,'draw_fruit(GameState *game, int x, int y):&#160;snake.c']]],
+  ['draw_5fgame_19',['draw_game',['../snake_8h.html#a8a6daf47b3012e18a2ac37d6a89bccb9',1,'draw_game(GameState *game):&#160;snake.c'],['../snake_8c.html#a8a6daf47b3012e18a2ac37d6a89bccb9',1,'draw_game(GameState *game):&#160;snake.c']]],
+  ['draw_5ftransition_20',['draw_transition',['../tools_8h.html#a2586f951ec2f074acac9017f68bb24bf',1,'draw_transition(BITMAP *bmp, BITMAP *grad1, BITMAP *grad2, int t):&#160;tools.c'],['../tools_8c.html#a2586f951ec2f074acac9017f68bb24bf',1,'draw_transition(BITMAP *bmp, BITMAP *grad1, BITMAP *grad2, int t):&#160;tools.c']]],
+  ['droite_21',['droite',['../structcheval.html#aa8c029c622289443b6990dad14ea1e88',1,'cheval']]],
+  ['duck_22',['Duck',['../struct_duck.html',1,'']]]
 ];

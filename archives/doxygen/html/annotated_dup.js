@@ -7,5 +7,7 @@ var annotated_dup =
     [ "player", "structplayer.html", "structplayer" ],
     [ "t_attraction", "structt__attraction.html", "structt__attraction" ],
     [ "t_gameState", "structt__game_state.html", "structt__game_state" ],
-    [ "t_player", "structt__player.html", "structt__player" ]
+    [ "t_player", "structt__player.html", "structt__player" ],
+    [ "tinydir_dir", "structtinydir__dir.html", "structtinydir__dir" ],
+    [ "tinydir_file", "structtinydir__file.html", "structtinydir__file" ]
 ];

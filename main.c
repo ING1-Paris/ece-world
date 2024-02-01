@@ -1,17 +1,14 @@
-// TODO: Faire le menu stats avec SAVE + READ
-
 #include "main.h"
 
 int main() {
     // Initialisation de l'aléatoires
     srand(time(NULL));
-    
 
     // Initialisation d'Allegro
     install_all_allegro();
 
     // Menu
-    DEBUG_MODE > 0 ? : start_menu();
+    DEBUG_MODE > 0 ?: start_menu();
 
     // Creatin du jeu
     GameState game;
@@ -28,7 +25,6 @@ int main() {
     load_ticket_sprite(&game);
     game.debug_hud = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
     clear_to_color(game.debug_hud, makecol(255, 0, 255));
-
 
     // Players creations menu
     players_creation_menu(&game);

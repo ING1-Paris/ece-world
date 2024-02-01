@@ -1,12 +1,15 @@
 var searchData=
 [
-  ['canard_2ec_0',['canard.c',['../canard_8c.html',1,'']]],
-  ['canardcollision_1',['canardcollision',['../canard_8c.html#a9d2d9364cd52d922a70a1a98b531fc25',1,'canard.c']]],
-  ['check_5fcollisions_2',['check_collisions',['../snake_8c.html#ad61f84d47c211a68c6f3a8ac42f3e370',1,'check_collisions(GameState *game):&#160;snake.c'],['../snake_8h.html#ad61f84d47c211a68c6f3a8ac42f3e370',1,'check_collisions(GameState *game):&#160;snake.c'],['../main_8c.html#ad61f84d47c211a68c6f3a8ac42f3e370',1,'check_collisions(GameState *game):&#160;main.c'],['../main_8h.html#ad61f84d47c211a68c6f3a8ac42f3e370',1,'check_collisions(GameState *game):&#160;snake.c']]],
-  ['cheval_3',['cheval',['../structcheval.html',1,'']]],
-  ['cheval_2ec_4',['cheval.c',['../cheval_8c.html',1,'']]],
-  ['classerchevaux_5',['classerChevaux',['../cheval_8c.html#a5018b97a112760a0f6d889863d32f1fd',1,'cheval.c']]],
-  ['clean_5fgame_6',['clean_game',['../main_8c.html#a4f8b72540342c2b2c7841e77404d5f02',1,'clean_game(GameState *game):&#160;main.c'],['../main_8h.html#a4f8b72540342c2b2c7841e77404d5f02',1,'clean_game(GameState *game):&#160;main.c']]],
-  ['color_7',['color',['../structt__player.html#a25082f9e3f7025ceab758695c78301dd',1,'t_player']]],
-  ['current_5ftime_8',['current_time',['../main_8c.html#a0b7a80252bd91beb735d1c20d9a07d52',1,'current_time():&#160;main.c'],['../main_8h.html#a0b7a80252bd91beb735d1c20d9a07d52',1,'current_time():&#160;main.c']]]
+  ['background_0',['background',['../structt__game_state.html#af71b63f84fcb2fcf6809a2a31c85f430',1,'t_gameState']]],
+  ['background_5ffile_1',['BACKGROUND_FILE',['../consts_8h.html#a4fd0f977039b8a6d4cf2b5b0d6871536',1,'consts.h']]],
+  ['background_5foverlay_2',['background_overlay',['../structt__game_state.html#a41631e71c5d4558eb022a452fb0bc214',1,'t_gameState']]],
+  ['background_5foverlay_5ffile_3',['BACKGROUND_OVERLAY_FILE',['../consts_8h.html#ab991a708733e8a52d5db36487b2d2fb2',1,'consts.h']]],
+  ['best_5fpath_4',['best_path',['../structt__attraction.html#a90643df94ced20aa0aeda9b4916e4385',1,'t_attraction']]],
+  ['bitmap_5fheight_5',['BITMAP_HEIGHT',['../jackpot_8c.html#a9406d1c1ce745f80a0d2ce9fa4f3bafe',1,'jackpot.c']]],
+  ['bitmap_5fwidth_6',['BITMAP_WIDTH',['../jackpot_8c.html#a444fec18efc59740428a6bb879824685',1,'jackpot.c']]],
+  ['block_7',['Block',['../struct_block.html',1,'Block'],['../snake_8h.html#a2af45dc93858b3ab0965646789821f60',1,'Block:&#160;snake.h']]],
+  ['block_5fsize_8',['BLOCK_SIZE',['../snake_8h.html#ad51ded0bbd705f02f73fc60c0b721ced',1,'snake.h']]],
+  ['border_5fwidth_9',['BORDER_WIDTH',['../jackpot_8c.html#a4221b0a24a1716cf086b820f988e4285',1,'jackpot.c']]],
+  ['buffer_10',['buffer',['../struct_game_state.html#a35a180ae78ff84794db9e9e3dd9016d6',1,'GameState::buffer'],['../structt__game_state.html#a7cb22f392c83ba1fa76970d9cdf51cea',1,'t_gameState::buffer']]],
+  ['buffer_5fsize_11',['BUFFER_SIZE',['../jackpot_8c.html#a6b20d41d6252e9871430c242cb1a56e7',1,'jackpot.c']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['riviere_5fbest_5fsave_5ffile_0',['RIVIERE_BEST_SAVE_FILE',['../grenouille_8c.html#af7273f8b57d404b2b76319cb6afde071',1,'grenouille.c']]],
-  ['riviere_5fend_5fsave_5ffile_1',['RIVIERE_END_SAVE_FILE',['../grenouille_8c.html#ac45fb81db13d8f37c3e6664c9d698fe8',1,'grenouille.c']]]
+  ['name_5fmax_5flength_0',['NAME_MAX_LENGTH',['../consts_8h.html#ae43c74733b6ab324d038bd944c35ded9',1,'consts.h']]],
+  ['num_5fhorses_1',['NUM_HORSES',['../cheval_8c.html#ac0735be2784c654a36c11871e288c7f8',1,'cheval.c']]]
 ];

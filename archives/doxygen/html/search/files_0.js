@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['canard_2ec_0',['canard.c',['../canard_8c.html',1,'']]],
-  ['cheval_2ec_1',['cheval.c',['../cheval_8c.html',1,'']]]
+  ['attractions_2ec_0',['attractions.c',['../attractions_8c.html',1,'']]],
+  ['attractions_2eh_1',['attractions.h',['../attractions_8h.html',1,'']]]
 ];

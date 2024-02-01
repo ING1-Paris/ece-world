@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['dessiner_5fpersonnage_0',['dessiner_personnage',['../cheval_8c.html#a2cbc807b58f16f9e35685d81f2053ef5',1,'cheval.c']]],
-  ['display_1',['display',['../main_8c.html#a94f0cbf1d888ff82aba1e11be87d9545',1,'display(GameState *game):&#160;main.c'],['../main_8h.html#a94f0cbf1d888ff82aba1e11be87d9545',1,'display(GameState *game):&#160;main.c']]],
-  ['draw_5ffps_2',['draw_fps',['../main_8c.html#a0ee68cd31e0b63cab0d4ea1c060648e7',1,'draw_fps(GameState *game):&#160;main.c'],['../main_8h.html#a0ee68cd31e0b63cab0d4ea1c060648e7',1,'draw_fps(GameState *game):&#160;main.c']]],
-  ['draw_5ffruit_3',['draw_fruit',['../snake_8c.html#aeb1b5cfbced2f3561887d269cd6230dc',1,'draw_fruit(GameState *game, int x, int y):&#160;snake.c'],['../snake_8h.html#aeb1b5cfbced2f3561887d269cd6230dc',1,'draw_fruit(GameState *game, int x, int y):&#160;snake.c']]],
-  ['draw_5fgame_4',['draw_game',['../snake_8c.html#a8a6daf47b3012e18a2ac37d6a89bccb9',1,'draw_game(GameState *game):&#160;snake.c'],['../snake_8h.html#a8a6daf47b3012e18a2ac37d6a89bccb9',1,'draw_game(GameState *game):&#160;snake.c']]]
+  ['canardcollision_0',['canardcollision',['../canard_8c.html#a9d2d9364cd52d922a70a1a98b531fc25',1,'canard.c']]],
+  ['check_5fcollisions_1',['check_collisions',['../checks_8c.html#ad61f84d47c211a68c6f3a8ac42f3e370',1,'check_collisions(GameState *game):&#160;checks.c'],['../checks_8h.html#ad61f84d47c211a68c6f3a8ac42f3e370',1,'check_collisions(GameState *game):&#160;checks.c'],['../snake_8c.html#ad61f84d47c211a68c6f3a8ac42f3e370',1,'check_collisions(GameState *game):&#160;snake.c'],['../snake_8h.html#ad61f84d47c211a68c6f3a8ac42f3e370',1,'check_collisions(GameState *game):&#160;checks.c']]],
+  ['check_5ffor_5fwinner_2',['check_for_winner',['../checks_8c.html#a772954ea58613518801e47f326b60369',1,'check_for_winner(GameState *game):&#160;checks.c'],['../checks_8h.html#a772954ea58613518801e47f326b60369',1,'check_for_winner(GameState *game):&#160;checks.c']]],
+  ['classerchevaux_3',['classerChevaux',['../cheval_8c.html#a5018b97a112760a0f6d889863d32f1fd',1,'cheval.c']]],
+  ['clean_5fgame_4',['clean_game',['../tools_8c.html#a4f8b72540342c2b2c7841e77404d5f02',1,'clean_game(GameState *game):&#160;tools.c'],['../tools_8h.html#a4f8b72540342c2b2c7841e77404d5f02',1,'clean_game(GameState *game):&#160;tools.c']]],
+  ['close_5fbutton_5fhandler_5',['close_button_handler',['../tools_8c.html#a22aa7101aabec65ba174e48f9da58761',1,'close_button_handler():&#160;tools.c'],['../tools_8h.html#a22aa7101aabec65ba174e48f9da58761',1,'close_button_handler():&#160;tools.c']]],
+  ['current_5ftime_6',['current_time',['../tools_8c.html#a0b7a80252bd91beb735d1c20d9a07d52',1,'current_time():&#160;tools.c'],['../tools_8h.html#a0b7a80252bd91beb735d1c20d9a07d52',1,'current_time():&#160;tools.c']]]
 ];

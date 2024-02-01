@@ -1,0 +1,418 @@
+\doxysection{include/tinydir.h File Reference}
+\hypertarget{tinydir_8h}{}\label{tinydir_8h}\index{include/tinydir.h@{include/tinydir.h}}
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$libgen.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+Include dependency graph for tinydir.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tinydir_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{tinydir_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}}
+\item 
+struct \mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\+\_\+tinydir\+\_\+char\+\_\+t}}~char
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}{TINYDIR\+\_\+\+STRING}}(s)~s
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}{\+\_\+tinydir\+\_\+strlen}}~strlen
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}{\+\_\+tinydir\+\_\+strcpy}}~strcpy
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_a2d139d0acbd6c5854856f088a0d3de7f}{\+\_\+tinydir\+\_\+strcat}}~strcat
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_aef889cd0ad628dffd8102be2d1c53072}{\+\_\+tinydir\+\_\+strcmp}}~strcmp
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_a130723c2014ababcd28d938488e1192f}{\+\_\+tinydir\+\_\+strrchr}}~strrchr
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_a07cc791edf5c11f0834712355a58f244}{\+\_\+tinydir\+\_\+strncmp}}~strncmp
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_a0851f369d026104769d8a016741f2bc2}{\+\_\+\+TINYDIR\+\_\+\+PATH\+\_\+\+MAX}}~4096
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_a1466f82a8701044c7804033003d0b180}{\+\_\+\+TINYDIR\+\_\+\+PATH\+\_\+\+EXTRA}}~0
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb}{\+\_\+\+TINYDIR\+\_\+\+FILENAME\+\_\+\+MAX}}~256
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}}~static \+\_\+\+\_\+inline\+\_\+\+\_\+
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_adcc5df1dba1c26eea43621820236ae51}{\+\_\+\+TINYDIR\+\_\+\+USE\+\_\+\+READDIR}}
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_aa2363d46103630126c630784ac32406f}{\+\_\+\+TINYDIR\+\_\+\+DIR}}~DIR
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_ad791b1ff7c9112338a635ee1a9b04efb}{\+\_\+tinydir\+\_\+dirent}}~dirent
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_a92e8dd0a668950a1738f677f0096fef2}{\+\_\+tinydir\+\_\+opendir}}~opendir
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_ab4dae4d5771712651b1e61fb50dcce8f}{\+\_\+tinydir\+\_\+readdir}}~readdir
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_a2fb6491f18f08724a1fbff8f0a14027c}{\+\_\+tinydir\+\_\+closedir}}~closedir
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_a96c2756a723c6ef4d7108cded93a0abc}{\+\_\+\+TINYDIR\+\_\+\+MALLOC}}(\+\_\+size)~malloc(\+\_\+size)
+\item 
+\#define \mbox{\hyperlink{tinydir_8h_a9b3cd15e3e9df4a81baa22a516ee6b11}{\+\_\+\+TINYDIR\+\_\+\+FREE}}(\+\_\+ptr)~free(\+\_\+ptr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}} \mbox{\hyperlink{tinydir_8h_afc29824b1b16e2fd9a2303c441cb0777}{tinydir\+\_\+file}}
+\item 
+typedef struct \mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \mbox{\hyperlink{tinydir_8h_a94e5188f86156aef5198b46dc88ec8d3}{tinydir\+\_\+dir}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int \mbox{\hyperlink{tinydir_8h_ac82f351b056d10d7e6d0073b3f3f4a39}{tinydir\+\_\+open}} (\mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}dir, const \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\+\_\+tinydir\+\_\+char\+\_\+t}} \texorpdfstring{$\ast$}{*}path)
+\item 
+\mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int \mbox{\hyperlink{tinydir_8h_a7a4e3ab93c0a59477ba031f6f19c627a}{tinydir\+\_\+open\+\_\+sorted}} (\mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}dir, const \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\+\_\+tinydir\+\_\+char\+\_\+t}} \texorpdfstring{$\ast$}{*}path)
+\item 
+\mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} void \mbox{\hyperlink{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}{tinydir\+\_\+close}} (\mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}dir)
+\item 
+\mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int \mbox{\hyperlink{tinydir_8h_a699d0deef9ffde1d9fa75379d32714f9}{tinydir\+\_\+next}} (\mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}dir)
+\item 
+\mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int \mbox{\hyperlink{tinydir_8h_a61b7dcb5bf8b9d410f8d54e1d2f3e0d4}{tinydir\+\_\+readfile}} (const \mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}dir, \mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}} \texorpdfstring{$\ast$}{*}file)
+\item 
+\mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int \mbox{\hyperlink{tinydir_8h_a4f943bf19a9a0b2b4dbd94cf956337bb}{tinydir\+\_\+readfile\+\_\+n}} (const \mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}dir, \mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}} \texorpdfstring{$\ast$}{*}file, size\+\_\+t i)
+\item 
+\mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int \mbox{\hyperlink{tinydir_8h_acac889a2227f4855963fd543cf9215f8}{tinydir\+\_\+open\+\_\+subdir\+\_\+n}} (\mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}dir, size\+\_\+t i)
+\item 
+\mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int \mbox{\hyperlink{tinydir_8h_a1d834edddffc4c66a5fa9c76acaf9bd8}{tinydir\+\_\+file\+\_\+open}} (\mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}} \texorpdfstring{$\ast$}{*}file, const \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\+\_\+tinydir\+\_\+char\+\_\+t}} \texorpdfstring{$\ast$}{*}path)
+\item 
+\mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} void \mbox{\hyperlink{tinydir_8h_af0bcd377e6e5712d292d22406b38a656}{\+\_\+tinydir\+\_\+get\+\_\+ext}} (\mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}} \texorpdfstring{$\ast$}{*}file)
+\item 
+\mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int \mbox{\hyperlink{tinydir_8h_a0020634f11c304c23ba2e7cebf6fdfe8}{\+\_\+tinydir\+\_\+file\+\_\+cmp}} (const void \texorpdfstring{$\ast$}{*}a, const void \texorpdfstring{$\ast$}{*}b)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}\label{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_char\_t@{\_tinydir\_char\_t}}
+\index{\_tinydir\_char\_t@{\_tinydir\_char\_t}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_char\_t}{\_tinydir\_char\_t}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+char\+\_\+t~char}
+
+\Hypertarget{tinydir_8h_a2fb6491f18f08724a1fbff8f0a14027c}\label{tinydir_8h_a2fb6491f18f08724a1fbff8f0a14027c} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_closedir@{\_tinydir\_closedir}}
+\index{\_tinydir\_closedir@{\_tinydir\_closedir}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_closedir}{\_tinydir\_closedir}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+closedir~closedir}
+
+\Hypertarget{tinydir_8h_aa2363d46103630126c630784ac32406f}\label{tinydir_8h_aa2363d46103630126c630784ac32406f} 
+\index{tinydir.h@{tinydir.h}!\_TINYDIR\_DIR@{\_TINYDIR\_DIR}}
+\index{\_TINYDIR\_DIR@{\_TINYDIR\_DIR}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_TINYDIR\_DIR}{\_TINYDIR\_DIR}}
+{\footnotesize\ttfamily \#define \+\_\+\+TINYDIR\+\_\+\+DIR~DIR}
+
+\Hypertarget{tinydir_8h_ad791b1ff7c9112338a635ee1a9b04efb}\label{tinydir_8h_ad791b1ff7c9112338a635ee1a9b04efb} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_dirent@{\_tinydir\_dirent}}
+\index{\_tinydir\_dirent@{\_tinydir\_dirent}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_dirent}{\_tinydir\_dirent}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+dirent~dirent}
+
+\Hypertarget{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb}\label{tinydir_8h_aa391292d8689f984ca8ce3d70feecdcb} 
+\index{tinydir.h@{tinydir.h}!\_TINYDIR\_FILENAME\_MAX@{\_TINYDIR\_FILENAME\_MAX}}
+\index{\_TINYDIR\_FILENAME\_MAX@{\_TINYDIR\_FILENAME\_MAX}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_TINYDIR\_FILENAME\_MAX}{\_TINYDIR\_FILENAME\_MAX}}
+{\footnotesize\ttfamily \#define \+\_\+\+TINYDIR\+\_\+\+FILENAME\+\_\+\+MAX~256}
+
+\Hypertarget{tinydir_8h_a9b3cd15e3e9df4a81baa22a516ee6b11}\label{tinydir_8h_a9b3cd15e3e9df4a81baa22a516ee6b11} 
+\index{tinydir.h@{tinydir.h}!\_TINYDIR\_FREE@{\_TINYDIR\_FREE}}
+\index{\_TINYDIR\_FREE@{\_TINYDIR\_FREE}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_TINYDIR\_FREE}{\_TINYDIR\_FREE}}
+{\footnotesize\ttfamily \#define \+\_\+\+TINYDIR\+\_\+\+FREE(\begin{DoxyParamCaption}\item[{}]{\+\_\+ptr }\end{DoxyParamCaption})~free(\+\_\+ptr)}
+
+\Hypertarget{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}\label{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d} 
+\index{tinydir.h@{tinydir.h}!\_TINYDIR\_FUNC@{\_TINYDIR\_FUNC}}
+\index{\_TINYDIR\_FUNC@{\_TINYDIR\_FUNC}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_TINYDIR\_FUNC}{\_TINYDIR\_FUNC}}
+{\footnotesize\ttfamily \#define \+\_\+\+TINYDIR\+\_\+\+FUNC~static \+\_\+\+\_\+inline\+\_\+\+\_\+}
+
+\Hypertarget{tinydir_8h_a96c2756a723c6ef4d7108cded93a0abc}\label{tinydir_8h_a96c2756a723c6ef4d7108cded93a0abc} 
+\index{tinydir.h@{tinydir.h}!\_TINYDIR\_MALLOC@{\_TINYDIR\_MALLOC}}
+\index{\_TINYDIR\_MALLOC@{\_TINYDIR\_MALLOC}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_TINYDIR\_MALLOC}{\_TINYDIR\_MALLOC}}
+{\footnotesize\ttfamily \#define \+\_\+\+TINYDIR\+\_\+\+MALLOC(\begin{DoxyParamCaption}\item[{}]{\+\_\+size }\end{DoxyParamCaption})~malloc(\+\_\+size)}
+
+\Hypertarget{tinydir_8h_a92e8dd0a668950a1738f677f0096fef2}\label{tinydir_8h_a92e8dd0a668950a1738f677f0096fef2} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_opendir@{\_tinydir\_opendir}}
+\index{\_tinydir\_opendir@{\_tinydir\_opendir}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_opendir}{\_tinydir\_opendir}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+opendir~opendir}
+
+\Hypertarget{tinydir_8h_a1466f82a8701044c7804033003d0b180}\label{tinydir_8h_a1466f82a8701044c7804033003d0b180} 
+\index{tinydir.h@{tinydir.h}!\_TINYDIR\_PATH\_EXTRA@{\_TINYDIR\_PATH\_EXTRA}}
+\index{\_TINYDIR\_PATH\_EXTRA@{\_TINYDIR\_PATH\_EXTRA}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_TINYDIR\_PATH\_EXTRA}{\_TINYDIR\_PATH\_EXTRA}}
+{\footnotesize\ttfamily \#define \+\_\+\+TINYDIR\+\_\+\+PATH\+\_\+\+EXTRA~0}
+
+\Hypertarget{tinydir_8h_a0851f369d026104769d8a016741f2bc2}\label{tinydir_8h_a0851f369d026104769d8a016741f2bc2} 
+\index{tinydir.h@{tinydir.h}!\_TINYDIR\_PATH\_MAX@{\_TINYDIR\_PATH\_MAX}}
+\index{\_TINYDIR\_PATH\_MAX@{\_TINYDIR\_PATH\_MAX}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_TINYDIR\_PATH\_MAX}{\_TINYDIR\_PATH\_MAX}}
+{\footnotesize\ttfamily \#define \+\_\+\+TINYDIR\+\_\+\+PATH\+\_\+\+MAX~4096}
+
+\Hypertarget{tinydir_8h_ab4dae4d5771712651b1e61fb50dcce8f}\label{tinydir_8h_ab4dae4d5771712651b1e61fb50dcce8f} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_readdir@{\_tinydir\_readdir}}
+\index{\_tinydir\_readdir@{\_tinydir\_readdir}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_readdir}{\_tinydir\_readdir}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+readdir~readdir}
+
+\Hypertarget{tinydir_8h_a2d139d0acbd6c5854856f088a0d3de7f}\label{tinydir_8h_a2d139d0acbd6c5854856f088a0d3de7f} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_strcat@{\_tinydir\_strcat}}
+\index{\_tinydir\_strcat@{\_tinydir\_strcat}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_strcat}{\_tinydir\_strcat}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+strcat~strcat}
+
+\Hypertarget{tinydir_8h_aef889cd0ad628dffd8102be2d1c53072}\label{tinydir_8h_aef889cd0ad628dffd8102be2d1c53072} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_strcmp@{\_tinydir\_strcmp}}
+\index{\_tinydir\_strcmp@{\_tinydir\_strcmp}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_strcmp}{\_tinydir\_strcmp}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+strcmp~strcmp}
+
+\Hypertarget{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a}\label{tinydir_8h_ae213c32e9a86bf74c2a7ac579e5c9d9a} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_strcpy@{\_tinydir\_strcpy}}
+\index{\_tinydir\_strcpy@{\_tinydir\_strcpy}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_strcpy}{\_tinydir\_strcpy}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+strcpy~strcpy}
+
+\Hypertarget{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69}\label{tinydir_8h_a3f64766349f36a0c5e9ddd832ed16f69} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_strlen@{\_tinydir\_strlen}}
+\index{\_tinydir\_strlen@{\_tinydir\_strlen}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_strlen}{\_tinydir\_strlen}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+strlen~strlen}
+
+\Hypertarget{tinydir_8h_a07cc791edf5c11f0834712355a58f244}\label{tinydir_8h_a07cc791edf5c11f0834712355a58f244} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_strncmp@{\_tinydir\_strncmp}}
+\index{\_tinydir\_strncmp@{\_tinydir\_strncmp}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_strncmp}{\_tinydir\_strncmp}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+strncmp~strncmp}
+
+\Hypertarget{tinydir_8h_a130723c2014ababcd28d938488e1192f}\label{tinydir_8h_a130723c2014ababcd28d938488e1192f} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_strrchr@{\_tinydir\_strrchr}}
+\index{\_tinydir\_strrchr@{\_tinydir\_strrchr}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_strrchr}{\_tinydir\_strrchr}}
+{\footnotesize\ttfamily \#define \+\_\+tinydir\+\_\+strrchr~strrchr}
+
+\Hypertarget{tinydir_8h_adcc5df1dba1c26eea43621820236ae51}\label{tinydir_8h_adcc5df1dba1c26eea43621820236ae51} 
+\index{tinydir.h@{tinydir.h}!\_TINYDIR\_USE\_READDIR@{\_TINYDIR\_USE\_READDIR}}
+\index{\_TINYDIR\_USE\_READDIR@{\_TINYDIR\_USE\_READDIR}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_TINYDIR\_USE\_READDIR}{\_TINYDIR\_USE\_READDIR}}
+{\footnotesize\ttfamily \#define \+\_\+\+TINYDIR\+\_\+\+USE\+\_\+\+READDIR}
+
+\Hypertarget{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2}\label{tinydir_8h_ab86118f4eb1ea342eb1b34daf7a403b2} 
+\index{tinydir.h@{tinydir.h}!TINYDIR\_STRING@{TINYDIR\_STRING}}
+\index{TINYDIR\_STRING@{TINYDIR\_STRING}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{TINYDIR\_STRING}{TINYDIR\_STRING}}
+{\footnotesize\ttfamily \#define TINYDIR\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{s }\end{DoxyParamCaption})~s}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{tinydir_8h_a94e5188f86156aef5198b46dc88ec8d3}\label{tinydir_8h_a94e5188f86156aef5198b46dc88ec8d3} 
+\index{tinydir.h@{tinydir.h}!tinydir\_dir@{tinydir\_dir}}
+\index{tinydir\_dir@{tinydir\_dir}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{tinydir\_dir}{tinydir\_dir}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}}}
+
+\Hypertarget{tinydir_8h_afc29824b1b16e2fd9a2303c441cb0777}\label{tinydir_8h_afc29824b1b16e2fd9a2303c441cb0777} 
+\index{tinydir.h@{tinydir.h}!tinydir\_file@{tinydir\_file}}
+\index{tinydir\_file@{tinydir\_file}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{tinydir\_file}{tinydir\_file}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}} \mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{tinydir_8h_a0020634f11c304c23ba2e7cebf6fdfe8}\label{tinydir_8h_a0020634f11c304c23ba2e7cebf6fdfe8} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_file\_cmp@{\_tinydir\_file\_cmp}}
+\index{\_tinydir\_file\_cmp@{\_tinydir\_file\_cmp}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_file\_cmp()}{\_tinydir\_file\_cmp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int \+\_\+tinydir\+\_\+file\+\_\+cmp (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{a,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{b }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tinydir_8h_a0020634f11c304c23ba2e7cebf6fdfe8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tinydir_8h_af0bcd377e6e5712d292d22406b38a656}\label{tinydir_8h_af0bcd377e6e5712d292d22406b38a656} 
+\index{tinydir.h@{tinydir.h}!\_tinydir\_get\_ext@{\_tinydir\_get\_ext}}
+\index{\_tinydir\_get\_ext@{\_tinydir\_get\_ext}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{\_tinydir\_get\_ext()}{\_tinydir\_get\_ext()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} void \+\_\+tinydir\+\_\+get\+\_\+ext (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}} \texorpdfstring{$\ast$}{*}}]{file }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tinydir_8h_af0bcd377e6e5712d292d22406b38a656_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714}\label{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714} 
+\index{tinydir.h@{tinydir.h}!tinydir\_close@{tinydir\_close}}
+\index{tinydir\_close@{tinydir\_close}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{tinydir\_close()}{tinydir\_close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} void tinydir\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}}]{dir }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tinydir_8h_a05c4a9ee5c32f36ed3e5c5c7d00ae714_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tinydir_8h_a1d834edddffc4c66a5fa9c76acaf9bd8}\label{tinydir_8h_a1d834edddffc4c66a5fa9c76acaf9bd8} 
+\index{tinydir.h@{tinydir.h}!tinydir\_file\_open@{tinydir\_file\_open}}
+\index{tinydir\_file\_open@{tinydir\_file\_open}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{tinydir\_file\_open()}{tinydir\_file\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int tinydir\+\_\+file\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}} \texorpdfstring{$\ast$}{*}}]{file,  }\item[{const \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\+\_\+tinydir\+\_\+char\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tinydir_8h_a1d834edddffc4c66a5fa9c76acaf9bd8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tinydir_8h_a699d0deef9ffde1d9fa75379d32714f9}\label{tinydir_8h_a699d0deef9ffde1d9fa75379d32714f9} 
+\index{tinydir.h@{tinydir.h}!tinydir\_next@{tinydir\_next}}
+\index{tinydir\_next@{tinydir\_next}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{tinydir\_next()}{tinydir\_next()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int tinydir\+\_\+next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}}]{dir }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{tinydir_8h_a699d0deef9ffde1d9fa75379d32714f9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tinydir_8h_a699d0deef9ffde1d9fa75379d32714f9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tinydir_8h_ac82f351b056d10d7e6d0073b3f3f4a39}\label{tinydir_8h_ac82f351b056d10d7e6d0073b3f3f4a39} 
+\index{tinydir.h@{tinydir.h}!tinydir\_open@{tinydir\_open}}
+\index{tinydir\_open@{tinydir\_open}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{tinydir\_open()}{tinydir\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int tinydir\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}}]{dir,  }\item[{const \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\+\_\+tinydir\+\_\+char\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{tinydir_8h_ac82f351b056d10d7e6d0073b3f3f4a39_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tinydir_8h_ac82f351b056d10d7e6d0073b3f3f4a39_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tinydir_8h_a7a4e3ab93c0a59477ba031f6f19c627a}\label{tinydir_8h_a7a4e3ab93c0a59477ba031f6f19c627a} 
+\index{tinydir.h@{tinydir.h}!tinydir\_open\_sorted@{tinydir\_open\_sorted}}
+\index{tinydir\_open\_sorted@{tinydir\_open\_sorted}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{tinydir\_open\_sorted()}{tinydir\_open\_sorted()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int tinydir\+\_\+open\+\_\+sorted (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}}]{dir,  }\item[{const \mbox{\hyperlink{tinydir_8h_ae0feeca23fe20ae53dbf14c37154f168}{\+\_\+tinydir\+\_\+char\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tinydir_8h_a7a4e3ab93c0a59477ba031f6f19c627a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{tinydir_8h_a7a4e3ab93c0a59477ba031f6f19c627a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tinydir_8h_acac889a2227f4855963fd543cf9215f8}\label{tinydir_8h_acac889a2227f4855963fd543cf9215f8} 
+\index{tinydir.h@{tinydir.h}!tinydir\_open\_subdir\_n@{tinydir\_open\_subdir\_n}}
+\index{tinydir\_open\_subdir\_n@{tinydir\_open\_subdir\_n}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{tinydir\_open\_subdir\_n()}{tinydir\_open\_subdir\_n()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int tinydir\+\_\+open\+\_\+subdir\+\_\+n (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}}]{dir,  }\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tinydir_8h_acac889a2227f4855963fd543cf9215f8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tinydir_8h_a61b7dcb5bf8b9d410f8d54e1d2f3e0d4}\label{tinydir_8h_a61b7dcb5bf8b9d410f8d54e1d2f3e0d4} 
+\index{tinydir.h@{tinydir.h}!tinydir\_readfile@{tinydir\_readfile}}
+\index{tinydir\_readfile@{tinydir\_readfile}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{tinydir\_readfile()}{tinydir\_readfile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int tinydir\+\_\+readfile (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}}]{dir,  }\item[{\mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}} \texorpdfstring{$\ast$}{*}}]{file }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{tinydir_8h_a61b7dcb5bf8b9d410f8d54e1d2f3e0d4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tinydir_8h_a61b7dcb5bf8b9d410f8d54e1d2f3e0d4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tinydir_8h_a4f943bf19a9a0b2b4dbd94cf956337bb}\label{tinydir_8h_a4f943bf19a9a0b2b4dbd94cf956337bb} 
+\index{tinydir.h@{tinydir.h}!tinydir\_readfile\_n@{tinydir\_readfile\_n}}
+\index{tinydir\_readfile\_n@{tinydir\_readfile\_n}!tinydir.h@{tinydir.h}}
+\doxysubsubsection{\texorpdfstring{tinydir\_readfile\_n()}{tinydir\_readfile\_n()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tinydir_8h_abf91aae9fbcefee29cc03d29a0d4625d}{\+\_\+\+TINYDIR\+\_\+\+FUNC}} int tinydir\+\_\+readfile\+\_\+n (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structtinydir__dir}{tinydir\+\_\+dir}} \texorpdfstring{$\ast$}{*}}]{dir,  }\item[{\mbox{\hyperlink{structtinydir__file}{tinydir\+\_\+file}} \texorpdfstring{$\ast$}{*}}]{file,  }\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{tinydir_8h_a4f943bf19a9a0b2b4dbd94cf956337bb_cgraph}
+\end{center}
+\end{figure}

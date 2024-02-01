@@ -1,5 +1,33 @@
 \doxysection{main.\+h File Reference}
 \hypertarget{main_8h}{}\label{main_8h}\index{main.h@{main.h}}
+{\ttfamily \#include $<$allegro.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \"{}functions/attractions.\+h\"{}}\newline
+{\ttfamily \#include \"{}functions/checks.\+h\"{}}\newline
+{\ttfamily \#include \"{}functions/display.\+h\"{}}\newline
+{\ttfamily \#include \"{}functions/init.\+h\"{}}\newline
+{\ttfamily \#include \"{}functions/keyboard.\+h\"{}}\newline
+{\ttfamily \#include \"{}functions/players.\+h\"{}}\newline
+{\ttfamily \#include \"{}functions/sprites.\+h\"{}}\newline
+{\ttfamily \#include \"{}functions/start.\+h\"{}}\newline
+{\ttfamily \#include \"{}include/tinydir.\+h\"{}}\newline
+{\ttfamily \#include \"{}utils/consts.\+h\"{}}\newline
+{\ttfamily \#include \"{}utils/structs.\+h\"{}}\newline
+{\ttfamily \#include \"{}utils/tools.\+h\"{}}\newline
+Include dependency graph for main.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8h__incl}
+\end{center}
+\end{figure}
 This graph shows which files directly or indirectly include this file\+:
 \nopagebreak
 \begin{figure}[H]
@@ -8,436 +36,25 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=125pt]{main_8h__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \mbox{\hyperlink{structt__player}{t\+\_\+player}}
-\item 
-struct \mbox{\hyperlink{structt__attraction}{t\+\_\+attraction}}
-\item 
-struct \mbox{\hyperlink{structt__game_state}{t\+\_\+game\+State}}
-\end{DoxyCompactItemize}
-\doxysubsubsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \mbox{\hyperlink{main_8h_a2cd109632a6dcccaa80b43561b1ab700}{SCREEN\+\_\+\+WIDTH}}~1800
-\item 
-\#define \mbox{\hyperlink{main_8h_a6974d08a74da681b3957b2fead2608b8}{SCREEN\+\_\+\+HEIGHT}}~900
-\item 
-\#define \mbox{\hyperlink{main_8h_a89e2ac9092225702ac543695d0771d38}{PLAYER\+\_\+\+WIDTH}}~50
-\item 
-\#define \mbox{\hyperlink{main_8h_a2712b06fd52f25adca031d05c3e0c09b}{PLAYER\+\_\+\+HEIGHT}}~50
-\item 
-\#define \mbox{\hyperlink{main_8h_a278e221cff61c8700350a5af91eea2c4}{ATTRACTION\+\_\+\+WIDTH}}~100
-\item 
-\#define \mbox{\hyperlink{main_8h_a399aa46381bf14c84c32bb8aa7ff58e6}{ATTRACTION\+\_\+\+HEIGHT}}~100
-\item 
-\#define \mbox{\hyperlink{main_8h_a71f9b9d919c8b7b4c1adc1b1eea49393}{PLAYER\+\_\+\+AMOUNT}}~2
-\item 
-\#define \mbox{\hyperlink{main_8h_a88a2fb3da3452d0a364f95e415d719a1}{ATTRACTIONS\+\_\+\+AMOUNT}}~5
-\item 
-\#define \mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}~4
-\item 
-\#define \mbox{\hyperlink{main_8h_a380fc0ea01a0b867ed7dad77802d12a9}{MISC\+\_\+\+KEYS\+\_\+\+AMOUNT}}~5
-\item 
-\#define \mbox{\hyperlink{main_8h_aa438a5d5bcbb5a4a96842f169770c738}{ATTRACTION0\+\_\+\+NAME}}~\"{}canard\"{}
-\item 
-\#define \mbox{\hyperlink{main_8h_ab7d18ce5a57857725be630b39bceab2f}{ATTRACTION1\+\_\+\+NAME}}~\"{}cheval\"{}
-\item 
-\#define \mbox{\hyperlink{main_8h_a0b2fca599c153910c2a726ee88b94056}{ATTRACTION2\+\_\+\+NAME}}~\"{}grenouille\"{}
-\item 
-\#define \mbox{\hyperlink{main_8h_aaccb14749adba236cb8ea827ea2bcc5a}{ATTRACTION3\+\_\+\+NAME}}~\"{}jackpot\"{}
-\item 
-\#define \mbox{\hyperlink{main_8h_a6f87605c70eb2ba03cc693de0b569515}{ATTRACTION4\+\_\+\+NAME}}~\"{}snake\"{}
-\end{DoxyCompactItemize}
-\doxysubsubsection*{Typedefs}
-\begin{DoxyCompactItemize}
-\item 
-typedef struct \mbox{\hyperlink{structt__player}{t\+\_\+player}} \mbox{\hyperlink{main_8h_a813965931906aa33af71cb59bb423b62}{Player}}
-\item 
-typedef struct \mbox{\hyperlink{structt__attraction}{t\+\_\+attraction}} \mbox{\hyperlink{main_8h_ad1bda5279904083139440f9b1fafb8ac}{Attraction}}
-\item 
-typedef struct \mbox{\hyperlink{structt__game_state}{t\+\_\+game\+State}} \mbox{\hyperlink{main_8h_ae38057b82fe344ff214a4f98a45fa6b1}{Game\+State}}
-\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{main_8h_a0ee68cd31e0b63cab0d4ea1c060648e7}{draw\+\_\+fps}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-double \mbox{\hyperlink{main_8h_a0b7a80252bd91beb735d1c20d9a07d52}{current\+\_\+time}} ()
-\item 
-void \mbox{\hyperlink{main_8h_a94f0cbf1d888ff82aba1e11be87d9545}{display}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-void \mbox{\hyperlink{main_8h_ad61f84d47c211a68c6f3a8ac42f3e370}{check\+\_\+collisions}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-void \mbox{\hyperlink{main_8h_a3be5aa099f17a3e55005fe597c9c1c81}{init\+\_\+game}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-void \mbox{\hyperlink{main_8h_a043bab3aebb77ca901157a7a64853751}{handle\+\_\+input}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-void \mbox{\hyperlink{main_8h_a4f8b72540342c2b2c7841e77404d5f02}{clean\+\_\+game}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game)
-\item 
-int \mbox{\hyperlink{main_8h_ac7132f875351b34e875f66af3984d28c}{random\+\_\+color}} ()
-\item 
-float \mbox{\hyperlink{main_8h_aa74f4048b69bf54acd5e6905d94de84e}{wait\+\_\+attractions\+\_\+end}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}game, int attraction\+\_\+index)
+int \mbox{\hyperlink{main_8h_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-double \mbox{\hyperlink{main_8h_a63da2a617b72a1630998a4d8b4d26cd3}{fps}} = 0
-\item 
-double \mbox{\hyperlink{main_8h_a3448dd01436f3e7a1aa21241556cd4f8}{frames\+\_\+accum}} = 0
-\item 
-double \mbox{\hyperlink{main_8h_af636f754be71003839b8972c780fddcf}{fps\+\_\+timer}}
-\item 
-const int \mbox{\hyperlink{main_8h_a89885931534fe5dc18e6dd5417fb731a}{PLAYER1\+\_\+\+KEYS}} \mbox{[}\mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]} = \{KEY\+\_\+Z, KEY\+\_\+S, KEY\+\_\+Q, KEY\+\_\+D\}
-\item 
-const int \mbox{\hyperlink{main_8h_a74438ef97d4a26365204c63632172135}{PLAYER2\+\_\+\+KEYS}} \mbox{[}\mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]} = \{KEY\+\_\+\+UP, KEY\+\_\+\+DOWN, KEY\+\_\+\+LEFT, KEY\+\_\+\+RIGHT\}
-\item 
-const int \mbox{\hyperlink{main_8h_ac2ce183271bca15306dc69391f17e7a7}{PLAYER3\+\_\+\+KEYS}} \mbox{[}\mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]} = \{KEY\+\_\+I, KEY\+\_\+K, KEY\+\_\+J, KEY\+\_\+L\}
-\item 
-const int \mbox{\hyperlink{main_8h_a474eb08ad7b913c55e38e026588df48c}{PLAYER4\+\_\+\+KEYS}} \mbox{[}\mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]} = \{KEY\+\_\+T, KEY\+\_\+G, KEY\+\_\+F, KEY\+\_\+H\}
-\item 
-const int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8h_a34a53fee5c6dccaf9aaa4cdda9b639eb}{PLAYERS\+\_\+\+KEYS}} \mbox{[}\mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]} = \{\mbox{\hyperlink{main_8h_a89885931534fe5dc18e6dd5417fb731a}{PLAYER1\+\_\+\+KEYS}}, \mbox{\hyperlink{main_8h_a74438ef97d4a26365204c63632172135}{PLAYER2\+\_\+\+KEYS}}, \mbox{\hyperlink{main_8h_ac2ce183271bca15306dc69391f17e7a7}{PLAYER3\+\_\+\+KEYS}}, \mbox{\hyperlink{main_8h_a474eb08ad7b913c55e38e026588df48c}{PLAYER4\+\_\+\+KEYS}}\}
-\item 
-const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8h_a4b562a445a91d12bc7231b16c154fb12}{ATTRACTIONS\+\_\+\+NAMES}} \mbox{[}\mbox{\hyperlink{main_8h_a88a2fb3da3452d0a364f95e415d719a1}{ATTRACTIONS\+\_\+\+AMOUNT}}\mbox{]} = \{\mbox{\hyperlink{main_8h_aa438a5d5bcbb5a4a96842f169770c738}{ATTRACTION0\+\_\+\+NAME}}, \mbox{\hyperlink{main_8h_ab7d18ce5a57857725be630b39bceab2f}{ATTRACTION1\+\_\+\+NAME}}, \mbox{\hyperlink{main_8h_a0b2fca599c153910c2a726ee88b94056}{ATTRACTION2\+\_\+\+NAME}}, \mbox{\hyperlink{main_8h_aaccb14749adba236cb8ea827ea2bcc5a}{ATTRACTION3\+\_\+\+NAME}}, \mbox{\hyperlink{main_8h_a6f87605c70eb2ba03cc693de0b569515}{ATTRACTION4\+\_\+\+NAME}}\}
-\end{DoxyCompactItemize}
-
-
-\doxysubsection{Macro Definition Documentation}
-\Hypertarget{main_8h_aa438a5d5bcbb5a4a96842f169770c738}\label{main_8h_aa438a5d5bcbb5a4a96842f169770c738} 
-\index{main.h@{main.h}!ATTRACTION0\_NAME@{ATTRACTION0\_NAME}}
-\index{ATTRACTION0\_NAME@{ATTRACTION0\_NAME}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{ATTRACTION0\_NAME}{ATTRACTION0\_NAME}}
-{\footnotesize\ttfamily \#define ATTRACTION0\+\_\+\+NAME~\"{}canard\"{}}
-
-\Hypertarget{main_8h_ab7d18ce5a57857725be630b39bceab2f}\label{main_8h_ab7d18ce5a57857725be630b39bceab2f} 
-\index{main.h@{main.h}!ATTRACTION1\_NAME@{ATTRACTION1\_NAME}}
-\index{ATTRACTION1\_NAME@{ATTRACTION1\_NAME}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{ATTRACTION1\_NAME}{ATTRACTION1\_NAME}}
-{\footnotesize\ttfamily \#define ATTRACTION1\+\_\+\+NAME~\"{}cheval\"{}}
-
-\Hypertarget{main_8h_a0b2fca599c153910c2a726ee88b94056}\label{main_8h_a0b2fca599c153910c2a726ee88b94056} 
-\index{main.h@{main.h}!ATTRACTION2\_NAME@{ATTRACTION2\_NAME}}
-\index{ATTRACTION2\_NAME@{ATTRACTION2\_NAME}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{ATTRACTION2\_NAME}{ATTRACTION2\_NAME}}
-{\footnotesize\ttfamily \#define ATTRACTION2\+\_\+\+NAME~\"{}grenouille\"{}}
-
-\Hypertarget{main_8h_aaccb14749adba236cb8ea827ea2bcc5a}\label{main_8h_aaccb14749adba236cb8ea827ea2bcc5a} 
-\index{main.h@{main.h}!ATTRACTION3\_NAME@{ATTRACTION3\_NAME}}
-\index{ATTRACTION3\_NAME@{ATTRACTION3\_NAME}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{ATTRACTION3\_NAME}{ATTRACTION3\_NAME}}
-{\footnotesize\ttfamily \#define ATTRACTION3\+\_\+\+NAME~\"{}jackpot\"{}}
-
-\Hypertarget{main_8h_a6f87605c70eb2ba03cc693de0b569515}\label{main_8h_a6f87605c70eb2ba03cc693de0b569515} 
-\index{main.h@{main.h}!ATTRACTION4\_NAME@{ATTRACTION4\_NAME}}
-\index{ATTRACTION4\_NAME@{ATTRACTION4\_NAME}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{ATTRACTION4\_NAME}{ATTRACTION4\_NAME}}
-{\footnotesize\ttfamily \#define ATTRACTION4\+\_\+\+NAME~\"{}snake\"{}}
-
-\Hypertarget{main_8h_a399aa46381bf14c84c32bb8aa7ff58e6}\label{main_8h_a399aa46381bf14c84c32bb8aa7ff58e6} 
-\index{main.h@{main.h}!ATTRACTION\_HEIGHT@{ATTRACTION\_HEIGHT}}
-\index{ATTRACTION\_HEIGHT@{ATTRACTION\_HEIGHT}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{ATTRACTION\_HEIGHT}{ATTRACTION\_HEIGHT}}
-{\footnotesize\ttfamily \#define ATTRACTION\+\_\+\+HEIGHT~100}
-
-\Hypertarget{main_8h_a278e221cff61c8700350a5af91eea2c4}\label{main_8h_a278e221cff61c8700350a5af91eea2c4} 
-\index{main.h@{main.h}!ATTRACTION\_WIDTH@{ATTRACTION\_WIDTH}}
-\index{ATTRACTION\_WIDTH@{ATTRACTION\_WIDTH}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{ATTRACTION\_WIDTH}{ATTRACTION\_WIDTH}}
-{\footnotesize\ttfamily \#define ATTRACTION\+\_\+\+WIDTH~100}
-
-\Hypertarget{main_8h_a88a2fb3da3452d0a364f95e415d719a1}\label{main_8h_a88a2fb3da3452d0a364f95e415d719a1} 
-\index{main.h@{main.h}!ATTRACTIONS\_AMOUNT@{ATTRACTIONS\_AMOUNT}}
-\index{ATTRACTIONS\_AMOUNT@{ATTRACTIONS\_AMOUNT}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{ATTRACTIONS\_AMOUNT}{ATTRACTIONS\_AMOUNT}}
-{\footnotesize\ttfamily \#define ATTRACTIONS\+\_\+\+AMOUNT~5}
-
-\Hypertarget{main_8h_a380fc0ea01a0b867ed7dad77802d12a9}\label{main_8h_a380fc0ea01a0b867ed7dad77802d12a9} 
-\index{main.h@{main.h}!MISC\_KEYS\_AMOUNT@{MISC\_KEYS\_AMOUNT}}
-\index{MISC\_KEYS\_AMOUNT@{MISC\_KEYS\_AMOUNT}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{MISC\_KEYS\_AMOUNT}{MISC\_KEYS\_AMOUNT}}
-{\footnotesize\ttfamily \#define MISC\+\_\+\+KEYS\+\_\+\+AMOUNT~5}
-
-\Hypertarget{main_8h_afadccc3864c7760573fe16e68295424d}\label{main_8h_afadccc3864c7760573fe16e68295424d} 
-\index{main.h@{main.h}!MOUVEMENT\_KEYS\_AMOUNT@{MOUVEMENT\_KEYS\_AMOUNT}}
-\index{MOUVEMENT\_KEYS\_AMOUNT@{MOUVEMENT\_KEYS\_AMOUNT}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{MOUVEMENT\_KEYS\_AMOUNT}{MOUVEMENT\_KEYS\_AMOUNT}}
-{\footnotesize\ttfamily \#define MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT~4}
-
-\Hypertarget{main_8h_a71f9b9d919c8b7b4c1adc1b1eea49393}\label{main_8h_a71f9b9d919c8b7b4c1adc1b1eea49393} 
-\index{main.h@{main.h}!PLAYER\_AMOUNT@{PLAYER\_AMOUNT}}
-\index{PLAYER\_AMOUNT@{PLAYER\_AMOUNT}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{PLAYER\_AMOUNT}{PLAYER\_AMOUNT}}
-{\footnotesize\ttfamily \#define PLAYER\+\_\+\+AMOUNT~2}
-
-\Hypertarget{main_8h_a2712b06fd52f25adca031d05c3e0c09b}\label{main_8h_a2712b06fd52f25adca031d05c3e0c09b} 
-\index{main.h@{main.h}!PLAYER\_HEIGHT@{PLAYER\_HEIGHT}}
-\index{PLAYER\_HEIGHT@{PLAYER\_HEIGHT}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{PLAYER\_HEIGHT}{PLAYER\_HEIGHT}}
-{\footnotesize\ttfamily \#define PLAYER\+\_\+\+HEIGHT~50}
-
-\Hypertarget{main_8h_a89e2ac9092225702ac543695d0771d38}\label{main_8h_a89e2ac9092225702ac543695d0771d38} 
-\index{main.h@{main.h}!PLAYER\_WIDTH@{PLAYER\_WIDTH}}
-\index{PLAYER\_WIDTH@{PLAYER\_WIDTH}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{PLAYER\_WIDTH}{PLAYER\_WIDTH}}
-{\footnotesize\ttfamily \#define PLAYER\+\_\+\+WIDTH~50}
-
-\Hypertarget{main_8h_a6974d08a74da681b3957b2fead2608b8}\label{main_8h_a6974d08a74da681b3957b2fead2608b8} 
-\index{main.h@{main.h}!SCREEN\_HEIGHT@{SCREEN\_HEIGHT}}
-\index{SCREEN\_HEIGHT@{SCREEN\_HEIGHT}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{SCREEN\_HEIGHT}{SCREEN\_HEIGHT}}
-{\footnotesize\ttfamily \#define SCREEN\+\_\+\+HEIGHT~900}
-
-\Hypertarget{main_8h_a2cd109632a6dcccaa80b43561b1ab700}\label{main_8h_a2cd109632a6dcccaa80b43561b1ab700} 
-\index{main.h@{main.h}!SCREEN\_WIDTH@{SCREEN\_WIDTH}}
-\index{SCREEN\_WIDTH@{SCREEN\_WIDTH}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{SCREEN\_WIDTH}{SCREEN\_WIDTH}}
-{\footnotesize\ttfamily \#define SCREEN\+\_\+\+WIDTH~1800}
-
-
-
-\doxysubsection{Typedef Documentation}
-\Hypertarget{main_8h_ad1bda5279904083139440f9b1fafb8ac}\label{main_8h_ad1bda5279904083139440f9b1fafb8ac} 
-\index{main.h@{main.h}!Attraction@{Attraction}}
-\index{Attraction@{Attraction}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{Attraction}{Attraction}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structt__attraction}{t\+\_\+attraction}} \mbox{\hyperlink{main_8h_ad1bda5279904083139440f9b1fafb8ac}{Attraction}}}
-
-\Hypertarget{main_8h_ae38057b82fe344ff214a4f98a45fa6b1}\label{main_8h_ae38057b82fe344ff214a4f98a45fa6b1} 
-\index{main.h@{main.h}!GameState@{GameState}}
-\index{GameState@{GameState}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{GameState}{GameState}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structt__game_state}{t\+\_\+game\+State}} \mbox{\hyperlink{struct_game_state}{Game\+State}}}
-
-\Hypertarget{main_8h_a813965931906aa33af71cb59bb423b62}\label{main_8h_a813965931906aa33af71cb59bb423b62} 
-\index{main.h@{main.h}!Player@{Player}}
-\index{Player@{Player}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{Player}{Player}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structt__player}{t\+\_\+player}} \mbox{\hyperlink{main_8h_a813965931906aa33af71cb59bb423b62}{Player}}}
-
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{main_8h_ad61f84d47c211a68c6f3a8ac42f3e370}\label{main_8h_ad61f84d47c211a68c6f3a8ac42f3e370} 
-\index{main.h@{main.h}!check\_collisions@{check\_collisions}}
-\index{check\_collisions@{check\_collisions}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{check\_collisions()}{check\_collisions()}}
-{\footnotesize\ttfamily void check\+\_\+collisions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+\Hypertarget{main_8h_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8h_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{main.h@{main.h}!main@{main}}
+\index{main@{main}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=270pt]{main_8h_ad61f84d47c211a68c6f3a8ac42f3e370_cgraph}
+\includegraphics[height=550pt]{main_8h_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=241pt]{main_8h_ad61f84d47c211a68c6f3a8ac42f3e370_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8h_a4f8b72540342c2b2c7841e77404d5f02}\label{main_8h_a4f8b72540342c2b2c7841e77404d5f02} 
-\index{main.h@{main.h}!clean\_game@{clean\_game}}
-\index{clean\_game@{clean\_game}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{clean\_game()}{clean\_game()}}
-{\footnotesize\ttfamily void clean\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=222pt]{main_8h_a4f8b72540342c2b2c7841e77404d5f02_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8h_a0b7a80252bd91beb735d1c20d9a07d52}\label{main_8h_a0b7a80252bd91beb735d1c20d9a07d52} 
-\index{main.h@{main.h}!current\_time@{current\_time}}
-\index{current\_time@{current\_time}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{current\_time()}{current\_time()}}
-{\footnotesize\ttfamily double current\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{main_8h_a0b7a80252bd91beb735d1c20d9a07d52_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8h_a94f0cbf1d888ff82aba1e11be87d9545}\label{main_8h_a94f0cbf1d888ff82aba1e11be87d9545} 
-\index{main.h@{main.h}!display@{display}}
-\index{display@{display}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{display()}{display()}}
-{\footnotesize\ttfamily void display (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=325pt]{main_8h_a94f0cbf1d888ff82aba1e11be87d9545_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=200pt]{main_8h_a94f0cbf1d888ff82aba1e11be87d9545_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8h_a0ee68cd31e0b63cab0d4ea1c060648e7}\label{main_8h_a0ee68cd31e0b63cab0d4ea1c060648e7} 
-\index{main.h@{main.h}!draw\_fps@{draw\_fps}}
-\index{draw\_fps@{draw\_fps}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{draw\_fps()}{draw\_fps()}}
-{\footnotesize\ttfamily void draw\+\_\+fps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=242pt]{main_8h_a0ee68cd31e0b63cab0d4ea1c060648e7_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=292pt]{main_8h_a0ee68cd31e0b63cab0d4ea1c060648e7_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8h_a043bab3aebb77ca901157a7a64853751}\label{main_8h_a043bab3aebb77ca901157a7a64853751} 
-\index{main.h@{main.h}!handle\_input@{handle\_input}}
-\index{handle\_input@{handle\_input}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{handle\_input()}{handle\_input()}}
-{\footnotesize\ttfamily void handle\+\_\+input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{main_8h_a043bab3aebb77ca901157a7a64853751_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=224pt]{main_8h_a043bab3aebb77ca901157a7a64853751_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8h_a3be5aa099f17a3e55005fe597c9c1c81}\label{main_8h_a3be5aa099f17a3e55005fe597c9c1c81} 
-\index{main.h@{main.h}!init\_game@{init\_game}}
-\index{init\_game@{init\_game}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{init\_game()}{init\_game()}}
-{\footnotesize\ttfamily void init\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=295pt]{main_8h_a3be5aa099f17a3e55005fe597c9c1c81_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{main_8h_a3be5aa099f17a3e55005fe597c9c1c81_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8h_ac7132f875351b34e875f66af3984d28c}\label{main_8h_ac7132f875351b34e875f66af3984d28c} 
-\index{main.h@{main.h}!random\_color@{random\_color}}
-\index{random\_color@{random\_color}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{random\_color()}{random\_color()}}
-{\footnotesize\ttfamily int random\+\_\+color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=322pt]{main_8h_ac7132f875351b34e875f66af3984d28c_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{main_8h_aa74f4048b69bf54acd5e6905d94de84e}\label{main_8h_aa74f4048b69bf54acd5e6905d94de84e} 
-\index{main.h@{main.h}!wait\_attractions\_end@{wait\_attractions\_end}}
-\index{wait\_attractions\_end@{wait\_attractions\_end}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{wait\_attractions\_end()}{wait\_attractions\_end()}}
-{\footnotesize\ttfamily float wait\+\_\+attractions\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{attraction\+\_\+index }\end{DoxyParamCaption})}
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{main_8h_aa74f4048b69bf54acd5e6905d94de84e_icgraph}
-\end{center}
-\end{figure}
-
-
-\doxysubsection{Variable Documentation}
-\Hypertarget{main_8h_a4b562a445a91d12bc7231b16c154fb12}\label{main_8h_a4b562a445a91d12bc7231b16c154fb12} 
-\index{main.h@{main.h}!ATTRACTIONS\_NAMES@{ATTRACTIONS\_NAMES}}
-\index{ATTRACTIONS\_NAMES@{ATTRACTIONS\_NAMES}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{ATTRACTIONS\_NAMES}{ATTRACTIONS\_NAMES}}
-{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} ATTRACTIONS\+\_\+\+NAMES\mbox{[}\mbox{\hyperlink{main_8h_a88a2fb3da3452d0a364f95e415d719a1}{ATTRACTIONS\+\_\+\+AMOUNT}}\mbox{]} = \{\mbox{\hyperlink{main_8h_aa438a5d5bcbb5a4a96842f169770c738}{ATTRACTION0\+\_\+\+NAME}}, \mbox{\hyperlink{main_8h_ab7d18ce5a57857725be630b39bceab2f}{ATTRACTION1\+\_\+\+NAME}}, \mbox{\hyperlink{main_8h_a0b2fca599c153910c2a726ee88b94056}{ATTRACTION2\+\_\+\+NAME}}, \mbox{\hyperlink{main_8h_aaccb14749adba236cb8ea827ea2bcc5a}{ATTRACTION3\+\_\+\+NAME}}, \mbox{\hyperlink{main_8h_a6f87605c70eb2ba03cc693de0b569515}{ATTRACTION4\+\_\+\+NAME}}\}}
-
-\Hypertarget{main_8h_a63da2a617b72a1630998a4d8b4d26cd3}\label{main_8h_a63da2a617b72a1630998a4d8b4d26cd3} 
-\index{main.h@{main.h}!fps@{fps}}
-\index{fps@{fps}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{fps}{fps}}
-{\footnotesize\ttfamily double fps = 0}
-
-\Hypertarget{main_8h_af636f754be71003839b8972c780fddcf}\label{main_8h_af636f754be71003839b8972c780fddcf} 
-\index{main.h@{main.h}!fps\_timer@{fps\_timer}}
-\index{fps\_timer@{fps\_timer}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{fps\_timer}{fps\_timer}}
-{\footnotesize\ttfamily double fps\+\_\+timer}
-
-\Hypertarget{main_8h_a3448dd01436f3e7a1aa21241556cd4f8}\label{main_8h_a3448dd01436f3e7a1aa21241556cd4f8} 
-\index{main.h@{main.h}!frames\_accum@{frames\_accum}}
-\index{frames\_accum@{frames\_accum}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{frames\_accum}{frames\_accum}}
-{\footnotesize\ttfamily double frames\+\_\+accum = 0}
-
-\Hypertarget{main_8h_a89885931534fe5dc18e6dd5417fb731a}\label{main_8h_a89885931534fe5dc18e6dd5417fb731a} 
-\index{main.h@{main.h}!PLAYER1\_KEYS@{PLAYER1\_KEYS}}
-\index{PLAYER1\_KEYS@{PLAYER1\_KEYS}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{PLAYER1\_KEYS}{PLAYER1\_KEYS}}
-{\footnotesize\ttfamily const int PLAYER1\+\_\+\+KEYS\mbox{[}\mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]} = \{KEY\+\_\+Z, KEY\+\_\+S, KEY\+\_\+Q, KEY\+\_\+D\}}
-
-\Hypertarget{main_8h_a74438ef97d4a26365204c63632172135}\label{main_8h_a74438ef97d4a26365204c63632172135} 
-\index{main.h@{main.h}!PLAYER2\_KEYS@{PLAYER2\_KEYS}}
-\index{PLAYER2\_KEYS@{PLAYER2\_KEYS}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{PLAYER2\_KEYS}{PLAYER2\_KEYS}}
-{\footnotesize\ttfamily const int PLAYER2\+\_\+\+KEYS\mbox{[}\mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]} = \{KEY\+\_\+\+UP, KEY\+\_\+\+DOWN, KEY\+\_\+\+LEFT, KEY\+\_\+\+RIGHT\}}
-
-\Hypertarget{main_8h_ac2ce183271bca15306dc69391f17e7a7}\label{main_8h_ac2ce183271bca15306dc69391f17e7a7} 
-\index{main.h@{main.h}!PLAYER3\_KEYS@{PLAYER3\_KEYS}}
-\index{PLAYER3\_KEYS@{PLAYER3\_KEYS}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{PLAYER3\_KEYS}{PLAYER3\_KEYS}}
-{\footnotesize\ttfamily const int PLAYER3\+\_\+\+KEYS\mbox{[}\mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]} = \{KEY\+\_\+I, KEY\+\_\+K, KEY\+\_\+J, KEY\+\_\+L\}}
-
-\Hypertarget{main_8h_a474eb08ad7b913c55e38e026588df48c}\label{main_8h_a474eb08ad7b913c55e38e026588df48c} 
-\index{main.h@{main.h}!PLAYER4\_KEYS@{PLAYER4\_KEYS}}
-\index{PLAYER4\_KEYS@{PLAYER4\_KEYS}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{PLAYER4\_KEYS}{PLAYER4\_KEYS}}
-{\footnotesize\ttfamily const int PLAYER4\+\_\+\+KEYS\mbox{[}\mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]} = \{KEY\+\_\+T, KEY\+\_\+G, KEY\+\_\+F, KEY\+\_\+H\}}
-
-\Hypertarget{main_8h_a34a53fee5c6dccaf9aaa4cdda9b639eb}\label{main_8h_a34a53fee5c6dccaf9aaa4cdda9b639eb} 
-\index{main.h@{main.h}!PLAYERS\_KEYS@{PLAYERS\_KEYS}}
-\index{PLAYERS\_KEYS@{PLAYERS\_KEYS}!main.h@{main.h}}
-\doxysubsubsection{\texorpdfstring{PLAYERS\_KEYS}{PLAYERS\_KEYS}}
-{\footnotesize\ttfamily const int\texorpdfstring{$\ast$}{*} PLAYERS\+\_\+\+KEYS\mbox{[}\mbox{\hyperlink{main_8h_afadccc3864c7760573fe16e68295424d}{MOUVEMENT\+\_\+\+KEYS\+\_\+\+AMOUNT}}\mbox{]} = \{\mbox{\hyperlink{main_8h_a89885931534fe5dc18e6dd5417fb731a}{PLAYER1\+\_\+\+KEYS}}, \mbox{\hyperlink{main_8h_a74438ef97d4a26365204c63632172135}{PLAYER2\+\_\+\+KEYS}}, \mbox{\hyperlink{main_8h_ac2ce183271bca15306dc69391f17e7a7}{PLAYER3\+\_\+\+KEYS}}, \mbox{\hyperlink{main_8h_a474eb08ad7b913c55e38e026588df48c}{PLAYER4\+\_\+\+KEYS}}\}}
-

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['x_0',['x',['../struct_duck.html#a1cbb9cbfa26f3a10b8da1627e26d86a3',1,'Duck::x'],['../structcheval.html#a6ced870f242223d7c01da553ec82803e',1,'cheval::x'],['../struct_block.html#a13d0a6d225233353862fa5adcbadf661',1,'Block::x'],['../structt__player.html#a0bb4ef941b9751e6e932a52bb8524d6f',1,'t_player::x'],['../structt__attraction.html#a206e113b205488f88bbde761ba7f464a',1,'t_attraction::x']]]
+  ['ticket_0',['ticket',['../structt__game_state.html#aa745e8e38a1d73d8252b688fd862149d',1,'t_gameState']]],
+  ['tickets_1',['tickets',['../structt__player.html#af3ac899b00fcda5283d2e5d739492298',1,'t_player']]],
+  ['triggered_2',['triggered',['../structt__attraction.html#adec2a4e44732a7fce8807fc4500dd6ef',1,'t_attraction']]]
 ];
